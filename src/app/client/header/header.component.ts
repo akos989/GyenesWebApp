@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  navigationOpen = false;
 
+  constructor() { }
+  
   ngOnInit(): void {
   }
 
+  navigatonClicked() {
+    this.navigationOpen = !this.navigationOpen;
+  }
+ 
 }
