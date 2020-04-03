@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "GyenesWebApp": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "GyenesWebApp"
+    }
+  },
+  "defaultProject": "GyenesWebApp",
+  "cli": {
+    "analytics": "77426791-0338-4dd8-864e-a00cd4fb41e1"
+  }
 }
