@@ -9,6 +9,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class HeaderComponent implements OnInit {
 
   navigationOpen = false;
+  small = false;
 
   constructor() { }
   
@@ -19,4 +20,7 @@ export class HeaderComponent implements OnInit {
     this.navigationOpen = !this.navigationOpen;
   }
  
+  toggleSmallClicked() {
+    this.small = !this.small;
+  }
 }
