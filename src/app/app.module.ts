@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FacebookModule } from 'ngx-facebook';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { FieldListComponent } from './client/map/field-list/field-list.component
 import { FieldDetailsComponent } from './client/map/field-details/field-details.component';
 import { ServicesListComponent } from './client/map/services-list/services-list.component';
 import { ServiceDetailsComponent } from './client/map/service-details/service-details.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
