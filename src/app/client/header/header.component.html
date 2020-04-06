@@ -2,22 +2,23 @@
     class="top-zero"
     [ngClass]="{'small': small, 'open': navigationOpen}">
 </div>
-    <div 
-        class="logo"
-        [ngClass]="{'small': small}">
-        <img
-            [src]="'../../../assets/pictures/paintball-logo.png'"
-            [ngClass]="{'small': small}"
-            alt="">
+<div 
+    class="logo"
+    [ngClass]="{'small': small}">
+    <img
+        [src]="'../../../assets/pictures/paintball-logo.png'"
+        [ngClass]="{'small': small}"
+        alt="">
 </div>
-    <div
-        id="nav-icon4"
-        [ngClass]="{'small': small, 'open': navigationOpen}"
-        (click)="navigatonClicked()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
+<div
+    id="nav-icon4"
+    [ngClass]="{'small': small, 'open': navigationOpen}"
+    (click)="navigatonClicked()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<ng-template appPlaceholder></ng-template>
+<app-navigation [open]="navigationOpen" ></app-navigation>
 <button class="btn btn-primary" (click)="toggleSmallClicked()"
 style="position: absolute; top: 40vh;">toggle Small</button>
