@@ -1,5 +1,5 @@
 .logo {
-      position: absolute;
+      position: fixed;
       left: calc(3vh + 3vw);
       margin: 0px;
       top: calc(3vh + 3vw);
@@ -20,6 +20,7 @@
 }
 img {
   height: calc(6vh + 3vw);
+  position: fixed;
   -webkit-transition: .25s ease-in-out;
   -moz-transition: .25s ease-in-out;
   -o-transition: .25s ease-in-out;
