@@ -10,6 +10,14 @@
       cursor: pointer;
       z-index: 100;
   }
+.logo.open {
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+}
+.logo.open:hover {
+  -webkit-filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
+  filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
+}
 img {
   height: calc(6vh + 3vw);
   -webkit-transition: .25s ease-in-out;
@@ -105,7 +113,7 @@ img {
     -moz-transform: rotate(135deg);
     -o-transform: rotate(135deg);
     transform: rotate(135deg);
-    top: 0vh;
+    top: -0.5vh;
     right: calc(0.25vw - 0.5vh - 2vw);
   }
   
@@ -115,7 +123,7 @@ img {
     -moz-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
-    top: 2vh;
+    top: 1.5vh;
     right: calc(0.25vw - 0.3vh - 2vw);
   }
   
@@ -125,7 +133,7 @@ img {
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
-    top: 0vh;
+    top: -0.5vh;
     right: calc(0.25vw - 2vw);
   }
   
