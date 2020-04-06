@@ -29,7 +29,7 @@
     position: fixed;
     top: calc(8vh + 10vw);
     left: 10vw;
-    width: 80vw;
+    right: 10vw;
     z-index: 90;
 }
 
