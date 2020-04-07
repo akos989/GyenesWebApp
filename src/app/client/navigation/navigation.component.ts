@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { HeaderService } from '../header/header.service';
 
 @Component({
   selector: 'app-navigation',
@@ -9,9 +8,9 @@ import { HeaderService } from '../header/header.service';
 export class NavigationComponent implements OnInit {
 
   @Input() open:boolean;
-  @Output() linkClick = new EventEmitter<{}>();
+  @Output() linkClick = new EventEmitter<boolean>();
 
-  constructor(private headerService: HeaderService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.open = false;
@@ -22,7 +21,7 @@ export class NavigationComponent implements OnInit {
     console.log(this.open);
   }
 
-  onLinkClicked() {
-    this.linkClick.emit();
+  onLinkClicked(small: boolean = true) {
+    this.linkClick.emit(small);
   }
 }

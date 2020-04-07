@@ -6,7 +6,7 @@
     class="logo"
     [ngClass]="{'small': small, 'open': navigationOpen}"
     [routerLink]="['/home']"
-    (click)="navigationOpen = false">
+    (click)="navLinkClicked(false)">
     <img
         [src]="'../../../assets/pictures/paintball-logo.png'"
         [ngClass]="{'small': small}"
@@ -20,8 +20,7 @@
     <span></span>
     <span></span>
 </div>
-<ng-template appPlaceholder></ng-template>
 <app-navigation
     [open]="navigationOpen"
-    (linkClick)="navigatonClicked()">
+    (linkClick)="navLinkClicked($event)">
 </app-navigation>

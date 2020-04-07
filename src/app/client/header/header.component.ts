@@ -1,5 +1,5 @@
-import { Component, OnInit, Renderer2, ChangeDetectorRef } from '@angular/core';
-import { HeaderService } from './header.service';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -12,17 +12,13 @@ export class HeaderComponent implements OnInit {
   small: boolean;
   smallBeforeNav:boolean = null;
 
-  constructor(private headerService: HeaderService, private renderer: Renderer2,
-              private cd: ChangeDetectorRef) { }
+  constructor(private renderer: Renderer2, private location: Location) { }
   
   ngOnInit(): void {
-    this.small = false;
-    this.headerService.small
-      .subscribe( 
-        (small: boolean) => {          
-          setTimeout( () => this.small = small, 0);
-        }
-      );
+    if (this.location.path() === '' || this.location.path() === '/home' )
+      this.small = false;
+    else 
+      this.small = true;
   }
 
   navigatonClicked() {
@@ -38,6 +34,12 @@ export class HeaderComponent implements OnInit {
       if (this.smallBeforeNav !== null)
         this.small = this.smallBeforeNav;
     }      
+  }
+
+  navLinkClicked(small: boolean = true) {
+    this.navigationOpen = false;
+    this.small = small;
+    this.renderer.removeClass(document.body, 'modal-open');
   }
  
   toggleSmallClicked() {
