@@ -17,7 +17,7 @@
     z-index: 80;
     clip-path: ellipse(0vw 0vh at 50% -20%);
     -webkit-clip-path: ellipse(0vw 0vh at 50% -20%);
-    transition: all 1s ease-out;
+    /* transition: 1s linear;  */
 }
 
 .nav-anim.open {

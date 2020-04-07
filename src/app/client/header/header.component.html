@@ -4,7 +4,9 @@
 </div>
 <div 
     class="logo"
-    [ngClass]="{'small': small, 'open': navigationOpen}">
+    [ngClass]="{'small': small, 'open': navigationOpen}"
+    [routerLink]="['/home']"
+    (click)="navigationOpen = false">
     <img
         [src]="'../../../assets/pictures/paintball-logo.png'"
         [ngClass]="{'small': small}"
@@ -19,6 +21,7 @@
     <span></span>
 </div>
 <ng-template appPlaceholder></ng-template>
-<app-navigation [open]="navigationOpen" ></app-navigation>
-<!-- <button class="btn btn-primary" (click)="toggleSmallClicked()"
-style="position: absolute; top: 40vh;">toggle Small</button> -->
+<app-navigation
+    [open]="navigationOpen"
+    (linkClick)="navigatonClicked()">
+</app-navigation>

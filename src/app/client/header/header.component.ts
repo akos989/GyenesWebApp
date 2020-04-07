@@ -1,5 +1,5 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnInit, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { HeaderService } from './header.service';
 
 @Component({
   selector: 'app-header',
@@ -12,20 +12,21 @@ export class HeaderComponent implements OnInit {
   small: boolean;
   smallBeforeNav:boolean = null;
 
-  constructor(private location: Location, private renderer: Renderer2) { }
+  constructor(private headerService: HeaderService, private renderer: Renderer2,
+              private cd: ChangeDetectorRef) { }
   
   ngOnInit(): void {
-    console.log(this.location.path())
-    if ( this.location.path() === '' || this.location.path() === '/home' ) {
-      this.small = false;
-    } else {
-      this.small = true;
-    }
-    
+    this.small = false;
+    this.headerService.small
+      .subscribe( 
+        (small: boolean) => {          
+          setTimeout( () => this.small = small, 0);
+        }
+      );
   }
 
   navigatonClicked() {
-    if (!this.navigationOpen)
+   if (!this.navigationOpen)
       this.smallBeforeNav = this.small;
     this.navigationOpen = !this.navigationOpen;
 
