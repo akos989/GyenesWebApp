@@ -1,34 +1,26 @@
-.backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(1, 0, 0, 0.9);
-    z-index: 80;
-    clip-path: circle(100px);
-}
-
 .nav-anim {
     position: fixed;
-    background: rgba(1, 0, 0, 0.8);
+    background: rgba(1, 0, 0, 0.9);
     height: 100%;
     width: 100%;
     z-index: 80;
-    clip-path: ellipse(0vw 0vh at 50% -20%);
-    -webkit-clip-path: ellipse(0vw 0vh at 50% -20%);
-    /* transition: 1s linear;  */
+    left: 0px;
+    top: -100vh;
+    -webkit-transition: .3s ease-out;
+    -moz-transition: .3s ease-out;
+    -o-transition: .3s ease-out;
+    transition: .3s ease-out;
+    will-change: transform;
 }
 
 .nav-anim.open {
-    clip-path: ellipse(150vw 150vh at 50% -20%);
-    -webkit-clip-path: ellipse(150vw 150vh at 50% -20%);
+    top: 0vh;
 }
 
 .nav-box {
-    position: fixed;
+    position: relative;
     top: calc(11vh + 8vw);
-    left: 10vw;
+    left: 8vw;
     right: 10vw;
     z-index: 90;
 }
@@ -61,9 +53,9 @@
     height: 2px;
 }
 
-.game-mode {
+/* .game-mode {
     padding-left: 2vw;
-}
+} */
 
 @media screen and (max-height: 470px) and (max-width: 768px) {
     .game-mode {
