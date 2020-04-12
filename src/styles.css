@@ -2,3 +2,9 @@
 body {
     margin: 0px;
 }
+body.modal-open {
+    overflow: hidden;
+}
+.component {
+    margin-top: calc(3vh + 2vw + 2vh);
+}

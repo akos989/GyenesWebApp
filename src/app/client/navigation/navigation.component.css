@@ -1,0 +1,71 @@
+.nav-anim {
+    position: fixed;
+    background: rgba(1, 0, 0, 0.9);
+    height: 100%;
+    width: 100%;
+    z-index: 80;
+    left: 0px;
+    top: -150vh;
+    -webkit-transition: .3s ease-out;
+    -moz-transition: .3s ease-out;
+    -o-transition: .3s ease-out;
+    transition: .3s ease-out;
+    will-change: transform;
+}
+
+.nav-anim.open {
+    top: 0vh;
+}
+
+.nav-box {
+    position: relative;
+    top: calc(11vh + 8vw);
+    left: 8vw;
+    right: 10vw;
+    z-index: 90;
+}
+
+.padding {
+    padding-bottom: calc(0.5vw + 0.3vh);
+}
+
+.nav-box-lines {
+    text-align: left;
+}
+.nav-box-lines div a {
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: calc(1vw + 2.5vh);
+}
+
+.nav-box-lines div a:hover {
+    color: #d3531a;
+    text-decoration: none;
+}
+
+.nav-box-column {
+    text-align: center;
+}
+
+.hr {
+    background-color: #d3531a;
+    width: 100%;
+    height: 2px;
+}
+
+/* .game-mode {
+    padding-left: 2vw;
+} */
+
+@media screen and (max-height: 470px) and (max-width: 768px) {
+    .game-mode {
+        display: none;
+    }
+}
+
+svg {
+    width: calc(3vh + 1vw);
+    height: calc(3vh + 1vw);
+    fill: currentColor;
+    vertical-align: top;
+}
