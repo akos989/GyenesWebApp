@@ -1,0 +1,43 @@
+.head-line div {
+    -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+    position: absolute;
+    text-align: center;
+    width: 97%;
+    font-size: 10vw;
+    font-weight: bold;
+    top: 1vh;
+    left: 3vw;
+}
+
+.small {
+    display: none;
+}
+
+@media screen and (max-width: 1025px) {
+    .big {
+        display: none;
+    }
+    .small {
+        display: inherit;
+    }
+    .head-line div {
+        position: absolute;
+        text-align: center;
+        width: 97%;
+        font-size: 10vw;
+        font-weight: bold;
+        left: 3vw;
+    }
+    .head-line div:nth-child(1) {
+        -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        top: 4vh;
+    }
+    
+    .head-line div:nth-child(2) {
+        -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+        top: calc(3vh + 10vw);
+    }
+}
