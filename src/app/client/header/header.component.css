@@ -11,8 +11,8 @@
       z-index: 100;
   }
 .logo.open {
-  -webkit-filter: brightness(0) invert(1);
-  filter: brightness(0) invert(1);
+  -webkit-filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
+  filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
 }
 .logo.open:hover {
   -webkit-filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
@@ -113,7 +113,7 @@ img {
   }
   
   #nav-icon4.open span:nth-child(1) {
-    background: white;
+    background: #ffebcd;
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
     -o-transform: rotate(135deg);
@@ -123,7 +123,7 @@ img {
   }
   
   #nav-icon4.open span:nth-child(2) {
-    background: white;
+    background: blanchedalmond;
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -o-transform: rotate(90deg);
@@ -133,7 +133,7 @@ img {
   }
   
   #nav-icon4.open span:nth-child(3) {
-    background: white;
+    background: blanchedalmond;
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
@@ -154,8 +154,8 @@ img {
   /* Icon 4 small */
 
   .logo.small {
-    -webkit-filter: brightness(0) invert(1);
-    filter: brightness(0) invert(1);
+    -webkit-filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
+    filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
     position: fixed;
     left: calc(1vh + 1.5vh);
     margin: 0px;
@@ -180,7 +180,7 @@ img {
     z-index: 100;
     height: 0.4vh;
     width: calc(1vw + 3vh);
-    background: white;
+    background: blanchedalmond;
     border-radius: 9px;
     opacity: 1;
     right: 0px;
@@ -232,7 +232,7 @@ img {
   }
 
   #nav-icon4.open.small span:nth-child(1) {
-    background: white;
+    background: blanchedalmond;
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
     -o-transform: rotate(135deg);
@@ -242,7 +242,7 @@ img {
   }
   
   #nav-icon4.open.small span:nth-child(2) {
-    background: white;
+    background: blanchedalmond;
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -o-transform: rotate(90deg);
@@ -252,7 +252,7 @@ img {
   }
   
   #nav-icon4.open.small span:nth-child(3) {
-    background: white;
+    background: blanchedalmond;
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
