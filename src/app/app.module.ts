@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FacebookModule } from 'ngx-facebook';
+import { InViewportModule } from 'ng-in-viewport';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -71,7 +72,8 @@ import { PlaceholderDirective } from './shared/placeholder/placeholder.directive
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    InViewportModule
   ],
   providers: [],
   bootstrap: [AppComponent]
