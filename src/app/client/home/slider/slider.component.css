@@ -1,0 +1,19 @@
+.swiper-container {
+    width: 100%;
+}
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 500px;
+    height: 300px;
+}
+.swiper {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+img{
+    height: 400px;
+    width: 99%;
+}
