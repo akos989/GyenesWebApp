@@ -8,3 +8,109 @@ body.modal-open {
 .component {
     margin-top: calc(3vh + 2vw + 2vh);
 }
+
+.cbtn {  
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    outline: none;
+}
+  
+.cbtn.big {
+line-height: 95px;
+height: 100px;
+width: 400px;
+font-size: 25px;
+}
+
+.cbtn.small {
+line-height: 75px;
+height: 80px;
+width: 200px;
+font-size: 25px;
+}
+
+
+@media screen and (max-width: 450px) {
+.cbtn.big {
+    line-height: 85px;
+    height: 90px;
+    width: 80%;
+    font-size: 25px;
+}
+
+.cbtn.small {
+    line-height: 65px;
+    height: 70px;
+    width: 150px;
+    font-size: 20px;
+}
+}
+
+.cbtn-one {
+    color: rgb(255, 235, 204);
+    position: relative;
+}
+
+.cbtn-one:hover {
+    color: rgb(209, 81, 26);
+}
+
+.cbtn-one span {
+    transition: all 0.1s;
+}
+.cbtn-one::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: rgb(209, 81, 26);
+    border-bottom-color: rgb(209, 81, 26);
+    transform: scale(0.1, 1);
+}
+.cbtn-one:hover span {
+    letter-spacing: 3px;
+}
+.cbtn-one:hover::before {
+    opacity: 1; 
+    transform: scale(1, 1); 
+}
+.cbtn-one::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.3s;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 25px;
+}
+
+.cbtn-one.dark::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.3s;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 25px;
+}
+
+.cbtn-one:hover::after {
+    opacity: 0; 
+    transform: scale(0.1, 1);
+}

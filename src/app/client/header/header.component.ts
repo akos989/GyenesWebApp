@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
           setTimeout( () => {
             this.small = small;
             this.navigationOpen = false;
+            this.renderer.removeClass(document.body, 'modal-open');
           }, 0);
         }
       );
