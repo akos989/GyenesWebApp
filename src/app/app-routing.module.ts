@@ -12,15 +12,17 @@ import { InformationFormComponent } from './client/booking/information-form/info
 import { ConfirmationComponent } from './client/booking/confirmation/confirmation.component';
 import { CheckComponent } from './client/booking/check/check.component';
 import { ContactComponent } from './client/contact/contact.component';
+import { SmallHeaderResolver } from './client/header/small-header.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'map', component: MapComponent },
-  { path: 'prices', component: PricesComponent },
+  { path: 'home', component: HomeComponent, resolve:{small: SmallHeaderResolver} },
+  { path: 'map', component: MapComponent, resolve:{small: SmallHeaderResolver} },
+  { path: 'prices', component: PricesComponent, resolve:{small: SmallHeaderResolver} },
   { 
     path: 'game-modes',
     component: GameModesComponent,
+    resolve:{small: SmallHeaderResolver},
     children:[
       { path: ':id/details', component: GameModesDetailsComponent }
     ]
@@ -28,6 +30,7 @@ const routes: Routes = [
   { 
     path: 'booking',
     component: BookingComponent,
+    resolve:{small: SmallHeaderResolver},
     children:[ //kell majd valami Guard + formData => localstorage
       { path: 'date', component: DateComponent },
       { path: 'info', component: InformationFormComponent },
@@ -35,7 +38,7 @@ const routes: Routes = [
       { path: 'confirm', component: ConfirmationComponent }
     ]
   },
-  { path: 'contact', component: ContactComponent }
+  { path: 'contact', component: ContactComponent, resolve:{small: SmallHeaderResolver} }
 ];
 
 @NgModule({

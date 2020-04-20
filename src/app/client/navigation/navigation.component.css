@@ -38,6 +38,18 @@
     font-size: calc(1vw + 2.5vh);
 }
 
+.nav-box-lines div a.disabled {
+    color: gray;
+    cursor: default;
+    text-decoration: none;
+    font-size: calc(1vw + 2.5vh);
+}
+
+.nav-box-lines div a.disabled:hover {
+    color:gray;
+    text-decoration: none;
+}
+
 .nav-box-lines div a:hover {
     color: #d3531a;
     text-decoration: none;

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ScrollTopService } from 'src/app/shared/scroll-top.service';
 
 enum Color {
   TRANSPARENT = 0,
@@ -15,9 +16,16 @@ export class HomeComponent implements OnInit {
 
   color: number = 0;
 
-  constructor() { }
+  constructor(private scrollTopS: ScrollTopService) { }
 
   ngOnInit(): void {
+    this.scrollTopS.scrollTop
+      .subscribe(
+        (component: string) => {
+          if (component === 'home')
+            this.scrollTop();
+        }
+      );
   }
 
   onChangeTransparent() {
@@ -27,6 +35,17 @@ export class HomeComponent implements OnInit {
 
   onChangeWhite() {
     console.log('changewhite')
+  }
+
+  scrollTop() {
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > 0) {
+          window.scrollTo(0, pos - 20); // how far to scroll on each step
+      } else {
+          window.clearInterval(scrollToTop);
+      }
+  }, 4);
   }
 
 }
