@@ -23,6 +23,7 @@
     "intersection-observer": "^0.8.0",
     "ng-in-viewport": "^6.1.0",
     "ngx-facebook": "^2.4.0",
+    "ngx-swiper-wrapper": "^9.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

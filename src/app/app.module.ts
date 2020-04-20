@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FacebookModule } from 'ngx-facebook';
-import { InViewportModule } from 'ng-in-viewport';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +38,11 @@ import { FieldDetailsComponent } from './client/map/field-details/field-details.
 import { ServicesListComponent } from './client/map/services-list/services-list.component';
 import { ServiceDetailsComponent } from './client/map/service-details/service-details.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
 
 @NgModule({
   declarations: [
@@ -73,9 +81,14 @@ import { PlaceholderDirective } from './shared/placeholder/placeholder.directive
   imports: [
     BrowserModule,
     AppRoutingModule,
-    InViewportModule
+    SwiperModule
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
