@@ -16,12 +16,12 @@ export class NavigationComponent implements OnInit {
     this.open = false;
   }
 
+  onLinkClick() {
+    this.linkClick.emit(false);
+  }
+
   openClicked() {
     this.open = !this.open;
     console.log(this.open);
-  }
-
-  onLinkClicked(small: boolean = true) {
-    this.linkClick.emit(small);
   }
 }

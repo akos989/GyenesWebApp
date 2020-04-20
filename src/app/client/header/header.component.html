@@ -5,8 +5,8 @@
 <div 
     class="logo"
     [ngClass]="{'small': small, 'open': navigationOpen}"
-    [routerLink]="['/home']"
-    (click)="navLinkClicked(false)">
+    [routerLink]="['/']"
+    (click)="linkClicked('home')">
     <img
         [src]="'../../../assets/pictures/paintball-logo.png'"
         [ngClass]="{'small': small}"
@@ -22,5 +22,5 @@
 </div>
 <app-navigation
     [open]="navigationOpen"
-    (linkClick)="navLinkClicked($event)">
+    (linkClick)="gameModeLinkClicked()">
 </app-navigation>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Location } from '@angular/common';
+import { HeaderService } from './header.service';
+import { ScrollTopService } from 'src/app/shared/scroll-top.service';
 
 @Component({
   selector: 'app-header',
@@ -12,13 +13,32 @@ export class HeaderComponent implements OnInit {
   small: boolean;
   smallBeforeNav:boolean = null;
 
-  constructor(private renderer: Renderer2, private location: Location) { }
+  constructor(private renderer: Renderer2, private headerService: HeaderService,
+              private scrollTopS: ScrollTopService) { }
   
   ngOnInit(): void {
-    if (this.location.path() === '' || this.location.path() === '/home' )
-      this.small = false;
-    else 
-      this.small = true;
+    this.small = false;
+    this.headerService.small
+      .subscribe( 
+        (small: boolean) => {          
+          setTimeout( () => {
+            this.small = small;
+            this.navigationOpen = false;
+          }, 0);
+        }
+      );
+  }
+
+  linkClicked(component: string) {
+    this.scrollTopS.onScrollTop(component);
+    this.navigationOpen = false;
+    this.renderer.removeClass(document.body, 'modal-open');
+  }
+
+  gameModeLinkClicked() {
+    this.navigationOpen = false;
+    this.renderer.removeClass(document.body, 'modal-open');
+    this.small = true;
   }
 
   navigatonClicked() {
@@ -34,15 +54,5 @@ export class HeaderComponent implements OnInit {
       if (this.smallBeforeNav !== null)
         this.small = this.smallBeforeNav;
     }      
-  }
-
-  navLinkClicked(small: boolean = true) {
-    this.navigationOpen = false;
-    this.small = small;
-    this.renderer.removeClass(document.body, 'modal-open');
-  }
- 
-  toggleSmallClicked() {
-    this.small = !this.small;
   }
 }
