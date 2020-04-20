@@ -1,25 +1,4 @@
-.best-track {
-   width: 100%;
-   background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8));
-   color: rgb(255, 235, 204);
-}
-
-.big-padding {
-    padding-top: 25vh;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-bottom: 15vh;
-}
-
-hr {
-    border-top: 3px solid rgb(209, 81, 26);
-}
-
-#map-content div:nth-child(1) {
-    font-size: 10vh;
-}
 #map-content div:nth-child(3) {
-    font-size: 3vh;
     padding-bottom: 7vh;
 }
 
