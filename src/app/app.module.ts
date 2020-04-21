@@ -38,6 +38,7 @@ import { FieldDetailsComponent } from './client/map/field-details/field-details.
 import { ServicesListComponent } from './client/map/services-list/services-list.component';
 import { ServiceDetailsComponent } from './client/map/service-details/service-details.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
+import { FooterComponent } from './shared/footer/footer.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -76,7 +77,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FieldDetailsComponent,
     ServicesListComponent,
     ServiceDetailsComponent,
-    PlaceholderDirective
+    PlaceholderDirective,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

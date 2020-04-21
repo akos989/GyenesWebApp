@@ -1,0 +1,21 @@
+.background {
+    background-color: rgb(29, 28, 28);
+    color: blanchedalmond;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+a{
+    color: #d3531a;
+    font-size: 3vh;
+}
+
+div {
+    padding-top: 2vh;
+    font-size: 3vh;
+}
+
+
+img.icon {
+    width: 50px;
+}
