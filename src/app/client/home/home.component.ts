@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ScrollTopService } from 'src/app/shared/scroll-top.service';
+import { HeaderService } from '../header/header.service';
+
+declare var ScrollMagic: any;
 
 @Component({
   selector: 'app-home',
@@ -8,9 +11,11 @@ import { ScrollTopService } from 'src/app/shared/scroll-top.service';
 })
 export class HomeComponent implements OnInit {
 
-  color: number = 0;
+  smallHeader: boolean = false;
 
-  constructor(private scrollTopS: ScrollTopService) { }
+  ctrl = new ScrollMagic.Controller();
+
+  constructor(private scrollTopS: ScrollTopService, private headerService: HeaderService) { }
 
   ngOnInit(): void {
     this.scrollTopS.scrollTop
@@ -20,6 +25,7 @@ export class HomeComponent implements OnInit {
             this.scrollTop();
         }
       );
+    this.animScroll();
   }
 
   scrollTop() {
@@ -33,4 +39,35 @@ export class HomeComponent implements OnInit {
   }, 4);
   }
 
+  animScroll() {
+    new ScrollMagic.Scene({
+      triggerElement: '#trigger',
+      triggerHook: 0,
+      duration: 10000
+    })
+      .setClassToggle("hr.left", "open")
+      .addTo(this.ctrl);
+
+    new ScrollMagic.Scene({
+      triggerElement: '#trigger2',
+      triggerHook: 0,
+      duration: 10000
+    })
+      .setClassToggle("hr.center", "open")
+      .addTo(this.ctrl);
+    
+    new ScrollMagic.Scene({
+      triggerElement: '#trigger',
+    })
+      .on('start', () => {
+        if (document.getElementById('trigger')) {
+          this.smallHeader = !this.smallHeader;
+          console.log(this.smallHeader);
+          this.headerService.newPage(this.smallHeader);
+        }
+    })
+      .addTo(this.ctrl);
+    }    
+  
+  
 }
