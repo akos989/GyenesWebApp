@@ -13,6 +13,8 @@ import { ConfirmationComponent } from './client/booking/confirmation/confirmatio
 import { CheckComponent } from './client/booking/check/check.component';
 import { ContactComponent } from './client/contact/contact.component';
 import { SmallHeaderResolver } from './client/header/small-header.resolver';
+import { SzechenyiComponent } from './shared/szechenyi/szechenyi.component';
+import { PrivacyStatementComponent } from './shared/privacy-statement/privacy-statement.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,11 +40,13 @@ const routes: Routes = [
       { path: 'confirm', component: ConfirmationComponent }
     ]
   },
-  { path: 'contact', component: ContactComponent, resolve:{small: SmallHeaderResolver} }
+  { path: 'contact', component: ContactComponent, resolve:{small: SmallHeaderResolver} },
+  { path: 'szechenyi', component: SzechenyiComponent, resolve:{small: SmallHeaderResolver} },
+  { path: 'privacy', component: PrivacyStatementComponent, resolve:{small: SmallHeaderResolver} }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -39,6 +39,8 @@ import { ServicesListComponent } from './client/map/services-list/services-list.
 import { ServiceDetailsComponent } from './client/map/service-details/service-details.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 import { FooterComponent } from './shared/footer/footer.component';
+import { SzechenyiComponent } from './shared/szechenyi/szechenyi.component';
+import { PrivacyStatementComponent } from './shared/privacy-statement/privacy-statement.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -78,7 +80,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ServicesListComponent,
     ServiceDetailsComponent,
     PlaceholderDirective,
-    FooterComponent
+    FooterComponent,
+    SzechenyiComponent,
+    PrivacyStatementComponent
   ],
   imports: [
     BrowserModule,
