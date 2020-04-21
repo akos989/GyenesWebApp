@@ -1,11 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ScrollTopService } from 'src/app/shared/scroll-top.service';
-
-enum Color {
-  TRANSPARENT = 0,
-  WHITE = 1,
-  DARK = 2
-}
 
 @Component({
   selector: 'app-home',
@@ -26,15 +20,6 @@ export class HomeComponent implements OnInit {
             this.scrollTop();
         }
       );
-  }
-
-  onChangeTransparent() {
-    this.color = this.color === 2 ? 0 : 2;
-    console.log('changeTrans')
-  }
-
-  onChangeWhite() {
-    console.log('changewhite')
   }
 
   scrollTop() {
