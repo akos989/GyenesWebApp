@@ -13,6 +13,35 @@ hr.orange {
     border-top: 3px solid rgb(209, 81, 26);
 }
 
+hr.center {
+    left: 50%;
+    width: 0%;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+}
+
+hr.center.open {
+    left: 0%;
+    width: 100%;
+}
+
+hr.left {
+    left: -50%;
+    width: 0%;
+    position: relative;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+}
+
+hr.left.open {
+    width: 100%;
+    left: 0%;
+}
+
 .light-background {
     width: 100%;
     background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8));

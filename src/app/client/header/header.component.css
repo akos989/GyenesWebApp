@@ -14,14 +14,6 @@
   -webkit-filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
   filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
 }
-.logo.open:hover {
-  -webkit-filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
-  filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
-}
-.logo.small:hover {
-  -webkit-filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
-  filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
-}
 img {
   height: calc(6vh + 3vw);
   position: fixed;
@@ -141,15 +133,7 @@ img {
     top: -0.5vh;
     right: calc(0.25vw - 2vw);
   }
-  #nav-icon4.open:hover span:nth-child(1) {
-    background: #d3531a;
-  }
-  #nav-icon4.open:hover span:nth-child(2) {
-    background: #d3531a;
-  }
-  #nav-icon4.open:hover span:nth-child(3) {
-    background: #d3531a;
-  }  
+   
   
   /* Icon 4 small */
 
@@ -221,15 +205,6 @@ img {
     transform-origin: left center;
   }
 
-  #nav-icon4.small:hover span:nth-child(1) {
-    background: #d3531a;
-  }
-  #nav-icon4.small:hover span:nth-child(2) {
-    background: #d3531a;
-  }
-  #nav-icon4.small:hover span:nth-child(3) {
-    background: #d3531a;
-  }
 
   #nav-icon4.open.small span:nth-child(1) {
     background: blanchedalmond;
@@ -260,3 +235,33 @@ img {
     top: 0vh;
     right: calc(0.0vw - 0.1vh - 1.5vh);
   }
+
+@media (hover: hover) {
+  .logo.open:hover {
+    -webkit-filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
+    filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
+  }
+  .logo.small:hover {
+    -webkit-filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
+    filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
+  }
+  #nav-icon4.open:hover span:nth-child(1) {
+    background: #d3531a;
+  }
+  #nav-icon4.open:hover span:nth-child(2) {
+    background: #d3531a;
+  }
+  #nav-icon4.open:hover span:nth-child(3) {
+    background: #d3531a;
+  } 
+  
+  #nav-icon4.small:hover span:nth-child(1) {
+    background: #d3531a;
+  }
+  #nav-icon4.small:hover span:nth-child(2) {
+    background: #d3531a;
+  }
+  #nav-icon4.small:hover span:nth-child(3) {
+    background: #d3531a;
+  }   
+}
