@@ -4,14 +4,16 @@
             <div class="col-md-4 col-12">
                 <div>Gyenes</div>
                 <div>Paintball</div>
-                <div><a href="#">Adatkezelési nyilatkozat</a></div>
-                <div><a href="#">Széchenyi 2020 pályázat</a></div>
+                <div><a [routerLink]="['/privacy']">Adatkezelési nyilatkozat</a></div>
+                <div><a [routerLink]="['/szechenyi']">Széchenyi 2020 pályázat</a></div>
                 <hr class="orange d-block d-sm-none d-none d-sm-block d-md-none">
             </div>
             <div class="col-md-4 col-12">
                 <div>Balaton utca, Gyenesdiás,</div>
                 <div>8315</div>
-                <img src="../../../assets/pictures/SZ_2020.webp" alt="asdf">
+                <img
+                    [routerLink]="['/szechenyi']"
+                    src="../../../assets/pictures/SZ_2020.webp" alt="asdf">
                 <hr class="orange d-block d-sm-none d-none d-sm-block d-md-none">
             </div>
             <div class="col-md-4 col-12">
