@@ -1,0 +1,35 @@
+.box.disabled {
+    background-color: red;
+}
+
+.box.active {
+    background-color: green;
+}
+
+.box.active.today {
+    background-color: orange;
+}
+
+.box.off {
+    background-color: gray;
+}
+
+.flx {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    width: 14.28%;
+    height: 0;
+    padding-bottom: 14.28%;
+    text-align: center;
+    border: black;
+    border-style: solid;
+    line-height: 5vh;
+    color: wheat;
+}   
+
+.box.day {
+    background-color: blue;
+}

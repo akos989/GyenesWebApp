@@ -41,6 +41,7 @@ import { PlaceholderDirective } from './shared/placeholder/placeholder.directive
 import { FooterComponent } from './shared/footer/footer.component';
 import { SzechenyiComponent } from './shared/szechenyi/szechenyi.component';
 import { PrivacyStatementComponent } from './shared/privacy-statement/privacy-statement.component';
+import { ChoosePackageComponent } from './client/booking/choose-package/choose-package.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -82,7 +83,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     PlaceholderDirective,
     FooterComponent,
     SzechenyiComponent,
-    PrivacyStatementComponent
+    PrivacyStatementComponent,
+    ChoosePackageComponent
   ],
   imports: [
     BrowserModule,

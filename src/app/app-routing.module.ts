@@ -15,6 +15,7 @@ import { ContactComponent } from './client/contact/contact.component';
 import { SmallHeaderResolver } from './client/header/small-header.resolver';
 import { SzechenyiComponent } from './shared/szechenyi/szechenyi.component';
 import { PrivacyStatementComponent } from './shared/privacy-statement/privacy-statement.component';
+import { ChoosePackageComponent } from './client/booking/choose-package/choose-package.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,8 +35,9 @@ const routes: Routes = [
     component: BookingComponent,
     resolve:{small: SmallHeaderResolver},
     children:[ //kell majd valami Guard + formData => localstorage
-      { path: 'date', component: DateComponent },
+      { path: '', component: ChoosePackageComponent },
       { path: 'info', component: InformationFormComponent },
+      { path: 'date', component: DateComponent },
       { path: 'check', component: CheckComponent },
       { path: 'confirm', component: ConfirmationComponent }
     ]

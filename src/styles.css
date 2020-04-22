@@ -61,6 +61,13 @@ hr.left.open {
     padding-bottom: 15vh;
 }
 
+.medium-padding {
+    padding-top: 10vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 10vh;
+}
+
 .cbtn {  
     text-align: center;
     cursor: pointer;
