@@ -6,8 +6,16 @@
     background-color: green;
 }
 
+.box.active.closed {
+    background-color: purple;
+}
+
 .box.active.today {
     background-color: orange;
+}
+
+.box.active.today.closed {
+    background-color: purple;
 }
 
 .box.off {

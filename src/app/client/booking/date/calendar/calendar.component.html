@@ -42,13 +42,13 @@
     <div class="flx">
         <div
             class="box"
-            [ngClass]="{'active': !day.disabled, 'off': day.off, 'disabled': day.disabled, 'today': day.today }"
+            [ngClass]="{'active': !day.disabled, 'off': day.off, 'disabled': day.disabled, 'today': day.today, 'closed': day.closed }"
             *ngFor="let day of week.days">
-                <div *ngIf="day.off || day.disabled" >
+                <div *ngIf="day.off || day.disabled || day.closed" >
                     {{ day.off ? 'off' : day.date.getDate()}}
                 </div>
                 <div
-                    *ngIf="!day.off && !day.disabled"
+                    *ngIf="!day.off && !day.disabled && !day.closed"
                     [routerLink]="['/booking/date/', day.date.getTime(), 'time-table']">
                     {{ day.date.getDate()}}
                 </div>
