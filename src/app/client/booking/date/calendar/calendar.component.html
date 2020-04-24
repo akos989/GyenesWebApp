@@ -44,7 +44,14 @@
             class="box"
             [ngClass]="{'active': !day.disabled, 'off': day.off, 'disabled': day.disabled, 'today': day.today }"
             *ngFor="let day of week.days">
-                {{ !day.off ? day.date.getDate() : 'off' }}
+                <div *ngIf="day.off || day.disabled" >
+                    {{ day.off ? 'off' : day.date.getDate()}}
+                </div>
+                <div
+                    *ngIf="!day.off && !day.disabled"
+                    [routerLink]="['/booking/date/', day.date.getTime(), 'time-table']">
+                    {{ day.date.getDate()}}
+                </div>
         </div>
     </div>
 </div>

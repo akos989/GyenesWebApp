@@ -1,1 +1,68 @@
-<p>check works!</p>
+<div class="row">
+    <div class="col-md-7 col-12">
+        <div>
+            <div class="text-center text-large">
+                Megadott foglalási adatok
+            </div>
+            <div>
+                Név: {{ currentReservation.name}}
+            </div>
+            <div>
+                Email: {{ currentReservation.email}}
+            </div>
+            <div>
+                Telefonszám: {{ currentReservation.phonenumber}}
+            </div>
+            <div>
+                Dátum: {{ currentReservation.date }}
+            </div>
+            <div>
+                Játékosszám: {{ currentReservation.playerNumber }}
+            </div>
+            <div>
+                Csomag: {{ currentReservation.packageId }}
+            </div>
+            <div>
+                Megjegyzések: {{ currentReservation.notes }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-12 text-center">
+                <div class="cbtn cbtn-one dark big">
+                    <span>Adatok javítása</span>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 text-center">
+                <div class="cbtn cbtn-one dark big">
+                    <span> Dátum javítása </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-12">
+        <div>
+            <div class="text-large" >Foglalás jováhagyása</div>
+            <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <div>
+                    Kijelentem, hogy a foglalási feltételeket elfogadom.......
+                </div>
+                <input
+                    type="checkbox" name="admission"
+                    ngModel
+                    required
+                    #admissionBox="ngModel">
+                <div
+                    *ngIf="admissionBox.valid"
+                    (click)="onSubmit()"
+                    class="cbtn cbtn-one dark big">
+                    <span>Jóváhagyás</span>
+                </div>
+            </form>
+        </div>
+        <div
+            *ngIf="isLoading"
+            class="text-center">
+            Betöltés...
+        </div>
+    </div>
+</div>
