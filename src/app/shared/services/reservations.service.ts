@@ -97,13 +97,19 @@ export class ReservationService {
     retrieveFromLocalStorage() {
         const currentReservation =
             JSON.parse(localStorage.getItem('currentReservation'));
-        this._currentReservation = currentReservation;
-        const dateParts:string[] = currentReservation.date.split('T');
-        this._currentReservation.date = new Date(
-            +(dateParts[0].split('-')[0]),
-            +(dateParts[0].split('-')[1]) - 1,
-            +(dateParts[0].split('-')[2]),
-            +(dateParts[1].split(':')[0]) + 2       
-        );
+        if (currentReservation !== null && currentReservation !== "") {
+            this._currentReservation = currentReservation;
+            const dateParts:string[] = currentReservation.date.split('T');
+            this._currentReservation.date = new Date(
+                +(dateParts[0].split('-')[0]),
+                +(dateParts[0].split('-')[1]) - 1,
+                +(dateParts[0].split('-')[2]),
+                +(dateParts[1].split(':')[0]) + 2       
+            );
+            if ( this._currentReservation.date.valueOf() <= new Date().valueOf() ) {
+                this._currentReservation = null;
+                localStorage.removeItem("currentReservation");
+            }
+        }        
     }
 }
