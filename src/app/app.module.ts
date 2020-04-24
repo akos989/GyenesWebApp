@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FacebookModule } from 'ngx-facebook';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
@@ -42,6 +43,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SzechenyiComponent } from './shared/szechenyi/szechenyi.component';
 import { PrivacyStatementComponent } from './shared/privacy-statement/privacy-statement.component';
 import { ChoosePackageComponent } from './client/booking/choose-package/choose-package.component';
+import { DateStartComponent } from './client/booking/date/date-start/date-start.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -84,12 +86,15 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FooterComponent,
     SzechenyiComponent,
     PrivacyStatementComponent,
-    ChoosePackageComponent
+    ChoosePackageComponent,
+    DateStartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SwiperModule
+    SwiperModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { 

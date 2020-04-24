@@ -16,6 +16,8 @@ import { SmallHeaderResolver } from './client/header/small-header.resolver';
 import { SzechenyiComponent } from './shared/szechenyi/szechenyi.component';
 import { PrivacyStatementComponent } from './shared/privacy-statement/privacy-statement.component';
 import { ChoosePackageComponent } from './client/booking/choose-package/choose-package.component';
+import { TimeTableComponent } from './client/booking/date/time-table/time-table.component';
+import { DateStartComponent } from './client/booking/date/date-start/date-start.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -35,9 +37,15 @@ const routes: Routes = [
     component: BookingComponent,
     resolve:{small: SmallHeaderResolver},
     children:[ //kell majd valami Guard + formData => localstorage
-      { path: '', component: ChoosePackageComponent },
-      { path: 'info', component: InformationFormComponent },
-      { path: 'date', component: DateComponent },
+      { path: '', component: ChoosePackageComponent, pathMatch: 'full' },
+      { path: ':packageId/info', component: InformationFormComponent },
+      {
+        path: 'date', component: DateComponent, 
+        children:[
+          { path: ':date/time-table', component: TimeTableComponent /*, resolver? */ },
+          { path: '', component: DateStartComponent }
+        ]
+      },
       { path: 'check', component: CheckComponent },
       { path: 'confirm', component: ConfirmationComponent }
     ]

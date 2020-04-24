@@ -22,7 +22,7 @@
 .box {
     width: 14.28%;
     height: 0;
-    padding-bottom: 14.28%;
+    padding-bottom: 5vh;
     text-align: center;
     border: black;
     border-style: solid;

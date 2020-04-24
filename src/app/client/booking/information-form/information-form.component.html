@@ -1,6 +1,83 @@
-<p>information-form works!</p>
-<div
-    class="cbtn cbtn-one small dark"
-    [routerLink]="['/booking/date']">
-    <span>Mentés</span>
+<div class="text-center">
+    <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()" >
+        <div class="form-group">
+            <label for="name">Teljes név</label>
+            <input
+                class="form-control"
+                type="text"
+                id="name"
+                placeholder="Teljes név"
+                formControlName="name">
+            <span
+                *ngIf="reservationForm.get('name').invalid &&
+                    reservationForm.get('name').touched"
+                class="help-block">
+                Név megadása kötelező!
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email cím</label>
+            <input
+            class="form-control"
+                type="email"
+                id="email"
+                placeholder="Email cím"
+                formControlName="email">
+            <span
+                *ngIf="(reservationForm.get('email').invalid && reservationForm.get('email').touched)"
+                class="help-block">
+                Helyes email cím megadása kötelező!
+            </span>            
+        </div>
+
+        <div class="form-group">
+            <label for="phonenumber">Telefonszám</label>
+            <input
+                class="form-control"
+                type="tel"
+                id="phonenumber"
+                placeholder="Telefonszám"
+                formControlName="phonenumber">
+            <span
+                *ngIf="reservationForm.get('phonenumber').invalid &&
+                    reservationForm.get('phonenumber').touched"
+                class="help-block">
+                Telefonszám megadása kötelező!
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="playernumber">Játékosok száma</label>
+            <input
+                class="form-control"
+                type="number"
+                min="1"
+                [max]="maxPlayerNumber"
+                value=""
+                placeholder="Játékosok száma"
+                id="playernumber"
+                formControlName="playernumber">
+            <span
+                *ngIf="reservationForm.get('playernumber').invalid &&
+                    reservationForm.get('playernumber').touched"
+                class="help-block">
+                {{playerNumError}}!
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="notes">Megjegyzések</label>
+            <textarea
+                class="form-control"
+                placeholder="Opcionális megjegyzések"
+                id="notes"
+                formControlName="notes"></textarea>
+        </div>
+        <div
+            *ngIf="reservationForm.valid"
+            class="cbtn cbtn-one small dark disabled"
+            (click)="onSubmit()">
+            <span>Tovább</span>
+        </div>
+    </form>
 </div>
