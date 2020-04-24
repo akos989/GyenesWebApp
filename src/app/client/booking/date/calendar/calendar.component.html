@@ -44,11 +44,11 @@
             class="box"
             [ngClass]="{'active': !day.disabled, 'off': day.off, 'disabled': day.disabled, 'today': day.today, 'closed': day.closed }"
             *ngFor="let day of week.days">
-                <div *ngIf="day.off || day.disabled || day.closed" >
+                <div *ngIf="day.off || day.disabled || day.closed || day.today" >
                     {{ day.off ? 'off' : day.date.getDate()}}
                 </div>
                 <div
-                    *ngIf="!day.off && !day.disabled && !day.closed"
+                    *ngIf="!day.off && !day.disabled && !day.closed && !day.today"
                     [routerLink]="['/booking/date/', day.date.getTime(), 'time-table']">
                     {{ day.date.getDate()}}
                 </div>
