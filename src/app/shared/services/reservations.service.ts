@@ -14,30 +14,35 @@ export class ReservationService {
     gunNumber: number = 35;
     submitReservation = new Subject<boolean>();
     
-    reservations: Reservation[] = [
-        new Reservation(
-            '1', 'morvai', 'adf@asdf.com', '0123457898', 12, '', 'as2',
-            new Date(2020, 4, 11, 12)
-        ),
-        new Reservation(
-            '2', 'morvai', 'adf@asdf.com', '0123457898', 25, '', 'as2',
-            new Date(2020, 4, 11, 12)
-        ),
-        new Reservation(
-            '3', 'morvai', 'adf@asdf.com', '0123457898', 10, '', 'as2',
-            new Date(2020, 4, 11, 10)
-        ),
-        new Reservation(
-            '4', 'morvai', 'adf@asdf.com', '0123457898', 17, '', 'as2',
-            new Date(2020, 4, 11, 16)
-        )
-    ];
+    reservations: Reservation[] = [];
+
+    getReservationsForMonth(date: Date) {
+        //szerver kérés
+        this.reservations = [
+            new Reservation(
+                '1', 'morvai', 'adf@asdf.com', '0123457898', 12, '', 'as2',
+                new Date(2020, 4, 11, 12)
+            ),
+            new Reservation(
+                '2', 'morvai', 'adf@asdf.com', '0123457898', 25, '', 'as2',
+                new Date(2020, 4, 11, 12)
+            ),
+            new Reservation(
+                '3', 'morvai', 'adf@asdf.com', '0123457898', 10, '', 'as2',
+                new Date(2020, 4, 11, 10)
+            ),
+            new Reservation(
+                '4', 'morvai', 'adf@asdf.com', '0123457898', 17, '', 'as2',
+                new Date(2020, 4, 11, 16)
+            )
+            ];
+    }
 
     checkOnSelectedDate(selectedDate: Date): Hour[] {
         const hours: Hour[] = [];
         for ( let hour = 8; hour <= 17; hour++ ) {
             let tmpPlayerNumber: number = this._currentReservation.playerNumber;
-            const reservations = this.getReservationsFromBackend(selectedDate);
+            const reservations = this.getReservationsOnSelected(selectedDate);
             for( let reservation of reservations ) {
                 if ( reservation.date.getHours() === hour ) {
                     tmpPlayerNumber += reservation.playerNumber;
@@ -56,8 +61,7 @@ export class ReservationService {
         return hours;
     }
 
-    getReservationsFromBackend(selectedDate: Date): Reservation[] {
-        //getFromBackend
+    getReservationsOnSelected(selectedDate: Date): Reservation[] {
         const reservations: Reservation[] = [];
         for (let reservation of this.reservations) {
             if ( reservation.date.getFullYear() === selectedDate.getFullYear() && reservation.date.getMonth() === selectedDate.getMonth() && reservation.date.getDate() === selectedDate.getDate() )
