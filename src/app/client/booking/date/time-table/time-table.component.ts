@@ -16,6 +16,7 @@ export class TimeTableComponent implements OnInit {
   selectedDate: Date;
   hours: Hour[] = [];
   selectedHour: Hour = null;
+  prevSelect: Hour = null;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private reservationService: ReservationService) { }
@@ -28,8 +29,22 @@ export class TimeTableComponent implements OnInit {
           this.hours = [];
           this.selectedHour = null;
           this.hours = this.reservationService.checkOnSelectedDate(this.selectedDate);
+          if ( this.reservationService.currentReservation.date && !this.prevSelect ) {
+            const hour = this.findHour(
+              this.reservationService.currentReservation.date.getHours()
+            );
+          }
         }
       );
+  }
+
+  findHour(reservationHour: number) {
+    for( const hour of this.hours ) {
+      if ( reservationHour == hour.hour ) {
+        this.prevSelect = hour;
+        this.selectHour(hour);
+      }
+    }
   }
 
   selectHour(hour: Hour) {
@@ -41,7 +56,9 @@ export class TimeTableComponent implements OnInit {
 
   onContinue() {
     this.selectedDate.setHours(this.selectedHour.hour);
-    this.reservationService.setCurrentDate(this.selectedDate);
+    const currReservation = this.reservationService.currentReservation;
+    currReservation.date = this.selectedDate;
+    this.reservationService.currentReservation = currReservation;
     //frissítés localstorageban
     this.router.navigate(['/booking/check']);
   }

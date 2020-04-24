@@ -28,12 +28,16 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-12 text-center">
-                <div class="cbtn cbtn-one dark big">
+                <div
+                    [routerLink]="['/booking/', currentReservation.packageId,'info']"
+                    class="cbtn cbtn-one dark big">
                     <span>Adatok javítása</span>
                 </div>
             </div>
             <div class="col-md-6 col-12 text-center">
-                <div class="cbtn cbtn-one dark big">
+                <div
+                    [routerLink]="['/booking/date']"
+                    class="cbtn cbtn-one dark big">
                     <span> Dátum javítása </span>
                 </div>
             </div>
