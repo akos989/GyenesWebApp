@@ -12,8 +12,7 @@ export class NoDatesService {
         //server http
         this.noDates = [
             new NoDate(new Date(2020, 4, 1), new Date(2020, 4, 7)),
-            new NoDate(new Date(2020, 4, 21), new Date(2020, 11, 23)),
-            new NoDate(new Date(2020, 3, 24), new Date(2020, 3, 25))
+            new NoDate(new Date(2020, 4, 21), new Date(2020, 11, 23))
         ];
     }
 
