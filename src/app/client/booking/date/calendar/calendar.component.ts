@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Day } from '../../../../shared/models/day.model';
 import { ReservationService } from 'src/app/shared/services/reservations.service';
 import { NoDatesService } from '../no-dates.service';
+import { Reservation } from 'src/app/shared/models/reservation.model';
+import { Router } from '@angular/router';
 
 class Week {
   public days: Day[] = [];
@@ -17,16 +19,25 @@ export class CalendarComponent implements OnInit {
   weeks: Week[] = [];
   today: Date;
   refDate: Date;
+  reservation: Reservation;
 
   constructor(private reservationService: ReservationService,
-              private noDatesService: NoDatesService) { }
+              private noDatesService: NoDatesService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
     this.refDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
-    this.reservationService.getReservationsForMonth(this.today);
-    this.noDatesService.getNoDatesForMonth(this.today);
-    this.createWeeks(this.today);
+
+    this.reservation = this.reservationService.currentReservation;
+
+    if (this.reservation.date) {
+      this.refDate = this.reservation.date;
+      this.router.navigate(['/booking/date/', this.refDate.getTime(), 'time-table']);
+    }
+    this.reservationService.getReservationsForMonth(this.refDate);
+    this.noDatesService.getNoDatesForMonth(this.refDate);
+    this.createWeeks(this.refDate);
   }
 
   createWeeks(refDate: Date) {

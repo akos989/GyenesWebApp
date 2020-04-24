@@ -70,17 +70,15 @@ export class ReservationService {
         return reservations;
     }
 
-    setCurrentDate(date: Date) {
-        //frissítés localstorageban
-        this._currentReservation.date = date;
-    }
-
     get currentReservation(): Reservation {
+        if (this._currentReservation == null) {
+            this.retrieveFromLocalStorage();
+        }
         return this._currentReservation;
     }
     set currentReservation(value: Reservation) {
-        //frissítés localstorageban
         this._currentReservation = value;
+        this.saveToLocalStorage();
     }
 
     submitCurrentReservation() {
@@ -88,5 +86,24 @@ export class ReservationService {
         setTimeout(() => {
             console.log(this.currentReservation);
         }, 1500);
+    }
+
+    saveToLocalStorage() {
+        localStorage.setItem(
+            'currentReservation', JSON.stringify(this.currentReservation)
+        );
+    }
+
+    retrieveFromLocalStorage() {
+        const currentReservation =
+            JSON.parse(localStorage.getItem('currentReservation'));
+        this._currentReservation = currentReservation;
+        const dateParts:string[] = currentReservation.date.split('T');
+        this._currentReservation.date = new Date(
+            +(dateParts[0].split('-')[0]),
+            +(dateParts[0].split('-')[1]) - 1,
+            +(dateParts[0].split('-')[2]),
+            +(dateParts[1].split(':')[0]) + 2       
+        );
     }
 }

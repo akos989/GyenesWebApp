@@ -59,13 +59,14 @@ export class InformationFormComponent implements OnInit {
   }
 
   onSubmit() {
+    const currReservation = this.reservationService.currentReservation;
     const reservation = new Reservation(null,
       this.reservationForm.get('name').value,
       this.reservationForm.get('email').value,
       this.reservationForm.get('phonenumber').value,
       this.reservationForm.get('playernumber').value,
       this.reservationForm.get('notes').value,
-      this.packageId, null
+      this.packageId, currReservation ? currReservation.date : null
     );
     this.reservationService.currentReservation = reservation;
     this.router.navigate(['/booking/date']);
