@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PackageService } from './package.service';
+import { Package } from 'src/app/shared/models/package.model';
+
 @Component({
   selector: 'app-packages',
   templateUrl: './packages.component.html',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PackagesComponent implements OnInit {
 
-  constructor() { }
+  packages: Package[] = [];
+
+  constructor(private packageService: PackageService) { }
 
   ngOnInit(): void {
+    this.packageService.loadFromBackend();
+    this.packages = this.packageService.packages;
   }
-
 }

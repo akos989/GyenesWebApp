@@ -18,6 +18,11 @@ import { PrivacyStatementComponent } from './shared/privacy-statement/privacy-st
 import { ChoosePackageComponent } from './client/booking/choose-package/choose-package.component';
 import { TimeTableComponent } from './client/booking/date/time-table/time-table.component';
 import { DateStartComponent } from './client/booking/date/date-start/date-start.component';
+import { InfoFormGuard } from './client/booking/information-form/info-form-guard.service';
+import { DateGuard } from './client/booking/date/date-guard.service';
+import { CheckGuard } from './client/booking/check/check-guard.service';
+import { ConfirmGuard } from './client/booking/confirmation/confirm-guard.service';
+import { CanDeactivateGuard } from './client/booking/confirmation/deactivate-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,16 +43,23 @@ const routes: Routes = [
     resolve:{small: SmallHeaderResolver},
     children:[ //kell majd valami Guard
       { path: '', component: ChoosePackageComponent, pathMatch: 'full' },
-      { path: ':packageId/info', component: InformationFormComponent },
       {
-        path: 'date', component: DateComponent, 
+        path: 'info', component: InformationFormComponent,
+        canActivate: [InfoFormGuard]
+      },
+      {
+        path: 'date', component: DateComponent,
+        canActivate: [DateGuard],
         children:[
           { path: ':date/time-table', component: TimeTableComponent /*, resolver? */ },
           { path: '', component: DateStartComponent }
         ]
       },
-      { path: 'check', component: CheckComponent },
-      { path: 'confirm', component: ConfirmationComponent }
+      { path: 'check', component: CheckComponent, canActivate: [CheckGuard] },
+      {
+        path: 'confirm', component: ConfirmationComponent,
+        canActivate: [ConfirmGuard], canDeactivate: [CanDeactivateGuard]
+      }
     ]
   },
   { path: 'contact', component: ContactComponent, resolve:{small: SmallHeaderResolver} },

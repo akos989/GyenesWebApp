@@ -1,5 +1,16 @@
-<div
-    class="cbtn cbtn-one small dark"
-    [routerLink]="['/booking/', '1', 'info']">
-    <span>Választ</span>
+<div>
+    <div>
+        Név: {{  package.name }}
+    </div>
+    <div>
+        Játékoslimit: {{ package.fromNumberLimit }} - {{ package.toNumberLimit }}
+    </div>
+    <div *ngIf="selected">
+        Kiválasztott
+    </div>
+    <div
+        class="cbtn cbtn-one small dark"
+        (click)="continue()">
+        <span> Tovább </span>
+    </div>
 </div>
