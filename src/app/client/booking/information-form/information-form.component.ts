@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { ReservationService } from 'src/app/shared/services/reservations.service';
+import { ReservationService } from 'src/app/client/booking/reservations.service';
 import { Reservation } from 'src/app/shared/models/reservation.model';
 
 @Component({
@@ -18,7 +18,8 @@ export class InformationFormComponent implements OnInit {
   maxPlayerNumber: number;
   playerNumError = "";
 
-  constructor(private router: Router, private reservationService: ReservationService,
+  constructor(private router: Router,
+              private reservationService: ReservationService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ export class InformationFormComponent implements OnInit {
     if ( this.reservationService.currentReservation ) {
       this.editMode = true;
     }
+    
     this.initForm();
   }
 
@@ -53,7 +55,11 @@ export class InformationFormComponent implements OnInit {
       'name': new FormControl(name, Validators.required),
       'email': new FormControl(email, [Validators.required, Validators.email]),
       'phonenumber': new FormControl(phonenumber, [Validators.required]),
-      'playernumber': new FormControl(playernumber, [Validators.required, this.playNumLimit.bind(this)]),
+      'playernumber': new FormControl(playernumber,
+                                      [
+                                        Validators.required,
+                                        this.playNumLimit.bind(this)
+                                      ]),
       'notes': new FormControl(notes)
     });
   }
@@ -67,8 +73,9 @@ export class InformationFormComponent implements OnInit {
       this.reservationForm.get('playernumber').value,
       this.reservationForm.get('notes').value,
       this.packageId, currReservation ? currReservation.date : null
-    );
+    );    
     this.reservationService.currentReservation = reservation;
+    
     this.router.navigate(['/booking/date']);
   }
 

@@ -36,7 +36,7 @@ const routes: Routes = [
     path: 'booking',
     component: BookingComponent,
     resolve:{small: SmallHeaderResolver},
-    children:[ //kell majd valami Guard + formData => localstorage
+    children:[ //kell majd valami Guard
       { path: '', component: ChoosePackageComponent, pathMatch: 'full' },
       { path: ':packageId/info', component: InformationFormComponent },
       {
