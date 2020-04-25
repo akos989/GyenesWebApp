@@ -8,7 +8,7 @@ class NoDate {
 export class NoDatesService {
     noDates: NoDate[] = [];
 
-    getNoDatesForMonth(date: Date) {
+    loadNoDatesForMonth(date: Date) {
         //server http
         this.noDates = [
             new NoDate(new Date(2020, 4, 1), new Date(2020, 4, 7)),
@@ -18,7 +18,9 @@ export class NoDatesService {
 
     isClosed(date: Date): boolean {
         for( const nd of this.noDates ) {
-            if (nd.fromDate.valueOf() <= date.valueOf() && date.valueOf() < nd.toDate.valueOf())
+            if (nd.fromDate.valueOf() <= date.valueOf() &&
+                date.valueOf() < nd.toDate.valueOf()
+            )
                 return true;
         }
         return false;

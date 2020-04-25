@@ -62,7 +62,6 @@ export class HomeComponent implements OnInit {
       .on('start', () => {
         if (document.getElementById('trigger')) {
           this.smallHeader = !this.smallHeader;
-          console.log(this.smallHeader);
           this.headerService.newPage(this.smallHeader);
         }
     })

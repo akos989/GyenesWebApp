@@ -22,6 +22,5 @@ export class NavigationComponent implements OnInit {
 
   openClicked() {
     this.open = !this.open;
-    console.log(this.open);
   }
 }

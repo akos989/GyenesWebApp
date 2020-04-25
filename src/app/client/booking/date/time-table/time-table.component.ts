@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ReservationService } from 'src/app/shared/services/reservations.service';
+import { ReservationService } from 'src/app/client/booking/reservations.service';
 
 class Hour {
   constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -28,11 +28,13 @@ export class TimeTableComponent implements OnInit {
           this.selectedDate = new Date(+params['date']);
           this.hours = [];
           this.selectedHour = null;
-          this.hours = this.reservationService.checkOnSelectedDate(this.selectedDate);
-          if ( this.reservationService.currentReservation.date && !this.prevSelect ) {
-            const hour = this.findHour(
-              this.reservationService.currentReservation.date.getHours()
-            );
+          this.hours =
+            this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
+
+          const currReservDate: Date =
+            this.reservationService.currentReservation.date;
+          if (currReservDate && !this.prevSelect) {
+            this.findHour(currReservDate.getHours());
           }
         }
       );
@@ -59,7 +61,7 @@ export class TimeTableComponent implements OnInit {
     const currReservation = this.reservationService.currentReservation;
     currReservation.date = this.selectedDate;
     this.reservationService.currentReservation = currReservation;
-    //frissítés localstorageban
+
     this.router.navigate(['/booking/check']);
   }
 
@@ -74,5 +76,4 @@ export class TimeTableComponent implements OnInit {
   getEveningHours(): Hour[] {
     return this.hours.slice(9);
   }
-
 }

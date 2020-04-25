@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Day } from '../../../../shared/models/day.model';
-import { ReservationService } from 'src/app/shared/services/reservations.service';
+import { Router } from '@angular/router';
+
+import { ReservationService } from 'src/app/client/booking/reservations.service';
 import { NoDatesService } from '../no-dates.service';
 import { Reservation } from 'src/app/shared/models/reservation.model';
-import { Router } from '@angular/router';
+
+class Day {
+  public date: Date;
+  public today: boolean = false;
+  public disabled: boolean = false;
+  public closed: boolean = false;
+  public off: boolean = false;
+}
 
 class Week {
   public days: Day[] = [];
@@ -19,7 +27,6 @@ export class CalendarComponent implements OnInit {
   weeks: Week[] = [];
   today: Date;
   refDate: Date;
-  reservation: Reservation;
 
   constructor(private reservationService: ReservationService,
               private noDatesService: NoDatesService,
@@ -29,14 +36,13 @@ export class CalendarComponent implements OnInit {
     this.today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
     this.refDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
-    this.reservation = this.reservationService.currentReservation;
-
-    if (this.reservation.date) {
-      this.refDate = this.reservation.date;
+    const reservation: Reservation = this.reservationService.currentReservation;
+    if (reservation.date) {
+      this.refDate = reservation.date;
       this.router.navigate(['/booking/date/', this.refDate.getTime(), 'time-table']);
     }
-    this.reservationService.getReservationsForMonth(this.refDate);
-    this.noDatesService.getNoDatesForMonth(this.refDate);
+
+    this.updateServices();
     this.createWeeks(this.refDate);
   }
 
@@ -45,6 +51,7 @@ export class CalendarComponent implements OnInit {
     let maxDays: number = this.getDaysOfMonth(refDate);
     const fistDay: number = this.getFirstDayOfMonth(refDate);
     let tmpDate: Date = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
+    
     for (let i = 0; i < 5; i++) {
       let tmpWeek = new Week();
       for (let j = 1; j <= 7; j++) {
@@ -83,8 +90,7 @@ export class CalendarComponent implements OnInit {
       (prevDate.getMonth() === this.today.getMonth())
     ) {
       this.refDate = prevDate;
-      this.noDatesService.getNoDatesForMonth(this.refDate);
-      this.reservationService.getReservationsForMonth(this.refDate);
+      this.updateServices();
       this.createWeeks(this.refDate);
     } else {
       this.refDate.setMonth(this.refDate.getMonth() + 1);
@@ -93,9 +99,13 @@ export class CalendarComponent implements OnInit {
 
   nextMonth() {
     this.refDate.setMonth(this.refDate.getMonth() + 1);
-    this.noDatesService.getNoDatesForMonth(this.refDate);
-    this.reservationService.getReservationsForMonth(this.refDate);
+    this.updateServices();
     this.createWeeks(this.refDate);
+  }
+  
+  private updateServices() {
+    this.noDatesService.loadNoDatesForMonth(this.refDate);
+    this.reservationService.loadReservationsForMonth(this.refDate);
   }
 
   private getDaysOfMonth(date: Date): number {
