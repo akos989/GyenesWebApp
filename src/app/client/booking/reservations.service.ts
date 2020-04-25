@@ -24,6 +24,7 @@ export class ReservationService {
     
     //backendbe felvenni és onnan lekérni
     gunNumber: number = 35;
+    submitted: boolean = false;
     submitReservation = new Subject<boolean>();
     
     reservations: Reservation[] = [];
@@ -74,11 +75,10 @@ export class ReservationService {
 
         return hours;
     }
-
-    
     
     submitCurrentReservation() {
         //http, backendbe küldés, ha nincs hiba submitRes(true), ha van false
+        this.submitted = true;
         setTimeout(() => {
             console.log(this._currentReservation);
         }, 1500);
@@ -111,7 +111,7 @@ export class ReservationService {
             if ( lStorageReserv.date !== null && lStorageReserv.date !== '' ) {
                 this.setCurrentReservationDateFromString( lStorageReserv.date );
             }
-        }       
+        }    
     }
 
     private setCurrentReservationDateFromString(dateString: string) {

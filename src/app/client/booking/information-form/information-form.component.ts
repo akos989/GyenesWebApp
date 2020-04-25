@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ReservationService } from 'src/app/client/booking/reservations.service';
 import { Reservation } from 'src/app/shared/models/reservation.model';
+import { PackageService } from '../../packages/package.service';
 
 @Component({
   selector: 'app-information-form',
@@ -14,23 +15,22 @@ export class InformationFormComponent implements OnInit {
 
   reservationForm: FormGroup;
   editMode: boolean = false;
-  packageId: string;
   maxPlayerNumber: number;
+  minPlayerNumber: number;
   playerNumError = "";
 
   constructor(private router: Router,
               private reservationService: ReservationService,
-              private route: ActivatedRoute) { }
+              private packageService: PackageService) { }
 
   ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.packageId = params['packageId'];
-        }
-      );
-    this.maxPlayerNumber = this.reservationService.gunNumber;
-    if ( this.reservationService.currentReservation ) {
+    const currentReservation = this.reservationService.currentReservation;
+    const pack = this.packageService
+      .findById(currentReservation.packageId);
+    this.maxPlayerNumber = pack.toNumberLimit;
+    this.minPlayerNumber = pack.fromNumberLimit;
+
+    if ( currentReservation.name ) {
       this.editMode = true;
     }
     
@@ -72,20 +72,21 @@ export class InformationFormComponent implements OnInit {
       this.reservationForm.get('phonenumber').value,
       this.reservationForm.get('playernumber').value,
       this.reservationForm.get('notes').value,
-      this.packageId, currReservation ? currReservation.date : null
+      currReservation.packageId, currReservation ? currReservation.date : null
     );    
     this.reservationService.currentReservation = reservation;
-    
     this.router.navigate(['/booking/date']);
   }
 
   playNumLimit(control: FormControl): {[s: string]: boolean} {
-    if (control.value == null) {
+    if (control.value === null) {
       this.playerNumError = "A játékosok számának megadása kötelező";
       return null;
     }
-    if (control.value > this.maxPlayerNumber || control.value <= 0 ) {
-      this.playerNumError = "Minimum 1 és maximum " + this.maxPlayerNumber;
+    if (control.value > this.maxPlayerNumber || control.value < this.minPlayerNumber ) {
+      this.playerNumError = "Nem egyezik a kiválasztott csomaggal, minimum "
+                            + this.minPlayerNumber +
+                            " és maximum " + this.maxPlayerNumber;
       return{'playerNumLimit': true};
     }
     this.playerNumError = "";
