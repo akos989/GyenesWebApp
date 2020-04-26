@@ -65,7 +65,7 @@ export class CalendarComponent implements OnInit {
           } else if (tmpDate.getTime() === this.today.getTime()) {
             tmpDay.disabled = false;
             tmpDay.today = true;
-            if ( this.noDatesService.isClosed(tmpDate) ) {
+            if ( this.noDatesService.isClosed(tmpDate) !== '' ) {
               tmpDay.closed = true;
             }
           } else {

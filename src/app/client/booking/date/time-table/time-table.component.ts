@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ReservationService } from 'src/app/client/booking/reservations.service';
+import { NoDatesService } from '../no-dates.service';
 
 class Hour {
   constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -17,15 +18,18 @@ export class TimeTableComponent implements OnInit {
   hours: Hour[] = [];
   selectedHour: Hour = null;
   prevSelect: Hour = null;
+  closedReason: string = null;
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private reservationService: ReservationService) { }
+              private reservationService: ReservationService,
+              private noDateService: NoDatesService) { }
 
   ngOnInit(): void {
     this.route.params
       .subscribe(
         (params: Params) => {
           this.selectedDate = new Date(+params['date']);
+          this.closedReason = this.noDateService.isClosed(this.selectedDate);
           this.hours = [];
           this.selectedHour = null;
           this.hours =
