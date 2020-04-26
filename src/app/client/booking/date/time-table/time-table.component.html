@@ -1,52 +1,62 @@
 <div>
     {{ selectedDate }}
 </div>
-<div class="row">
-    <div class="col-3 text-center">
-        <div>Reggel</div>
-        <div *ngFor="let hour of getMorningHours()">
-            <div
-                (click)="selectHour(hour)"
-                [ngClass]="{disabled: hour.type === 'f', active: (hour.type === 'e' || hour.type === 'p')}"
-                data-toggle="tooltip" data-placement="bottom"
-                [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
-                {{ hour.hour }}
+<div *ngIf="!closedReason else reason">
+    <div class="row">
+        <div class="col-3 text-center">
+            <div>Reggel</div>
+            <div *ngFor="let hour of getMorningHours()">
+                <div
+                    (click)="selectHour(hour)"
+                    [ngClass]="{disabled: hour.type === 'f', active: (hour.type === 'e' || hour.type === 'p')}"
+                    data-toggle="tooltip" data-placement="bottom"
+                    [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
+                    {{ hour.hour }}
+                </div>
+            </div>
+        </div>
+        <div class="col-3 text-center">
+            <div>Délután</div>
+            <div *ngFor="let hour of getAfternoonHours()">
+                <div
+                    (click)="selectHour(hour)"
+                    [ngClass]="{disabled: hour.type === 'f', active: (hour.type === 'e' || hour.type === 'p')}"
+                    data-toggle="tooltip" data-placement="bottom"
+                    [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
+                    {{ hour.hour }}
+                </div>
+            </div>
+        </div>
+        <div class="col-3 text-center">
+            <div>Este</div>
+            <div *ngFor="let hour of getEveningHours()">
+                <div
+                    (click)="selectHour(hour)"
+                    [ngClass]="{disabled: hour.type === 'f', active: (hour.type === 'e' || hour.type === 'p')}"
+                    data-toggle="tooltip" data-placement="bottom"
+                    [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
+                    {{ hour.hour }}
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-3 text-center">
-        <div>Délután</div>
-        <div *ngFor="let hour of getAfternoonHours()">
-            <div
-                (click)="selectHour(hour)"
-                [ngClass]="{disabled: hour.type === 'f', active: (hour.type === 'e' || hour.type === 'p')}"
-                data-toggle="tooltip" data-placement="bottom"
-                [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
-                {{ hour.hour }}
-            </div>
+    <div *ngIf="selectedHour">
+        <div> {{ selectedHour.hour }} kiválasztva!</div>
+        <div *ngIf="selectedHour.type === 'p'">
+            Ebben az órában maximum {{ selectedHour.remainingNumber }} játékos játszhat!
         </div>
-    </div>
-    <div class="col-3 text-center">
-        <div>Este</div>
-        <div *ngFor="let hour of getEveningHours()">
-            <div
-                (click)="selectHour(hour)"
-                [ngClass]="{disabled: hour.type === 'f', active: (hour.type === 'e' || hour.type === 'p')}"
-                data-toggle="tooltip" data-placement="bottom"
-                [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
-                {{ hour.hour }}
-            </div>
+        <div
+            (click)="onContinue()"
+            class="cbtn cbtn-one dark small">
+            <span>Folytatás</span>
         </div>
     </div>
 </div>
-<div *ngIf="selectedHour">
-    <div> {{ selectedHour.hour }} kiválasztva!</div>
-    <div *ngIf="selectedHour.type === 'p'">
-        Ebben az órában maximum {{ selectedHour.remainingNumber }} játékos játszhat!
+<ng-template #reason>
+    <div>
+        Ezen a napon a pálya nem üzemel.
     </div>
-    <div
-        (click)="onContinue()"
-        class="cbtn cbtn-one dark small">
-        <span>Folytatás</span>
+    <div>
+        Indok: {{ closedReason }}
     </div>
-</div>
+</ng-template>
