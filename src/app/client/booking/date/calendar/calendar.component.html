@@ -1,5 +1,6 @@
 <div class="row" >
     <div
+        *ngIf="hasPrevMonth()"
         (click)="prevMonth()"
         class="cbtn cbtn-one dark small">
         <span>Hátra</span>
@@ -8,6 +9,12 @@
         (click)="nextMonth()"
         class="cbtn cbtn-one dark small">
         <span>Előre</span>
+    </div>
+    <div
+        *ngIf="notThisMonth()"
+        (click)="jumpToToday()"
+        class="cbtn cbtn-one dark small">
+        <span>Ma</span>
     </div>
 </div>
 <div>

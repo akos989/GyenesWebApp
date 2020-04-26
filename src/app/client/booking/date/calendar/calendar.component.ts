@@ -102,7 +102,31 @@ export class CalendarComponent implements OnInit {
     this.updateServices();
     this.createWeeks(this.refDate);
   }
+
+  jumpToToday() {
+    this.refDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+    this.updateServices();
+    this.createWeeks(this.refDate);
+  }
+
+  notThisMonth() {
+    return this.refDate.valueOf() !== new Date(new Date().getFullYear(), new Date().getMonth(), 1).valueOf();
+  }
   
+  hasPrevMonth() {
+    const prevDate = new Date(this.refDate.setMonth(this.refDate.getMonth() - 1));
+    if (
+      (prevDate.valueOf() > this.today.valueOf()) ||
+      (prevDate.getMonth() === this.today.getMonth())
+    ) {
+      this.refDate.setMonth(this.refDate.getMonth() + 1);
+      return true;
+    }
+
+    this.refDate.setMonth(this.refDate.getMonth() + 1);
+    return false;    
+  }
+
   private updateServices() {
     this.noDatesService.loadNoDatesForMonth(this.refDate);
     this.reservationService.loadReservationsForMonth(this.refDate);
