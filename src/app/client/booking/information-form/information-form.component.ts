@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ReservationService } from 'src/app/client/booking/reservations.service';
@@ -91,5 +91,17 @@ export class InformationFormComponent implements OnInit {
     }
     this.playerNumError = "";
     return null;
+  }
+
+  backToPackage() {
+    let reservation = this.reservationService.currentReservation;
+    reservation.name = this.reservationForm.get('name').value;
+    reservation.email = this.reservationForm.get('email').value;
+    reservation.phonenumber = this.reservationForm.get('phonenumber').value;
+    reservation.notes = this.reservationForm.get('notes').value;
+
+    this.reservationService.currentReservation = reservation;
+
+    this.router.navigate(['/booking']);
   }
 }

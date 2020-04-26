@@ -12,7 +12,7 @@ export class DateGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
         :Observable<boolean> | Promise<boolean> | boolean {
             const currRes = this.reservationService.currentReservation;
-            if (currRes && currRes.name && currRes.name !== "") {
+            if (currRes && currRes.playerNumber && currRes.playerNumber !== 0) {
                 return true;
             }
             this.router.navigate(['/booking']);

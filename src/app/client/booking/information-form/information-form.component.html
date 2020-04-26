@@ -63,6 +63,12 @@
                     reservationForm.get('playernumber').touched"
                 class="help-block">
                 {{playerNumError}}!
+                <div
+                    (click)="backToPackage()"
+                    *ngIf="reservationForm.get('playernumber').errors.playerNumLimit"
+                    class="cbtn cbtn-one dark small">
+                    <span>Új csomag</span>
+                </div>
             </span>
         </div>
         <div class="form-group">
