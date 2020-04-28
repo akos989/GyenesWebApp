@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ReservationService } from 'src/app/client/booking/reservations.service';
 import { NoDatesService } from '../no-dates.service';
+import { Subscription } from 'rxjs';
+import { DateService } from '../date.service';
 
 class Hour {
   constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -15,33 +17,36 @@ class Hour {
 export class TimeTableComponent implements OnInit {
 
   selectedDate: Date;
+  selectChangedSub: Subscription;
+
   hours: Hour[] = [];
   selectedHour: Hour = null;
   prevSelect: Hour = null;
   closedReason: string = null;
 
-  constructor(private route: ActivatedRoute, private router: Router,
-              private reservationService: ReservationService,
-              private noDateService: NoDatesService) { }
+  constructor(private router: Router, private reservationService: ReservationService,
+              private noDateService: NoDatesService, private dateService: DateService)
+              { }
 
-  ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.selectedDate = new Date(+params['date']);
-          this.closedReason = this.noDateService.isClosed(this.selectedDate);
-          this.hours = [];
-          this.selectedHour = null;
-          this.hours =
-            this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
-
-          const currReservDate: Date =
-            this.reservationService.currentReservation.date;
-          if (currReservDate && !this.prevSelect) {
-            this.findHour(currReservDate.getHours());
-          }
-        }
-      );
+  ngOnInit() {
+    this.selectChangedSub = this.dateService.selectionChanged
+      .subscribe((date: Date) => {
+        this.selectedDate = date;
+        this.closedReason = this.noDateService.isClosed(this.selectedDate);
+        this.hours = [];
+        this.selectedHour = null;
+        
+        this.hours =
+          this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
+      });
+    const currReservDate: Date =
+      this.reservationService.currentReservation.date;
+    if (currReservDate && !this.prevSelect) {
+      this.selectedDate = currReservDate;
+      this.hours =
+        this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
+      this.findHour(currReservDate.getHours());
+    }
   }
 
   findHour(reservationHour: number) {

@@ -23,6 +23,9 @@ import { DateGuard } from './client/booking/date/date-guard.service';
 import { CheckGuard } from './client/booking/check/check-guard.service';
 import { ConfirmGuard } from './client/booking/confirmation/confirm-guard.service';
 import { CanDeactivateGuard } from './client/booking/confirmation/deactivate-guard.service';
+import { ReservationResolver } from './client/booking/reservation.resolver';
+import { PackageResolver } from './client/packages/package.resolver';
+import { NoDateResolver } from './client/booking/date/no-date.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -42,18 +45,25 @@ const routes: Routes = [
     component: BookingComponent,
     resolve:{small: SmallHeaderResolver},
     children:[ //kell majd valami Guard
-      { path: '', component: ChoosePackageComponent, pathMatch: 'full' },
+      {
+        path: '',
+        component: ChoosePackageComponent,
+        pathMatch: 'full',
+        resolve: { PackageResolver }
+      },
       {
         path: 'info', component: InformationFormComponent,
-        canActivate: [InfoFormGuard]
+        canActivate: [InfoFormGuard],
+        resolve: { PackageResolver }
       },
       {
         path: 'date', component: DateComponent,
-        canActivate: [DateGuard],
-        children:[
-          { path: ':date/time-table', component: TimeTableComponent /*, resolver? */ },
-          { path: '', component: DateStartComponent }
-        ]
+        resolve: { ReservationResolver, PackageResolver, NoDateResolver },
+        canActivate: [DateGuard]
+        // children:[
+        //   { path: ':date/time-table', component: TimeTableComponent /*, resolver? */ },
+        //   { path: '', component: DateStartComponent }
+        // ]
       },
       { path: 'check', component: CheckComponent, canActivate: [CheckGuard] },
       {

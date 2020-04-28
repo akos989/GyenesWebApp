@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Reservation } from '../../shared/models/reservation.model';
+import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/internal/Subject';
+import { map, tap } from 'rxjs/operators';
+
+import { Reservation } from '../../shared/models/reservation.model';
 import { PackageService } from '../packages/package.service';
 
 class Hour {
@@ -14,7 +17,7 @@ class Range {
 @Injectable({providedIn: 'root'})
 export class ReservationService {
 
-    constructor(private packageService: PackageService) {}
+    constructor(private packageService: PackageService, private http: HttpClient) {}
 
     private _currentReservation: Reservation = null;   
 
@@ -32,30 +35,46 @@ export class ReservationService {
     //backendbe felvenni és onnan lekérni
     gunNumber: number = 35;
     submitted: boolean = false;
-    submitReservation = new Subject<boolean>();
     
     reservations: Reservation[] = [];
 
-    loadReservationsForMonth(date: Date) {
+    loadReservations() {
         //szerver kérés
-        this.reservations = [
-            new Reservation(
-                '1', 'morvai', 'adf@asdf.com', '0123457898', 12, '', '2',
-                new Date(2020, 4, 11, 12)
-            ),
-            new Reservation(
-                '2', 'morvai', 'adf@asdf.com', '0123457898', 25, '', '3',
-                new Date(2020, 4, 11, 12)
-            ),
-            new Reservation(
-                '3', 'morvai', 'adf@asdf.com', '0123457898', 10, '', '2',
-                new Date(2020, 4, 11, 10)
-            ),
-            new Reservation(
-                '4', 'morvai', 'adf@asdf.com', '0123457898', 17, '', '2',
-                new Date(2020, 4, 11, 16)
-            )
-            ];
+        return this.http
+            .get<{reservations: Reservation[]}>('api/reservations/allForClient')
+            .pipe(map((responseData) => {
+                const reservationArray: Reservation[] = [];
+
+                for (const reservation of responseData.reservations) {                    
+                    reservationArray.push(new Reservation(
+                        null, null, null, null, reservation.playerNumber, null,
+                        reservation.packageId,
+                        this.dateFromString(reservation.date.toString(), 0)
+                    ));
+                }
+                return reservationArray;
+            }), tap(reservations => {
+                this.reservations = reservations;
+            }));
+
+        //  this.reservations = [
+        //     new Reservation(
+        //         '1', 'morvai', 'adf@asdf.com', '0123457898', 12, '', '5e7510c39f78823051c57755',
+        //         new Date(2020, 4, 11, 12)
+        //     ),
+        //     new Reservation(
+        //         '2', 'morvai', 'adf@asdf.com', '0123457898', 25, '', '3',
+        //         new Date(2020, 4, 11, 12)
+        //     ),
+        //     new Reservation(
+        //         '3', 'morvai', 'adf@asdf.com', '0123457898', 10, '', '5e7510c39f78823051c57755',
+        //         new Date(2020, 4, 11, 10)
+        //     ),
+        //     new Reservation(
+        //         '4', 'morvai', 'adf@asdf.com', '0123457898', 17, '', '5e7510c39f78823051c57755',
+        //         new Date(2020, 4, 11, 16)
+        //     )
+        //     ];
     }
 
     checkHoursOnSelectedDate(selectedDate: Date): Hour[] {
@@ -64,9 +83,6 @@ export class ReservationService {
             let tmpPlayerNumber: number = this._currentReservation.playerNumber;
             const reservations = this.getReservationsOnSelectedDate(selectedDate);
             for( let reservation of reservations ) {
-                // if ( reservation.date.getHours() === hour ) {
-                //     tmpPlayerNumber += reservation.playerNumber;
-                // }                
                 if ( this.intersect(hour, reservation) ) {
                     tmpPlayerNumber += reservation.playerNumber;
                 }
@@ -87,11 +103,26 @@ export class ReservationService {
     }
     
     submitCurrentReservation() {
-        //http, backendbe küldés, ha nincs hiba submitRes(true), ha van false
+        //http, backendbe küldés, ha nincs hiba submitRes(true), ha van false          
+        const body = {
+            name: this._currentReservation.name,
+            email: this._currentReservation.email,
+            phoneNumber: this._currentReservation.phoneNumber,
+            playerNumber: this._currentReservation.playerNumber,
+            notes: this._currentReservation.notes,
+            packageId: this._currentReservation.packageId,
+            date: this.stringFromDate(this._currentReservation.date)
+        };
+        this.http.post('/api/reservations/', body)
+            .subscribe(
+                responseData => {
+                    console.log(responseData);
+                },
+                error => {
+                    console.log(error);
+                }
+            );
         this.submitted = true;
-        setTimeout(() => {
-            console.log(this._currentReservation);
-        }, 1500);
     }
 
     private getReservationsOnSelectedDate(selectedDate: Date): Reservation[] {
@@ -125,14 +156,8 @@ export class ReservationService {
     }
 
     private setCurrentReservationDateFromString(dateString: string) {
-        const dateParts:string[] = dateString.split('T');
+        this._currentReservation.date = this.dateFromString(dateString, 2);
 
-        this._currentReservation.date = new Date(
-            +(dateParts[0].split('-')[0]),
-            +(dateParts[0].split('-')[1]) - 1,
-            +(dateParts[0].split('-')[2]),
-            +(dateParts[1].split(':')[0]) + 2       
-        );
         if ( this._currentReservation.date.valueOf() <= new Date().valueOf() ) {
             this._currentReservation.date = null;
             this.saveToLocalStorage();
@@ -157,6 +182,28 @@ export class ReservationService {
             return false;
         
         return true;
+    }
+
+    private dateFromString(dateString: string, plus: number): Date {
+        const dateParts:string[] = dateString.split('T');
+
+        return new Date(
+            +(dateParts[0].split('-')[0]),
+            +(dateParts[0].split('-')[1]) - 1,
+            +(dateParts[0].split('-')[2]),
+            +(dateParts[1].split(':')[0]) + plus       
+        );
+    }
+
+    private stringFromDate(date: Date): string {
+        const month: string = ((date.getMonth() + 1) >=10) ?
+            (date.getMonth() + 1).toString() : "0"+(date.getMonth() + 1);
+        const day: string = ((date.getDate()) >=10) ?
+            (date.getDate()).toString() : "0"+(date.getDate());
+        const hour: string = ((date.getHours()) >=10) ?
+            (date.getHours()).toString() : "0"+(date.getHours());
+                        
+        return date.getFullYear() + "-" + month + "-" + day + "T" + hour + ":00Z";
     }
 
 }
