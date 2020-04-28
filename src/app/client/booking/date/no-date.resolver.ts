@@ -8,10 +8,11 @@ export class NoDateResolver implements Resolve<any[]> {
     constructor(private noDateService: NoDatesService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this.noDateService.noDates.length > 0) {
+       // if (this.noDateService.noDates.length > 0) {
+           this.noDateService.loadNoDates();
             return this.noDateService.noDates;
-        } else {
-            return this.noDateService.loadNoDates();
-        }
+        // } else {
+        //     return this.noDateService.loadNoDates();
+        // }
     }
 }

@@ -58,10 +58,6 @@ const routes: Routes = [
         path: 'date', component: DateComponent,
         resolve: { ReservationResolver, NoDateResolver },
         canActivate: [DateGuard]
-        // children:[
-        //   { path: ':date/time-table', component: TimeTableComponent /*, resolver? */ },
-        //   { path: '', component: DateStartComponent }
-        // ]
       },
       { path: 'check', component: CheckComponent, canActivate: [CheckGuard] },
       {
