@@ -2,29 +2,38 @@ import { Injectable } from '@angular/core';
 import { Package } from 'src/app/shared/models/package.model';
 import { Subject } from 'rxjs/internal/Subject';
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, delay, catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 
 @Injectable({ providedIn: 'root' })
 export class PackageService {
     packages: Package[] = [];
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private errorHandler: ErrorHandleService) {}
 
     loadFromBackend() {
         //http kérés
         return this.http
-            .get<{packages: Package[]}>('api/packages/')
-            .pipe(map((responseData) => {
+        .get<{packages: Package[]}>('api/packages/')
+        .pipe(
+            map((responseData) => {
                 const packageArray: Package[] = [];
 
                 for (const pack of responseData.packages) {                    
                     packageArray.push(pack);
                 }
                 return packageArray;
-            }), tap(packages => {
+            }), 
+            tap(packages => {
                 this.packages = packages;
-                console.log(this.packages);
-            }));
+            }),
+            catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+                this.errorHandler.newError(errorRes.error.error);
+                return throwError(errorRes);
+            })
+        /*, delay(1500)*/       
+        );       
 
         // this.packages = [
         //     new Package('1', 'Kicsi', 3, 10, 15, 3000, 2, false, 0),

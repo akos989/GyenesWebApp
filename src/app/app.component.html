@@ -1,8 +1,26 @@
+<div
+    class="error"
+    *ngIf="errorMessage">
+    <div class="row">
+        <div class="col-9">
+            {{errorMessage}}
+        </div>
+        <div class="col-3 text-center">
+            <button class="btn btn-danger" (click)="hideError()">
+            OK
+        </button>
+        </div>
+        
+    </div>
+    
+</div>
 <app-header></app-header>
 <div style="width: 100%;">
     <div *ngIf="isLoading" style="position: fixed; top: 50vh; left: 50vw;">
         <div>Loading...</div>
     </div>
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
+    <div *ngIf="!isLoading">
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </div>    
 </div>
