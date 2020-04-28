@@ -43,22 +43,20 @@ const routes: Routes = [
   { 
     path: 'booking',
     component: BookingComponent,
-    resolve:{small: SmallHeaderResolver},
+    resolve:{small: SmallHeaderResolver, PackageResolver},
     children:[ //kell majd valami Guard
       {
         path: '',
         component: ChoosePackageComponent,
-        pathMatch: 'full',
-        resolve: { PackageResolver }
+        pathMatch: 'full'
       },
       {
         path: 'info', component: InformationFormComponent,
-        canActivate: [InfoFormGuard],
-        resolve: { PackageResolver }
+        canActivate: [InfoFormGuard]
       },
       {
         path: 'date', component: DateComponent,
-        resolve: { ReservationResolver, PackageResolver, NoDateResolver },
+        resolve: { ReservationResolver, NoDateResolver },
         canActivate: [DateGuard]
         // children:[
         //   { path: ':date/time-table', component: TimeTableComponent /*, resolver? */ },

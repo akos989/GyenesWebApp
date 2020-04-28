@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs/internal/Subject';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 
 import { Reservation } from '../../shared/models/reservation.model';
 import { PackageService } from '../packages/package.service';
+import { ErrorHandleService } from 'src/app/shared/error-handle.service';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 class Hour {
     constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -17,7 +18,8 @@ class Range {
 @Injectable({providedIn: 'root'})
 export class ReservationService {
 
-    constructor(private packageService: PackageService, private http: HttpClient) {}
+    constructor(private packageService: PackageService, private http: HttpClient,
+                private errorHandler: ErrorHandleService) {}
 
     private _currentReservation: Reservation = null;   
 
@@ -42,20 +44,27 @@ export class ReservationService {
         //szerver kérés
         return this.http
             .get<{reservations: Reservation[]}>('api/reservations/allForClient')
-            .pipe(map((responseData) => {
-                const reservationArray: Reservation[] = [];
+            .pipe(
+                map((responseData) => {
+                    const reservationArray: Reservation[] = [];
 
-                for (const reservation of responseData.reservations) {                    
-                    reservationArray.push(new Reservation(
-                        null, null, null, null, reservation.playerNumber, null,
-                        reservation.packageId,
-                        this.dateFromString(reservation.date.toString(), 0)
-                    ));
-                }
-                return reservationArray;
-            }), tap(reservations => {
-                this.reservations = reservations;
-            }));
+                    for (const reservation of responseData.reservations) {                    
+                        reservationArray.push(new Reservation(
+                            null, null, null, null, reservation.playerNumber, null,
+                            reservation.packageId,
+                            this.dateFromString(reservation.date.toString(), 0)
+                        ));
+                    }
+                    return reservationArray;
+                }),
+                tap(reservations => {
+                    this.reservations = reservations;
+                }),
+                catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                })
+            );
 
         //  this.reservations = [
         //     new Reservation(
@@ -113,16 +122,8 @@ export class ReservationService {
             packageId: this._currentReservation.packageId,
             date: this.stringFromDate(this._currentReservation.date)
         };
-        this.http.post('/api/reservations/', body)
-            .subscribe(
-                responseData => {
-                    console.log(responseData);
-                },
-                error => {
-                    console.log(error);
-                }
-            );
-        this.submitted = true;
+
+        return this.http.post('/api/reservations/', body);            
     }
 
     private getReservationsOnSelectedDate(selectedDate: Date): Reservation[] {

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 
 class NoDate {
     id?:string;
@@ -11,29 +13,35 @@ class NoDate {
 export class NoDatesService {
     noDates: NoDate[] = [];
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private errorHandler: ErrorHandleService) {}
 
     loadNoDates() {
         //server http
 
         return this.http
             .get<{noDates: NoDate[]}>('api/no_dates/')
-            .pipe(map((responseData) => {
-                const noDatesArray: NoDate[] = [];
+            .pipe(
+                map((responseData) => {
+                    const noDatesArray: NoDate[] = [];
 
-                for (const nod of responseData.noDates) {
-                    let tmpNod = nod;
-                    tmpNod.fromDate =
-                        this.dateFromString(tmpNod.fromDate.toString(), 0);   
-                    tmpNod.toDate =
-                        this.dateFromString(tmpNod.toDate.toString(), 0);    
-                    noDatesArray.push(tmpNod);
-                }
-                return noDatesArray;
-            }), tap(noDates => {
-                this.noDates = noDates;
-                console.log(this.noDates);
-            }));
+                    for (const nod of responseData.noDates) {
+                        let tmpNod = nod;
+                        tmpNod.fromDate =
+                            this.dateFromString(tmpNod.fromDate.toString(), 0);   
+                        tmpNod.toDate =
+                            this.dateFromString(tmpNod.toDate.toString(), 0);    
+                        noDatesArray.push(tmpNod);
+                    }
+                    return noDatesArray;
+                }),
+                tap(noDates => {
+                    this.noDates = noDates;
+                }),
+                catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                })
+            );
 
         // this.noDates = [
         //     new NoDate(new Date(2020, 4, 1), new Date(2020, 4, 7), 'sdf'),

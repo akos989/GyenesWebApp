@@ -1,21 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationStart, RouterEvent, NavigationEnd } from '@angular/router';
+import { ErrorHandleService } from './shared/error-handle.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'GyenesWebApp';
+  errorSub: Subscription;
 
   isLoading = false;
+  errorMessage: string = null;
+  
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private errorHandler: ErrorHandleService) {}
 
 
   ngOnInit() {
     this.routerEvents();
+    this.errorSub = this.errorHandler.error
+      .subscribe(errorMessage => {
+        this.errorMessage = errorMessage;
+        this.isLoading = false;
+      });
   }
 
   routerEvents() {
@@ -31,5 +41,13 @@ export class AppComponent implements OnInit {
         }
       }
     });
+  }
+
+  hideError() {
+    this.errorMessage = null;
+  }
+
+  ngOnDestroy() {
+    this.errorSub.unsubscribe();
   }
 }
