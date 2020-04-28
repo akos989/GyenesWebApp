@@ -1,63 +1,73 @@
 <div class="text-center">
-    <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()" >
-        <div class="form-group">
-            <label for="name">Teljes név</label>
-            <input
-                class="form-control"
-                type="text"
-                id="name"
-                placeholder="Teljes név"
-                formControlName="name">
+    <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+        <div class="col-md-8 col-12">
+            <div class="group">
+                <input
+                    type="text"
+                    class="middle-text"
+                    formControlName="name"
+                    required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="middle-text">Teljes név</label>
+            </div>           
             <span
                 *ngIf="reservationForm.get('name').invalid &&
                     reservationForm.get('name').touched"
                 class="help-block">
                 Név megadása kötelező!
             </span>
-        </div>
 
-        <div class="form-group">
-            <label for="email">Email cím</label>
-            <input
-            class="form-control"
-                type="text"
-                id="email"
-                placeholder="Email cím"
-                formControlName="email">
+            <div class="group">
+                <input
+                    type="email"
+                    class="middle-text"
+                    formControlName="email"
+                    required
+                    [ngClass]="{notempty: !notEmpty('email')}">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="middle-text">Email cím</label>
+            </div>
             <span
                 *ngIf="(reservationForm.get('email').invalid && reservationForm.get('email').touched)"
                 class="help-block">
                 Helyes email cím megadása kötelező!
-            </span>            
-        </div>
+            </span>        
 
-        <div class="form-group">
-            <label for="phoneNumber">Telefonszám</label>
-            <input
-                class="form-control"
-                type="tel"
-                id="phoneNumber"
-                placeholder="Telefonszám"
-                formControlName="phoneNumber">
+            <div class="group">
+                <input
+                    type="tel"
+                    class="middle-text"
+                    formControlName="phoneNumber"
+                    [ngClass]="{notempty: !notEmpty('phoneNumber')}"
+                    required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="middle-text">Telefonszám</label>
+            </div>
             <span
                 *ngIf="reservationForm.get('phoneNumber').invalid &&
                     reservationForm.get('phoneNumber').touched"
                 class="help-block">
                 Telefonszám megadása kötelező!
             </span>
-        </div>
 
-        <div class="form-group">
-            <label for="playernumber">Játékosok száma</label>
-            <input
-                class="form-control"
-                type="number"
-                [min]="minPlayerNumber"
-                [max]="maxPlayerNumber"
-                value=""
-                placeholder="Játékosok száma"
-                id="playernumber"
-                formControlName="playernumber">
+            <div class="group">
+                <input
+                    type="number"
+                    class="middle-text"
+                    [min]="minPlayerNumber"
+                    [max]="maxPlayerNumber"
+                    value=""
+                    formControlName="playernumber"
+                    [ngClass]="{notempty: !notEmpty('playernumber')}"
+                    required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="middle-text">Játékosok száma</label>
+            </div>
             <span
                 *ngIf="reservationForm.get('playernumber').invalid &&
                     reservationForm.get('playernumber').touched"
@@ -70,20 +80,25 @@
                     <span>Új csomag</span>
                 </div>
             </span>
+
+            <div class="group">
+                <textarea
+                    class="middle-text"
+                    type="textarea"rows="5" required
+                    formControlName="notes"
+                ></textarea>
+                <span class="highlight"></span><span class="bar"></span>
+                <label class="middle-text">Megjegyzések</label>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="notes">Megjegyzések</label>
-            <textarea
-                class="form-control"
-                placeholder="Opcionális megjegyzések"
-                id="notes"
-                formControlName="notes"></textarea>
+        <div class="col-md-4 col-12">
+            <div
+                *ngIf="reservationForm.valid"
+                class="cbtn cbtn-one small dark disabled"
+                (click)="onSubmit()">
+                <span>Tovább</span>
+            </div>
         </div>
-        <div
-            *ngIf="reservationForm.valid"
-            class="cbtn cbtn-one small dark disabled"
-            (click)="onSubmit()">
-            <span>Tovább</span>
-        </div>
+    </div>
     </form>
 </div>

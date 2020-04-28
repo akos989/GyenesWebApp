@@ -104,4 +104,8 @@ export class InformationFormComponent implements OnInit {
 
     this.router.navigate(['/booking']);
   }
+
+  notEmpty(input :string): boolean {
+    return (this.reservationForm.get(input).value === '' || this.reservationForm.get(input).value === null )
+  }
 }

@@ -42,48 +42,48 @@ export class ReservationService {
 
     loadReservations() {
         //szerver kérés
-        return this.http
-            .get<{reservations: Reservation[]}>('api/reservations/allForClient')
-            .pipe(
-                map((responseData) => {
-                    const reservationArray: Reservation[] = [];
+        // return this.http
+        //     .get<{reservations: Reservation[]}>('api/reservations/allForClient')
+        //     .pipe(
+        //         map((responseData) => {
+        //             const reservationArray: Reservation[] = [];
 
-                    for (const reservation of responseData.reservations) {                    
-                        reservationArray.push(new Reservation(
-                            null, null, null, null, reservation.playerNumber, null,
-                            reservation.packageId,
-                            this.dateFromString(reservation.date.toString(), 0)
-                        ));
-                    }
-                    return reservationArray;
-                }),
-                tap(reservations => {
-                    this.reservations = reservations;
-                }),
-                catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
-                    this.errorHandler.newError(errorRes.error.error);
-                    return throwError(errorRes);
-                })
-            );
+        //             for (const reservation of responseData.reservations) {                    
+        //                 reservationArray.push(new Reservation(
+        //                     null, null, null, null, reservation.playerNumber, null,
+        //                     reservation.packageId,
+        //                     this.dateFromString(reservation.date.toString(), 0)
+        //                 ));
+        //             }
+        //             return reservationArray;
+        //         }),
+        //         tap(reservations => {
+        //             this.reservations = reservations;
+        //         }),
+        //         catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+        //             this.errorHandler.newError(errorRes.error.error);
+        //             return throwError(errorRes);
+        //         })
+        //     );
 
-        //  this.reservations = [
-        //     new Reservation(
-        //         '1', 'morvai', 'adf@asdf.com', '0123457898', 12, '', '5e7510c39f78823051c57755',
-        //         new Date(2020, 4, 11, 12)
-        //     ),
-        //     new Reservation(
-        //         '2', 'morvai', 'adf@asdf.com', '0123457898', 25, '', '3',
-        //         new Date(2020, 4, 11, 12)
-        //     ),
-        //     new Reservation(
-        //         '3', 'morvai', 'adf@asdf.com', '0123457898', 10, '', '5e7510c39f78823051c57755',
-        //         new Date(2020, 4, 11, 10)
-        //     ),
-        //     new Reservation(
-        //         '4', 'morvai', 'adf@asdf.com', '0123457898', 17, '', '5e7510c39f78823051c57755',
-        //         new Date(2020, 4, 11, 16)
-        //     )
-        //     ];
+         this.reservations = [
+            new Reservation(
+                '1', 'morvai', 'adf@asdf.com', '0123457898', 12, '', '5e7510c39f78823051c57755',
+                new Date(2020, 4, 11, 12)
+            ),
+            new Reservation(
+                '2', 'morvai', 'adf@asdf.com', '0123457898', 25, '', '3',
+                new Date(2020, 4, 11, 12)
+            ),
+            new Reservation(
+                '3', 'morvai', 'adf@asdf.com', '0123457898', 10, '', '5e7510c39f78823051c57755',
+                new Date(2020, 4, 11, 10)
+            ),
+            new Reservation(
+                '4', 'morvai', 'adf@asdf.com', '0123457898', 17, '', '5e7510c39f78823051c57755',
+                new Date(2020, 4, 11, 16)
+            )
+            ];
     }
 
     checkHoursOnSelectedDate(selectedDate: Date): Hour[] {

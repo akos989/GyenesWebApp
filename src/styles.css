@@ -9,6 +9,11 @@ body.modal-open {
     margin-top: calc(3vh + 2vw + 2vh);
 }
 
+.component.dark {
+    background-color: rgb(32, 32, 32);
+    color: rgb(255, 235, 204);
+}
+
 hr.orange {
     border-top: 3px solid rgb(209, 81, 26);
 }
@@ -139,7 +144,7 @@ hr.left.open {
     border-bottom-width: 3px;
     border-top-style: solid;
     border-bottom-style: solid;
-    border-top-color: rgb(209, 81, 26);
+    border-top-color: #d1511a;
     border-bottom-color: rgb(209, 81, 26);
     transform: scale(0.1, 1);
 }

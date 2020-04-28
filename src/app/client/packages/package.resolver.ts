@@ -11,10 +11,11 @@ export class PackageResolver implements Resolve<Package[]> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<Package[]> | Promise<Package[]> | Package[] {
-        if (this.packageService.packages.length > 0) {
+        // if (this.packageService.packages.length > 0) {
+            this.packageService.loadFromBackend();
             return this.packageService.packages;
-        } else {
-            return this.packageService.loadFromBackend();
-        }
+        // } else {
+        //     return this.packageService.loadFromBackend();
+        // }
     }
 }
