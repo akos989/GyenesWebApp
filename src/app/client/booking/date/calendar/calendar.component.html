@@ -56,7 +56,7 @@
                 </div>
                 <div
                     *ngIf="!day.off && !day.disabled && !day.today"
-                    [routerLink]="['/booking/date/', day.date.getTime(), 'time-table']">
+                    (click)="selectDay(day.date)">
                     {{ day.date.getDate()}}
                 </div>
         </div>

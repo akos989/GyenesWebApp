@@ -15,7 +15,6 @@ export class PackagesComponent implements OnInit {
   constructor(private packageService: PackageService) { }
 
   ngOnInit(): void {
-    this.packageService.loadFromBackend();
     this.packages = this.packageService.packages;
   }
 }

@@ -40,21 +40,21 @@ export class InformationFormComponent implements OnInit {
   initForm() {
     let name = '';
     let email = '';
-    let phonenumber = '';
+    let phoneNumber = '';
     let playernumber;
     let notes = '';
     if (this.editMode) {
       const reservation = this.reservationService.currentReservation;
       name = reservation.name;
       email = reservation.email;
-      phonenumber = reservation.phonenumber;
+      phoneNumber = reservation.phoneNumber;
       playernumber = reservation.playerNumber;
       notes = reservation.notes;
     }
     this.reservationForm = new FormGroup({
       'name': new FormControl(name, Validators.required),
       'email': new FormControl(email, [Validators.required, Validators.email]),
-      'phonenumber': new FormControl(phonenumber, [Validators.required]),
+      'phoneNumber': new FormControl(phoneNumber, [Validators.required]),
       'playernumber': new FormControl(playernumber,
                                       [
                                         Validators.required,
@@ -69,7 +69,7 @@ export class InformationFormComponent implements OnInit {
     const reservation = new Reservation(null,
       this.reservationForm.get('name').value,
       this.reservationForm.get('email').value,
-      this.reservationForm.get('phonenumber').value,
+      this.reservationForm.get('phoneNumber').value,
       this.reservationForm.get('playernumber').value,
       this.reservationForm.get('notes').value,
       currReservation.packageId, currReservation ? currReservation.date : null
@@ -97,7 +97,7 @@ export class InformationFormComponent implements OnInit {
     let reservation = this.reservationService.currentReservation;
     reservation.name = this.reservationForm.get('name').value;
     reservation.email = this.reservationForm.get('email').value;
-    reservation.phonenumber = this.reservationForm.get('phonenumber').value;
+    reservation.phoneNumber = this.reservationForm.get('phoneNumber').value;
     reservation.notes = this.reservationForm.get('notes').value;
 
     this.reservationService.currentReservation = reservation;

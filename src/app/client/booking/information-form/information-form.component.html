@@ -32,16 +32,16 @@
         </div>
 
         <div class="form-group">
-            <label for="phonenumber">Telefonszám</label>
+            <label for="phoneNumber">Telefonszám</label>
             <input
                 class="form-control"
                 type="tel"
-                id="phonenumber"
+                id="phoneNumber"
                 placeholder="Telefonszám"
-                formControlName="phonenumber">
+                formControlName="phoneNumber">
             <span
-                *ngIf="reservationForm.get('phonenumber').invalid &&
-                    reservationForm.get('phonenumber').touched"
+                *ngIf="reservationForm.get('phoneNumber').invalid &&
+                    reservationForm.get('phoneNumber').touched"
                 class="help-block">
                 Telefonszám megadása kötelező!
             </span>

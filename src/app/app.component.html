@@ -1,5 +1,8 @@
 <app-header></app-header>
 <div style="width: 100%;">
+    <div *ngIf="isLoading" style="position: fixed; top: 50vh; left: 50vw;">
+        <div>Loading...</div>
+    </div>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
 </div>
