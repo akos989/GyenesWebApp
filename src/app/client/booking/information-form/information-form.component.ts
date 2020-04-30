@@ -1,37 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges, AfterViewChecked, AfterContentChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { ReservationService } from 'src/app/client/booking/reservations.service';
 import { Reservation } from 'src/app/shared/models/reservation.model';
 import { PackageService } from '../../packages/package.service';
+import { BookingService } from '../booking.service';
 
 @Component({
   selector: 'app-information-form',
   templateUrl: './information-form.component.html',
   styleUrls: ['./information-form.component.css']
 })
-export class InformationFormComponent implements OnInit {
+export class InformationFormComponent implements OnInit, AfterViewChecked {
+
+  packageChange: Subscription;
 
   reservationForm: FormGroup;
   editMode: boolean = false;
   maxPlayerNumber: number;
   minPlayerNumber: number;
   playerNumError = "";
+  prevState = false;
 
   constructor(private router: Router,
               private reservationService: ReservationService,
-              private packageService: PackageService) { }
+              private packageService: PackageService,
+              private bookingSevice: BookingService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.packageChange = this.bookingSevice.packageSelected
+      .subscribe( packageId => {
+        const pack = this.packageService.findById(packageId);
+        this.maxPlayerNumber = pack.toNumberLimit;
+        this.minPlayerNumber = pack.fromNumberLimit;
+        this.reservationForm.get('playernumber').updateValueAndValidity();
+      });    
+
     const currentReservation = this.reservationService.currentReservation;
-    const pack = this.packageService
-      .findById(currentReservation.packageId);
-    this.maxPlayerNumber = pack.toNumberLimit;
-    this.minPlayerNumber = pack.fromNumberLimit;
 
-    if ( currentReservation.name ) {
+    if ( currentReservation && currentReservation.name ) {
       this.editMode = true;
+      this.prevState = true;
     }
     
     this.initForm();
@@ -75,7 +86,7 @@ export class InformationFormComponent implements OnInit {
       currReservation.packageId, currReservation ? currReservation.date : null
     );    
     this.reservationService.currentReservation = reservation;
-    this.router.navigate(['/booking/date']);
+    //this.router.navigate(['/booking/date']);
   }
 
   playNumLimit(control: FormControl): {[s: string]: boolean} {
@@ -107,5 +118,14 @@ export class InformationFormComponent implements OnInit {
 
   notEmpty(input :string): boolean {
     return (this.reservationForm.get(input).value === '' || this.reservationForm.get(input).value === null )
+  }
+
+  ngAfterViewChecked() {
+    if (this.prevState !== this.reservationForm.valid) {
+      this.bookingSevice.onInfoChange(this.reservationForm.valid);
+      this.prevState = this.reservationForm.valid;
+      if (this.prevState)
+        this.onSubmit();
+    }
   }
 }

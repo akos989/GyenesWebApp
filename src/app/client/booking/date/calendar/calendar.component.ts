@@ -38,10 +38,9 @@ export class CalendarComponent implements OnInit {
     this.today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
     this.refDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
     const reservation: Reservation = this.reservationService.currentReservation;
-    if (reservation.date) {
+
+    if (reservation && reservation.date) {
       this.refDate = reservation.date;
-    }
-    if (reservation.date) {
       this.dateService.onSelectionChanged(this.refDate);
     }
     this.createWeeks(this.refDate);

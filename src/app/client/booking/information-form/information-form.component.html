@@ -1,7 +1,7 @@
-<div class="text-center">
-    <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-        <div class="col-md-8 col-12">
+<div class="middle-top-text text-center"> Adatok megadása </div>
+<div class="padding-top-4">
+<div class="container card col-md-8 col-12">
+    <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">       
             <div class="group">
                 <input
                     type="text"
@@ -73,32 +73,17 @@
                     reservationForm.get('playernumber').touched"
                 class="help-block">
                 {{playerNumError}}!
-                <div
-                    (click)="backToPackage()"
-                    *ngIf="reservationForm.get('playernumber').errors.playerNumLimit"
-                    class="cbtn cbtn-one dark small">
-                    <span>Új csomag</span>
-                </div>
             </span>
 
             <div class="group">
                 <textarea
                     class="middle-text"
-                    type="textarea"rows="5" required
+                    type="textarea"rows="2" required="false"
                     formControlName="notes"
                 ></textarea>
                 <span class="highlight"></span><span class="bar"></span>
                 <label class="middle-text">Megjegyzések</label>
             </div>
-        </div>
-        <div class="col-md-4 col-12">
-            <div
-                *ngIf="reservationForm.valid"
-                class="cbtn cbtn-one small dark disabled"
-                (click)="onSubmit()">
-                <span>Tovább</span>
-            </div>
-        </div>
-    </div>
     </form>
+</div>
 </div>

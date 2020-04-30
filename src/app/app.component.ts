@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationStart, RouterEvent, NavigationEnd } from '@angular/router';
 import { ErrorHandleService } from './shared/error-handle.service';
 import { Subscription } from 'rxjs';
@@ -6,7 +6,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'GyenesWebApp';

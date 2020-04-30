@@ -1,16 +1,43 @@
-<div>
-    <div>
-        Név: {{  package.name }}
-    </div>
-    <div>
-        Játékoslimit: {{ package.fromNumberLimit }} - {{ package.toNumberLimit }}
-    </div>
-    <div *ngIf="selected">
-        Kiválasztott
-    </div>
-    <div
-        class="cbtn cbtn-one small dark"
-        (click)="continue()">
-        <span> Tovább </span>
-    </div>
-</div>
+<ng-template appPlaceholder></ng-template>
+
+<mat-card
+    (click)="continue()"
+    [ngClass]="{selected: selected}">
+    <mat-card-header>
+        <div class="middle-text pb-2">
+            {{ package.name }}
+        </div>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <div class="row">
+            <div class="small-text col-4 text-right"> Létszám: </div>
+            <div class="small-text col-8 text-right">
+                {{ package.fromNumberLimit }} - {{ package.toNumberLimit }} fő
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-text col-4 text-right"> Alapár: </div>
+            <div class="small-text col-8 text-right">
+                {{ package.basePrice }} Ft
+            </div>
+        </div>
+        <div class="hr mt-2 mb-2"></div>
+        <div class="text-center small-text"> {{ package.duration }} óra </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="text-center">
+            <div class="col-12 pb-3">
+                <div (click)="openDialog($event)" class="cbtn cbtn-one mini" style="z-index: 40;">
+                    <span>Részletek</span>
+                </div>
+            </div>
+            <!-- <div class="col-12">
+                <div class="cbtn cbtn-one mini" (click)="continue()">
+                    <span>Választ</span>
+                </div>
+            </div> -->
+        </div>
+    </mat-card-actions>
+  </mat-card>
+  <!-- <app-package-modal [package]='package' *ngIf="clicked" ></app-package-modal> -->
