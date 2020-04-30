@@ -1,0 +1,61 @@
+<div class="backdrop" (click)="onClose()"></div>
+<div class="alert-box">
+    <div class="middle-top-text">
+        Paintball csomag {{ package.fromNumberLimit}} - {{ package.toNumberLimit }} főnek
+    </div>
+    <div class="small-text font-italic"> {{ package.name }} csomag </div>
+    <hr class="orange">
+    <div class="middle-text pb-2 pt-2" >Alapár:</div>
+    <div class="middle-text font-italic">{{ package.basePrice }} Ft</div>
+    <hr class="orange small py-1">
+    <div class="middle-text pb-2 pt-2">További golyók ára:</div>
+    <div class="middle-text font-italic">
+        {{ package.bulletPrice }} Ft/db (egy tár megvétele (200db) kötelező)
+    </div>
+    <hr class="orange small py-1">
+    <div class="middle-text pb-2 pt-2">Időtartam:</div>
+    <div class="middle-text font-italic">
+        {{ package.duration }} óra
+    </div>
+    <hr class="orange small py-1">
+
+    <!-- <div class="middle-text"> {{ package. }} </div> -->
+    <div class="middle-text pb-2 pt-2">Tartalma:</div>
+    <div class="middle-text font-italic pb-5">minden szükséges felszerelés</div>
+
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-6 pb-5">
+            <img src="../../../../../assets/pictures/services-images/gunw.png" alt="">
+        </div>
+        <div class="col-xl-3 col-lg-4 col-6 pb-5">
+            <img src="../../../../../assets/pictures/services-images/bulletsw.png" alt="">
+        </div>
+        <div class="col-xl-3 col-lg-4 col-6 pb-5">
+            <img src="../../../../../assets/pictures/services-images/co2w.png" alt="">
+        </div>
+        <div class="col-xl-3 col-lg-4 col-6 pb-5">
+            <img src="../../../../../assets/pictures/services-images/maskw.png" alt="">
+        </div>
+        <div class="col-xl-3 col-lg-4 col-6 pb-5">
+            <img src="../../../../../assets/pictures/services-images/jacket2w.png" alt="">
+        </div>
+        <div class="col-xl-3 col-lg-4 col-6 pb-5">
+            <img src="../../../../../assets/pictures/services-images/gloves2w.png" alt="">
+        </div>
+        <div class="col-xl-3 col-lg-4 col-6 pb-5">
+            <img src="../../../../../assets/pictures/services-images/vestw.png" alt="">
+        </div>
+    </div>
+    <div class="row pb-5">
+        <div class="col-md-6 col-12 pt-5">
+            <div class="cbtn cbtn-one small">
+                <span (click)="onClose()"> Vissza </span>
+            </div>
+        </div>
+        <div class="col-md-6 col-12 pt-5">
+            <div class="cbtn cbtn-one small">
+                <span (click)="onSelect()"> Választ </span>
+            </div>
+        </div>
+    </div>
+</div>

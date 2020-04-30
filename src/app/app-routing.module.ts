@@ -43,28 +43,33 @@ const routes: Routes = [
   { 
     path: 'booking',
     component: BookingComponent,
-    resolve:{small: SmallHeaderResolver, PackageResolver},
-    children:[ //kell majd valami Guard
-      {
-        path: '',
-        component: ChoosePackageComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'info', component: InformationFormComponent,
-        canActivate: [InfoFormGuard]
-      },
-      {
-        path: 'date', component: DateComponent,
-        resolve: { ReservationResolver, NoDateResolver },
-        canActivate: [DateGuard]
-      },
-      { path: 'check', component: CheckComponent, canActivate: [CheckGuard] },
-      {
-        path: 'confirm', component: ConfirmationComponent,
-        canActivate: [ConfirmGuard], canDeactivate: [CanDeactivateGuard]
-      }
-    ]
+    resolve:{
+      small: SmallHeaderResolver, 
+      PackageResolver, 
+      ReservationResolver, 
+      NoDateResolver
+    },
+    // children:[ //kell majd valami Guard
+    //   {
+    //     path: '',
+    //     component: ChoosePackageComponent,
+    //     pathMatch: 'full'
+    //   },
+    //   {
+    //     path: 'info', component: InformationFormComponent,
+    //     canActivate: [InfoFormGuard]
+    //   },
+    //   {
+    //     path: 'date', component: DateComponent,
+    //     resolve: { ReservationResolver, NoDateResolver },
+    //     canActivate: [DateGuard]
+    //   },
+    //   { path: 'check', component: CheckComponent, canActivate: [CheckGuard] },
+    //   {
+    //     path: 'confirm', component: ConfirmationComponent,
+    //     canActivate: [ConfirmGuard], canDeactivate: [CanDeactivateGuard]
+    //   }
+    // ]
   },
   { path: 'contact', component: ContactComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'szechenyi', component: SzechenyiComponent, resolve:{small: SmallHeaderResolver} },

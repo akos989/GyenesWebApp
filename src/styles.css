@@ -1,4 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+
+/* .mat-dialog-container {
+    display: block;
+    padding: 24px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    overflow: auto;
+    outline: 0;
+    width: 10% !important;
+    height: 10%;
+    min-height: inherit;
+    max-height: inherit;
+}
+
+.cdk-overlay-pane {
+    position: fixed;
+    pointer-events: auto;
+    box-sizing: border-box;
+    top: 30vh;
+    z-index: 1000;
+    display: flex;
+    max-width: 10% !important;
+    max-height: 100%;
+} */
+
+/* .mat-dialog-container {
+    box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+    background: #fff;
+    color: rgba(0,0,0,.87);
+    position: absolute;
+    top: 30vh;
+    left: 30vw;
+    width: 40vw !important;
+} */
+
+/* .cdk-visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+} */
+
+.mat-horizontal-content-container {
+    background-color: rgb(32, 32, 32);
+}
+.mat-horizontal-stepper-header-container {
+    background-color: rgb(32, 32, 32);
+}
+.mat-step-header .mat-step-icon-selected {
+    background-color: rgb(209, 81, 26);
+}
+.mat-step-header .mat-step-icon-state-edit {
+    background-color: green;
+}
+.mat-step-text-label {
+    color: rgb(255, 235, 204) !important;
+    font-size: 3vh;
+}
+.mat-card {
+    background-color: #333534 !important;
+    border-radius: 25px !important;
+    color: rgb(255, 235, 204) !important;
+    box-shadow: 2px 4px 4px rgba(146, 144, 144, 0.15) !important;
+}
+
+.mat-card.selected {
+    border: 4px solid green;
+}
+
+.mat-card-header {
+    display: inline !important;
+}
+@media screen and (max-width: 600px) {
+    .mat-step-text-label {
+        color: rgb(255, 235, 204);
+        display: none;
+    }
+    .mat-step-header .mat-step-icon-selected {
+        background-color: rgb(209, 81, 26);
+        left: 15%;
+    }
+    .mat-step-header .mat-step-icon-state-edit {
+        background-color: green;
+        left: 15%;
+    }
+}
+
+.mat-stepper-horizontal-line {
+    border-top-color: rgb(255, 235, 204);
+}
 body {
     margin: 0px;
 }
@@ -6,7 +105,7 @@ body.modal-open {
     overflow: hidden;
 }
 .component {
-    margin-top: calc(3vh + 2vw + 2vh);
+    padding-top: calc(3vh + 2vw + 2vh);
 }
 
 .component.dark {
@@ -17,6 +116,14 @@ body.modal-open {
 hr.orange {
     border-top: 3px solid rgb(209, 81, 26);
 }
+
+hr.orange.small {
+    border-top: 0.5px solid rgba(209, 81, 26, 0.8);
+    width: 90%;
+    left: 5%;
+}
+
+
 
 hr.center {
     left: 50%;
@@ -79,7 +186,12 @@ hr.left.open {
     display: inline-block;
     outline: none;
 }
-  
+
+.cbtn.disabled {
+    cursor: default;
+    opacity: 0.3;
+    pointer-events: none;
+}
 .cbtn.big {
     line-height: 95px;
     height: 100px;
@@ -93,7 +205,12 @@ hr.left.open {
     width: 200px;
     font-size: 25px;
 }
-
+.cbtn.mini {
+    line-height: 50px;
+    height: 50px;
+    width: 80%;
+    font-size: 20px;
+}
 
 @media screen and (max-width: 450px) {
 .cbtn.big {
@@ -121,13 +238,25 @@ hr.left.open {
     position: relative;
     z-index: 4;
 }
-
-.cbtn-one:hover span {
-    transition: all 0.1s;
-    color:rgb(209, 81, 26);
-    position: relative;
-    z-index: 4;
-    font-weight: 550;
+@media (hover: hover) {
+    .cbtn-one:hover span {
+        transition: all 0.1s;
+        color:rgb(209, 81, 26);
+        position: relative;
+        z-index: 4;
+        font-weight: 550;
+    }
+    .cbtn-one:hover span {
+        letter-spacing: 3px;
+    }
+    .cbtn-one:hover::before {
+        opacity: 1; 
+        transform: scale(1, 1); 
+    }
+    .cbtn-one:hover::after {
+        opacity: 0; 
+        transform: scale(0.1, 1);
+    }
 }
 
 .cbtn-one::before {
@@ -147,13 +276,6 @@ hr.left.open {
     border-top-color: #d1511a;
     border-bottom-color: rgb(209, 81, 26);
     transform: scale(0.1, 1);
-}
-.cbtn-one:hover span {
-    letter-spacing: 3px;
-}
-.cbtn-one:hover::before {
-    opacity: 1; 
-    transform: scale(1, 1); 
 }
 .cbtn-one::after {
     content: '';
@@ -181,10 +303,6 @@ hr.left.open {
     border-radius: 25px;
 }
 
-.cbtn-one:hover::after {
-    opacity: 0; 
-    transform: scale(0.1, 1);
-}
 
 .padding-top-2 {
     padding-top:2vh;
@@ -239,10 +357,18 @@ hr.left.open {
     font-size: calc(2vw + 6vh);
 }
 
+.middle-top-text {
+    font-size: calc(1vw + 4vh);
+}
+
 .larger-text{
     font-size: 10vh;
 }
 
 .middle-text{
     font-size: 3vh;
+}
+
+.small-text{
+    font-size: 2.5vh;
 }

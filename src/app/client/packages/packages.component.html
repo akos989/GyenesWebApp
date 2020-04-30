@@ -1,3 +1,8 @@
-<div *ngFor="let package of packages">
-    <app-package-detail [package]="package" ></app-package-detail>
+<div class="padding-top-4">
+    <div class="row">
+        <div *ngFor="let package of packages"
+            class="col-xl-4 col-md-6 px-md-5 col-lg-6 col-12 pb-5">
+            <app-package-detail [package]="package"></app-package-detail>
+        </div>
+    </div>
 </div>

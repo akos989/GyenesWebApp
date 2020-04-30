@@ -39,14 +39,14 @@ export class TimeTableComponent implements OnInit {
         this.hours =
           this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
       });
-    const currReservDate: Date =
-      this.reservationService.currentReservation.date;
-    if (currReservDate && !this.prevSelect) {
-      this.selectedDate = currReservDate;
-      this.hours =
-        this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
-      this.findHour(currReservDate.getHours());
-    }
+    // const currReservDate: Date =
+    //   this.reservationService.currentReservation.date;
+    // if (currReservDate && !this.prevSelect) {
+    //   this.selectedDate = currReservDate;
+    //   this.hours =
+    //     this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
+    //   this.findHour(currReservDate.getHours());
+    // }
   }
 
   findHour(reservationHour: number) {
@@ -71,7 +71,7 @@ export class TimeTableComponent implements OnInit {
     currReservation.date = this.selectedDate;
     this.reservationService.currentReservation = currReservation;
 
-    this.router.navigate(['/booking/check']);
+    //this.router.navigate(['/booking/check']);
   }
 
   getMorningHours(): Hour[] {

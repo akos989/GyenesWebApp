@@ -6,6 +6,8 @@ import { FacebookModule } from 'ngx-facebook';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { MatStepperModule } from '@angular/material/stepper';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +43,12 @@ import { SzechenyiComponent } from './shared/szechenyi/szechenyi.component';
 import { PrivacyStatementComponent } from './shared/privacy-statement/privacy-statement.component';
 import { ChoosePackageComponent } from './client/booking/choose-package/choose-package.component';
 import { DateStartComponent } from './client/booking/date/date-start/date-start.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PackageModalComponent } from './client/packages/package-detail/modal/package-modal.component';
+import { PlaceholderDirective } from './shared/placeholder.directive';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -80,7 +88,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SzechenyiComponent,
     PrivacyStatementComponent,
     ChoosePackageComponent,
-    DateStartComponent
+    DateStartComponent,
+    PackageModalComponent,
+    PlaceholderDirective
   ],
   imports: [
     BrowserModule,
@@ -88,7 +98,13 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SwiperModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatStepperModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [
     { 

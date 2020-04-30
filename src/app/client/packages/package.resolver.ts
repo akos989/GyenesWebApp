@@ -9,8 +9,7 @@ export class PackageResolver implements Resolve<Package[]> {
 
     constructor(private packageService: PackageService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    Observable<Package[]> | Promise<Package[]> | Package[] {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         // if (this.packageService.packages.length > 0) {
             this.packageService.loadFromBackend();
             return this.packageService.packages;
