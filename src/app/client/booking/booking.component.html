@@ -3,13 +3,15 @@
         <div class="text-center large-text padding-bottom-2">
             Online foglalás
         </div>
+    </div>
         <mat-horizontal-stepper linear #stepper >
+            <div class="medium-padding">
            <mat-step class="valami" label="Csomag" [completed]="packageNext">
                 <div class="row">
                     <div class="col-md-3">
                     </div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3 col-12 text-center pb-3">
+                    <div class="col-md-6 col-sm-8 col-7"></div>
+                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
                         <div
                             [ngClass]="{disabled: !packageNext}"
                             (click)="goForward(stepper)"
@@ -20,17 +22,20 @@
                 </div>
                 <app-choose-package></app-choose-package>
             </mat-step>
+            </div>
+            <div class="medium-padding">
+
             <mat-step label="Adatok" [completed]="infoNext">
                 <div class="row">
-                    <div class="col-md-3 col-12 text-center pb-3">
+                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
                         <div
                             (click)="goBack(stepper)"
                             class="cbtn cbtn-one mini">
                             <span>Vissza</span>
                         </div>
                     </div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3 col-12 text-center pb-3">
+                    <div class="col-md-6 col-sm-4 col-2"></div>
+                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
                         <div
                             [ngClass]="{disabled: !infoNext}"
                             (click)="goForward(stepper)"
@@ -42,17 +47,18 @@
                 <app-information-form #form></app-information-form>
                 <!-- <div>{{ form.isValid() }}</div> -->
             </mat-step>
+            </div>
             <mat-step label="Dátum" [completed]="dateNext">
                 <div class="row">
-                    <div class="col-md-3 col-12 text-center pb-3">
+                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
                         <div
                             (click)="goBack(stepper)"
                             class="cbtn cbtn-one mini">
                             <span>Vissza</span>
                         </div>
                     </div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3 col-12 text-center pb-3">
+                    <div class="col-md-6 col-sm-4 col-2"></div>
+                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
                         <div
                             [ngClass]="{disabled: !dateNext}"
                             (click)="goForward(stepper)"
@@ -63,9 +69,11 @@
                 </div>
                 <app-date></app-date>
             </mat-step>
+            <div class="medium-padding">
+
             <mat-step label="Ellenőrzés" completed="false">
                 <div class="row">
-                    <div class="col-md-3 col-12 text-center pb-3">
+                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
                         <div
                             (click)="goBack(stepper)"
                             class="cbtn cbtn-one mini">
@@ -75,6 +83,6 @@
                 </div>
                 <app-check></app-check>
             </mat-step>
+        </div>
        </mat-horizontal-stepper>
-    </div>
 </div>

@@ -1,5 +1,8 @@
 <div class="backdrop" (click)="onClose()"></div>
 <div class="alert-box">
+    <div (click)="onClose()" class="middle-text close-x pb-3">
+        X
+    </div>
     <div class="middle-top-text">
         Paintball csomag {{ package.fromNumberLimit}} - {{ package.toNumberLimit }} főnek
     </div>
@@ -46,15 +49,12 @@
             <img src="../../../../../assets/pictures/services-images/vestw.png" alt="">
         </div>
     </div>
-    <div class="row pb-5">
-        <div class="col-md-6 col-12 pt-5">
-            <div class="cbtn cbtn-one small">
-                <span (click)="onClose()"> Vissza </span>
-            </div>
-        </div>
-        <div class="col-md-6 col-12 pt-5">
-            <div class="cbtn cbtn-one small">
-                <span (click)="onSelect()"> Választ </span>
+    <div class="row justify-content-center">
+        <div class="col-4 pt-5">
+            <div
+                (click)="onSelect()"
+                class="cbtn cbtn-one mini">
+                <span> Választ </span>
             </div>
         </div>
     </div>

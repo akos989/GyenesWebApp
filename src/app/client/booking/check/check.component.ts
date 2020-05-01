@@ -6,6 +6,8 @@ import { Reservation } from 'src/app/shared/models/reservation.model';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
+import { Package } from 'src/app/shared/models/package.model';
+import { PackageService } from '../../packages/package.service';
 
 @Component({
   selector: 'app-check',
@@ -14,16 +16,22 @@ import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 })
 export class CheckComponent implements OnInit, OnDestroy {
 
+  months: string[] = ['január', 'február', 'március', 'április', 'május', 'június',
+                      'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
+  
   currentReservation: Reservation;
   @ViewChild('f') submitForm: NgForm;
   isLoading: boolean = false;
   submitResultSub: Subscription;
+  package: Package = null;
 
   constructor(private reservationService: ReservationService,
-              private router: Router, private errorHandler: ErrorHandleService) { }
+              private router: Router, private errorHandler: ErrorHandleService,
+              private packageService: PackageService) { }
 
   ngOnInit(): void {
     this.currentReservation = this.reservationService.currentReservation;
+    this.package = this.packageService.findById(this.currentReservation.packageId);
   }
 
   onSubmit() {

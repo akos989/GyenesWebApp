@@ -1,74 +1,109 @@
-<div
-    *ngIf="currentReservation"
-    class="row">
-    <div class="col-md-7 col-12">
-        <div>
-            <div class="text-center text-large">
-                Megadott foglalási adatok
-            </div>
+<div class="middle-top-text pb-5 text-center"> Már majdnem kész, de még ellenőrizd le az adataidat! </div>
+<div class="card text-center middle-text container-fluid">
+    <div
+        *ngIf="currentReservation"
+        class="row">
+        <div class="col-md-7 col-12 text-left">
             <div>
-                Név: {{ currentReservation.name}}
+                <div class="text-center pb-2 pt-2">
+                    Megadott foglalási adatok
+                </div>
+                <div class="hr mb-5"></div>
+                <div class="row pb-lg-3">
+                    <div class="col-lg-4 col-12 text-lg-right">
+                        Név:
+                    </div>
+                    <div class="col-lg-8 col-12">{{ currentReservation.name}}</div>
+                </div>
+                <hr class="small">
+                <div class="row pb-lg-3">
+                    <div class="col-lg-4 col-12 text-lg-right">
+                        Email:
+                    </div>
+                    <div class="col-lg-8 col-12">{{ currentReservation.email}}</div>
+                </div>
+                <hr class="small">
+                <div class="row pb-lg-3">
+                    <div class="col-lg-4 col-12 text-lg-right">
+                        Telefonszám:
+                    </div>
+                    <div class="col-lg-8 col-12">{{ currentReservation.phoneNumber}}</div>
+                </div>
+                <hr class="small">
+                <div class="row pb-lg-3">
+                    <div class="col-lg-4 col-12 text-lg-right">
+                        Dátum: 
+                    </div>
+                    <div class="col-lg-8 col-12">
+                        {{ currentReservation.date.getFullYear() }}.
+                        {{ months[currentReservation.date.getMonth()] }}
+                        {{ currentReservation.date.getDate() < 10 ? '0' + currentReservation.date.getDate() + '.' : currentReservation.date.getDate() + '.' }}
+                        {{ (currentReservation.date.getHours() < 10 ? '0' + currentReservation.date.getHours() + ':' : currentReservation.date.getHours() + ':') + (currentReservation.date.getMinutes() < 10 ? '0' + currentReservation.date.getMinutes() : currentReservation.date.getMinutes()) }}
+                    </div>
+                </div>
+                <hr class="small">
+                <div class="row pb-lg-3">
+                    <div class="col-lg-4 col-12 text-lg-right">
+                        Játékosszám: 
+                    </div>
+                    <div class="col-lg-8 col-12">{{ currentReservation.playerNumber }}</div>
+                </div>
+                <hr class="small">
+                <div class="row pb-lg-3">
+                    <div class="col-lg-4 col-12 text-lg-right">
+                        Csomag:
+                    </div>
+                    <div class="col-lg-8 col-12">
+                        <div>
+                            Időtartam: {{ package.duration }} óra
+                        </div>
+                        <div>
+                            Kezdőár: {{ package.basePrice }} Ft
+                        </div>
+                        <div>
+                            Ft / lövedék: {{ package.bulletPrice }} Ft
+                        </div>
+                    </div>
+                </div>                
+                <hr class="small">
+                <div class="row pb-lg-3">
+                    <div class="col-lg-4 col-12 text-lg-right">
+                        Megjegyzések:
+                    </div>
+                    <div class="col-lg-8 col-12">
+                        {{ currentReservation.notes !== "" ? currentReservation.notes : "-" }}
+                    </div>                    
+                </div>
             </div>
-            <div>
-                Email: {{ currentReservation.email}}
-            </div>
-            <div>
-                Telefonszám: {{ currentReservation.phoneNumber}}
-            </div>
-            <div>
-                Dátum: {{ currentReservation.date }}
-            </div>
-            <div>
-                Játékosszám: {{ currentReservation.playerNumber }}
-            </div>
-            <div>
-                Csomag: {{ currentReservation.packageId }}
-            </div>
-            <div>
-                Megjegyzések: {{ currentReservation.notes }}
-            </div>
+            <div class="hr d-block d-sm-none d-none d-sm-block d-md-none my-5"></div>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-12 text-center">
-                <div
-                    [routerLink]="['/booking/info']"
-                    class="cbtn cbtn-one dark big">
-                    <span>Adatok javítása</span>
-                </div>
+        <div class="col-md-5 col-12 top50">
+            <div>
+                <div class="text-large" >Foglalás jováhagyása</div>
+                <form (ngSubmit)="onSubmit()" #f="ngForm">
+                    <div>
+                        Kijelentem, hogy a foglalási feltételeket elfogadom.......
+                    </div>
+                    <input
+                        type="checkbox" name="admission"
+                        ngModel
+                        required
+                        #admissionBox="ngModel">
+                </form>
             </div>
-            <div class="col-md-6 col-12 text-center">
-                <div
-                    [routerLink]="['/booking/date']"
-                    class="cbtn cbtn-one dark big">
-                    <span> Dátum javítása </span>
+                <div class="text-center pt-5">
+                    <div
+                        *ngIf="admissionBox.valid"
+                        (click)="onSubmit()"
+                        class="cbtn cbtn-one small">
+                        <span>Jóváhagyás</span>
+                    </div>
                 </div>
+            <div
+                *ngIf="isLoading"
+                class="text-center">
+                Betöltés...
             </div>
-        </div>
-    </div>
-    <div class="col-md-5 col-12">
-        <div>
-            <div class="text-large" >Foglalás jováhagyása</div>
-            <form (ngSubmit)="onSubmit()" #f="ngForm">
-                <div>
-                    Kijelentem, hogy a foglalási feltételeket elfogadom.......
-                </div>
-                <input
-                    type="checkbox" name="admission"
-                    ngModel
-                    required
-                    #admissionBox="ngModel">
-                <div
-                    *ngIf="admissionBox.valid"
-                    (click)="onSubmit()"
-                    class="cbtn cbtn-one dark big">
-                    <span>Jóváhagyás</span>
-                </div>
-            </form>
-        </div>
-        <div
-            *ngIf="isLoading"
-            class="text-center">
-            Betöltés...
         </div>
     </div>
 </div>

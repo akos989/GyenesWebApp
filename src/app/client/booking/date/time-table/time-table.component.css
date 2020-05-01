@@ -1,7 +1,126 @@
-.disabled {
-    color: red;
+span {
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
-.active {
-    color: green;
+.close-x {
+    cursor: pointer;
+    text-align: right;
+    right: 0px;
+    position: relative;
+}
+
+@media (hover: hover) {
+    .close-x:hover {
+        color: rgb(209, 81, 26);
+    }
+    span.active:hover {
+        color: rgb(209, 81, 26);
+    }
+}
+
+.disabled {
+    background-color: red;
+    border-radius: 25px;
+}
+
+.selected {
+    background-color: green;
+    border-radius: 25px;
+}
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 50;
+}
+.dot {
+    height: auto;
+    width: 100%;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+img {
+    height: 100px;
+    width: auto;
+}
+
+.content {
+    position: relative;
+    top: 10%;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    img {
+        height: 50px;
+        width: auto;
+    }
+    .alert-box {
+        top: 10vh;
+        bottom:10vh;
+        position:fixed;
+        overflow-y:hidden;
+        overflow-x:hidden;
+        left: 10%;
+        width: 80%;
+        padding: 16px;
+        z-index: 100;
+        background: rgb(20, 20, 20);
+        box-shadow: 2px 4px 4px rgba(146, 144, 144, 0.15);
+        overflow: auto;
+        border-radius: 25px;
+    }
+
+    .content {
+        position: relative;
+        top: 5%;
+        text-align: center;
+    }
+
+}
+
+@media screen and (min-width: 600px) {
+
+.alert-box {
+    top: 15vh;
+    bottom:10vh;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    left: 25%;
+    width: 50%;
+    padding: 16px;
+    z-index: 100;
+    background: rgb(20, 20, 20);
+    box-shadow: 2px 4px 4px rgba(146, 144, 144, 0.15);
+    overflow: auto;
+    border-radius: 25px;
+}
+}
+.custom-row {
+    position: relative;
+    width: 90%;
+    left: 5%;
+}
+
+.right {
+    position: relative !important;
+    right: 0px !important;
+}
+
+.left {
+    text-align: left !important;
+    position: relative !important;
+    left: 0px !important;
+}
+
+.alert-box-actions {
+    text-align: right !important;
+    text-align: right;
 }
