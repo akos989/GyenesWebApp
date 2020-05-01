@@ -13,7 +13,7 @@ hr.small {
     height: 2px;
 }
 
-@media screen and (max-width: 992px) {  
+@media screen and (max-width: 1025px) {  
 
     hr.small {
         display: block;

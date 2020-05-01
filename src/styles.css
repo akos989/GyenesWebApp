@@ -80,6 +80,11 @@
 .mat-card-header {
     display: inline !important;
 }
+
+#packages-stepper div.mat-horizontal-stepper-header-container {
+    display: none !important;
+}
+
 @media screen and (max-width: 600px) {
     .mat-step-text-label {
         color: rgb(255, 235, 204);
@@ -371,4 +376,34 @@ hr.left.open {
 
 .small-text{
     font-size: 2.5vh;
+}
+
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+    right: 5px;
+    left: auto;
+    color: rgb(209, 81, 26) !important;
+    font-weight: 900;
+}
+
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    left: 5px;
+    right: auto;
+    color: rgb(209, 81, 26) !important;
+    font-weight: 900;
+}
+
+.swiper.s-wrapper .swiper-pagination .swiper-pagination-handle {
+    position: relative;
+    display: inline-block;
+    margin: 10px !important;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: rgb(209, 81, 26) !important;
+    size: 3;
+    padding: 5px;
+    pointer-events: none;
 }
