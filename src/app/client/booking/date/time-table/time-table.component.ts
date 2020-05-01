@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { ReservationService } from 'src/app/client/booking/reservations.service';
 import { NoDatesService } from '../no-dates.service';
-import { Subscription } from 'rxjs';
 import { DateService } from '../date.service';
+import { BookingService } from '../../booking.service';
 
 class Hour {
   constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -24,8 +25,9 @@ export class TimeTableComponent implements OnInit {
   prevSelect: Hour = null;
   closedReason: string = null;
 
-  constructor(private router: Router, private reservationService: ReservationService,
-              private noDateService: NoDatesService, private dateService: DateService)
+  constructor(private reservationService: ReservationService,
+              private noDateService: NoDatesService, private dateService: DateService,
+              private bookingService: BookingService)
               { }
 
   ngOnInit() {
@@ -39,14 +41,14 @@ export class TimeTableComponent implements OnInit {
         this.hours =
           this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
       });
-    // const currReservDate: Date =
-    //   this.reservationService.currentReservation.date;
-    // if (currReservDate && !this.prevSelect) {
-    //   this.selectedDate = currReservDate;
-    //   this.hours =
-    //     this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
-    //   this.findHour(currReservDate.getHours());
-    // }
+    const currReservation = this.reservationService.currentReservation;
+    if ( currReservation && currReservation.date ) {
+      this.selectedDate = currReservation.date;
+      this.closedReason = this.noDateService.isClosed(this.selectedDate);
+      this.hours =
+        this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
+      this.findHour(this.selectedDate.getHours());
+    }
   }
 
   findHour(reservationHour: number) {
@@ -59,8 +61,10 @@ export class TimeTableComponent implements OnInit {
   }
 
   selectHour(hour: Hour) {
-    if ( hour.type !== 'f' )
+    if ( hour.type !== 'f' ) {
       this.selectedHour = hour;
+      this.onContinue();
+    }
     else
       this.selectedHour = null;
   }
@@ -71,7 +75,7 @@ export class TimeTableComponent implements OnInit {
     currReservation.date = this.selectedDate;
     this.reservationService.currentReservation = currReservation;
 
-    //this.router.navigate(['/booking/check']);
+    this.bookingService.onDateSelected(true);
   }
 
   getMorningHours(): Hour[] {
