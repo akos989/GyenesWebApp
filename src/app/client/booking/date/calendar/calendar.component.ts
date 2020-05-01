@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Renderer2, ComponentFactoryResolver, ViewChild, OnDestroy } from '@angular/core';
 
 import { ReservationService } from 'src/app/client/booking/reservations.service';
 import { NoDatesService } from '../no-dates.service';
 import { Reservation } from 'src/app/shared/models/reservation.model';
-import { DateService } from '../date.service';
+
+import { TimeTableComponent } from '../time-table/time-table.component';
+import { PlaceholderDirective } from 'src/app/shared/placeholder.directive';
+import { Subscription } from 'rxjs';
+import { BookingService } from '../../booking.service';
 
 class Day {
   public date: Date;
@@ -12,6 +15,7 @@ class Day {
   public disabled: boolean = false;
   public closed: boolean = false;
   public off: boolean = false;
+  public selected: boolean = false;
 }
 
 class Week {
@@ -23,7 +27,13 @@ class Week {
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, OnDestroy {
+
+  months: string[] = ['január', 'február', 'március', 'április', 'május', 'június',
+                      'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
+  
+  @ViewChild(PlaceholderDirective, {static: false}) modalHost: PlaceholderDirective;
+  closeSub: Subscription;
 
   weeks: Week[] = [];
   today: Date;
@@ -31,8 +41,9 @@ export class CalendarComponent implements OnInit {
   selectedDay: Date = null;
 
   constructor(private reservationService: ReservationService,
-              private noDatesService: NoDatesService,
-              private dateService: DateService) { }
+              private noDatesService: NoDatesService, private renderer: Renderer2,
+              private cFResolver: ComponentFactoryResolver,
+              private bookinService: BookingService) { }
 
   ngOnInit(): void {
     this.today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
@@ -40,8 +51,7 @@ export class CalendarComponent implements OnInit {
     const reservation: Reservation = this.reservationService.currentReservation;
 
     if (reservation && reservation.date) {
-      this.refDate = reservation.date;
-      this.dateService.onSelectionChanged(this.refDate);
+      this.refDate = new Date(reservation.date.valueOf());
     }
     this.createWeeks(this.refDate);
   }
@@ -76,15 +86,15 @@ export class CalendarComponent implements OnInit {
           }
           tmpDate = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate() + 1);
           maxDays--;
+          if(this.checkSelection(tmpDate)) {
+            tmpDay.selected = true;
+            this.bookinService.onDateSelected(true);
+          }
         }
         tmpWeek.days.push(tmpDay);
       }
       this.weeks.push(tmpWeek);
     }
-  }
-
-  selectDay(date: Date) {
-    this.dateService.onSelectionChanged(date);
   }
 
   prevMonth() {
@@ -111,7 +121,11 @@ export class CalendarComponent implements OnInit {
   }
 
   notThisMonth() {
-    return this.refDate.valueOf() !== new Date(new Date().getFullYear(), new Date().getMonth(), 1).valueOf();
+    const isToday = (
+      this.refDate.getFullYear() === this.today.getFullYear() &&
+      this.refDate.getMonth() === this.today.getMonth()
+    );
+    return !isToday;
   }
   
   hasPrevMonth() {
@@ -140,5 +154,52 @@ export class CalendarComponent implements OnInit {
     const month: number = date.getMonth();
 
     return new Date(year, month, 1).getDay();
+  }
+
+  selectDay(day: Day) {
+    if (day.off || day.today) return;
+    // this.dateService.onSelectionChanged(date);
+    this.renderer.addClass(document.body, 'modal-open');
+    const componentFactory =
+      this.cFResolver.resolveComponentFactory(TimeTableComponent);
+    const hostViewContainerRef = this.modalHost.viewContainerRef;
+    hostViewContainerRef.clear();
+
+    const componentRef =
+      hostViewContainerRef.createComponent(componentFactory);
+    componentRef.instance.selectedDate = day.date;
+    this.closeSub = componentRef.instance.close.subscribe((result) => {
+      this.closeSub.unsubscribe();
+      hostViewContainerRef.clear();
+      this.renderer.removeClass(document.body, 'modal-open');
+      if (result) {
+        this.removeSelection();
+        day.selected = true;
+      }
+    });
+  }
+
+  private checkSelection(date: Date): boolean {
+    const currReservation = this.reservationService.currentReservation;
+    if (currReservation && currReservation.date) {
+      if ((date.getFullYear() === currReservation.date.getFullYear()) &&
+          (date.getMonth() === currReservation.date.getMonth()) &&
+          ((date.getDate() - 1) === currReservation.date.getDate()))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  removeSelection() {
+    for(const week of this.weeks)
+      for(const day of week.days)
+        day.selected = false;
+  }
+
+  ngOnDestroy() {
+    if (this.closeSub)
+      this.closeSub.unsubscribe();
   }
 }

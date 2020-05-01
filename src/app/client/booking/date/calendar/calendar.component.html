@@ -1,64 +1,58 @@
-<div class="row" >
-    <div
-        *ngIf="hasPrevMonth()"
-        (click)="prevMonth()"
-        class="cbtn cbtn-one dark small">
-        <span>Hátra</span>
-    </div>
-    <div
-        (click)="nextMonth()"
-        class="cbtn cbtn-one dark small">
-        <span>Előre</span>
-    </div>
-    <div
-        *ngIf="notThisMonth()"
-        (click)="jumpToToday()"
-        class="cbtn cbtn-one dark small">
-        <span>Ma</span>
-    </div>
-</div>
-<div>
-    {{ refDate.getMonth() }}
-</div>
-<div class="flx">
-    <div class="box day">
-        H
-    </div>
-    <div class="box day">
-        K
-    </div>
-    <div class="box day">
-        Sz
-    </div>
-    <div class="box day">
-        Cs
-    </div>
-    <div class="box day">
-        P
-    </div>
-    <div class="box day">
-        Sz
-    </div>
-    <div class="box day">
-        V
-    </div>   
-</div>
-<div
-    *ngFor="let week of weeks"
-    >
-    <div class="flx">
-        <div
-            class="box"
-            [ngClass]="{'active': !day.disabled, 'off': day.off, 'disabled': day.disabled, 'today': day.today, 'closed': day.closed }"
-            *ngFor="let day of week.days">
-                <div *ngIf="day.off || day.disabled || day.today" >
-                    {{ day.off ? 'off' : day.date.getDate()}}
-                </div>
+<ng-template appPlaceholder></ng-template>
+
+<div class="padding-top-4">
+    <div class="custom-container card text-center pb-4">
+        <div class="calendar-row middle-top-text pb-4 pt-3 orange">
+            {{ refDate.getFullYear() }}. {{ months[refDate.getMonth()] }}
+        </div>
+        <div class="row text-center middle-text">
+            <div class="col-md-2 col-4 text-left left">
+                <span
+                    *ngIf="hasPrevMonth()"
+                    (click)="prevMonth()"
+                    class="button middle-text"> < </span>
+            </div>
+            <div class="col-md-8 col-4 text-center">
+                <span
+                    *ngIf="notThisMonth()"
+                    (click)="jumpToToday()" 
+                    class="button middle-text"> Ma </span>
+            </div>
+            <div class="col-md-2 col-4 text-right right">
+                <span
+                    (click)="nextMonth()"
+                    class="button middle-text"> > </span>
+            </div>
+        </div>
+        <hr>
+        <div class="flx middle-text">
+            <div class="text-center box">H</div>
+            <div class="text-center box">K</div>
+            <div class="text-center box">Sz</div>
+            <div class="text-center box">Cs</div>
+            <div class="text-center box">P</div>
+            <div class="text-center box">Sz</div>
+            <div class="text-center box">V</div>
+        </div>
+        <hr>
+        <div *ngFor="let week of weeks">
+            <div class="flx">
                 <div
-                    *ngIf="!day.off && !day.disabled && !day.today"
-                    (click)="selectDay(day.date)">
-                    {{ day.date.getDate()}}
+                    class="text-center box"
+                    *ngFor="let day of week.days">
+                    <span
+                        [ngClass]="{
+                            'off': day.off,
+                            'disabled': day.disabled,'today': day.today,
+                            'closed': day.closed, 'selected': day.selected }"
+                        (click)="selectDay(day)"
+                        class="button small">
+                        {{ day.off ? "" :(day.date.getDate() < 10 ?
+                           "0"+day.date.getDate() : day.date.getDate() ) }}
+                    </span>
                 </div>
+            </div>
+            <hr class="small">
         </div>
     </div>
 </div>

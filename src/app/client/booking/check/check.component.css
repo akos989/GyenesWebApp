@@ -1,0 +1,30 @@
+.card {
+    background-color: #333534;
+    border-radius: 25px;
+}
+
+hr.small {
+    display: none;
+}
+
+.hr {
+    background-color: #d3531a;
+    width: 100%;
+    height: 2px;
+}
+
+@media screen and (max-width: 992px) {  
+
+    hr.small {
+        display: block;
+        border: .5px solid rgb(209, 81, 26);
+        opacity: 0.3;
+    }
+}
+
+@media screen and (min-width: 768px) {  
+    .top50 {
+        position: relative;
+        top: 15vh;
+    }
+}

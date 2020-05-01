@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { ReservationService } from 'src/app/client/booking/reservations.service';
 import { NoDatesService } from '../no-dates.service';
@@ -17,8 +16,11 @@ class Hour {
 })
 export class TimeTableComponent implements OnInit {
 
+  months: string[] = ['január', 'február', 'március', 'április', 'május', 'június',
+                      'július', 'augusztus', 'szeptember', 'október', 'november', 'december'];
+  
   selectedDate: Date;
-  selectChangedSub: Subscription;
+  @Output() close = new EventEmitter<boolean>();
 
   hours: Hour[] = [];
   selectedHour: Hour = null;
@@ -31,23 +33,27 @@ export class TimeTableComponent implements OnInit {
               { }
 
   ngOnInit() {
-    this.selectChangedSub = this.dateService.selectionChanged
-      .subscribe((date: Date) => {
-        this.selectedDate = date;
-        this.closedReason = this.noDateService.isClosed(this.selectedDate);
-        this.hours = [];
-        this.selectedHour = null;
+    // this.selectChangedSub = this.dateService.selectionChanged
+    //   .subscribe((date: Date) => {
+    //     this.selectedDate = date;
+    //     this.closedReason = this.noDateService.isClosed(this.selectedDate);
+    //     this.hours = [];
+    //     this.selectedHour = null;
         
-        this.hours =
-          this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
-      });
+    //     this.hours =
+    //       this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
+    //   });
+    this.hours =
+      this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
+    this.closedReason = this.noDateService.isClosed(this.selectedDate);   
+
     const currReservation = this.reservationService.currentReservation;
     if ( currReservation && currReservation.date ) {
-      this.selectedDate = currReservation.date;
-      this.closedReason = this.noDateService.isClosed(this.selectedDate);
-      this.hours =
-        this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
-      this.findHour(this.selectedDate.getHours());
+      if (this.selectedDate.getFullYear() === currReservation.date.getFullYear() &&
+          this.selectedDate.getMonth() === currReservation.date.getMonth() &&
+          this.selectedDate.getDate() === currReservation.date.getDate()) {
+        this.findHour(currReservation.date.getHours());
+      }
     }
   }
 
@@ -63,7 +69,6 @@ export class TimeTableComponent implements OnInit {
   selectHour(hour: Hour) {
     if ( hour.type !== 'f' ) {
       this.selectedHour = hour;
-      this.onContinue();
     }
     else
       this.selectedHour = null;
@@ -75,7 +80,12 @@ export class TimeTableComponent implements OnInit {
     currReservation.date = this.selectedDate;
     this.reservationService.currentReservation = currReservation;
 
+    this.close.emit(true);
     this.bookingService.onDateSelected(true);
+  }
+
+  onClose() {
+    this.close.emit(false);
   }
 
   getMorningHours(): Hour[] {

@@ -1,57 +1,98 @@
-<div>
-    {{ selectedDate }}
+<div class="backdrop" (click)="onClose()"></div>
+<div class="alert-box">
+    <div
+        (click)="onClose()"
+        class="middle-text close-x">
+        X
+    </div>
+    <div class="content middle-text">
+        <div class="middle-top-text">
+            {{ selectedDate.getFullYear() }}. {{ months[selectedDate.getMonth()] }}
+            {{ selectedDate.getDate() }}.
+        </div>
+        <hr class="orange">
+        <div *ngIf="!closedReason else reason" class="text-center">
+            <div class="row">
+                <div class="col-4">
+                    <div class="pb-3">Reggel</div>
+                    <div *ngFor="let hour of getMorningHours()">
+                        <div
+                            class="mb-2"
+                            (click)="selectHour(hour)"                            
+                            data-toggle="tooltip" data-placement="bottom"
+                            [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
+                            <span
+                                [ngClass]="{
+                                    disabled: hour.type === 'f',
+                                    active: (hour.type === 'e' || hour.type === 'p'),
+                                    selected: hour === selectedHour
+                                }"
+                            >{{ hour.hour }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="pb-3">Délután</div>
+                    <div *ngFor="let hour of getAfternoonHours()">
+                        <div
+                            class="mb-2"
+                            (click)="selectHour(hour)"                
+                            data-toggle="tooltip" data-placement="bottom"
+                            [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
+                            <span
+                                [ngClass]="{
+                                    disabled: hour.type === 'f',
+                                    active: (hour.type === 'e' || hour.type === 'p'),
+                                    selected: hour === selectedHour
+                                }"
+                            >{{ hour.hour }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="pb-3">Este</div>
+                    <div *ngFor="let hour of getEveningHours()">
+                        <div
+                            class="mb-2"
+                            (click)="selectHour(hour)"
+                            data-toggle="tooltip" data-placement="bottom"
+                            [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
+                            <span
+                                [ngClass]="{
+                                    disabled: hour.type === 'f',
+                                    active: (hour.type === 'e' || hour.type === 'p'),
+                                    selected: hour === selectedHour
+                                }"
+                            >{{ hour.hour }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="selectedHour">
+                <div *ngIf="selectedHour.type === 'p'">
+                    Ebben az órában maximum {{ selectedHour.remainingNumber }} játékos játszhat!
+                </div>                
+            </div>
+            <div class="row justify-content-center">
+                <div
+                    *ngIf="selectedHour"
+                    class="col-md-4 col-6 padding-top-2">
+                    <div
+                        (click)="onContinue()"
+                        class="cbtn cbtn-one mini">
+                        <span> Választ </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template #reason>
+            <div>
+                Sajnáljuk!
+            </div>
+            <div class="pt-3 pb-5">Ezen a napon a pálya nem üzemel.</div>
+            <div class="pt-5">
+                Indok: {{ closedReason }}
+            </div>
+        </ng-template>
+    </div>  
 </div>
-<div *ngIf="!closedReason else reason">
-    <div class="row">
-        <div class="col-3 text-center">
-            <div>Reggel</div>
-            <div *ngFor="let hour of getMorningHours()">
-                <div
-                    (click)="selectHour(hour)"
-                    [ngClass]="{disabled: hour.type === 'f', active: (hour.type === 'e' || hour.type === 'p')}"
-                    data-toggle="tooltip" data-placement="bottom"
-                    [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
-                    {{ hour.hour }}
-                </div>
-            </div>
-        </div>
-        <div class="col-3 text-center">
-            <div>Délután</div>
-            <div *ngFor="let hour of getAfternoonHours()">
-                <div
-                    (click)="selectHour(hour)"
-                    [ngClass]="{disabled: hour.type === 'f', active: (hour.type === 'e' || hour.type === 'p')}"
-                    data-toggle="tooltip" data-placement="bottom"
-                    [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
-                    {{ hour.hour }}
-                </div>
-            </div>
-        </div>
-        <div class="col-3 text-center">
-            <div>Este</div>
-            <div *ngFor="let hour of getEveningHours()">
-                <div
-                    (click)="selectHour(hour)"
-                    [ngClass]="{disabled: hour.type === 'f', active: (hour.type === 'e' || hour.type === 'p')}"
-                    data-toggle="tooltip" data-placement="bottom"
-                    [title]="hour.type === 'p' ? ('max. ' + hour.remainingNumber + ' játékos') : ''">
-                    {{ hour.hour }}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="selectedHour">
-        <div> {{ selectedHour.hour }} kiválasztva!</div>
-        <div *ngIf="selectedHour.type === 'p'">
-            Ebben az órában maximum {{ selectedHour.remainingNumber }} játékos játszhat!
-        </div>
-    </div>
-</div>
-<ng-template #reason>
-    <div>
-        Ezen a napon a pálya nem üzemel.
-    </div>
-    <div>
-        Indok: {{ closedReason }}
-    </div>
-</ng-template>

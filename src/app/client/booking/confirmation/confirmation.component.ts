@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CanComponentDeactivate } from './deactivate-guard.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { ReservationService } from '../reservations.service';
+import { Reservation } from 'src/app/shared/models/reservation.model';
 
 @Component({
   selector: 'app-confirmation',
@@ -10,10 +11,12 @@ import { ReservationService } from '../reservations.service';
 })
 export class ConfirmationComponent implements OnInit, CanComponentDeactivate {
 
+  reservation: Reservation = null;
+
   constructor(private reservationService: ReservationService) { }
 
   ngOnInit(): void {
-
+    this.reservation = this.reservationService.currentReservation;
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {

@@ -7,6 +7,20 @@
     background: rgba(0, 0, 0, 0.85);
     z-index: 50;
 }
+
+.close-x {
+    cursor: pointer;
+    text-align: right;
+    right: 0px;
+    position: relative;
+}
+
+@media (hover: hover) {
+    .close-x:hover {
+        color: rgb(209, 81, 26);
+    }
+}
+
 .dot {
     height: auto;
     width: 100%;

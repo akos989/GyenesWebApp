@@ -25,7 +25,7 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
   private closeSub: Subscription;
 
   constructor(private reservationService: ReservationService,
-              private router: Router, private cFResolver: ComponentFactoryResolver,
+              private cFResolver: ComponentFactoryResolver,
               private renderer: Renderer2, private bookingService: BookingService) { }
 
   ngOnInit(): void {
