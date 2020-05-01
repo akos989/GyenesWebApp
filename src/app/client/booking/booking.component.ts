@@ -49,10 +49,9 @@ export class BookingComponent implements OnInit, OnDestroy {
 
       this.dateSelectSub = this.bookingService.dateSelected
       .subscribe( result => {
-        if (result)
-          this.dateNext = true;
-        else
-          this.dateNext = false
+        setTimeout(()=> {
+          this.dateNext = result;
+        }, 0);
       });
   }
 

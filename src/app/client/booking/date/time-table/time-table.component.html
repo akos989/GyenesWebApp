@@ -45,11 +45,6 @@
         <div *ngIf="selectedHour.type === 'p'">
             Ebben az órában maximum {{ selectedHour.remainingNumber }} játékos játszhat!
         </div>
-        <div
-            (click)="onContinue()"
-            class="cbtn cbtn-one dark small">
-            <span>Folytatás</span>
-        </div>
     </div>
 </div>
 <ng-template #reason>
