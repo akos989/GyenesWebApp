@@ -6,6 +6,7 @@ import { Reservation } from '../../shared/models/reservation.model';
 import { PackageService } from '../packages/package.service';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { Subject } from 'rxjs';
 
 class Hour {
     constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -20,6 +21,7 @@ export class ReservationService {
 
     constructor(private packageService: PackageService, private http: HttpClient,
                 private errorHandler: ErrorHandleService) {}
+    currReservationUpdated = new Subject<Reservation>();
 
     private _currentReservation: Reservation = null;   
 
@@ -32,6 +34,7 @@ export class ReservationService {
     public set currentReservation(value: Reservation) {
         this._currentReservation = value;
         this.saveToLocalStorage();
+        this.currReservationUpdated.next(this._currentReservation);
     }
     
     //backendbe felvenni és onnan lekérni

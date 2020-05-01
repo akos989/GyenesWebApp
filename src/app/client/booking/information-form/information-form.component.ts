@@ -22,7 +22,8 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
   maxPlayerNumber: number;
   minPlayerNumber: number;
   playerNumError = "";
-  prevState = false;
+  prevData: Reservation = null;
+  currentData: Reservation = null;
 
   constructor(private router: Router,
               private reservationService: ReservationService,
@@ -36,13 +37,16 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
         this.maxPlayerNumber = pack.toNumberLimit;
         this.minPlayerNumber = pack.fromNumberLimit;
         this.reservationForm.get('playernumber').updateValueAndValidity();
+        if(this.reservationForm.get('playernumber').value !== 0)
+          this.reservationForm.get('playernumber').markAsTouched();
+        this.bookingSevice.onInfoChange(this.reservationForm.valid);
       });    
 
     const currentReservation = this.reservationService.currentReservation;
 
     if ( currentReservation && currentReservation.name ) {
       this.editMode = true;
-      this.prevState = true;
+      this.prevData = currentReservation;
     }
     
     this.initForm();
@@ -86,7 +90,6 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
       currReservation.packageId, currReservation ? currReservation.date : null
     );    
     this.reservationService.currentReservation = reservation;
-    //this.router.navigate(['/booking/date']);
   }
 
   playNumLimit(control: FormControl): {[s: string]: boolean} {
@@ -104,28 +107,40 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
     return null;
   }
 
-  backToPackage() {
-    let reservation = this.reservationService.currentReservation;
-    reservation.name = this.reservationForm.get('name').value;
-    reservation.email = this.reservationForm.get('email').value;
-    reservation.phoneNumber = this.reservationForm.get('phoneNumber').value;
-    reservation.notes = this.reservationForm.get('notes').value;
-
-    this.reservationService.currentReservation = reservation;
-
-    this.router.navigate(['/booking']);
-  }
-
   notEmpty(input :string): boolean {
     return (this.reservationForm.get(input).value === '' || this.reservationForm.get(input).value === null )
   }
 
   ngAfterViewChecked() {
-    if (this.prevState !== this.reservationForm.valid) {
+    this.updateCurrentData();
+    if ((this.prevData === null ||
+      (this.prevData !== null && !this.equals(this.currentData))) )
+    {   
+      this.prevData = this.currentData;
       this.bookingSevice.onInfoChange(this.reservationForm.valid);
-      this.prevState = this.reservationForm.valid;
-      if (this.prevState)
+      if (this.reservationForm.valid)
         this.onSubmit();
     }
   }
+
+  private updateCurrentData() {
+    const currReservation = this.reservationService.currentReservation;
+    this.currentData = new Reservation(null,
+      this.reservationForm.get('name').value,
+      this.reservationForm.get('email').value,
+      this.reservationForm.get('phoneNumber').value,
+      this.reservationForm.get('playernumber').value,
+      this.reservationForm.get('notes').value,
+      currReservation.packageId, currReservation ? currReservation.date : null
+    );
+  }
+
+  private equals(other: Reservation): boolean {
+    let result = 
+        (this.prevData.email === other.email) && (this.prevData.name === other.name) &&
+        (this.prevData.date === other.date) && (this.prevData.notes === other.notes) &&
+        (this.prevData.packageId === other.packageId) && (this.prevData.phoneNumber === other.phoneNumber)
+        && (this.prevData.playerNumber === other.playerNumber);
+    return result;
+}
 }

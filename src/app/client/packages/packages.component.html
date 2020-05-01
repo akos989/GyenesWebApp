@@ -1,8 +1,45 @@
 <div class="padding-top-4">
-    <div class="row">
-        <div *ngFor="let package of packages"
-            class="col-xl-4 col-md-6 px-md-5 col-lg-6 col-12 pb-5">
-            <app-package-detail [package]="package"></app-package-detail>
-        </div>
-    </div>
+    <mat-horizontal-stepper id="packages-stepper" #stepper>
+        <mat-step label="Összes">
+            <!-- <div class="middle-top-text">Összes csomag</div> -->
+            <div class="text-center pb-5">
+                <div
+                    (click)="next(stepper)"
+                    class="cbtn cbtn-one small dark">
+                    <span>Akciós</span>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngFor="let package of getAll()"
+                    class="col-xl-4 col-md-6 px-md-5 col-lg-6 col-12 pb-5">
+                    <app-package-detail [package]="package"></app-package-detail>
+                </div>
+            </div>
+        </mat-step>
+        <mat-step label="Akciós">
+            <!-- <div class="middle-top-text">Akciós csomagok</div> -->
+            <div class="text-center pb-5">
+                <div 
+                    (click)="back(stepper)"
+                    class="cbtn cbtn-one small dark">
+                    <span>Összes</span>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngFor="let package of getSale()"
+                    class="col-xl-4 col-md-6 px-md-5 col-lg-6 col-12 pb-5">
+                    <app-package-detail [package]="package"></app-package-detail>
+                </div>
+            </div>
+        </mat-step>
+        <!-- <mat-step label="Hagyományos">
+            <div class="middle-top-text">Hagyományos csomagok</div>
+            <div class="row">
+                <div *ngFor="let package of getNotSale()"
+                    class="col-xl-4 col-md-6 px-md-5 col-lg-6 col-12 pb-5">
+                    <app-package-detail [package]="package"></app-package-detail>
+                </div>
+            </div>
+        </mat-step> -->
+    </mat-horizontal-stepper>
 </div>

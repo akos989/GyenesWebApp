@@ -23,6 +23,7 @@ export class CheckComponent implements OnInit, OnDestroy {
   @ViewChild('f') submitForm: NgForm;
   isLoading: boolean = false;
   submitResultSub: Subscription;
+  reservationUpdateSub: Subscription;
   package: Package = null;
 
   constructor(private reservationService: ReservationService,
@@ -32,6 +33,13 @@ export class CheckComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.currentReservation = this.reservationService.currentReservation;
     this.package = this.packageService.findById(this.currentReservation.packageId);
+    this.reservationUpdateSub = this.reservationService.currReservationUpdated
+      .subscribe((currReservation: Reservation) => {
+        setTimeout(() => {
+          this.currentReservation = currReservation;
+          this.package = this.packageService.findById(this.currentReservation.packageId)
+        }, 0);
+      });
   }
 
   onSubmit() {
