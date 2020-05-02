@@ -19,8 +19,8 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
 
   reservationForm: FormGroup;
   editMode: boolean = false;
-  maxPlayerNumber: number;
-  minPlayerNumber: number;
+  maxPlayerNumber: number = 0;
+  minPlayerNumber: number = 0;
   playerNumError = "";
   prevData: Reservation = null;
   currentData: Reservation = null;
@@ -37,7 +37,7 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
         this.maxPlayerNumber = pack.toNumberLimit;
         this.minPlayerNumber = pack.fromNumberLimit;
         this.reservationForm.get('playernumber').updateValueAndValidity();
-        if(this.reservationForm.get('playernumber').value !== 0)
+        if(this.reservationForm.get('playernumber').value !== null)
           this.reservationForm.get('playernumber').markAsTouched();
         this.bookingSevice.onInfoChange(this.reservationForm.valid);
       });    
@@ -79,17 +79,8 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
     });
   }
 
-  onSubmit() {
-    const currReservation = this.reservationService.currentReservation;
-    const reservation = new Reservation(null,
-      this.reservationForm.get('name').value,
-      this.reservationForm.get('email').value,
-      this.reservationForm.get('phoneNumber').value,
-      this.reservationForm.get('playernumber').value,
-      this.reservationForm.get('notes').value,
-      currReservation.packageId, currReservation ? currReservation.date : null
-    );    
-    this.reservationService.currentReservation = reservation;
+  onSubmit() {     
+    this.reservationService.currentReservation = this.currentData;
   }
 
   playNumLimit(control: FormControl): {[s: string]: boolean} {
@@ -112,20 +103,24 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    this.updateCurrentData();
-    if ((this.prevData === null ||
-      (this.prevData !== null && !this.equals(this.currentData))) )
-    {   
-      this.prevData = this.currentData;
-      this.bookingSevice.onInfoChange(this.reservationForm.valid);
-      if (this.reservationForm.valid)
-        this.onSubmit();
+    if(this.reservationService.currentReservation &&
+       this.reservationService.currentReservation.packageId)
+       {
+         this.updateCurrentData();
+         if ((this.prevData === null ||
+           (this.prevData !== null && !this.equals(this.currentData))) )
+         {   
+           this.prevData = this.currentData;
+           this.bookingSevice.onInfoChange(this.reservationForm.valid);
+           if (this.reservationForm.valid)
+             this.onSubmit();
+         }
     }
   }
 
   private updateCurrentData() {
     const currReservation = this.reservationService.currentReservation;
-    this.currentData = new Reservation(null,
+    this.currentData = new Reservation('1',
       this.reservationForm.get('name').value,
       this.reservationForm.get('email').value,
       this.reservationForm.get('phoneNumber').value,

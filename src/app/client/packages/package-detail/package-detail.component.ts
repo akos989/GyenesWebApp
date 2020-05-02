@@ -52,7 +52,7 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
       currentReservation.packageId = this.package.id;
     } else {
       currentReservation = new Reservation(
-        null, null, null, null, null, null, this.package.id, null
+        '1', null, null, null, null, null, this.package.id, null
       );
     }
     this.reservationService.currentReservation = currentReservation;

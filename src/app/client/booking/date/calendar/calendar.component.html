@@ -6,22 +6,40 @@
             {{ refDate.getFullYear() }}. {{ months[refDate.getMonth()] }}
         </div>
         <div class="row text-center middle-text">
-            <div class="col-md-2 col-4 text-left left">
+            <div class="col-xl-5 col-4 text-left left">
                 <span
                     *ngIf="hasPrevMonth()"
                     (click)="prevMonth()"
-                    class="button middle-text"> < </span>
+                    class="button middle-text">
+                        <span class="prev-up">
+                            {{ (refDate.getMonth() === 0) ? months[11].substring(0,3) + '.' : months[refDate.getMonth()-1].substring(0,3)+ '.' }}
+                        </span>
+                        <img src="../../../../../assets/icons/seo-and-web.png" alt="">
+                        <span class="prev-down">
+                            {{ (refDate.getMonth() === 0) ? months[11].substring(0,3) + '.' : months[refDate.getMonth()-1].substring(0,3)+ '.' }}
+                        </span>
+                    </span>
             </div>
-            <div class="col-md-8 col-4 text-center">
+            <div class="col-xl-2 col-4 text-center">
                 <span
                     *ngIf="notThisMonth()"
                     (click)="jumpToToday()" 
-                    class="button middle-text"> Ma </span>
+                    class="button middle-text">
+                    <span class="top-padding">Ma</span>
+                 </span>
             </div>
-            <div class="col-md-2 col-4 text-right right">
+            <div class="col-xl-5 col-4 text-right right">
                 <span
                     (click)="nextMonth()"
-                    class="button middle-text"> > </span>
+                    class="button middle-text">
+                    <span class="next-up">
+                        {{ (refDate.getMonth() === 11) ? months[0].substring(0,3)+ '.' : months[refDate.getMonth()+1].substring(0,3)+ '.' }}
+                    </span>
+                    <img class="mirror" src="../../../../../assets/icons/seo-and-web.png" alt="">
+                    <span class="next-down">
+                        {{ (refDate.getMonth() === 11) ? months[0].substring(0,3)+ '.' : months[refDate.getMonth()+1].substring(0,3)+ '.' }}
+                    </span>
+                </span>
             </div>
         </div>
         <hr>
