@@ -96,6 +96,11 @@ hr.small {
         color: rgb(209, 81, 26);
         cursor: pointer;
     }
+
+    .button:hover img {
+        -webkit-filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
+        filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
+    }
 }
 
 .custom-container {
@@ -119,4 +124,53 @@ hr.small {
 .right {
     position: relative;
     right: 6%;
+}
+
+img {
+    width: calc(5vh);
+    height: auto;
+    -webkit-filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
+    filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
+}
+
+img.mirror {
+    -moz-transform: scale(-1, -1);
+    -o-transform: scale(-1, -1);
+    -webkit-transform: scale(-1, -1);
+    transform: scale(-1, -1);
+}
+
+
+@media screen and (max-width: 1140px) {
+
+    .top-padding {
+        position: relative;
+        top: calc(5.5vh + 3vh + 5vh);
+    }
+    .prev-up {
+        display: block;
+    }
+    .prev-down {
+        display: none;
+    }
+    .next-up {
+        display: block;
+    }
+    .next-down {
+        display: none;
+    }
+}
+@media screen and (min-width: 1141px) {
+    .prev-up {
+        display: none;
+    }
+    .prev-down {
+        display: inline;
+    }
+    .next-up {
+        display: inline;
+    }
+    .next-down {
+        display: none;
+    }
 }

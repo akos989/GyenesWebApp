@@ -210,4 +210,12 @@ export class ReservationService {
         return date.getFullYear() + "-" + month + "-" + day + "T" + hour + ":00Z";
     }
 
+    isCurrentReady(): boolean {
+        for (const key in this._currentReservation) {
+            if (this._currentReservation[key] === null)
+                return false;
+        }
+        return true;
+    }
+
 }

@@ -25,6 +25,7 @@ export class CheckComponent implements OnInit, OnDestroy {
   submitResultSub: Subscription;
   reservationUpdateSub: Subscription;
   package: Package = null;
+  ready: boolean = false;
 
   constructor(private reservationService: ReservationService,
               private router: Router, private errorHandler: ErrorHandleService,
@@ -32,13 +33,17 @@ export class CheckComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentReservation = this.reservationService.currentReservation;
-    this.package = this.packageService.findById(this.currentReservation.packageId);
+    if (this.currentReservation && this.currentReservation.packageId)
+      this.package = this.packageService.findById(this.currentReservation.packageId);
     this.reservationUpdateSub = this.reservationService.currReservationUpdated
       .subscribe((currReservation: Reservation) => {
-        setTimeout(() => {
-          this.currentReservation = currReservation;
-          this.package = this.packageService.findById(this.currentReservation.packageId)
-        }, 0);
+        if (this.reservationService.isCurrentReady()) {
+          setTimeout(() => {
+            this.ready = true;
+            this.currentReservation = currReservation;
+            this.package = this.packageService.findById(this.currentReservation.packageId)
+          }, 0);
+        }
       });
   }
 
