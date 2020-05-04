@@ -1,0 +1,15 @@
+.page-header {
+    position: absolute;
+    top: calc(3vh + 2vw + 20vh - 2vw - 6vh);
+    width: 100%;
+    font-weight: 700;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    height: 40vh;
+    opacity: 0.5;
+    -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+}

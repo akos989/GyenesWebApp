@@ -1,9 +1,8 @@
 <div class="component dark">
-    <div class="medium-padding">
-        <div class="text-center large-text padding-bottom-2">
-            Online foglalás
-        </div>
-    </div>
+    <app-page-header
+        [src]="'contact.jpg'"
+        [title]="'Foglalj most'">
+    </app-page-header>
         <mat-horizontal-stepper linear #stepper >
             <div class="medium-padding">
            <mat-step label="Csomag" [completed]="packageNext">

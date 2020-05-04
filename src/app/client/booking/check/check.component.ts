@@ -32,9 +32,12 @@ export class CheckComponent implements OnInit, OnDestroy {
               private packageService: PackageService) { }
 
   ngOnInit(): void {
-    this.currentReservation = this.reservationService.currentReservation;
-    if (this.currentReservation && this.currentReservation.packageId)
-      this.package = this.packageService.findById(this.currentReservation.packageId);
+    if (this.reservationService.isCurrentReady()) {
+      this.ready = true;
+      this.currentReservation = this.reservationService.currentReservation;
+      this.package = this.packageService.findById(this.currentReservation.packageId)
+    }
+
     this.reservationUpdateSub = this.reservationService.currReservationUpdated
       .subscribe((currReservation: Reservation) => {
         if (this.reservationService.isCurrentReady()) {
