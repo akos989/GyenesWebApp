@@ -1,3 +1,97 @@
-<div class="component">
-    <p>contact works!</p>
+<div class="component dark">
+    <app-page-header
+        [src]="'contact.jpg'"
+        [title]="'Lépj kapcsolatba'">
+    </app-page-header>
+    <div class="medium-padding">
+        <div class="row">
+            <div class="col-md-6 col-12 middle-text">
+                <div class="pb-3 middle-top-text font-weight-bold">
+                    Bármilyen kérdésed van...
+                </div>
+                <div class="pb-3 font-weight-bold"> Hívj </div>
+                <div class="pb-2 pl-5">
+                    <span itemprop="telephone"><a href="tel:06208028647">06208028647</a></span>
+                </div>
+                <div class="pb-3 pl-5">
+                    <span itemprop="telephone"><a href="tel:06306083283">06306083283</a></span>
+                </div>
+                <div class="pb-3 font-weight-bold">vagy írj emailt</div>
+                <div class="orange pl-md-5 pb-5">
+                    <a href="mailto:gyenespaintball@gmail.com">
+                        gyenespaintball@gmail.com
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 pb-5">
+                <iframe
+                    class="googlemaps"
+                    src="https://maps.google.com/maps?q=46.768861,17.273519&hl=es;z=14&amp;output=embed" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-11 card">
+                <div class="middle-top-text font-weight-bold py-5 text-center">
+                    Vagy hagyj üzenetet!
+                </div>
+                <form (ngSubmit)="onSubmit()" #f="ngForm">
+                    <div class="group">
+                        <input
+                            type="text" name="name"
+                            required
+                            ngModel #nameInput="ngModel"
+                            class="middle-text">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="middle-text">Név</label>
+                        <span
+                            *ngIf="nameInput.invalid && nameInput.touched"
+                            class="help-block">
+                            Név megadása kötelező!
+                        </span>
+                    </div>
+                    <div class="group">
+                        <input
+                            type="email" name="email"
+                            required
+                            ngModel #emailInput="ngModel"
+                            class="middle-text">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label class="middle-text">Email cím</label>
+                        <span
+                            *ngIf="emailInput.invalid && emailInput.touched"
+                            class="help-block">
+                            Email cím megadása kötelező!
+                        </span>
+                    </div>
+                    <div class="group">
+                        <textarea
+                            name="message"
+                            required
+                            ngModel #messageInput="ngModel"
+                            class="middle-text"
+                            rows="4">                        
+                        </textarea>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label class="middle-text">Üzenet</label>
+                        <span
+                            *ngIf="messageInput.invalid && messageInput.touched"
+                            class="help-block">
+                            Az üzenet nem lehet üres!
+                        </span>
+                    </div>
+                    <div class="text-center pb-5">
+                        <div
+                            *ngIf="f.valid"
+                            class="cbtn cbtn-one small">
+                            <span>Küldés</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
