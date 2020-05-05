@@ -55,6 +55,9 @@
                     </div>
                     <div class="col-xl-8 col-12">
                         <div>
+                            Típus: {{ packageType.name }}
+                        </div>
+                        <div>
                             Időtartam: {{ package.duration }} óra
                         </div>
                         <div>
@@ -63,8 +66,8 @@
                         <div>
                             Ft / lövedék: {{ package.bulletPrice }} Ft
                         </div>
-                        <div *ngIf="package.sale">
-                            Lövedék az árban: {{ package.includedBullets }}
+                        <div *ngIf="packageType.sale">
+                            Lövedék az árban: {{ package.includedBullets }} db
                         </div>
                     </div>
                 </div>                

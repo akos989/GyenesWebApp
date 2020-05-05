@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { PackageService } from './package.service';
 import { Package } from 'src/app/shared/models/package.model';
 import { MatStepper } from '@angular/material/stepper';
+import { PackageType } from 'src/app/shared/models/package-type.model';
 
 @Component({
   selector: 'app-packages',
@@ -11,7 +12,8 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class PackagesComponent implements OnInit {
 
-  packages: Package[] = [];
+  @ViewChild('packages', {static: false}) packageContainer: ElementRef;
+  packages: PackageType[] = [];
 
   constructor(private packageService: PackageService) { }
 
@@ -19,31 +21,28 @@ export class PackagesComponent implements OnInit {
     this.packages = this.packageService.packages;
   }
 
-  getSale(): Package[] {
-    const packages: Package[] = [];
-    for(const pack of this.packages)
-      if (pack.sale)
-        packages.push(pack);
-    return packages;
-  }
-
-  getAll(): Package[] {
+  getPackgeTypes(): PackageType[] {
     return this.packages;
   }
 
-  getNotSale(): Package[] {
-    const packages: Package[] = [];
-    for(const pack of this.packages)
-      if (!pack.sale)
-        packages.push(pack);
-    return packages;
+  scrollListTop() {
+    const positon: number = this.packageContainer.nativeElement.offsetTop;
+
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > positon) {
+          window.scrollTo(0, pos - 20); // how far to scroll on each step
+      } else {
+          window.clearInterval(scrollToTop);
+      }
+  }, 4);
   }
 
-  next(stepper: MatStepper) {
-    stepper.next();
-  }
+  // next(stepper: MatStepper) {
+  //   stepper.next();
+  // }
 
-  back(stepper: MatStepper) {
-    stepper.previous();
-  }
+  // back(stepper: MatStepper) {
+  //   stepper.previous();
+  // }
 }

@@ -1,5 +1,5 @@
 <div class="padding-top-4">
-    <mat-horizontal-stepper id="packages-stepper" #stepper>
+    <!-- <mat-horizontal-stepper id="packages-stepper" #stepper>
         <mat-step label="Normal">
             <div class="text-center pb-5">
                 <div
@@ -30,5 +30,23 @@
                 </div>
             </div>
         </mat-step>
-    </mat-horizontal-stepper>
+    </mat-horizontal-stepper> -->
+
+    <mat-accordion #packages>
+        <mat-expansion-panel *ngFor="let packageType of getPackgeTypes()">
+            <mat-expansion-panel-header (click)="scrollListTop()">
+                <mat-panel-title>
+                    <div class="middle-text font-weight-bold">
+                        {{ packageType.name }}
+                    </div>
+                </mat-panel-title>
+            </mat-expansion-panel-header>    
+            <div class="row content-justify-center">
+                <div *ngFor="let package of packageType.packages"
+                    class="col-xl-4 col-md-6 px-md-5 col-lg-6 col-12 pb-5">
+                    <app-package-detail [package]="package"></app-package-detail>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>

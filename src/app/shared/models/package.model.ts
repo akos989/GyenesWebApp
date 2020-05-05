@@ -7,7 +7,6 @@ export class Package {
         public bulletPrice: number,
         public basePrice:number,
         public duration: number,
-        public sale: boolean,
         public includedBullets: number
     ) {}
 }

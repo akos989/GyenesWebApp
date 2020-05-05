@@ -7,9 +7,7 @@
         Paintball csomag {{ package.fromNumberLimit}} - {{ package.toNumberLimit }} főnek
     </div>
     <div class="small-text font-italic"> {{ package.name }} csomag </div>
-    <div
-        *ngIf="package.sale"
-        class="small-text font-italic py-3"> Akciós!! </div>
+    <div class="small-text font-italic py-3">{{ type.name }}</div>
     <hr class="orange">
     <div class="middle-text pb-2 pt-2" >Alapár:</div>
     <div class="middle-text font-italic">{{ package.basePrice }} Ft</div>
@@ -26,14 +24,14 @@
     <hr class="orange small py-1">
 
     <div
-        *ngIf="package.sale"
+        *ngIf="type.sale"
         class="middle-text pb-2 pt-2">Lövedékek az árban:</div>
     <div 
-        *ngIf="package.sale"
+        *ngIf="type.sale"
         class="middle-text font-italic">
         {{ package.includedBullets }} db
     </div>
-    <hr *ngIf="package.sale" class="orange small py-1">
+    <hr *ngIf="type.sale" class="orange small py-1">
     <div class="middle-text pb-2 pt-2">Tartalma:</div>
     <div class="middle-text font-italic pb-5">minden szükséges felszerelés</div>
 
