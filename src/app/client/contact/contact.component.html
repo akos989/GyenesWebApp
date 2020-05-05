@@ -23,14 +23,17 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-6 col-12 pb-5">
+            <div #scrollTo
+            class="col-md-6 col-12 pb-5">
                 <iframe
                     class="googlemaps"
                     src="https://maps.google.com/maps?q=46.768861,17.273519&hl=es;z=14&amp;output=embed" allowfullscreen>
                 </iframe>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div
+            *ngIf="!submitted"
+            class="row justify-content-center">
             <div class="col-md-6 col-11 card">
                 <div class="middle-top-text font-weight-bold py-5 text-center">
                     Vagy hagyj üzenetet!
@@ -86,11 +89,27 @@
                     <div class="text-center pb-5">
                         <div
                             *ngIf="f.valid"
+                            (click)="onSubmit()"
                             class="cbtn cbtn-one small">
                             <span>Küldés</span>
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div
+            *ngIf="submitted"
+            class="text-center">
+            <div class="middle-top-text pb-3">
+                Köszönjük, hogy írtál nekünk!
+            </div>
+            <div class="middle-text pb-5">
+                Csapatunk mihamarabb fel fogja venni veled emailben a kapcsolatot!
+            </div>
+            <div
+                (click)="newMessage()"
+                class="cbtn cbtn-one small">
+                <span>Új üzenet</span>
             </div>
         </div>
     </div>
