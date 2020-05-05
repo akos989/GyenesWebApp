@@ -50,6 +50,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { PackageModalComponent } from './client/packages/package-detail/modal/package-modal.component';
 import { PlaceholderDirective } from './shared/placeholder.directive';
 import { PageHeaderComponent } from './shared/page-header/page-header.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -106,7 +108,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
   providers: [
     { 

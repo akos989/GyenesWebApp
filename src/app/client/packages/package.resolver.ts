@@ -3,9 +3,10 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { PackageService } from './package.service';
 import { Package } from 'src/app/shared/models/package.model';
 import { Observable } from 'rxjs';
+import { PackageType } from 'src/app/shared/models/package-type.model';
 
 @Injectable({providedIn: 'root'})
-export class PackageResolver implements Resolve<Package[]> {
+export class PackageResolver implements Resolve<PackageType[]> {
 
     constructor(private packageService: PackageService) {}
 

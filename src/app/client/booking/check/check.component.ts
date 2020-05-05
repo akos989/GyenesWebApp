@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 import { Package } from 'src/app/shared/models/package.model';
 import { PackageService } from '../../packages/package.service';
+import { PackageType } from 'src/app/shared/models/package-type.model';
 
 @Component({
   selector: 'app-check',
@@ -25,6 +26,7 @@ export class CheckComponent implements OnInit, OnDestroy {
   submitResultSub: Subscription;
   reservationUpdateSub: Subscription;
   package: Package = null;
+  packageType: PackageType = null;
   ready: boolean = false;
 
   constructor(private reservationService: ReservationService,
@@ -35,7 +37,8 @@ export class CheckComponent implements OnInit, OnDestroy {
     if (this.reservationService.isCurrentReady()) {
       this.ready = true;
       this.currentReservation = this.reservationService.currentReservation;
-      this.package = this.packageService.findById(this.currentReservation.packageId)
+      this.package = this.packageService.findById(this.currentReservation.packageId);
+      this.packageType = this.packageService.findType(this.package.id);
     }
 
     this.reservationUpdateSub = this.reservationService.currReservationUpdated
@@ -44,7 +47,8 @@ export class CheckComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.ready = true;
             this.currentReservation = currReservation;
-            this.package = this.packageService.findById(this.currentReservation.packageId)
+            this.package = this.packageService.findById(this.currentReservation.packageId);
+            this.packageType = this.packageService.findType(this.package.id);
           }, 0);
         }
       });
