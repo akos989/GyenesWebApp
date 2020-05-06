@@ -66,7 +66,7 @@
                         <div>
                             Ft / lövedék: {{ package.bulletPrice }} Ft
                         </div>
-                        <div *ngIf="packageType.sale">
+                        <div *ngIf="package.includedBullets > 0">
                             Lövedék az árban: {{ package.includedBullets }} db
                         </div>
                     </div>

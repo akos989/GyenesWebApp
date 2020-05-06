@@ -16,7 +16,7 @@ export class PackageModalComponent implements OnInit {
     constructor(private packageService: PackageService) {}
 
     ngOnInit() {
-        this.type = this.packageService.findType(this.package.id);
+        this.type = this.packageService.findType(this.package._id);
     }
 
     onSelect() {

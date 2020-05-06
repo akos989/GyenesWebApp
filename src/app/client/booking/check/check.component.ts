@@ -38,7 +38,7 @@ export class CheckComponent implements OnInit, OnDestroy {
       this.ready = true;
       this.currentReservation = this.reservationService.currentReservation;
       this.package = this.packageService.findById(this.currentReservation.packageId);
-      this.packageType = this.packageService.findType(this.package.id);
+      this.packageType = this.packageService.findType(this.package._id);
     }
 
     this.reservationUpdateSub = this.reservationService.currReservationUpdated
@@ -48,7 +48,7 @@ export class CheckComponent implements OnInit, OnDestroy {
             this.ready = true;
             this.currentReservation = currReservation;
             this.package = this.packageService.findById(this.currentReservation.packageId);
-            this.packageType = this.packageService.findType(this.package.id);
+            this.packageType = this.packageService.findType(this.package._id);
           }, 0);
         }
       });
