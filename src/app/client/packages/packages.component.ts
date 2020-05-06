@@ -15,7 +15,7 @@ export class PackagesComponent implements OnInit {
 
   @ViewChild('packages', {static: false}) packageContainer: ElementRef;
   packages: PackageType[] = [];
-  selectedType: PackageType = null;
+  selectedTypeId: string = null;
 
   constructor(private packageService: PackageService,
               private reservationService: ReservationService) { }
@@ -24,8 +24,8 @@ export class PackagesComponent implements OnInit {
     this.packages = this.packageService.packages;
     if (this.reservationService.currentReservation &&
         this.reservationService.currentReservation.packageId !== null) {
-          this.selectedType = this.packageService.findType(
-            this.reservationService.currentReservation.packageId);
+          this.selectedTypeId = this.packageService.findType(
+            this.reservationService.currentReservation.packageId).id;
         }
   }
 
