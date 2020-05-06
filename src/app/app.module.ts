@@ -51,6 +51,8 @@ import { PackageModalComponent } from './client/packages/package-detail/modal/pa
 import { PlaceholderDirective } from './shared/placeholder.directive';
 import { PageHeaderComponent } from './shared/page-header/page-header.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { BookNowComponent } from './client/book-now/book-now.component';
+import { DescriptionCardComponent } from './shared/description-card/description-card.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -94,7 +96,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     DateStartComponent,
     PackageModalComponent,
     PlaceholderDirective,
-    PageHeaderComponent
+    PageHeaderComponent,
+    BookNowComponent,
+    DescriptionCardComponent
   ],
   imports: [
     BrowserModule,

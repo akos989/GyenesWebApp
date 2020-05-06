@@ -1,0 +1,16 @@
+img {
+    height: 200px;
+}
+
+.card {
+    background-color: rgb(80, 81, 82);
+    border-radius: 25px;
+}
+
+.img-background {
+    background-color: rgb(192, 189, 189);
+}
+
+.bottom-round {
+    border-radius: 0px 0px 25px 25px;
+}

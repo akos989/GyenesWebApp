@@ -1,0 +1,16 @@
+.content {
+    position: absolute;
+    top: 35%;
+    width: 100%;
+    font-weight: 700;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    height: 40vh;
+    opacity: 0.5;
+    -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+}
