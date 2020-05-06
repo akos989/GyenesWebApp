@@ -70,8 +70,10 @@ export class TimeTableComponent implements OnInit {
     if ( hour.type !== 'f' ) {
       this.selectedHour = hour;
     }
-    else
+    else {
       this.selectedHour = null;
+      this.bookingService.onDateSelected(false);
+    }
   }
 
   onContinue() {

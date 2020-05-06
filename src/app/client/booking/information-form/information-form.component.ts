@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnChanges, AfterViewChecked, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges, AfterViewChecked, AfterContentChecked, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -16,6 +16,7 @@ import { BookingService } from '../booking.service';
 export class InformationFormComponent implements OnInit, AfterViewChecked {
 
   packageChange: Subscription;
+  @ViewChild('numberinput') numberInputRef: ElementRef;
 
   reservationForm: FormGroup;
   editMode: boolean = false;
@@ -50,9 +51,10 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
     }
     
     this.initForm();
+    document.getElementById('numberinput').addEventListener("mousewheel", function(event){ this.blur() });
   }
 
-  initForm() {
+  initForm() {  
     let name = '';
     let email = '';
     let phoneNumber = '';
@@ -77,6 +79,7 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
                                       ]),
       'notes': new FormControl(notes)
     });
+    this.reservationForm.get('playernumber')
   }
 
   onSubmit() {     
@@ -109,7 +112,7 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
          this.updateCurrentData();
          if ((this.prevData === null ||
            (this.prevData !== null && !this.equals(this.currentData))) )
-         {   
+         {
            this.prevData = this.currentData;
            this.bookingSevice.onInfoChange(this.reservationForm.valid);
            if (this.reservationForm.valid)

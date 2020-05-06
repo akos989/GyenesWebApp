@@ -35,7 +35,7 @@
     <mat-accordion #packages>
         <mat-expansion-panel
             *ngFor="let packageType of getPackgeTypes()"
-            [expanded]="packageType === selectedType">
+            [expanded]="packageType.id === selectedTypeId">
             <mat-expansion-panel-header (click)="scrollListTop()">
                 <mat-panel-title>
                     <div class="middle-text font-weight-bold">
