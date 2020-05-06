@@ -3,68 +3,69 @@
     <div (click)="onClose()" class="middle-text close-x pb-3">
         X
     </div>
-    <div class="middle-top-text">
-        Paintball csomag {{ package.fromNumberLimit}} - {{ package.toNumberLimit }} főnek
-    </div>
-    <div class="small-text font-italic"> {{ package.name }} csomag </div>
-    <div class="small-text font-italic py-3">{{ type.name }}</div>
-    <hr class="orange">
-    <div class="middle-text pb-2 pt-2" >Alapár:</div>
-    <div class="middle-text font-italic">{{ package.basePrice }} Ft</div>
-    <hr class="orange small py-1">
-    <div class="middle-text pb-2 pt-2">További golyók ára:</div>
-    <div class="middle-text font-italic">
-        {{ package.bulletPrice }} Ft/db (egy tár megvétele (200db) kötelező)
-    </div>
-    <hr class="orange small py-1">
-    <div class="middle-text pb-2 pt-2">Időtartam:</div>
-    <div class="middle-text font-italic">
-        {{ package.duration }} óra
-    </div>
-    <hr class="orange small py-1">
-
-    <div
-        *ngIf="package.includedBullets > 0"
-        class="middle-text pb-2 pt-2">Lövedékek az árban:</div>
-    <div 
-        *ngIf="package.includedBullets > 0"
-        class="middle-text font-italic">
-        {{ package.includedBullets }} db
-    </div>
-    <hr *ngIf="package.includedBullets > 0" class="orange small py-1">
-    <div class="middle-text pb-2 pt-2">Tartalma:</div>
-    <div class="middle-text font-italic pb-5">minden szükséges felszerelés</div>
-
-    <div class="row">
-        <div class="col-xl-3 col-lg-4 col-6 pb-5">
-            <img src="../../../../../assets/pictures/services-images/gunw.png" alt="">
+    <div class="content">        
+        <div class="middle-top-text ">
+            Paintball csomag {{ package.fromNumberLimit}} - {{ package.toNumberLimit }} főnek
         </div>
-        <div class="col-xl-3 col-lg-4 col-6 pb-5">
-            <img src="../../../../../assets/pictures/services-images/bulletsw.png" alt="">
+        <div class="small-text font-italic "> {{ package.name }} csomag </div>
+        <div class="small-text font-italic py-3 ">{{ type.name }}</div>
+        <hr class="orange big">
+        <div class="middle-text pb-2 pt-2  font-weight-bold" >Alapár:</div>
+        <div class="middle-text font-italic ">{{ package.basePrice }} Ft</div>
+        <hr class="orange small py-1">
+        <div class="middle-text pb-2 pt-2  font-weight-bold">További golyók ára:</div>
+        <div class="middle-text font-italic ">
+            {{ package.bulletPrice }} Ft/db (egy tár megvétele (200db) kötelező)
         </div>
-        <div class="col-xl-3 col-lg-4 col-6 pb-5">
-            <img src="../../../../../assets/pictures/services-images/co2w.png" alt="">
+        <hr class="orange small py-1">
+        <div class="middle-text pb-2 pt-2  font-weight-bold">Időtartam:</div>
+        <div class="middle-text font-italic ">
+            {{ package.duration }} óra
         </div>
-        <div class="col-xl-3 col-lg-4 col-6 pb-5">
-            <img src="../../../../../assets/pictures/services-images/maskw.png" alt="">
-        </div>
-        <div class="col-xl-3 col-lg-4 col-6 pb-5">
-            <img src="../../../../../assets/pictures/services-images/jacket2w.png" alt="">
-        </div>
-        <div class="col-xl-3 col-lg-4 col-6 pb-5">
-            <img src="../../../../../assets/pictures/services-images/gloves2w.png" alt="">
-        </div>
-        <div class="col-xl-3 col-lg-4 col-6 pb-5">
-            <img src="../../../../../assets/pictures/services-images/vestw.png" alt="">
-        </div>
-    </div>
-    <div class="row justify-content-center">
+        <hr class="orange small py-1">    
         <div
-            class="col-md-4 col-6 padding-top-2">
+            *ngIf="package.includedBullets > 0"
+            class="middle-text pb-2 pt-2  font-weight-bold">Lövedékek az árban:</div>
+        <div 
+            *ngIf="package.includedBullets > 0"
+            class="middle-text font-italic ">
+            {{ package.includedBullets }} db
+        </div>
+        <hr *ngIf="package.includedBullets > 0" class="orange small py-1">
+        <div class="middle-text pb-2 pt-2  font-weight-bold">Tartalma:</div>
+        <div class="middle-text font-italic pb-5 ">minden szükséges felszerelés</div>
+    
+        <div class="row ">
+            <div class="col-xl-3 col-lg-4 col-6 pb-5">
+                <img src="../../../../../assets/pictures/services-images/gunw.png" alt="">
+            </div>
+            <div class="col-xl-3 col-lg-4 col-6 pb-5">
+                <img src="../../../../../assets/pictures/services-images/bulletsw.png" alt="">
+            </div>
+            <div class="col-xl-3 col-lg-4 col-6 pb-5">
+                <img src="../../../../../assets/pictures/services-images/co2w.png" alt="">
+            </div>
+            <div class="col-xl-3 col-lg-4 col-6 pb-5">
+                <img src="../../../../../assets/pictures/services-images/maskw.png" alt="">
+            </div>
+            <div class="col-xl-3 col-lg-4 col-6 pb-5">
+                <img src="../../../../../assets/pictures/services-images/jacket2w.png" alt="">
+            </div>
+            <div class="col-xl-3 col-lg-4 col-6 pb-5">
+                <img src="../../../../../assets/pictures/services-images/gloves2w.png" alt="">
+            </div>
+            <div class="col-xl-3 col-lg-4 col-6 pb-5">
+                <img src="../../../../../assets/pictures/services-images/vestw.png" alt="">
+            </div>
+        </div>
+        <div class="row justify-content-center">
             <div
-                (click)="onSelect()"
-                class="cbtn cbtn-one mini">
-                <span> Választ </span>
+                class="col-md-4 col-6 padding-top-2">
+                <div
+                    (click)="onSelect()"
+                    class="cbtn cbtn-one mini">
+                    <span> Választ </span>
+                </div>
             </div>
         </div>
     </div>

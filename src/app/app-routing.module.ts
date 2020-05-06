@@ -31,7 +31,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'map', component: MapComponent, resolve:{small: SmallHeaderResolver} },
-  { path: 'prices', component: PricesComponent, resolve:{small: SmallHeaderResolver} },
+  { path: 'prices', component: PricesComponent,
+    resolve:{small: SmallHeaderResolver, PackageResolver}
+  },
   { 
     path: 'game-modes',
     component: GameModesComponent,

@@ -96,3 +96,16 @@ img {
     text-align: right !important;
     text-align: right;
 }
+
+.content {
+    position: relative;
+    left: 10%;
+    width: 80%;
+    text-align: center;
+}
+
+hr.orange.big {
+    position: relative;
+    left: -10%;
+    width: 120%;
+}
