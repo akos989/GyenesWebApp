@@ -40,7 +40,8 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
         this.reservationForm.get('playernumber').updateValueAndValidity();
         if(this.reservationForm.get('playernumber').value !== null)
           this.reservationForm.get('playernumber').markAsTouched();
-        this.bookingSevice.onInfoChange(this.reservationForm.valid);
+        this.bookingSevice.onInfoChange(
+          this.reservationForm.valid, this.reservationForm.get('playernumber').value);
       });    
 
     const currentReservation = this.reservationService.currentReservation;
@@ -51,7 +52,7 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
     }
     
     this.initForm();
-    document.getElementById('numberinput').addEventListener("mousewheel", function(event){ this.blur() });
+    // document.getElementById('numberinput').addEventListener("mousewheel", function(event){ this.blur() });
   }
 
   initForm() {  
@@ -113,10 +114,11 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
          if ((this.prevData === null ||
            (this.prevData !== null && !this.equals(this.currentData))) )
          {
-           this.prevData = this.currentData;
-           this.bookingSevice.onInfoChange(this.reservationForm.valid);
-           if (this.reservationForm.valid)
-             this.onSubmit();
+            this.prevData = this.currentData;
+            this.onSubmit();
+            this.bookingSevice.onInfoChange(this.reservationForm.valid,
+              this.currentData.playerNumber);
+          //  if (this.reservationForm.valid)
          }
     }
   }
