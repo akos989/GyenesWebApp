@@ -71,19 +71,19 @@ export class ReservationService {
 
          this.reservations = [
             new Reservation(
-                '1', 'morvai', 'adf@asdf.com', '0123457898', 12, '', '5e7510c39f78823051c57755',
+                '1', 'morvai', 'adf@asdf.com', '0123457898', 12, '', '5eb272ac3ba174183da688a0',
                 new Date(2020, 4, 11, 12)
             ),
             new Reservation(
-                '2', 'morvai', 'adf@asdf.com', '0123457898', 25, '', '3',
+                '2', 'morvai', 'adf@asdf.com', '0123457898', 25, '', '5eb272ac3ba174183da688a0',
                 new Date(2020, 4, 11, 12)
             ),
             new Reservation(
-                '3', 'morvai', 'adf@asdf.com', '0123457898', 10, '', '5e7510c39f78823051c57755',
+                '3', 'morvai', 'adf@asdf.com', '0123457898', 10, '', '5eb272ac3ba174183da688a0',
                 new Date(2020, 4, 11, 10)
             ),
             new Reservation(
-                '4', 'morvai', 'adf@asdf.com', '0123457898', 17, '', '5e7510c39f78823051c57755',
+                '4', 'morvai', 'adf@asdf.com', '0123457898', 17, '', '5eb272ac3ba174183da688a0',
                 new Date(2020, 4, 11, 16)
             )
             ];
@@ -99,7 +99,6 @@ export class ReservationService {
                     tmpPlayerNumber += reservation.playerNumber;
                 }
             }
-
             if ( tmpPlayerNumber === this._currentReservation.playerNumber )
                 hours.push(new Hour(hour, 'e', this.gunNumber));
             else if (tmpPlayerNumber <= this.gunNumber) {
@@ -211,6 +210,8 @@ export class ReservationService {
     }
 
     isCurrentReady(): boolean {
+        if (!this._currentReservation) 
+            return false;
         for (const key in this._currentReservation) {
             if (this._currentReservation[key] === null)
                 return false;

@@ -4,6 +4,7 @@ import { PackageService } from './package.service';
 import { Package } from 'src/app/shared/models/package.model';
 import { MatStepper } from '@angular/material/stepper';
 import { PackageType } from 'src/app/shared/models/package-type.model';
+import { ReservationService } from '../booking/reservations.service';
 
 @Component({
   selector: 'app-packages',
@@ -14,11 +15,18 @@ export class PackagesComponent implements OnInit {
 
   @ViewChild('packages', {static: false}) packageContainer: ElementRef;
   packages: PackageType[] = [];
+  selectedType: PackageType = null;
 
-  constructor(private packageService: PackageService) { }
+  constructor(private packageService: PackageService,
+              private reservationService: ReservationService) { }
 
   ngOnInit(): void {
     this.packages = this.packageService.packages;
+    if (this.reservationService.currentReservation &&
+        this.reservationService.currentReservation.packageId !== null) {
+          this.selectedType = this.packageService.findType(
+            this.reservationService.currentReservation.packageId);
+        }
   }
 
   getPackgeTypes(): PackageType[] {

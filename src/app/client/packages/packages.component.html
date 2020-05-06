@@ -33,7 +33,9 @@
     </mat-horizontal-stepper> -->
 
     <mat-accordion #packages>
-        <mat-expansion-panel *ngFor="let packageType of getPackgeTypes()">
+        <mat-expansion-panel
+            *ngFor="let packageType of getPackgeTypes()"
+            [expanded]="packageType === selectedType">
             <mat-expansion-panel-header (click)="scrollListTop()">
                 <mat-panel-title>
                     <div class="middle-text font-weight-bold">

@@ -24,14 +24,14 @@
     <hr class="orange small py-1">
 
     <div
-        *ngIf="type.sale"
+        *ngIf="package.includedBullets > 0"
         class="middle-text pb-2 pt-2">Lövedékek az árban:</div>
     <div 
-        *ngIf="type.sale"
+        *ngIf="package.includedBullets > 0"
         class="middle-text font-italic">
         {{ package.includedBullets }} db
     </div>
-    <hr *ngIf="type.sale" class="orange small py-1">
+    <hr *ngIf="package.includedBullets > 0" class="orange small py-1">
     <div class="middle-text pb-2 pt-2">Tartalma:</div>
     <div class="middle-text font-italic pb-5">minden szükséges felszerelés</div>
 

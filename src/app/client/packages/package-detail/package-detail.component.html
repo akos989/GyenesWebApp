@@ -11,15 +11,23 @@
     <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
     <mat-card-content>
         <div class="row">
-            <div class="small-text col-4 text-right"> Létszám: </div>
+            <div class="small-text col-4 text-left"> Létszám: </div>
             <div class="small-text col-8 text-right">
                 {{ package.fromNumberLimit }} - {{ package.toNumberLimit }} fő
             </div>
         </div>
         <div class="row">
-            <div class="small-text col-4 text-right"> Alapár: </div>
+            <div class="small-text col-4 text-left"> Alapár: </div>
             <div class="small-text col-8 text-right">
                 {{ package.basePrice }} Ft
+            </div>
+        </div>
+        <div 
+            *ngIf="package.includedBullets > 0"
+            class="row">
+            <div class="small-text col-8 text-left"> Lövedékek az árban: </div>
+            <div class="small-text col-4 text-right">
+                {{ package.includedBullets }} db
             </div>
         </div>
         <div class="hr mt-2 mb-2"></div>

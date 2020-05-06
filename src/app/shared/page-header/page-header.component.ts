@@ -13,7 +13,6 @@ export class PageHeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.src)
     this.src = '../../../assets/pictures/'+this.src;
   }
 

@@ -31,13 +31,13 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const currentReservation = this.reservationService.currentReservation;
 
-    if ( currentReservation && currentReservation.packageId === this.package.id ) {
+    if ( currentReservation && currentReservation.packageId === this.package._id ) {
       this.selected = true;
-      this.bookingService.onSelectPackage(this.package.id);
+      this.bookingService.onSelectPackage(this.package._id);
     }
     this.selectSub = this.bookingService.packageSelected
       .subscribe( id => {
-        if (id === this.package.id) {
+        if (id === this.package._id) {
           this.selected = true;
         }
         else {
@@ -49,15 +49,15 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
   continue() {
     let currentReservation = this.reservationService.currentReservation;
     if (currentReservation) {
-      currentReservation.packageId = this.package.id;
+      currentReservation.packageId = this.package._id;
     } else {
       currentReservation = new Reservation(
-        '1', null, null, null, null, null, this.package.id, null
+        '1', null, null, null, null, null, this.package._id, null
       );
     }
     this.reservationService.currentReservation = currentReservation;
     this.selected = true;
-    this.bookingService.onSelectPackage(this.package.id);
+    this.bookingService.onSelectPackage(this.package._id);
   }
 
   openDialog(event): void {
