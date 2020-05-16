@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Equipment } from '../models/equipment.model';
 
 @Component({
   selector: 'app-description-card',
@@ -7,13 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DescriptionCardComponent implements OnInit {
 
-  @Input() title: string;
-  @Input() imgUrl: string;
-  @Input() description: string;
+  @Input() equipment: Equipment;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.equipment.imgUrl = '../../../assets/pictures/' + this.equipment.imgUrl;
   }
 
 }

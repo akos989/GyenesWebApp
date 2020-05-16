@@ -11,10 +11,10 @@
                 </div>
                 <div class="pb-3 font-weight-bold"> Hívj </div>
                 <div class="pb-2 pl-5">
-                    <span itemprop="telephone"><a href="tel:06208028647">06208028647</a></span>
+                    <span itemprop="telephone"><a href="tel:+36208028647">+36208028647</a></span>
                 </div>
                 <div class="pb-3 pl-5">
-                    <span itemprop="telephone"><a href="tel:06306083283">06306083283</a></span>
+                    <span itemprop="telephone"><a href="tel:+36306083283">+36306083283</a></span>
                 </div>
                 <div class="pb-3 font-weight-bold">vagy írj emailt</div>
                 <div class="orange pl-md-5 pb-5">
@@ -58,22 +58,26 @@
                         <input
                             type="email" name="email"
                             required
+                            email
                             ngModel #emailInput="ngModel"
-                            class="middle-text">
+                            class="middle-text"
+                            [ngClass]="{notempty: emailInput.value != ''}"
+                            >
                             <span class="highlight"></span>
                             <span class="bar"></span>
                             <label class="middle-text">Email cím</label>
                         <span
                             *ngIf="emailInput.invalid && emailInput.touched"
                             class="help-block">
-                            Email cím megadása kötelező!
+                            Helyes email cím megadása kötelező!
                         </span>
                     </div>
                     <div class="group">
                         <textarea
                             name="message"
                             required
-                            ngModel #messageInput="ngModel"
+                            ngModel
+                            #messageInput="ngModel"
                             class="middle-text"
                             rows="4">                        
                         </textarea>

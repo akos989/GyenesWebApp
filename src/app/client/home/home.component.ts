@@ -43,14 +43,25 @@ export class HomeComponent implements OnInit {
     new ScrollMagic.Scene({
       triggerElement: '#trigger',
       triggerHook: 0,
+      offset: -100,
       duration: 10000
     })
       .setClassToggle("hr.left", "open")
       .addTo(this.ctrl);
 
+      new ScrollMagic.Scene({
+        triggerElement: '#trigger',
+        triggerHook: 0,
+        offset: -100,
+        duration: 10000
+      })
+        .setClassToggle("#best-track-map", "open")
+        .addTo(this.ctrl);
+
     new ScrollMagic.Scene({
       triggerElement: '#trigger2',
       triggerHook: 0,
+      offset: -200,
       duration: 10000
     })
       .setClassToggle("hr.center", "open")

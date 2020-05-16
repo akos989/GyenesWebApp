@@ -1,14 +1,14 @@
 <div class="text-center card">
     <div class="middle-text pt-2 pb-2 middle-text">
-        {{ title }}
+        {{ equipment.name }}
     </div>
     <div 
         class="img-background bottom-round">
-        <img [src]="imgUrl" alt="">
+        <img [src]="equipment.imgUrl" alt="">
     </div>
 </div>
 <div
-    *ngIf="description !== ''"
+    *ngIf="equipment.description !== ''"
     class="middle-text pt-3 pb-2 text-center font-italic">
-    {{ description }}
+    {{ equipment.description }}
 </div>

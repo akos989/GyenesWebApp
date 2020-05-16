@@ -14,13 +14,9 @@
         <div class="container-flex">
             <div class="row">
                 <div 
-                    class="col-lg-3 col-md-4 col-12 pb-5"
+                    class="col-lg-3 col-md-4 col-sm-6 col-12 pb-5"
                     *ngFor="let equipment of equipments">
-                    <app-description-card
-                        [title]="equipment.name"
-                        [imgUrl]="equipment.imgUrl"
-                        [description]="equipment.description"
-                    ></app-description-card>
+                    <app-description-card [equipment]="equipment"></app-description-card>
                 </div>
             </div>
         </div>
