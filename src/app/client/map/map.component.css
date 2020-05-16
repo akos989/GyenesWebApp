@@ -170,6 +170,15 @@ img {
     position: absolute;
     left: 10%;
     width: 80%;
-    top: 65%;
+    top: 70%;
+  }
 }
+
+@media screen and (max-width: 1100px) and (min-width: 580px) {
+  .togglers-container {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    top: 67%;
+  }
 }

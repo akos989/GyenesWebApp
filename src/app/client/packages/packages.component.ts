@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { PackageService } from './package.service';
-import { Package } from 'src/app/shared/models/package.model';
-import { MatStepper } from '@angular/material/stepper';
 import { PackageType } from 'src/app/shared/models/package-type.model';
 import { ReservationService } from '../booking/reservations.service';
 
@@ -43,14 +41,6 @@ export class PackagesComponent implements OnInit {
       } else {
           window.clearInterval(scrollToTop);
       }
-  }, 4);
+    }, 4);
   }
-
-  // next(stepper: MatStepper) {
-  //   stepper.next();
-  // }
-
-  // back(stepper: MatStepper) {
-  //   stepper.previous();
-  // }
 }
