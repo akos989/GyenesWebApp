@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { BookingService } from '../booking/booking.service';
 import { Subscription } from 'rxjs';
 import { ReservationService } from '../booking/reservations.service';
 import { Equipment } from 'src/app/shared/models/equipment.model';
+import ScrollReveal from 'scrollreveal'
 
 @Component({
   selector: 'app-prices',
   templateUrl: './prices.component.html',
   styleUrls: ['./prices.component.css']
 })
-export class PricesComponent implements OnInit {
+export class PricesComponent implements OnInit, AfterViewInit {
 
   packageSelected = false;
   packageSelectionSub: Subscription;
@@ -48,7 +49,7 @@ export class PricesComponent implements OnInit {
       'Védőmellény',
       '',
       'vest-color.png'
-    )
+    ) 
   ];
 
   constructor(private bookingService: BookingService, private resService: ReservationService) { }
@@ -62,6 +63,11 @@ export class PricesComponent implements OnInit {
     if (currRes && currRes.packageId) {
       this.packageSelected = true;
     }
+  }
+
+  ngAfterViewInit() {
+    ScrollReveal({ reset: true });
+    ScrollReveal().reveal('.reveal', { delay: 200 });
   }
 
 }

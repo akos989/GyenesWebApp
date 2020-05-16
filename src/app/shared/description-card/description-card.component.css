@@ -1,16 +1,98 @@
 img {
-    height: 160px;
+    height: 10vw;
+    -webkit-transition: .20s ease-in-out;
+    -moz-transition: .20s ease-in-out;
+    -o-transition: .20s ease-in-out;
+    transition: .20s ease-in-out;
 }
 
 .card {
-    background-color: rgb(80, 81, 82);
-    border-radius: 25px;
-}
-
-.img-background {
     background-color: rgb(192, 189, 189);
+    border-radius: 25px;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    -webkit-transition: .20s ease-in-out;
+    -moz-transition: .20s ease-in-out;
+    -o-transition: .20s ease-in-out;
+    transition: .20s ease-in-out;
 }
 
-.bottom-round {
-    border-radius: 0px 0px 25px 25px;
+.name {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    opacity: 0;
+    text-align: center;
+    -webkit-transition: .20s ease-in-out;
+    -moz-transition: .20s ease-in-out;
+    -o-transition: .20s ease-in-out;
+    transition: .20s ease-in-out;
+}
+
+.description {
+    position: absolute;
+    left: 5%;
+    bottom: 0%;
+    width: 90%;
+    opacity: 0;
+    text-align: center;
+    line-height: 100%;
+    -webkit-transition: .20s ease-in-out;
+    -moz-transition: .20s ease-in-out;
+    -o-transition: .20s ease-in-out;
+    transition: .20s ease-in-out;
+}
+
+@media (hover: hover) {
+    .card:hover img {
+        opacity: .2;
+    }
+
+    .card:hover {
+        background-color: rgba(192, 189, 189, .2);
+    }
+
+    .card:hover .name {
+        opacity: 1;
+    }
+    .card:hover .description {
+        opacity: 1;
+    }    
+}
+
+@media (hover: none) {
+    .name {
+        position: relative;
+        opacity: 1;
+        background-color: rgb(80, 81, 82);
+        border-radius: 25px 25px 0px 0px;
+    }
+
+    img {
+        height: 160px;
+    }
+    .card {
+        padding: 0px;
+        background-color: transparent;
+    }
+    
+    .img-background {
+        background-color: rgb(192, 189, 189);
+    }
+    
+    .bottom-round {
+        border-radius: 0px 0px 25px 25px;
+    }
+    hr {
+        display: none;
+    }
+
+    .description {
+        position: relative;
+        opacity: 1;
+    }
+
 }
