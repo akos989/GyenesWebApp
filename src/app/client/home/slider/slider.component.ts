@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SwiperConfigInterface,
-  SwiperScrollbarInterface, SwiperPaginationInterface } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-slider',
@@ -27,6 +26,9 @@ export class SliderComponent {
     grabCursor: true,
     centeredSlides: true,
     direction: 'horizontal',
+    autoplay: {
+      delay: 3000,
+    },
     breakpoints: {
       640: {
         slidesPerView: 1

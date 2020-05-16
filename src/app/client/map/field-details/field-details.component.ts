@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Field } from './field.model';
 
 @Component({
   selector: 'app-field-details',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FieldDetailsComponent implements OnInit {
 
+  @Input() field: Field;
+  @Output() close = new EventEmitter<void>();
+  
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.field)
+    this.field.imgPath = '../../../../assets/pictures/' + this.field.imgPath;
+    console.log(this.field.imgPath)
+
   }
 
+  onClose() {
+    this.close.emit();
+  }
 }

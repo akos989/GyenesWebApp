@@ -2,6 +2,24 @@
     padding-bottom: 7vh;
 }
 
+#best-track-map {
+    position: relative;
+    opacity: 0;
+    /* display: none; */
+    transform: translate(120%);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+}
+
+#best-track-map.open {
+    position: relative;
+    transform: translate(0%);
+    opacity: 1;
+    /* display: inline; */
+}
+
 img {
     width: 100%;
     border-radius: 25px;
