@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationStart, RouterEvent, NavigationEnd } from '@angular/router';
 import { ErrorHandleService } from './shared/error-handle.service';
 import { Subscription } from 'rxjs';
+import { ScrollTopService } from './shared/scroll-top.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,12 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'GyenesWebApp';
   errorSub: Subscription;
-
   isLoading = false;
   errorMessage: string = null;
   
 
-  constructor(private _router: Router, private errorHandler: ErrorHandleService) {}
+  constructor(private _router: Router, private errorHandler: ErrorHandleService
+              ) {}
 
 
   ngOnInit() {

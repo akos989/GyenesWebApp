@@ -6,17 +6,23 @@
             <div class="col-md-4 col-12 nav-box-column pb-3">
                 <div class="nav-box-lines">
                     <div class="padding">
-                        <a [routerLink]="['/']">
+                        <a 
+                            [routerLink]="['/home']"
+                            (click)="onLinkClick()">
                             Kezdőlap
                         </a>
                     </div>
                     <div class="padding">
-                        <a [routerLink]="['/map']">
+                        <a 
+                            [routerLink]="['/map']"
+                            (click)="onLinkClick()">
                             Pálya
                         </a>
                     </div>
                     <div class="pb-3">
-                        <a [routerLink]="['/prices']">
+                        <a 
+                            [routerLink]="['/prices']"
+                            (click)="onLinkClick()">
                             Árak
                         </a>
                     </div>
@@ -27,11 +33,13 @@
                 <div class="nav-box-column">
                     <div class="nav-box-lines">
                         <div class="padding">
-                            <a [routerLink]="['/game-modes']" (click)="onLinkClick()">
+                            <a 
+                                [routerLink]="['/game-modes']"
+                                (click)="onLinkClick()">
                                 Játékmódok
                             </a>
                         </div>
-                        <div class="game-mode">
+                        <!-- <div class="game-mode">
                             <div class="padding">
                                 <a
                                     [routerLink]="['/game-modes', 0, 'details']"
@@ -324,24 +332,30 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="hr d-block d-sm-none d-none d-sm-block d-md-none"></div>
+                        <div class="hr d-block d-sm-none d-none d-sm-block d-md-none"></div> -->
                     </div>
                 </div>       
             </div>
             <div class="col-md-4 col-12 nav-box-column">
                 <div class="nav-box-lines">
                     <div class="padding">
-                        <a [routerLink]="['/booking']">
+                        <a 
+                            [routerLink]="['/booking']"
+                            (click)="onLinkClick()">
                          Online foglalás
                         </a>
                     </div>
                     <div class="padding">
-                        <a [routerLink]="['/contact']">
+                        <a 
+                            [routerLink]="['/contact']"
+                            (click)="onLinkClick()">
                          Kapcsolat
                         </a>
                     </div>
                     <div>
-                        <a [routerLink]="['/login']">
+                        <a 
+                            [routerLink]="['/login']"
+                            (click)="onLinkClick()">
                             Bejelentkezés
                         </a>
                     </div>

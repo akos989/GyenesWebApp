@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { HeaderService } from './header.service';
-import { ScrollTopService } from 'src/app/shared/scroll-top.service';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +12,8 @@ export class HeaderComponent implements OnInit {
   small: boolean;
   smallBeforeNav:boolean = null;
 
-  constructor(private renderer: Renderer2, private headerService: HeaderService,
-              private scrollTopS: ScrollTopService) { }
+  constructor(private renderer: Renderer2,
+              private headerService: HeaderService) { }
   
   ngOnInit(): void {
     this.small = false;
@@ -30,16 +29,8 @@ export class HeaderComponent implements OnInit {
       );
   }
 
-  linkClicked(component: string) {
-    this.scrollTopS.onScrollTop(component);
-    this.navigationOpen = false;
-    this.renderer.removeClass(document.body, 'modal-open');
-  }
-
-  gameModeLinkClicked() {
-    this.navigationOpen = false;
-    this.renderer.removeClass(document.body, 'modal-open');
-    this.small = true;
+  linkClicked() {
+    this.navigatonClicked();
   }
 
   navigatonClicked() {
