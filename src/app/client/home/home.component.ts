@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { ScrollTopService } from 'src/app/shared/scroll-top.service';
 import { HeaderService } from '../header/header.service';
 
 declare var ScrollMagic: any;

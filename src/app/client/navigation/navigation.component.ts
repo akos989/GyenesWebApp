@@ -8,19 +8,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class NavigationComponent implements OnInit {
 
   @Input() open:boolean;
-  @Output() linkClick = new EventEmitter<boolean>();
-
-  constructor() { }
+  @Output() linkClick = new EventEmitter<void>();
 
   ngOnInit(): void {
     this.open = false;
   }
 
   onLinkClick() {
-    this.linkClick.emit(false);
-  }
-
-  openClicked() {
-    this.open = !this.open;
+    this.linkClick.emit();
   }
 }
