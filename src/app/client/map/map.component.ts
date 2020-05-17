@@ -12,7 +12,7 @@ export class MapComponent implements OnInit {
   open: boolean[] = [false, false, false];
   fields: Field[] = [
     new Field(
-      'Elhegyott Város', 'Mindent megtalálni benne, ami egy elhagyott városba való. Blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
+      'Elhagyott Város', 'Mindent megtalálni benne, ami egy elhagyott városba való. Blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
       'city-map.jpg',
       [
         new Equipment('Autóroncs', 'Sok széttört autó', 'wreckage.png'),
