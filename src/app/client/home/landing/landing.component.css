@@ -63,4 +63,5 @@ img.scroll-down {
     left: calc(50vw - 2.5vh - 0.5vw);
     border-radius: 50%;
     animation: scroll-up 4s infinite ease-in-out;
+    cursor: pointer;
 }
