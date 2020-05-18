@@ -311,6 +311,22 @@ img {
 @media screen and (max-width: 520px) {
   .phone-reservation {
     background-color: rgba(60, 30, 240, .9);
+    -webkit-transition: .35s ease-in-out;
+    -moz-transition: .35s ease-in-out;
+    -o-transition: .35s ease-in-out;
+    transition: .35s ease-in-out;
+    opacity: 0;
+    -webkit-transform: translateY(200%);
+    -moz-transform: translateY(200%);
+    -o-transform: translateY(200%);
+    transform: translateY(200%);
+  }
+  .phone-reservation.open {
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+    opacity: 1;
   }
   .divider {
     display: none;
@@ -338,6 +354,10 @@ img {
 @media screen and (min-width: 521px) {
   .phone-reservation {
     background-color: transparent;
+    opacity: 0;
+  }
+  .phone-reservation.open {
+    opacity: 1;
   }
   .divider {
     display: inline;
