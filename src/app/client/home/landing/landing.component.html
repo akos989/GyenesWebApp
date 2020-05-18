@@ -6,4 +6,9 @@
     <div class="head-line big">
         <div>Gyenespaintball</div>
     </div>
+    <img
+        (click)="scrollDown()"
+        [@buttonState]
+        *ngIf="displayDown"
+        src="../../../../assets/icons/circle.png" class="scroll-down" alt="">
 </div>

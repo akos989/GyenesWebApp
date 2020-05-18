@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationStart, RouterEvent, NavigationEnd } from '@angular/router';
 import { ErrorHandleService } from './shared/error-handle.service';
 import { Subscription } from 'rxjs';
-import { ScrollTopService } from './shared/scroll-top.service';
 
 @Component({
   selector: 'app-root',

@@ -41,3 +41,26 @@
         top: calc(3vh + 10vw);
     }
 }
+
+@keyframes scroll-up {
+    0% {
+        transform: scale(0.8) translateY(0%);
+        box-shadow: 0px calc(2vh + 0.6vw) 15px 0px black;
+    }
+    70% {
+        transform: scale(1.1) translateY(-35%);
+        box-shadow: 0px calc(2.7vh + 0.81vw) 15px 5px black;
+    }
+    100% {
+        transform: scale(0.8) translateY(0%);
+        box-shadow: 0px calc(2vh + 0.6vw) 15px 0px black;
+    }
+  }
+img.scroll-down {
+    position: absolute;
+    bottom: 5%;
+    width: calc(5vh + 1vw);
+    left: calc(50vw - 2.5vh - 0.5vw);
+    border-radius: 50%;
+    animation: scroll-up 4s infinite ease-in-out;
+}
