@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { HeaderService } from './header.service';
 
 @Component({
@@ -6,11 +6,13 @@ import { HeaderService } from './header.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
   navigationOpen = false;
   small: boolean;
   smallBeforeNav:boolean = null;
+  dropDownOpen: boolean = false;
+  @ViewChild('dropToggle', {static: false}) toggler: ElementRef;
 
   constructor(private renderer: Renderer2,
               private headerService: HeaderService) { }
@@ -27,6 +29,15 @@ export class HeaderComponent implements OnInit {
           }, 0);
         }
       );
+  }
+
+  ngAfterViewInit() {
+    this.renderer.listen(window, 'click', (event) => {
+      if (this.dropDownOpen)
+        if( this.toggler && !this.toggler.nativeElement.contains(event.target) ){
+          this.dropDownOpen = false;
+        }
+    });
   }
 
   linkClicked() {
@@ -46,5 +57,9 @@ export class HeaderComponent implements OnInit {
       if (this.smallBeforeNav !== null)
         this.small = this.smallBeforeNav;
     }      
+  }
+
+  toggleDropDown() {
+    this.dropDownOpen = !this.dropDownOpen;
   }
 }

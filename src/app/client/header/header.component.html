@@ -1,4 +1,21 @@
 <div
+    class="phone-reservation"
+    *ngIf="small">
+    <span
+        [routerLink]="['/booking']"
+        class="reservation small-text">Online foglalás</span>
+    <span class="divider"></span>
+    <span #dropToggle (click)="toggleDropDown()" class="tel small-text">
+        <img src="../../../assets/icons/call.png" alt="">
+    </span>
+    <div 
+        [ngClass]="{'open': dropDownOpen}"
+        class="dropup-content">
+        <a class="mini-text" href="tel:+36306083283">+36306083283</a>
+        <a class="mini-text" href="tel:+36208028647">+36208028647</a>
+    </div>
+</div>
+<div
     class="top-zero smallable"
     [ngClass]="{'small': small, 'open': navigationOpen}">
 </div>
