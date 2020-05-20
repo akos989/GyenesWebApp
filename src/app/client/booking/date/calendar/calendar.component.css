@@ -36,6 +36,7 @@ span.today.closed {
 .flx {
     display: flex;
     justify-content: space-between;
+    line-height: calc(0.5vw + 2vh + 1vh);
 }
 
 .box {
@@ -63,11 +64,13 @@ span.today.closed {
 }
 
 .button {
-    font-size: calc(1vw + 3vh);
+    font-size: calc(1vw + 2.5vh);
 }
 
 .button.small {
+    position: relative;
     font-size: calc(0.5vw + 2vh);
+    top: 0.3vh;
 }
 hr {
     position: relative;   
@@ -142,13 +145,31 @@ img.mirror {
 @media screen and (max-width: 1140px) {
     .top-padding {
         position: relative;
-        top: calc(5.5vh);
+        top: calc(7vh);
     }
     .prev-up {
-        display: inline;
+        display: block;
     }
     .prev-down {
         display: none;
+    }
+    .next-up {
+        display: block;
+    }
+    .next-down {
+        display: none;
+    }
+}
+@media screen and (min-width: 1141px) {
+    .top-padding {
+        position: relative;
+        top: calc(3vh);
+    }
+    .prev-up {
+        display: none;
+    }
+    .prev-down {
+        display: inline;
     }
     .next-up {
         display: inline;
@@ -157,17 +178,6 @@ img.mirror {
         display: none;
     }
 }
-@media screen and (min-width: 1141px) {
-    .prev-up {
-        display: none;
-    }
-    .prev-down {
-        display: inline;
-    }
-    .next-up {
-        display: inline;
-    }
-    .next-down {
-        display: none;
-    }
+.asd {
+    line-height: 5px;
 }
