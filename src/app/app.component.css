@@ -7,3 +7,7 @@
     top: 0px;
     left: 0px;
 }
+
+body.modal-Open {
+    overflow: hidden;
+}

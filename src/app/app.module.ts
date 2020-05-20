@@ -8,7 +8,7 @@ import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,6 +54,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { BookNowComponent } from './client/book-now/book-now.component';
 import { DescriptionCardComponent } from './shared/description-card/description-card.component';
 import { TrenchMapComponent } from './client/map/trench-map/trench-map.component';
+import { ModalComponent } from './shared/backend-modal/modal/modal.component';
+import { CookieComponent } from './shared/cookie/cookie.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -100,7 +102,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     PageHeaderComponent,
     BookNowComponent,
     DescriptionCardComponent,
-    TrenchMapComponent
+    TrenchMapComponent,
+    ModalComponent,
+    CookieComponent
   ],
   imports: [
     BrowserModule,
@@ -118,6 +122,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatExpansionModule
   ],
   providers: [
+    CookieService,
     { 
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
