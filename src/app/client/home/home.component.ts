@@ -11,6 +11,9 @@ declare var ScrollMagic: any;
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   smallHeader: boolean = false;
+  slides: string[] = [
+    
+  ];
 
   ctrl = new ScrollMagic.Controller();
   scrollMagicScenes = [];

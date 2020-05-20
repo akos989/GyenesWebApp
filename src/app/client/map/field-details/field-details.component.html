@@ -1,4 +1,5 @@
 <div class="content">
+    <div class="text-right middle-text x-button">X</div>
     <img [src]="field.imgPath" alt="">
     <div class="medium-padding">
         <div class="middle-top-text text-center pb-2 pt-5 font-weight-bold">{{field.name}}</div>
@@ -17,5 +18,9 @@
             *ngIf="field.optDescription !== ''"
             class="middle-text pb-5"> {{field.optDescription}} </div>     
             <!-- lehet small-text is ki kell majd próbálni hogy egyáltalán kell e -->
+        <app-slider 
+        [root]="field.imgRoot"
+        [number]="field.imgNumber"
+        [mode]="1"></app-slider>
     </div>
 </div>

@@ -3,5 +3,13 @@
     <app-landing></app-landing>    
     <app-best-track id="trigger"></app-best-track>
     <app-our-services></app-our-services>
-    <app-slider></app-slider>
+    <div class="dark-background">
+        <div class="big-padding large-text">
+          <div class="padding-bottom-4">Legjobb képeink:</div>
+            <app-slider 
+                [root]="'home'"
+                [number]="7"></app-slider>    
+        </div>
+    </div>
 </div>
+<app-book-now></app-book-now>

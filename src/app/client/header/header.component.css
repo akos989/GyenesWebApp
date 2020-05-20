@@ -260,7 +260,7 @@ img {
   position: fixed;
   width: 100%;
   bottom: 0vh;
-  height: calc(6vh);
+  height: calc(8vh + 2px);
   background-color: transparent;
   z-index: 101;
 }
@@ -280,8 +280,6 @@ img {
 }
 
 .tel img {
-  height: auto;
-  width: calc(3vh + 1vw);
   -webkit-filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
   filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
   cursor: pointer;
@@ -309,6 +307,10 @@ img {
 }
 
 @media screen and (max-width: 520px) {
+  .tel img {
+    height: auto;
+    width: calc(3vh + 1vw + 10px);
+  }
   .phone-reservation {
     background-color: rgba(60, 30, 240, .9);
     -webkit-transition: .35s ease-in-out;
@@ -333,15 +335,19 @@ img {
   }
   .tel {    
     right: 12vw;  
-    bottom: 4.5vh;
+    bottom: calc(5.5vh + 7px);
+    margin-right: 4px;
   }
   .reservation {
     left: 5vw;
-    bottom: 0.9vh;
+    bottom: calc(2vh - 4px);
+    border-radius: 10px;
+    padding:5px;
+    border: 1.5px solid #ffebcd;
   }
   .dropup-content {
     right: 3vw;
-    bottom: 7vh !important;
+    bottom: 9vh !important;
     height: 12vh;
     background-color: rgba(60, 30, 240, .9);
     -webkit-transform: translateY(200%);
@@ -352,6 +358,10 @@ img {
 }
 
 @media screen and (min-width: 521px) {
+  .tel img {
+    height: auto;
+    width: calc(3vh + 1vw);
+  }
   .phone-reservation {
     background-color: transparent;
     opacity: 0;

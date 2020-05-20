@@ -67,7 +67,7 @@ export class TimeTableComponent implements OnInit {
   }
 
   selectHour(hour: Hour) {
-    if ( hour.type !== 'f' ) {
+    if ( hour.type !== 'f' && hour.type !== 't' ) {
       this.selectedHour = hour;
     }
     else {

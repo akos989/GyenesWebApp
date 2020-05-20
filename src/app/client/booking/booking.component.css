@@ -1,0 +1,12 @@
+.button-sticky {
+    position: sticky;
+    top: calc(3vh + 2vw + 1.8vh + 4.85vh);
+    width: 100%;
+    background-color: rgb(32, 32, 32);
+    z-index: 50;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}

@@ -10,23 +10,18 @@
     </mat-card-header>
     <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
     <mat-card-content>
-        <div class="row">
-            <div class="small-text col-4 text-left"> Létszám: </div>
-            <div class="small-text col-8 text-right">
+            <div class="small-text text-center font-weight-bold"> Létszám: </div>
+            <div class="small-text  text-center">
                 {{ package.fromNumberLimit }} - {{ package.toNumberLimit }} fő
             </div>
-        </div>
-        <div class="row">
-            <div class="small-text col-4 text-left"> Alapár: </div>
-            <div class="small-text col-8 text-right">
+            <div class="small-text text-center font-weight-bold"> Alapár: </div>
+            <div class="small-text  text-center">
                 {{ package.basePrice }} Ft
             </div>
-        </div>
         <div 
-            *ngIf="package.includedBullets > 0"
-            class="row">
-            <div class="small-text col-8 text-left"> Lövedékek az árban: </div>
-            <div class="small-text col-4 text-right">
+            *ngIf="package.includedBullets > 0">
+            <div class="small-text text-center font-weight-bold"> Lövedékek az árban: </div>
+            <div class="small-text text-center">
                 {{ package.includedBullets }} db
             </div>
         </div>

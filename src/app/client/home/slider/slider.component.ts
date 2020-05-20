@@ -1,28 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface, SwiperConfig } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: [ './slider.component.css' ]
 })
-export class SliderComponent {
-
-  public show: boolean = true;
-
-  public slides = [
-    'First slide',
-    'Second slide',
-    'Third slide',
-    'Fourth slide',
-    'Fifth slide',
-    'Sixth slide'
-  ];
+export class SliderComponent implements OnInit {
+  @Input() number: number = 0;
+  @Input() root: string;
+  @Input() mode: number = 0;
+  fakeArray: number[] = [];
+  ngOnInit() {
+    for(let i: number = 1; i <= this.number; i++)
+      this.fakeArray.push(i);
+  }
 
   public config: SwiperConfigInterface = {
     a11y: true,
-    effect: 'coverflow',
+    effect: (this.mode === 0) ? 'coverflow' : 'slide',
     grabCursor: true,
     centeredSlides: true,
     direction: 'horizontal',
@@ -44,7 +41,7 @@ export class SliderComponent {
     mousewheel: true,
     scrollbar: false,
     navigation: true,
-    pagination: true,
+    pagination: false,
     coverflowEffect: {
       rotate: 50,
       stretch: 0,

@@ -1,5 +1,5 @@
 <div class="middle-top-text pb-5 text-center"> Már majdnem kész, de még ellenőrizd le az adataidat! </div>
-<div class="card text-center middle-text container-fluid">
+<div class="card text-center middle-text container">
     <div
         *ngIf="ready"
         class="row">
@@ -87,14 +87,23 @@
             <div>
                 <div class="text-large" >Foglalás jováhagyása</div>
                 <form (ngSubmit)="onSubmit()" #f="ngForm">
-                    <div>
+                    <div class="pb-5">
                         Kijelentem, hogy a foglalási feltételeket elfogadom.......
                     </div>
-                    <input
-                        type="checkbox" name="admission"
-                        ngModel
-                        required
-                        #admissionBox="ngModel">
+                    <label class="label">
+                        <div class="toggle">
+                            <input
+                            class="toggle-state" type="checkbox"
+                            name="admission"
+                            ngModel
+                            required #admissionBox="ngModel" >
+                            <div class="toggle-inner">
+                                <div class="indicator"></div>
+                            </div>
+                            <div class="active-bg"></div>
+                        </div>
+                        <div class="label-text">Elfogadom</div>
+                        </label>
                 </form>
             </div>
                 <div class="text-center pt-5 pb-5">

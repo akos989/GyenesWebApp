@@ -37,10 +37,18 @@
 
 .mat-horizontal-content-container {
     background-color: rgb(32, 32, 32);
+    overflow: unset !important;
 }
 .mat-horizontal-stepper-header-container {
     background-color: rgb(32, 32, 32);
+    height: 5vh;
+    position: sticky !important;
+    top: calc(3vh + 2vw + 1.8vh);
+    width: 100%;
+    z-index: 40;
 }
+.mat-horizontal-stepper-header-container.sticky {
+} 
 .mat-step-header .mat-step-icon-selected {
     background-color: rgb(209, 81, 26);
 }
@@ -88,6 +96,11 @@
     display: inline !important;
 }
 
+.mat-card-image {
+    width: calc(70% + 32px) !important;
+    border-radius: 25px !important;
+}
+
 #packages-stepper div.mat-horizontal-stepper-header-container {
     display: none !important;
 }
@@ -119,6 +132,9 @@ body.modal-open {
 .component {
     padding-top: calc(3vh + 2vw + 2vh);
     overflow-x: hidden;
+}
+.component.nooverflow {
+    overflow-x: unset;
 }
 
 .component.dark {
@@ -203,11 +219,22 @@ hr.left.open {
     opacity: 0.3;
     pointer-events: none;
 }
+.cbtn.enabled {
+    border: 3px solid green;
+    border-radius: 25px;
+}
+@media (hover: hover) {
+    .cbtn.enabled:hover {
+        border: 0px solid green;
+        border-radius: 25px;
+    }
+}
+
 .cbtn.big {
     line-height: 105px;
     height: 100px;
     width: 400px;
-    font-size: 25px;
+    font-size: 35px;
 }
 
 .cbtn.small {
@@ -413,3 +440,12 @@ hr.left.open {
     padding: 5px;
     pointer-events: none;
 }
+
+/* @font-face {
+    font-family: logoFont;
+    src: url(sansation_light.woff);
+}
+
+div {
+    font-family: myFirstFont;
+} */

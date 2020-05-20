@@ -20,8 +20,7 @@ span.closed {
 
 span.today {
     background-color: rgba(255, 166, 0, 0.8);
-    pointer-events: none;
-    cursor: default;
+    cursor: pointer;
 }
 
 span.selected {
@@ -68,11 +67,10 @@ span.today.closed {
 }
 
 .button.small {
-    font-size: calc(0.8vw + 2vh);
+    font-size: calc(0.5vw + 2vh);
 }
 hr {
-    position: relative;
-   
+    position: relative;   
     border: 2px solid lightgray;
     opacity: 0.7;
 }
@@ -142,19 +140,18 @@ img.mirror {
 
 
 @media screen and (max-width: 1140px) {
-
     .top-padding {
         position: relative;
-        top: calc(5.5vh + 3vh + 5vh);
+        top: calc(5.5vh);
     }
     .prev-up {
-        display: block;
+        display: inline;
     }
     .prev-down {
         display: none;
     }
     .next-up {
-        display: block;
+        display: inline;
     }
     .next-down {
         display: none;
