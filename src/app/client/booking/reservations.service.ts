@@ -7,6 +7,7 @@ import { PackageService } from '../packages/package.service';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { Subject } from 'rxjs';
+import { AcceptCookieService } from 'src/app/shared/cookie/cookie.service';
 
 class Hour {
     constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -20,20 +21,23 @@ class Range {
 export class ReservationService {
 
     constructor(private packageService: PackageService, private http: HttpClient,
-                private errorHandler: ErrorHandleService) {}
+                private errorHandler: ErrorHandleService,
+                private acceptCookiesS: AcceptCookieService) {}
     currReservationUpdated = new Subject<Reservation>();
 
     private _currentReservation: Reservation = null;   
 
     public get currentReservation(): Reservation {
         if (this._currentReservation == null) {
-            this.retrieveFromLocalStorage();
+            if (this.acceptCookiesS.accepted)
+                this.retrieveFromLocalStorage();
         }
         return this._currentReservation;
     }
     public set currentReservation(value: Reservation) {
         this._currentReservation = value;
-        this.saveToLocalStorage();
+        if (this.acceptCookiesS.accepted)
+            this.saveToLocalStorage();
         this.currReservationUpdated.next(this._currentReservation);
     }
     

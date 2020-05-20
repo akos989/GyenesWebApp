@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy, AfterViewInit } from '@angular/core';
 import { HeaderService } from '../header/header.service';
 
 declare var ScrollMagic: any;
@@ -8,20 +8,13 @@ declare var ScrollMagic: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HomeComponent implements OnDestroy, AfterViewInit {
 
   smallHeader: boolean = false;
-  slides: string[] = [
-    
-  ];
-
   ctrl = new ScrollMagic.Controller();
   scrollMagicScenes = [];
 
   constructor(private headerService: HeaderService) { }
-
-  ngOnInit(): void {
-  }
 
   ngAfterViewInit() {
     this.animScroll();

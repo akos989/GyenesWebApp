@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, Renderer2, AfterViewInit } from '@angular/core';
 import { state, trigger, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -24,14 +24,14 @@ import { state, trigger, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements AfterViewInit {
 
   displayDown: boolean = false;
   scrolled: boolean = false;
 
   constructor(private renderer: Renderer2) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
     if (!this.scrolled) {
       this.renderer.listen(window, 'scroll', () => {
         this.scrolled = true;
@@ -43,11 +43,10 @@ export class LandingComponent implements OnInit {
         this.displayDown = true;
     }, 5000);
   }
-
   scrollDown() {
     const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     window.scrollTo({
-      top: vh,
+      top: (vh + 200),
       behavior: 'smooth'
     });
   }

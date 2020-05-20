@@ -1,5 +1,7 @@
 <div class="content">
-    <div class="text-right middle-text x-button">X</div>
+    <div class="middle-text close-x pb-3">
+        <span (click)="onClose()" >X</span>
+     </div>
     <img [src]="field.imgPath" alt="">
     <div class="medium-padding">
         <div class="middle-top-text text-center pb-2 pt-5 font-weight-bold">{{field.name}}</div>

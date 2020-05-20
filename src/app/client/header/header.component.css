@@ -344,6 +344,7 @@ img {
     border-radius: 10px;
     padding:5px;
     border: 1.5px solid #ffebcd;
+    background-color: rgb(60, 30, 240);
   }
   .dropup-content {
     right: 3vw;

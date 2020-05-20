@@ -1,0 +1,9 @@
+.cookie-body {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    background-color: rgba(45, 100, 200, .95);
+    z-index: 200;
+    color: rgb(255, 235, 204);
+}

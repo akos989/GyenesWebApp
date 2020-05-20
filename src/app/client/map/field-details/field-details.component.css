@@ -1,4 +1,6 @@
 img {
+    position: relative;
+    /* left: 5%; */
     width: 100%;
     object-fit: cover;
     height: auto;
@@ -6,16 +8,24 @@ img {
 }
 
 .content {
-    background-color: #333534;
+    background-color: rgb(20, 20, 20);
     border-radius: 25px;
     z-index: 300;
+    padding: 16px;
 }
 
-.x-button {
-    position: fixed;
+.close-x {
+    position: relative;
+    right: 0px;
     width: 100%;
-    left: 0%;
-    padding-top: 10px;
-    padding-right: 15px;
-    background-color: rgba(0, 0, 0, .8);
+    text-align: right;
+}
+.close-x span {
+    cursor: pointer;
+}
+
+@media (hover: hover) {
+    .close-x span:hover {
+        color: rgb(209, 81, 26);
+    }
 }

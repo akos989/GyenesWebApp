@@ -9,11 +9,10 @@
             <button class="btn btn-danger" (click)="hideError()">
             OK
         </button>
-        </div>
-        
-    </div>
-    
+        </div>        
+    </div>    
 </div>
+<ng-template appPlaceholder></ng-template>
 <app-header></app-header>
 <div style="width: 100%;">
     <div *ngIf="isLoading" style="position: fixed; top: 50vh; left: 50vw;">
@@ -23,4 +22,7 @@
         <router-outlet></router-outlet>
         <app-footer></app-footer>
     </div>    
+</div>
+<div *ngIf="cookies">
+    <app-cookie></app-cookie>
 </div>

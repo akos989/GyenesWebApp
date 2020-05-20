@@ -1,14 +1,11 @@
-import { Component, OnInit, Input, Inject, ComponentFactoryResolver, ViewChild, OnDestroy, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, ComponentFactoryResolver, ViewChild, OnDestroy, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { Package } from 'src/app/shared/models/package.model';
 import { ReservationService } from '../../booking/reservations.service';
 import { Reservation } from 'src/app/shared/models/reservation.model';
 import { PackageModalComponent } from './modal/package-modal.component';
 import { PlaceholderDirective } from 'src/app/shared/placeholder.directive';
-import { Subject } from 'rxjs';
 import { BookingService } from '../../booking/booking.service';
 
 @Component({
