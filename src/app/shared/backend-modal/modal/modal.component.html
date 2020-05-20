@@ -1,12 +1,12 @@
 <div class="backdrop" (click)="onClose()"></div>
 <div class="alert-box">
-    <div class="middle-text close-x padding-bottom-2">
+    <div class="small-text close-x">
        <span (click)="onClose()" >X</span>
     </div>
     <div class="content"> 
-        <div class="large-text text-center">{{modal.name}}</div>
+        <div class="middle-top-text text-center">{{modal.name}}</div>
         <hr class="orange big">
-        <div class="padding-top-2 text-center middle-text"> {{modal.description}} </div>
+        <div class="pt-2 text-center middle-text"> {{modal.description}} </div>
         <img 
             *ngIf="modal.modalImgUrl !== ''"
             [src]="modal.modalImgUrl" alt="">
