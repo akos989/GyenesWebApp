@@ -13,48 +13,84 @@
 }
 
 img {
-    position: relative;
-    left: 10%;
-    width: 80%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 25px;
+  position: relative;
+  border-radius: 25px;
 }
 
-/* .alert-box {
-  top: calc(10vh);
-  bottom: 10vh;
-  position:fixed;
-  overflow-y:hidden;
-  overflow-x:hidden;
-  left: 10%;
-  width: 80%;
-  height: auto;
-  z-index: 100;
-  background: rgb(20, 20, 20);
-  box-shadow: 2px 4px 4px rgba(146, 144, 144, 0.15);
-  overflow: auto;
-  border-radius: 25px;
-  transform: scale(0, 0) translateY(-100%) translateX(100%);
-  -webkit-transition: .25s ease-in-out;
-  -moz-transition: .25s ease-in-out;
-  -o-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
-
-} */
+@media (min-aspect-ratio: 321/481), (min-width: 800px) {
+  img {
+    left: 5%;
+    width: 90%;
+    height: auto;
+    object-fit: cover;
+  }
+  .trench-toggle{
+    position: absolute;
+    left: 85%;
+  }
+  
+  .competition-toggle{
+    position: absolute;
+    left: 55%;
+  }
+  
+  .city-toggle{
+    position: absolute;
+    left: 25%;
+  }
+  
+  .togglers-container {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    top: 60%;
+  }
+}
+@media (max-aspect-ratio: 320/480) and (max-width: 800px), (max-aspect-ratio: 321/481) and (min-aspect-ratio: 320/480) {
+  img {
+    margin-top: 5vh;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg); /* IE 9 */
+    transform: rotate(-90deg);
+  }
+  .togglers-container {
+      position: absolute;
+      left: 50%;
+      width: 20%;
+      top: 35%;
+      height: 50%;
+  }
+  .trench-toggle{
+    position: absolute;
+    top: 0%;
+  }  
+  .competition-toggle{
+    position: absolute;
+    top: 50%;
+  }  
+  .city-toggle{
+    position: absolute;
+    top: 100%;
+  }
+}
 #map-navigation div {
-  top: calc(10vh);
+  top: calc(15vh);
+  left: 15%;
+  width: 70%;
   bottom: 10vh;
   position:fixed;
   overflow-y:hidden;
   overflow-x:hidden;
-  left: 10%;
-  width: 80%;
+  overflow: auto;
   height: auto;
   z-index: 100;
   background: rgb(20, 20, 20);
   box-shadow: 2px 4px 4px rgba(146, 144, 144, 0.15);
-  overflow: auto;
   border-radius: 25px;
   -webkit-transition: .25s ease-in-out;
   -moz-transition: .25s ease-in-out;
@@ -82,31 +118,6 @@ img {
 #map-navigation div:nth-child(3).open {
   transform: scale(1, 1) translateY(0%) translateX(0%);
 }
-/* .alert-box {
-  top: calc(10vh);
-  bottom: 10vh;
-  position:fixed;
-  overflow-y:hidden;
-  overflow-x:hidden;
-  left: 10%;
-  width: 80%;
-  height: auto;
-  z-index: 100;
-  background: rgb(20, 20, 20);
-  box-shadow: 2px 4px 4px rgba(146, 144, 144, 0.15);
-  overflow: auto;
-  border-radius: 25px;
-  -webkit-transition: .25s ease-in-out;
-  -moz-transition: .25s ease-in-out;
-  -o-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
-  transform: scale(0, 0) translateY(-100%) translateX(100%);
-} */
-
-/* .alert-box.open {
-    transform: scale(1, 1) translateY(0%) translateX(0%);
-} */
-
 @keyframes circle {
   from {
     transform: scale(0);
@@ -119,8 +130,8 @@ img {
 }
   
 .circle {
-  width: .8vw;
-  height: .8vw;
+  width: calc(0.5vw + 0.8vh);
+  height: calc(0.5vw + 0.8vh);
   border-radius: 50%;
   position: absolute;
   top: 0%;
@@ -143,43 +154,30 @@ img {
   animation: circle 2.1s 0s infinite ease-in-out;
   background: tomato;
 }
-
-.trench-toggle{
-  position: absolute;
-  left: 85%;
-}
-
-.competition-toggle{
-  position: absolute;
-  left: 55%;
-}
-
-.city-toggle{
-  position: absolute;
-  left: 25%;
-}
-
-.togglers-container {
-    position: absolute;
-    left: 10%;
-    width: 80%;
-    top: 60%;
-}
-  
-@media screen and (max-width: 580px) {
-  .togglers-container {
-    position: absolute;
-    left: 10%;
-    width: 80%;
-    top: 70%;
-  }
-}
-
-@media screen and (max-width: 1100px) and (min-width: 580px) {
+@media screen and (max-width: 1100px) and (min-width: 801px) {
   .togglers-container {
     position: absolute;
     left: 10%;
     width: 80%;
     top: 67%;
+  }
+}
+
+.header {
+  position: fixed;
+  top: calc(15vh);
+  left: 5%;
+  width: 90%;
+  text-align: right;
+  background-color: transparent;
+  z-index: 500;
+}
+.x-button {
+  padding-right: 10px;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .x-button:hover {
+    color: rgb(209, 81, 26);
   }
 }

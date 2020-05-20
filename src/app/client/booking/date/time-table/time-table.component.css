@@ -10,6 +10,10 @@ span {
     position: relative;
 }
 
+.active {
+    cursor: pointer;
+}
+
 @media (hover: hover) {
     .close-x:hover {
         color: rgb(209, 81, 26);
@@ -22,11 +26,19 @@ span {
 .disabled {
     background-color: red;
     border-radius: 25px;
+    cursor: default;
+}
+
+.today {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
 }
 
 .selected {
     background-color: green;
     border-radius: 25px;
+    cursor: pointer;
 }
 .backdrop {
     position: fixed;

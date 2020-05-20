@@ -99,18 +99,34 @@ export class ReservationService {
                     tmpPlayerNumber += reservation.playerNumber;
                 }
             }
+            let tmpHour: Hour;
             if ( tmpPlayerNumber === this._currentReservation.playerNumber )
-                hours.push(new Hour(hour, 'e', this.gunNumber));
+                tmpHour = (new Hour(hour, 'e', this.gunNumber));
             else if (tmpPlayerNumber <= this.gunNumber) {
                 const remainingNumber =
                     this.gunNumber - (tmpPlayerNumber - this._currentReservation.playerNumber);
-                hours.push(new Hour(hour, 'p', remainingNumber));
+                tmpHour = (new Hour(hour, 'p', remainingNumber));
             } else {
-                hours.push(new Hour(hour, 'f', 0));
+                tmpHour = (new Hour(hour, 'f', 0));
             }
+            if (this.isSmallerThanToday(selectedDate, hour))
+                tmpHour.type = 't';
+            hours.push(tmpHour);
         }
 
         return hours;
+    }
+
+    private isSmallerThanToday(selectedDate: Date, hour: number) {
+        let today: Date = new Date();
+        today.setHours(today.getHours() + 1);
+        today.setMinutes(1);
+        let date = new Date(selectedDate.valueOf());
+        date.setHours(hour);
+        if (date.valueOf() <= today.valueOf()) {
+            return true;
+        }
+        return false;
     }
     
     submitCurrentReservation() {

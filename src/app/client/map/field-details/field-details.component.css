@@ -1,7 +1,7 @@
 img {
     width: 100%;
-    object-fit: contain;
-    max-height: 100%;
+    object-fit: cover;
+    height: auto;
     border-radius: 25px;
 }
 
@@ -9,4 +9,13 @@ img {
     background-color: #333534;
     border-radius: 25px;
     z-index: 300;
+}
+
+.x-button {
+    position: fixed;
+    width: 100%;
+    left: 0%;
+    padding-top: 10px;
+    padding-right: 15px;
+    background-color: rgba(0, 0, 0, .8);
 }

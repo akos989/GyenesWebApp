@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit} from '@angular/core';
 import { BookingService } from './booking.service';
 import { Subscription } from 'rxjs';
 import { ReservationService } from './reservations.service';
@@ -9,7 +9,7 @@ import { MatStepper } from '@angular/material/stepper';
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
-export class BookingComponent implements OnInit, OnDestroy {
+export class BookingComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private packageSub: Subscription;
   private infoChaneSub: Subscription;
@@ -55,12 +55,17 @@ export class BookingComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfterViewInit() {
+  }
+
   goForward(stepper: MatStepper) {
     stepper.next();
+    this.scrollTop();
   }
 
   goBack(stepper: MatStepper) {
     stepper.previous();
+    this.scrollTop();
   }
 
   ngOnDestroy() {
@@ -68,5 +73,16 @@ export class BookingComponent implements OnInit, OnDestroy {
     this.infoChaneSub.unsubscribe();
     this.packageSub.unsubscribe();
   }
+  scrollTop() {
+    const positon: number = document.getElementById('stepper').offsetTop - 70;
 
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > positon) {
+          window.scrollTo(0, pos - 20); // how far to scroll on each step
+      } else {
+          window.clearInterval(scrollToTop);
+      }
+  }, 4);
+  }
 }

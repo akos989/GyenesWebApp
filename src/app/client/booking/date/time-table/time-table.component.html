@@ -25,7 +25,8 @@
                                 [ngClass]="{
                                     disabled: hour.type === 'f',
                                     active: (hour.type === 'e' || hour.type === 'p'),
-                                    selected: hour === selectedHour
+                                    selected: hour === selectedHour,
+                                    today: hour.type === 't'
                                 }"
                             >{{ hour.hour }}</span>
                         </div>
@@ -43,7 +44,8 @@
                                 [ngClass]="{
                                     disabled: hour.type === 'f',
                                     active: (hour.type === 'e' || hour.type === 'p'),
-                                    selected: hour === selectedHour
+                                    selected: hour === selectedHour,
+                                    today: hour.type === 't'
                                 }"
                             >{{ hour.hour }}</span>
                         </div>
@@ -61,7 +63,8 @@
                                 [ngClass]="{
                                     disabled: hour.type === 'f',
                                     active: (hour.type === 'e' || hour.type === 'p'),
-                                    selected: hour === selectedHour
+                                    selected: hour === selectedHour,
+                                    today: hour.type === 't'
                                 }"
                             >{{ hour.hour }}</span>
                         </div>

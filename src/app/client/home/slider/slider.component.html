@@ -1,14 +1,9 @@
-<div class="dark-background">
-    <div class="big-padding large-text">
-      <div class="padding-bottom-4">Legjobb képeink:</div>
-      <div class="swiper">
-        <div class="content-container">
-          <swiper class="swiper-container" [config]="config" [index]="3">
-            <div *ngFor="let slide of slides" class="swipe-slide">
-              <img src="../../../../assets/pictures/map-top.jpg" alt="">
-            </div>
-          </swiper>
-        </div>
-      </div>       
-    </div>
-</div>
+<div class="swiper">
+  <div class="content-container">
+    <swiper class="swiper-container" [config]="config" [index]="3">
+      <div *ngFor="let photo of fakeArray" class="swipe-slide">
+        <img [src]="'../../../../assets/pictures/slider/'+root+'/'+photo+'.jpg'"  alt="">
+      </div>
+    </swiper>
+  </div>
+</div>  
