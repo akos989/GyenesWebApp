@@ -21,43 +21,36 @@
 
 .nav-box {
     position: relative;
-    top: calc(11vh + 8vw);
     z-index: 90;
 }
 
+@media screen and (max-width: 720px) {
+    .nav-box {
+        top: calc(14vh + 8vw);
+    }
+}
+@media screen and (min-width: 721px) {
+    .nav-box {
+        top: calc(40vh);
+    }
+}
 .padding {
     padding-bottom: calc(0.5vw + 0.2vh);
 }
 
-.nav-box-lines {
-    text-align: left;
-}
 .nav-box-lines div a {
     color: blanchedalmond;
     text-decoration: none;
     font-size: calc(1vw + 2.5vh);
 }
-
-/* .nav-box-lines div a.disabled {
-    color: gray;
-    cursor: default;
-    text-decoration: none;
-    font-size: calc(1vw + 2.5vh);
-}
-
-.nav-box-lines div a.disabled:hover {
-    color:gray;
-    text-decoration: none;
-} */
-
 .nav-box-lines div a:hover {
     color: #d3531a;
     text-decoration: none;
 }
 
-.nav-box-column {
+/* .nav-box-column {
     text-align: center;
-}
+} */
 
 .hr {
     background-color: #d3531a;

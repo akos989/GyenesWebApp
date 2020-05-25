@@ -22,7 +22,6 @@ import { SliderComponent } from './client/home/slider/slider.component';
 import { MapComponent } from './client/map/map.component';
 import { PricesComponent } from './client/prices/prices.component';
 import { GameModesComponent } from './client/game-modes/game-modes.component';
-import { GameModesDetailsComponent } from './client/game-modes/game-modes-details/game-modes-details.component';
 import { ContactComponent } from './client/contact/contact.component';
 import { MessageComponent } from './client/contact/message/message.component';
 import { PackagesComponent } from './client/packages/packages.component';
@@ -45,8 +44,8 @@ import { ChoosePackageComponent } from './client/booking/choose-package/choose-p
 import { DateStartComponent } from './client/booking/date/date-start/date-start.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatCardModule} from '@angular/material/card';
+import { MatDialogModule} from '@angular/material/dialog';
 import { PackageModalComponent } from './client/packages/package-detail/modal/package-modal.component';
 import { PlaceholderDirective } from './shared/placeholder.directive';
 import { PageHeaderComponent } from './shared/page-header/page-header.component';
@@ -76,7 +75,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MapComponent,
     PricesComponent,
     GameModesComponent,
-    GameModesDetailsComponent,
     ContactComponent,
     MessageComponent,
     PackagesComponent,
