@@ -4,7 +4,9 @@
 .mat-expansion-panel {
     padding-bottom: 5vh;
 }
-
+.mat-expansion-panel.small-padding {
+    padding-bottom: 2vh;
+}
 .mat-expansion-panel-header {
     /* background-color: rgb(112, 107, 107); */
     border: 2px solid rgb(112, 107, 107);
@@ -15,14 +17,14 @@
     text-align: left !important;
 }
 
-@media screen and (min-width: 1001px) {
+@media screen and (min-width: 1301px) {
     .mat-expansion-panel-header {
         left: 35% !important;
         width: 30% !important;
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 1000px) {
+@media screen and (min-width: 600px) and (max-width: 1300px) {
     .mat-expansion-panel-header {
         left: 25% !important;
         width: 50% !important;
@@ -47,8 +49,6 @@
     width: 100%;
     z-index: 40;
 }
-.mat-horizontal-stepper-header-container.sticky {
-} 
 .mat-step-header .mat-step-icon-selected {
     background-color: rgb(209, 81, 26);
 }
