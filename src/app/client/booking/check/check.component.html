@@ -3,38 +3,38 @@
     <div
         *ngIf="ready"
         class="row">
-        <div class="col-md-7 col-12 text-left">
+        <div class="col-xl-8 col-12 text-left">
             <div>
-                <div class="text-center pb-2 pt-2">
+                <div class="text-center pb-2 pt-2 font-weight-bold">
                     Megadott foglalási adatok
                 </div>
                 <div class="hr mb-5"></div>
-                <div class="row pb-xl-3">
-                    <div class="col-xl-4 col-12 text-xl-right">
+                <div class="row pb-lg-3 text-center">
+                    <div class="col-lg-4 col-12 text-lg-right font-weight-bold">
                         Név:
                     </div>
-                    <div class="col-xl-8 col-12">{{ currentReservation.name}}</div>
+                    <div class="col-lg-8 col-12 text-lg-left">{{ currentReservation.name}}</div>
                 </div>
                 <hr class="small">
-                <div class="row pb-xl-3">
-                    <div class="col-xl-4 col-12 text-xl-right">
+                <div class="row pb-lg-3 text-center">
+                    <div class="col-lg-4 col-12 text-lg-right font-weight-bold">
                         Email:
                     </div>
-                    <div class="col-xl-8 col-12">{{ currentReservation.email}}</div>
+                    <div class="col-lg-8 col-12 text-lg-left">{{ currentReservation.email}}</div>
                 </div>
                 <hr class="small">
-                <div class="row pb-xl-3">
-                    <div class="col-xl-4 col-12 text-xl-right">
+                <div class="row pb-lg-3 text-center">
+                    <div class="col-lg-4 col-12 text-lg-right font-weight-bold">
                         Telefonszám:
                     </div>
-                    <div class="col-xl-8 col-12">{{ currentReservation.phoneNumber}}</div>
+                    <div class="col-lg-8 col-12 text-lg-left">{{ currentReservation.phoneNumber}}</div>
                 </div>
                 <hr class="small">
-                <div class="row pb-xl-3">
-                    <div class="col-xl-4 col-12 text-xl-right">
+                <div class="row pb-lg-3 text-center">
+                    <div class="col-lg-4 col-12 text-lg-right font-weight-bold">
                         Dátum: 
                     </div>
-                    <div class="col-xl-8 col-12">
+                    <div class="col-lg-8 col-12 text-lg-left">
                         {{ currentReservation.date.getFullYear() }}.
                         {{ months[currentReservation.date.getMonth()] }}
                         {{ currentReservation.date.getDate() < 10 ? '0' + currentReservation.date.getDate() + '.' : currentReservation.date.getDate() + '.' }}
@@ -42,18 +42,18 @@
                     </div>
                 </div>
                 <hr class="small">
-                <div class="row pb-xl-3">
-                    <div class="col-xl-4 col-12 text-xl-right">
+                <div class="row pb-lg-3 text-center">
+                    <div class="col-lg-4 col-12 text-lg-right font-weight-bold">
                         Játékosszám: 
                     </div>
-                    <div class="col-xl-8 col-12">{{ currentReservation.playerNumber }}</div>
+                    <div class="col-lg-8 col-12 text-lg-left">{{ currentReservation.playerNumber }}</div>
                 </div>
                 <hr class="small">
-                <div class="row pb-xl-3">
-                    <div class="col-xl-4 col-12 text-xl-right">
+                <div class="row pb-lg-3 text-center">
+                    <div class="col-lg-4 col-12 text-lg-right font-weight-bold">
                         Csomag:
                     </div>
-                    <div class="col-xl-8 col-12">
+                    <div class="col-lg-8 col-12 text-lg-left">
                         <div>
                             Típus: {{ packageType.name }}
                         </div>
@@ -72,18 +72,18 @@
                     </div>
                 </div>                
                 <hr class="small">
-                <div class="row pb-xl-3">
-                    <div class="col-xl-4 col-12 text-xl-right">
+                <div class="row pb-lg-3 text-center">
+                    <div class="col-lg-4 col-12 text-lg-right font-weight-bold">
                         Megjegyzések:
                     </div>
-                    <div class="col-xl-8 col-12">
+                    <div class="col-lg-8 col-12 text-lg-left">
                         {{ currentReservation.notes !== "" ? currentReservation.notes : "-" }}
                     </div>                    
                 </div>
             </div>
-            <div class="hr d-block d-sm-none d-none d-sm-block d-md-none my-5"></div>
+            <div class="hr d-xl-none my-5"></div>
         </div>
-        <div class="col-md-5 col-12 top50">
+        <div class="col-xl-4 col-12 top50">
             <div>
                 <div class="text-large" >Foglalás jováhagyása</div>
                 <form (ngSubmit)="onSubmit()" #f="ngForm">
