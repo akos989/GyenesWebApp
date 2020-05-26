@@ -90,13 +90,15 @@
                     <div class="pb-5">
                         Kijelentem, hogy a foglalási feltételeket elfogadom.......
                     </div>
-                    <label class="label">
+                    <label 
+                        (click)="touch()"
+                        class="label">
                         <div class="toggle">
                             <input
                             class="toggle-state" type="checkbox"
                             name="admission"
                             ngModel
-                            required #admissionBox="ngModel" >
+                            required #admissionBox="ngModel">
                             <div class="toggle-inner">
                                 <div class="indicator"></div>
                             </div>

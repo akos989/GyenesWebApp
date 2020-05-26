@@ -9,11 +9,11 @@ export class ReservationResolver implements Resolve<Reservation[]> {
     constructor(private reservationService: ReservationService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-       // if (this.reservationService.reservations.length > 0) {
+       if (this.reservationService.reservations.length > 0) {
            this.reservationService.loadReservations()
             return this.reservationService.reservations;
-        // } else {
-        //     return this.reservationService.loadReservations();
-        // }
+        } else {
+            return this.reservationService.loadReservations();
+        }
     }
 }

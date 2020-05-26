@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   errorSub: Subscription;
   cookieSub: Subscription;
   modalCloseSub: Subscription;
+  checkModalSub: Subscription;
   isLoading = false;
   errorMessage: string = null;
   @ViewChild(PlaceholderDirective, {static: false}) modalHost: PlaceholderDirective;
@@ -46,11 +47,17 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(()=> {
-      this.modal = this.modalService.checkModal();
-      if (this.modal)
-        this.displayModal();
-    }, 0);
+    this.checkModalSub = this.modalService.checkModal()
+      .subscribe(()=> {
+        this.modal = this.modalService.modal;
+        if (this.modal)
+          this.displayModal();
+      });
+    // setTimeout(()=> {
+    //   this.modal = this.modalService.checkModal();
+    //   if (this.modal)
+    //     this.displayModal();
+    // }, 0);
   }
 
   routerEvents() {

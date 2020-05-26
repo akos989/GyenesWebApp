@@ -42,7 +42,7 @@ export class ErrorHandleService {
                 message = 'A dátum nem lehet kisebb, mint a következő nap!';
             break;
             case 'DATE_FULL':
-                message = 'A kiválasztott időpont időközben lefoglalták, sajnos már nem elérhető!';
+                message = 'A kiválasztott időpontot időközben lefoglalták, sajnos már nem elérhető!';
             break;
             case 'DATE_CLOSED':
                 message = 'A kiválasztott dátumon sajnos nem üzemel a pálya!';

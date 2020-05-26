@@ -16,6 +16,7 @@ export class ConfirmationComponent implements OnInit, CanComponentDeactivate {
   constructor(private reservationService: ReservationService) { }
 
   ngOnInit(): void {
+    console.log('itt')
     this.reservation = this.reservationService.currentReservation;
   }
 
