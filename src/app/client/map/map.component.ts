@@ -23,7 +23,7 @@ export class MapComponent implements OnInit {
         new Equipment('Kukakonténer', 'Asdfas híres kuka', 'rubbish.png'),
         new Equipment('Raklapháromszög', 'lkajsdflkj', 'pallet.png')
       ],
-      '','city',5
+      '','city', 7
     ),
     new Field(
       'Versenypálya', 'Szabványos versenypálya... blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
@@ -35,7 +35,7 @@ export class MapComponent implements OnInit {
         new Equipment('Autó gumi torony', 'Több gumi egymásra téve', 'tires.png'),
         new Equipment('Elválasztó fal', 'Elválasztja a két játékrészt', 'separator.png')
       ],
-      'Nincs sok különböző akadály de ebből sok van :D', 'competition', 4
+      'Nincs sok különböző akadály de ebből sok van :D', 'competition', 5
     ),
     new Field(
       'Árkos pálya', 'Ezen a pályán blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
@@ -47,7 +47,7 @@ export class MapComponent implements OnInit {
         new Equipment('Gerenda X', 'Kettő is van belőle a pályán...', 'lumber-x.png'),
         new Equipment('Homokkupac', 'Nagy homokkupac kiváló fedezéknek', 'mound.jpg')
       ],
-      'Laskdjfaslfjs dasldkfj asldkfj  askldjf askldfj.', 'trench', 7
+      'Laskdjfaslfjs dasldkfj asldkfj  askldjf askldfj.', 'trench', 6
     )
 ];
 

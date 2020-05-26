@@ -58,7 +58,9 @@ export class PackageService {
             new PackageType('1', 'Normál', [
                 new Package('1', 'Kicsi', 3, 10, 15, 3000, 2, 0, false, ''),
                 new Package('5eb272ac3ba174183da688a0', 'Közepes', 11, 20, 12, 3000, 2, 0, false, ''),
-                new Package('3', 'Nagy', 21, 35, 10, 3000, 4, 0, true, '')
+                new Package('3', 'Nagy', 21, 35, 10, 3000, 4, 0, true, ''),
+                new Package('4', 'XL', 30, 35, 10, 3000, 4, 0, true, ''),
+                new Package('4', 'XXL', 30, 35, 10, 2500, 4, 0, true, '')
             ]),
             new PackageType('2', 'Akciós', [
                 new Package('4', 'Akció1', 15, 20, 15, 5000, 2, 300, false, ''),

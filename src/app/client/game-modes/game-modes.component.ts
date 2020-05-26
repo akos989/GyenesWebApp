@@ -15,11 +15,13 @@ export class GameModesComponent implements AfterViewInit {
   scrolled = false;
 
   gameModeArray: GameMode[] = [
-    new GameMode('Várfoglalás', 'lakjsdf', "../../../assets/pictures/paintball.jpg", "../../../assets/pictures/paintball.jpg"),
-    new GameMode('Capture the flag', 'lakjsdf', "../../../assets/pictures/paintball.jpg"),
-    new GameMode('Speedball', 'lakjsdf', "../../../assets/pictures/paintball.jpg", "../../../assets/pictures/paintball.jpg"),
-    new GameMode('TDM', 'lakasdasdasdasdasdasd asd asd asd asdasdas djsdf', "../../../assets/pictures/paintball.jpg"),
-    new GameMode('Capture the point', 'lakjsdf', "../../../assets/pictures/paintball.jpg")
+    new GameMode('Várfoglalás', 'lakjsdf', "../../../assets/pictures/game-modes/var/20190816_143608.jpg",
+    "../../../assets/pictures/game-modes/var/img_20190807_195109.jpg"),
+    new GameMode('Capture the flag', 'lakjsdf', "../../../assets/pictures/minibus.png"),
+    new GameMode('Speedball', 'lakjsdf', "../../../assets/pictures/game-modes/speedball/speedball.jpg"),
+    new GameMode('TDM', 'lakasdasdasdasdasdasd asd asd asd asdasdas djsdf',
+    "../../../assets/pictures/game-modes/TDM/TDM1.jpg", "../../../assets/pictures/game-modes/TDM/TDM2.jpg"),
+    new GameMode('Capture the point', 'lakjsdf', "../../../assets/pictures/game-modes/capture/capture-the-point.jpg")
   ];
 
   @ViewChildren('gameModes') gameModeElements: QueryList<ElementRef>;

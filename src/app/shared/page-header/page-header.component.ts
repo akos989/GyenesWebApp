@@ -13,7 +13,7 @@ export class PageHeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.src = '../../../assets/pictures/'+this.src;
+    this.src = '../../../assets/pictures/page-headers/'+this.src;
   }
 
 }

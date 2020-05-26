@@ -30,10 +30,10 @@ export class SliderComponent implements OnInit {
       640: {
         slidesPerView: 1
       },
-      768: {
+      1020: {
         slidesPerView: 2
       },
-      1024: {
+      1500: {
         slidesPerView: 3
       },
     },

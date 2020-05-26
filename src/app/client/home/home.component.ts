@@ -46,7 +46,7 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
       new ScrollMagic.Scene({
         triggerElement: '#trigger2',
         triggerHook: 0,
-        offset: -200,
+        offset: -400,
         duration: 10000
       })
         .setClassToggle("hr.center", "open")

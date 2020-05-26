@@ -2,7 +2,7 @@
     position: absolute;
     top: calc(3vh + 2vw + 20vh - 2vw - 6vh);
     width: 100%;
-    font-weight: 700;
+    font-size: calc(1.8vw + 3.2vh);
 }
 
 img {

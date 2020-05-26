@@ -1,47 +1,76 @@
 <div class="light-background">
     <div class="big-padding">
         <div class="padding-bottom-6 large-text text-center">Program minden alkalomra</div>
-        <div class="padding-bottom-4 row">
+        <div class="padding-bottom-4 row middle-text">
             <div class="col-md-4 col-12 text-center">
-                <img src="https://img77.uenicdn.com/image/upload/v1544069388/service_images/shutterstock_741549076.jpg" alt="">
-                <h2 class="padding-top-2 padding-bottom-4">Szülinapi buli</h2>
+                <img src="../../../../assets/pictures/our-services/birthday.png" alt="">
+                <div class="padding-top-2 padding-bottom-4 font-weight-bold">Szülinapi buli</div>
             </div>
             <div class="col-md-4 col-12 text-center">
-                <img src="https://img77.uenicdn.com/image/upload/v1544069388/service_images/shutterstock_741549076.jpg" alt="">
-                <h2 class="padding-top-2 padding-bottom-4">Legénybúcsú</h2>
+                <img src="../../../../assets/pictures/our-services/husband.png" alt="">
+                <div class="padding-top-2 padding-bottom-4 font-weight-bold">Legénybúcsú</div>
             </div>
             <div class="col-md-4 col-12 text-center" id="trigger2">
-                <img src="https://img77.uenicdn.com/image/upload/v1544069388/service_images/shutterstock_741549076.jpg" alt="">
-                <h2 class="padding-top-2 padding-bottom-4">Csapatépítés</h2>
+                <img src="../../../../assets/pictures/our-services/business.png" alt="">
+                <div class="padding-top-2 padding-bottom-4 font-weight-bold">Csapatépítés</div>
             </div>
         </div>
         <hr class="orange center padding-bottom-4">
         <div class="padding-bottom-6 large-text text-center">Program minden alkalomra</div>
-        <div class="padding-bottom-4 row">
-            <div class="col-md-4 col-12 text-center">
+        <div class="padding-bottom-4 row middle-text">
+            <div class="col-md-4 col-12 text-center padding-bottom-2">
+                <div class="padding-bottom-2 middle-text font-weight-bold">Változatos pályák</div>
                 <img src="https://img77.uenicdn.com/image/upload/v1544069388/service_images/shutterstock_741549076.jpg" alt="">
-                <div class="padding-top-2 padding-bottom-2 middle-text">Változatos pályák</div>
-                <div class="padding-bottom-4 middle-text text-center">A 3 különböző pályánkon kipróbálhatjátok magatokat gyors és intenzív, vagy akár lassú és taktikusabb környzetben.</div>
+                <div class="padding-top-2 padding-bottom-4 middle-text text-center font-italic">A 3 különböző pályánkon kipróbálhatjátok magatokat gyors és intenzív, vagy akár lassú és taktikusabb környzetben.</div>
+                <div 
+                    [routerLink]="['/map']"
+                    class="cbtn cbtn-one small dark small-display">
+                    <span>Pályáink</span>
+                </div>
             </div>
-            <div class="col-md-4 col-12 text-center">
+            <div class="col-md-4 col-12 text-center padding-bottom-2">
+                <div class="padding-bottom-2 font-weight-bold">Minőségi felszerelés</div>
                 <img src="https://img77.uenicdn.com/image/upload/v1544069388/service_images/shutterstock_741549076.jpg" alt="">
-                <div class="padding-top-2 padding-bottom-2">Minőségi felszerelés</div>
-                <div class="padding-bottom-4 middle-text text-center">Jó minőségű, gyakran karbantartott felszerelést biztosítunk játékosainknak.</div>
+                <div class="padding-top-2 padding-bottom-4 middle-text text-center font-italic">Jó minőségű, gyakran karbantartott felszerelést biztosítunk játékosainknak.</div>
+                <div 
+                    [routerLink]="['/prices']"
+                    fragment="equipments"
+                    class="cbtn cbtn-one small dark small-display">
+                    <span>Felszerelés</span>
+                </div>
             </div>
-            <div class="col-md-4 col-12 text-center" id="trigger2">
+            <div class="col-md-4 col-12 text-center padding-bottom-2" id="trigger2">
+                <div class="padding-bottom-2 font-weight-bold">Sokszínű játékmódok</div>
                 <img src="https://img77.uenicdn.com/image/upload/v1544069388/service_images/shutterstock_741549076.jpg" alt="">
-                <div class="padding-top-2 padding-bottom-2">Sokszínű játékmódok</div>
-                <div class="padding-bottom-4 middle-text text-center">Nálunk mindegyik pályán több játékmód közül válogathattok, így különböző célokért is megmérkőzhettek.</div>
+                <div class="padding-top-2 padding-bottom-4 middle-text text-center font-italic">Nálunk mindegyik pályán több játékmód közül válogathattok, így különböző célokért is megmérkőzhettek.</div>
+                <div 
+                    [routerLink]="['/game-modes']"
+                    class="cbtn cbtn-one small dark small-display">
+                    <span>Játékmódok</span>
+                </div>
             </div>
         </div>
-        <!-- <hr class="orange center padding-bottom-4">
-        <div class="padding-bottom-4 text-center middle-text">Kényelmesen foglalhatsz otthonodból online felületünkön keresztül.</div>
-        <div class="text-center">
-            <div
-                class="cbtn cbtn-one dark big"
-                [routerLink]="['/booking']">
-                <span>Foglalj most</span>
+        <div class="row big-display">
+            <div class="col-md-4 text-center">
+                <div 
+                    [routerLink]="['/map']"
+                    class="cbtn cbtn-one small dark">
+                    <span>Pályák</span>
+                </div>
+            </div><div class="col-md-4 text-center">
+                <div 
+                    [routerLink]="['/prices']"
+                    fragment="equipments"
+                    class="cbtn cbtn-one small dark">
+                    <span>Felszerelés</span>
+                </div>
+            </div><div class="col-md-4 text-center">
+                <div 
+                    [routerLink]="['/game-modes']"
+                    class="cbtn cbtn-one small dark">
+                    <span>Játékmódok</span>
+                </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>

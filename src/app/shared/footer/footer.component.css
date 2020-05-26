@@ -17,8 +17,15 @@ div {
 
 img {
     width: 60%;
+    cursor: pointer;
 }
 
 img.icon {
     width: 50px;
+}
+@media screen and (min-width: 721px) {
+    .middle-col {
+        border-left: 2px solid #d3531a;
+        border-right: 2px solid #d3531a;
+    }
 }

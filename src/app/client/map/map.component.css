@@ -1,5 +1,5 @@
 .page-header {
-    font-weight: 700;
+  font-size: calc(1.8vw + 3.2vh);
 }
 
 .backdrop {
