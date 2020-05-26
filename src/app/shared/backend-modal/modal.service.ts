@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Modal } from './modal.model';
 import { AcceptCookieService } from '../cookie/cookie.service';
+import { HttpClient } from '@angular/common/http';
+import { map, tap, catchError } from 'rxjs/operators';
+import { ErrorHandleService } from '../error-handle.service';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ModalService {
@@ -9,7 +14,8 @@ export class ModalService {
     modal: Modal = null;
 
     constructor(private cookieService: CookieService,
-                private acceptCookieS: AcceptCookieService)
+                private acceptCookieS: AcceptCookieService,
+                private http: HttpClient, private errorHandler: ErrorHandleService)
     {
         this.acceptCookieS.answered
             .subscribe((accepted) => {
@@ -20,25 +26,37 @@ export class ModalService {
                 }
             });
     }
-    checkModal(): Modal {
+    checkModal() {
         if (!this.acceptCookieS.accepted) {
-            this.fetchModal();
-            return this.modal;
+            return this.fetchModal();
         }
         const cookieExists: boolean = this.cookieService.check('modal');
         if (!cookieExists) {
-            this.fetchModal();
             let date = new Date();
             date.setMinutes(date.getMinutes() + 60);
             this.cookieService.set( 'modal', 'modal viewed', date);
+            return this.fetchModal();
         }
-        return this.modal;
+        return new Observable();
     }
 
     fetchModal() {
         //backend kérés
+        return this.http.get<{modal: Modal}>('api/modals/today')
+            .pipe(
+                map((responseData)=> {
+                    return responseData.modal;
+                }),
+                tap((modal)=> {
+                    this.modal = modal;
+                }),
+                catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                })
+            );
 
-        this.modal = new Modal('Nyitási akció', 'Június 15-ig mindenki 20% százalék kedvezményt kap!',
-        '../../../../assets/pictures/paintball.jpg');
+        // this.modal = new Modal('Nyitási akció', 'Június 15-ig mindenki 20% százalék kedvezményt kap!',
+        // '../../../../assets/pictures/paintball.jpg');
     }
 }

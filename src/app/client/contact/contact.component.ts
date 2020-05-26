@@ -1,27 +1,40 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { ErrorHandleService } from 'src/app/shared/error-handle.service';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
 
   @ViewChild('f') submitForm: NgForm;
   @ViewChild('scrollTo') thanksElement: ElementRef;
   submitted: boolean = false;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(private http: HttpClient, private errorHandler: ErrorHandleService) { }
 
   onSubmit() {
-    this.submitted = true;
-    console.log(JSON.stringify(this.submitForm.value));
-    this.submitForm.reset();
-    this.scrollTop();
+    const body = {
+      name: this.submitForm.form.controls.name.value,
+      email: this.submitForm.form.controls.email.value,
+      text: this.submitForm.form.controls.text.value
+    };
+    this.http.post('/api/messages/', body)
+      .pipe(
+        catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+          this.errorHandler.newError(errorRes.error.error);
+          return throwError(errorRes);
+      }))
+      .subscribe(() => {
+        this.submitted = true;
+      });
+      this.submitForm.reset();
+      this.scrollTop();
   }
 
   newMessage() {

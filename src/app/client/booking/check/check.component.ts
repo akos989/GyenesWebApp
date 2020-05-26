@@ -65,7 +65,7 @@ export class CheckComponent implements OnInit, OnDestroy {
           responseData => {
             this.isLoading = false;
             this.reservationService.submitted = true;
-            this.router.navigate(['/booking/confirm']);
+            this.router.navigate(['/confirm']);
           },
           (errorRes: {error: {error: {error: string, message: any}}}) => {
               this.isLoading = false;
@@ -73,6 +73,10 @@ export class CheckComponent implements OnInit, OnDestroy {
           }
         );    
     }
+  }
+
+  touch() {
+    this.submitForm.form.controls.admission.markAsTouched();
   }
 
   ngOnDestroy() {

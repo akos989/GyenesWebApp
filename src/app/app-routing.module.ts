@@ -37,13 +37,11 @@ const routes: Routes = [
       PackageResolver, 
       ReservationResolver, 
       NoDateResolver
-    },
-    children:[
-      {
-        path: 'confirm', component: ConfirmationComponent,
-        canActivate: [ConfirmGuard], canDeactivate: [CanDeactivateGuard]
-      }
-    ]
+    }
+  },
+  {
+    path: 'confirm', component: ConfirmationComponent,
+    canActivate: [ConfirmGuard], canDeactivate: [CanDeactivateGuard]
   },
   { path: 'contact', component: ContactComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'szechenyi', component: SzechenyiComponent, resolve:{small: SmallHeaderResolver} },
