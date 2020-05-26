@@ -255,14 +255,14 @@ hr.left.open {
     line-height: 85px;
     height: 90px;
     width: 80%;
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .cbtn.small {
     line-height: 65px;
     height: 70px;
     width: 150px;
-    font-size: 20px;
+    font-size: 25px;
 }
 }
 
@@ -441,11 +441,19 @@ hr.left.open {
     pointer-events: none;
 }
 
-/* @font-face {
-    font-family: logoFont;
-    src: url(sansation_light.woff);
+@font-face {
+    font-family: luloFont;
+    src: url(./assets/fonts/lulo-clean.otf);
+}
+@font-face {
+    font-family: luloFontFull;
+    src: url(./assets/fonts/lulo-clean.ttf);
 }
 
-div {
-    font-family: myFirstFont;
-} */
+.lulo {
+    font-family: luloFont;
+}
+
+.lulo-full {
+    font-family: luloFontFull;
+}

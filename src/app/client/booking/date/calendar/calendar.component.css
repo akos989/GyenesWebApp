@@ -27,12 +27,6 @@ span.selected {
     background-color: green;
 }
 
-span.today.closed {
-    background-color: rgba(255, 166, 0, 0.8);
-    pointer-events: none;
-    cursor: default;
-}
-
 .flx {
     display: flex;
     justify-content: space-between;

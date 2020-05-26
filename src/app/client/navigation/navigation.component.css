@@ -28,14 +28,17 @@
     .nav-box {
         top: calc(14vh + 8vw);
     }
+    .padding {
+        padding-bottom: calc(2vw + 2vh);
+    }
 }
 @media screen and (min-width: 721px) {
     .nav-box {
         top: calc(40vh);
     }
-}
-.padding {
-    padding-bottom: calc(0.5vw + 0.2vh);
+    .padding {
+        padding-bottom: calc(1vw + 0.5vh);
+    }
 }
 
 .nav-box-lines div a {
