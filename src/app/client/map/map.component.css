@@ -48,26 +48,27 @@ img {
 }
 @media (max-aspect-ratio: 320/480) and (max-width: 800px), (max-aspect-ratio: 321/481) and (min-aspect-ratio: 320/480) {
   img {
-    margin-top: 5vh;
+    margin-bottom: 15vh;
+    margin-top: calc(30vh - 12vh);
     width: 100%;
     height: auto;
     object-fit: cover;
     -moz-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
     -webkit-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg); /* IE 9 */
+    -ms-transform: rotate(-90deg); 
     transform: rotate(-90deg);
   }
   .togglers-container {
       position: absolute;
       left: 50%;
       width: 20%;
-      top: 35%;
-      height: 50%;
+      top: calc(30vh - 12vh);
+      height: 60vh;
   }
   .trench-toggle{
     position: absolute;
-    top: 0%;
+    top: 25%;
   }  
   .competition-toggle{
     position: absolute;
@@ -75,7 +76,7 @@ img {
   }  
   .city-toggle{
     position: absolute;
-    top: 100%;
+    top: 75%;
   }
 }
 #map-navigation div {
