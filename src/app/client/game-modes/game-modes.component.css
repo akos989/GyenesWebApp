@@ -3,7 +3,7 @@
     top: calc(3vh + 2vw + 1.9vh);
     background-color: rgb(32, 32, 32);
     padding-top: 2vh;
-    border-bottom: 3px solid rgb(209, 81, 26);
+    border-bottom: calc(0.05vw + 0.3vh) solid rgb(209, 81, 26);
     z-index: 40;
 }
 
@@ -31,7 +31,7 @@ img {
 }
 
 hr.orange.small {
-    border-top: 1px solid rgba(209, 81, 26, 0.8);
+    border-top: calc(0.025vw + 0.15vh) solid rgba(209, 81, 26, 0.8);
 }
 
 @media screen and (min-width: 1301px) {

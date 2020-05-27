@@ -18,7 +18,10 @@ import { ConfirmationComponent } from './client/booking/confirmation/confirmatio
 import { CanDeactivateGuard } from './client/booking/confirmation/deactivate-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {
+    path: '', redirectTo: '/home', pathMatch: 'full'
+    // ,    resolve:{}
+  },
   { path: 'home', component: HomeComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'map', component: MapComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'prices', component: PricesComponent,
@@ -34,8 +37,8 @@ const routes: Routes = [
     component: BookingComponent,
     resolve:{
       small: SmallHeaderResolver, 
-      PackageResolver, 
-      ReservationResolver, 
+      PackageResolver,
+      ReservationResolver,
       NoDateResolver
     }
   },

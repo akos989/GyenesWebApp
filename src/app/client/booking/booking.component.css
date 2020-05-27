@@ -1,6 +1,6 @@
 .button-sticky {
     position: sticky;
-    top: calc(3vh + 2vw + 1.8vh + 4.85vh);
+    top: calc(5vh + 1.9vw + 4.85vh);
     width: 100%;
     background-color: rgb(32, 32, 32);
     z-index: 50;

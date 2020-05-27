@@ -15,8 +15,8 @@
 <ng-template appPlaceholder></ng-template>
 <app-header></app-header>
 <div style="width: 100%;">
-    <div *ngIf="isLoading" style="position: fixed; top: 50vh; left: 50vw;">
-        <div>Loading...</div>
+    <div *ngIf="isLoading">
+        <app-loading-spinner></app-loading-spinner>
     </div>
     <div *ngIf="!isLoading">
         <router-outlet></router-outlet>

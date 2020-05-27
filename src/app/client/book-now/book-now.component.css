@@ -5,6 +5,9 @@
     font-weight: 700;
     text-align: center;
 }
+.middle-top-text {
+    font-size: calc(1vw + 3.2vh);
+}
 
 img {
     width: 100%;
