@@ -15,7 +15,7 @@
             <span
                 *ngIf="reservationForm.get('name').invalid &&
                     reservationForm.get('name').touched"
-                class="help-block">
+                class="help-block small-text">
                 Név megadása kötelező!
             </span>
 
@@ -32,7 +32,7 @@
             </div>
             <span
                 *ngIf="(reservationForm.get('email').invalid && reservationForm.get('email').touched)"
-                class="help-block">
+                class="help-block small-text">
                 Helyes email cím megadása kötelező!
             </span>        
 
@@ -51,7 +51,7 @@
             <span
                 *ngIf="reservationForm.get('phoneNumber').invalid &&
                     reservationForm.get('phoneNumber').touched"
-                class="help-block">
+                class="help-block small-text">
                 Telefonszám megadása kötelező!
             </span>
 
@@ -72,7 +72,7 @@
             <span
                 *ngIf="reservationForm.get('playernumber').invalid &&
                     reservationForm.get('playernumber').touched"
-                class="help-block">
+                class="help-block small-text">
                 {{playerNumError}}!
             </span>
 

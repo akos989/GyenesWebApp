@@ -21,11 +21,11 @@ img {
 }
 
 img.icon {
-    width: 50px;
+    width: 5vh;
 }
 @media screen and (min-width: 721px) {
     .middle-col {
-        border-left: 2px solid #d3531a;
-        border-right: 2px solid #d3531a;
+        border-left: calc(0.05vw + 0.3vh) solid #d3531a;
+        border-right: calc(0.05vw + 0.3vh) solid #d3531a;
     }
 }

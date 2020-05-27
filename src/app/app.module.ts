@@ -55,6 +55,7 @@ import { DescriptionCardComponent } from './shared/description-card/description-
 import { TrenchMapComponent } from './client/map/trench-map/trench-map.component';
 import { ModalComponent } from './shared/backend-modal/modal/modal.component';
 import { CookieComponent } from './shared/cookie/cookie.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -102,7 +103,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     DescriptionCardComponent,
     TrenchMapComponent,
     ModalComponent,
-    CookieComponent
+    CookieComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

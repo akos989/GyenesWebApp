@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, tap, catchError } from 'rxjs/operators';
+import { map, tap, catchError, delay } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 
@@ -41,6 +41,7 @@ export class NoDatesService {
                     this.errorHandler.newError(errorRes.error.error);
                     return throwError(errorRes);
                 })
+                // , delay(4000)
             );
 
         // this.noDates = [
