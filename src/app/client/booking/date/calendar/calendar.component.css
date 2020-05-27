@@ -98,11 +98,20 @@ hr.small {
     }
 }
 
-.custom-container {
-    position: relative;
-    left: 15%;
-    width: 70%;
-}
+@media screen and (min-width: 721px) {
+    .container-custom {
+        position: relative;
+        width: 60%;
+        left: 20%;
+    }
+  }
+  @media screen and (max-width: 720px) {
+    .container-custom {
+        position: relative;
+        width: 100%;
+        left: 0%;
+    }
+  }
 
 @media screen and (max-width: 600px) {
     .custom-container {
