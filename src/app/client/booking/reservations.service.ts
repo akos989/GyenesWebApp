@@ -8,6 +8,7 @@ import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { Subject } from 'rxjs';
 import { AcceptCookieService } from 'src/app/shared/cookie/cookie.service';
+import { CookieService } from 'ngx-cookie-service';
 
 class Hour {
     constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -22,7 +23,8 @@ export class ReservationService {
 
     constructor(private packageService: PackageService, private http: HttpClient,
                 private errorHandler: ErrorHandleService,
-                private acceptCookiesS: AcceptCookieService) {}
+                private acceptCookiesS: AcceptCookieService,
+                private cookieService: CookieService) {}
     currReservationUpdated = new Subject<Reservation>();
 
     private _currentReservation: Reservation = null;   
@@ -31,6 +33,9 @@ export class ReservationService {
         if (this._currentReservation == null) {
             if (this.acceptCookiesS.accepted)
                 this.retrieveFromLocalStorage();
+        }
+        if (!this._currentReservation) {
+            this._currentReservation = new Reservation('1', null, null, null, null, null, null, null);
         }
         return this._currentReservation;
     }
@@ -43,8 +48,32 @@ export class ReservationService {
     
     //backendbe felvenni és onnan lekérni
     gunNumber: number = 35;
-    submitted: boolean = false;
     
+    private _submitted: boolean = false;
+    public get submitted(): boolean {
+        if (!this._submitted && this.acceptCookiesS.accepted) {
+            const submitCookieValue: string = this.cookieService.get('reservation-submitted');
+            if (submitCookieValue && submitCookieValue === 'true') {                
+                this._submitted = true;
+            }
+        }
+        return this._submitted;
+    }
+    public set submitted(v : boolean) {
+        this._submitted = v;
+        if (this.acceptCookiesS.accepted) {
+            let date = new Date(this._currentReservation.date);
+            this.cookieService.set( 'reservation-submitted', (v ? 'true' : 'false'), date);
+        }
+    }
+    makeNewReservation() {
+        const newReservation = this.currentReservation;
+        newReservation.date = null;
+        newReservation.packageId = null;
+        newReservation.playerNumber = null;
+        this.currentReservation = newReservation;
+    }
+
     reservations: Reservation[] = [];
 
     loadReservations() {
@@ -97,10 +126,12 @@ export class ReservationService {
         const hours: Hour[] = [];
         for ( let hour = 8; hour <= 17; hour++ ) {
             let tmpPlayerNumber: number = this._currentReservation.playerNumber;
+            let intersectionNumber: number = 0;
             const reservations = this.getReservationsOnSelectedDate(selectedDate);
             for( let reservation of reservations ) {
                 if ( this.intersect(hour, reservation) ) {
                     tmpPlayerNumber += reservation.playerNumber;
+                    intersectionNumber++;
                 }
             }
             let tmpHour: Hour;
@@ -113,6 +144,8 @@ export class ReservationService {
             } else {
                 tmpHour = (new Hour(hour, 'f', 0));
             }
+            if (intersectionNumber >= 2)
+                tmpHour.type = 'f';
             if (this.isSmallerThanToday(selectedDate, hour))
                 tmpHour.type = 't';
             hours.push(tmpHour);

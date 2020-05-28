@@ -13,3 +13,7 @@ img{
         display: none;
     }
 }
+img.services {
+    width: 70%;
+    border-radius: 25px;
+}
