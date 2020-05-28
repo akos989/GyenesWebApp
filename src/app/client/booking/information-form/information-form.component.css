@@ -1,8 +1,8 @@
  input.ng-invalid.ng-touched {
-  border-bottom: calc(0.025vw + 0.15vh) solid red;
+  border-bottom: calc(0.05vw + 0.3vh) solid red;
 }
 input.ng-valid {
-  border-bottom: calc(0.025vw + 0.15vh) solid green;
+  border-bottom: calc(0.05vw + 0.3vh) solid green;
 }
 
 .card {
@@ -28,7 +28,7 @@ input.ng-valid {
     width: 100%;
     border: none;
     border-radius: 0;
-    border-bottom: calc(0.025vw + 0.15vh) solid rgb(255, 235, 204);
+    border-bottom: calc(0.05vw + 0.3vh) solid rgb(255, 235, 204);
   }
   input:focus,
   textarea:focus {
@@ -38,8 +38,8 @@ input.ng-valid {
   input.notempty ~ label, 
   textarea:focus ~ label,
   textarea:valid ~ label {
-    top: -25px;
-    font-size: 19px;
+    top: -3vh;
+    font-size: 2vh;
     color: rgb(149, 147, 146);
   }
   
@@ -71,7 +71,7 @@ input.ng-valid {
   }
   .bar:before {
     content: '';
-    height: calc(0.025vw + 0.15vh);
+    height: calc(0.08vw + 0.4vh);
     width: 0;
     bottom: 0px;
     position: absolute;

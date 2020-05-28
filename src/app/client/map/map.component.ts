@@ -13,7 +13,7 @@ export class MapComponent implements OnInit {
   fields: Field[] = [
     new Field(
       'Elhagyott Város', 'Mindent megtalálni benne, ami egy elhagyott városba való. Blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
-      'city-map.jpg',
+      'city.jpg',
       [
         new Equipment('Autóroncs', 'Sok széttört autó', 'wreckage.png'),
         new Equipment('Minibusz', 'fsdf pályán...', 'minibus.jpg'),
@@ -27,7 +27,7 @@ export class MapComponent implements OnInit {
     ),
     new Field(
       'Versenypálya', 'Szabványos versenypálya... blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
-      'competition-map.jpg',
+      'competition.jpg',
       [
         new Equipment('Cső', 'Cső amibe bele lehet bújni', 'pipe.png'),
         new Equipment('Hordók', 'Sok van elszórva a pályán...', 'petrol.png'),
@@ -39,7 +39,7 @@ export class MapComponent implements OnInit {
     ),
     new Field(
       'Árkos pálya', 'Ezen a pályán blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
-      'trenches-map.jpg',
+      'trench.jpg',
       [
         new Equipment('Vár', 'Ez egy vár, ahol el lehet bújni.', 'tower.png'),
         new Equipment('Árok', 'Ezz a pálya jellegzetessége...', 'trench.jpg'),

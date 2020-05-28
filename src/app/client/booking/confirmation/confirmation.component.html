@@ -1,9 +1,17 @@
 <div class="component dark">
+    <app-page-header
+        [src]="'levi.jpg'" [title]="''"
+    ></app-page-header>
     <div class="medium-padding">
-        <div class="container card col-md-8 col-12 text-center">
+        <div class="container-custom card1 text-center padding-bottom-4 padding-top-4">
             <div class="middle-top-text pb-5">Kedves {{ reservation.name }}!</div>
             <div class="py-5 middle-text">Nagyon köszönjük a foglalást találkozunk...</div>
-            <div class="middle-text">A foglalás adatait emailben elküldtük...</div>
-            <div class="larger-text">KÉP</div>
+            <div class="middle-text padding-bottom-10">A foglalás adatait emailben elküldtük...</div>
+            <div 
+            (click)="newReservation()"
+            class="cbtn cbtn-one small">
+            <span>Új foglalás</span>
         </div>
+    </div>
+</div>
 </div>

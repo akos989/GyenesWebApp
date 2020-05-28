@@ -22,8 +22,15 @@ export class PackagesComponent implements OnInit {
     this.packages = this.packageService.packages;
     if (this.reservationService.currentReservation &&
         this.reservationService.currentReservation.packageId !== null) {
-          this.selectedTypeId = this.packageService.findType(
-            this.reservationService.currentReservation.packageId).id;
+          const type: PackageType = this.packageService.findType(
+            this.reservationService.currentReservation.packageId);
+          if (type)
+            this.selectedTypeId = type.id;
+          else {
+            const reservation = this.reservationService.currentReservation;
+            reservation.packageId = null;
+            this.reservationService.currentReservation = reservation;
+          }            
         }
   }
 

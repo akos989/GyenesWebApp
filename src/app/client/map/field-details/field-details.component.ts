@@ -14,7 +14,7 @@ export class FieldDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.field.imgPath = '../../../../assets/pictures/' + this.field.imgPath;
+    this.field.imgPath = '../../../../assets/pictures/maps/' + this.field.imgPath;
   }
 
   onClose() {

@@ -15,7 +15,8 @@ import { PackageResolver } from './client/packages/package.resolver';
 import { NoDateResolver } from './client/booking/date/no-date.resolver';
 import { ConfirmGuard } from './client/booking/confirmation/confirm-guard.service';
 import { ConfirmationComponent } from './client/booking/confirmation/confirmation.component';
-import { CanDeactivateGuard } from './client/booking/confirmation/deactivate-guard.service';
+import { BookingGuard } from './client/booking/can-booking-activate.service';
+import { CurrentReservationResolver } from './client/booking/current-reservation-resolver.service';
 
 const routes: Routes = [
   {
@@ -35,16 +36,18 @@ const routes: Routes = [
   { 
     path: 'booking',
     component: BookingComponent,
+    canActivate: [BookingGuard],
     resolve:{
       small: SmallHeaderResolver, 
       PackageResolver,
       ReservationResolver,
-      NoDateResolver
+      NoDateResolver,
+      CurrentReservationResolver
     }
   },
   {
     path: 'confirm', component: ConfirmationComponent,
-    canActivate: [ConfirmGuard], canDeactivate: [CanDeactivateGuard]
+    canActivate: [ConfirmGuard], resolve:{small: SmallHeaderResolver}
   },
   { path: 'contact', component: ContactComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'szechenyi', component: SzechenyiComponent, resolve:{small: SmallHeaderResolver} },
