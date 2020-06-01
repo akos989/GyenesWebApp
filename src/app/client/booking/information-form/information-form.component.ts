@@ -42,17 +42,17 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
           this.reservationForm.get('playernumber').markAsTouched();
         this.bookingSevice.onInfoChange(
           this.reservationForm.valid, this.reservationForm.get('playernumber').value);
-      });    
+      });
 
     const currentReservation = this.reservationService.currentReservation;
 
     if ( currentReservation && currentReservation.name ) {
       this.editMode = true;
       this.prevData = currentReservation;
-    }
-    
+    }    
     this.initForm();
-    // document.getElementById('numberinput').addEventListener("mousewheel", function(event){ this.blur() });
+    if (this.editMode)
+      this.ngAfterViewChecked();
   }
 
   initForm() {  
@@ -118,7 +118,6 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
             this.onSubmit();
             this.bookingSevice.onInfoChange(this.reservationForm.valid,
               this.currentData.playerNumber);
-          //  if (this.reservationForm.valid)
          }
     }
   }
