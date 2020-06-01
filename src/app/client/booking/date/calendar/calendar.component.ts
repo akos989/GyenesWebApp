@@ -86,7 +86,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
           }
           tmpDate = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate() + 1);
           maxDays--;
-          if(this.checkSelection(tmpDate)) {
+          if(this.checkSelection(tmpDay.date)) {
             tmpDay.selected = true;
             this.bookinService.onDateSelected(true);
           }
@@ -181,9 +181,9 @@ export class CalendarComponent implements OnInit, OnDestroy {
   private checkSelection(date: Date): boolean {
     const currReservation = this.reservationService.currentReservation;
     if (currReservation && currReservation.date) {
-      if ((date.getFullYear() === currReservation.date.getFullYear()) &&
-          (date.getMonth() === currReservation.date.getMonth()) &&
-          ((date.getDate() - 1) === currReservation.date.getDate()))
+      const rdate = new Date(currReservation.date.getTime());
+      rdate.setHours(0);
+      if (rdate.getTime() === date.getTime())
       {
         return true;
       }
