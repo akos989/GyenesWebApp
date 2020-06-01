@@ -16,7 +16,15 @@ import { NoDateResolver } from './client/booking/date/no-date.resolver';
 import { ConfirmGuard } from './client/booking/confirmation/confirm-guard.service';
 import { ConfirmationComponent } from './client/booking/confirmation/confirmation.component';
 import { BookingGuard } from './client/booking/can-booking-activate.service';
-import { CurrentReservationResolver } from './client/booking/current-reservation-resolver.service';
+import { LoginComponent } from './shared/login/login.component';
+import { OperatorComponent } from './operators/operators.component';
+import { ReservationsComponent } from './operators/reservations/reservations.component';
+import { MessagesComponent } from './operators/messages/messages.component';
+import { UsersComponent } from './operators/users/users.component';
+import { NoDatesComponent } from './operators/no-dates/no-dates.component';
+import { ModalsComponent } from './operators/modals/modals.component';
+import { MyProfileComponent } from './operators/my-profile/my-profile.component';
+import { OperatorPackagesComponent } from './operators/operator-packages/operator-packages.component';
 
 const routes: Routes = [
   {
@@ -49,7 +57,23 @@ const routes: Routes = [
   },
   { path: 'contact', component: ContactComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'szechenyi', component: SzechenyiComponent, resolve:{small: SmallHeaderResolver} },
-  { path: 'privacy', component: PrivacyStatementComponent, resolve:{small: SmallHeaderResolver} }
+  { path: 'privacy', component: PrivacyStatementComponent, resolve:{small: SmallHeaderResolver} },
+  { path: 'login', component: LoginComponent, resolve:{small: SmallHeaderResolver} },
+  { 
+        path: 'operators', component: OperatorComponent,
+        resolve: {small: SmallHeaderResolver},
+        //resolver
+        children: [
+            { path: '', pathMatch: 'full', component: ReservationsComponent },
+            { path: 'messages', component: MessagesComponent },
+            { path: 'packages', component: OperatorPackagesComponent },
+            { path: 'users', component: UsersComponent },
+            { path: 'no-dates', component: NoDatesComponent },
+            { path: 'pop-ups', component: ModalsComponent },
+            { path: 'my-profile', component: MyProfileComponent },
+            
+        ]
+    }
 ];
 
 @NgModule({

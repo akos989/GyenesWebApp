@@ -459,3 +459,26 @@ hr.left.open {
 .archivo-black {
     font-family: archivoBlack;
 }
+.card {
+    background-color: #333534;
+    border-radius: 25px;
+}
+@media screen and (min-width: 721px) {
+    .container-custom {
+        position: relative;
+        width: 60%;
+        left: 20%;
+    }
+}
+@media screen and (max-width: 720px) {
+    .container-custom {
+        position: relative;
+        width: 100%;
+        left: 0%;
+    }
+}
+.help-block {
+    color: red;
+    font-weight: bolder;
+    letter-spacing: 1px;
+}

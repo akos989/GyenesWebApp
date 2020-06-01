@@ -1,0 +1,25 @@
+<div *ngIf="open" (click)="openNav()" class="backdrop"></div>
+<nav>
+    <img [routerLink]="['/home']" src="../../../assets/pictures/paintball-logo.png" alt="">
+    <div 
+        (click)="openNav()"
+        class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <ul 
+        [ngClass]="{'open': open}"
+        class="nav-links small-text">
+        <li><a
+            (click)="open = false"
+            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+            [routerLink]="['/operators/']">Foglalások</a></li>
+        <li><a routerLinkActive="active" (click)="open = false" [routerLink]="['/operators/messages']">Üzenetek</a></li>
+        <li><a routerLinkActive="active" (click)="open = false" [routerLink]="['/operators/packages']">Csomagok</a></li>
+        <li><a routerLinkActive="active" (click)="open = false" [routerLink]="['operators/users']">Operátorok</a></li>
+        <li><a routerLinkActive="active" (click)="open = false" [routerLink]="['operators/no-dates']">Zárt dátumok</a></li>
+        <li><a routerLinkActive="active" (click)="open = false" [routerLink]="['operators/pop-ups']">Pop-ups</a></li>
+        <li><a routerLinkActive="active" (click)="open = false" [routerLink]="['operators/my-profile']">Profilom</a></li>
+    </ul>
+</nav>

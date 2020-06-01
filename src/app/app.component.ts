@@ -7,6 +7,7 @@ import { PlaceholderDirective } from './shared/placeholder.directive';
 import { ModalComponent } from './shared/backend-modal/modal/modal.component';
 import { Modal } from './shared/backend-modal/modal.model';
 import { AcceptCookieService } from './shared/cookie/cookie.service';
+import { HeaderService } from './client/header/header.service';
 
 @Component({
   selector: 'app-root',
@@ -22,15 +23,18 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   modalCloseSub: Subscription;
   checkModalSub: Subscription;
   isLoading = false;
-  errorMessage: string = null;
+  errorMessage: string = '';
   @ViewChild(PlaceholderDirective, {static: false}) modalHost: PlaceholderDirective;
   modal: Modal = null;
   cookies: boolean;
+  authHeaderSub: Subscription;
+  authHeader: boolean = false;
 
   constructor(private _router: Router, private errorHandler: ErrorHandleService,
               private modalService: ModalService, private renderer: Renderer2,
               private cFResolver: ComponentFactoryResolver,
-              private acceptCookieS: AcceptCookieService) {}
+              private acceptCookieS: AcceptCookieService,
+              private headerService: HeaderService) {}
 
   ngOnInit() {
     this.routerEvents();
@@ -44,6 +48,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe(()=> {
         this.cookies = false;
       });
+    this.authHeaderSub = this.headerService.auth
+      .subscribe((authHeader) => {
+        this.authHeader = authHeader;
+      });
   }
 
   ngAfterViewInit() {
@@ -53,11 +61,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         if (this.modal)
           this.displayModal();
       });
-    // setTimeout(()=> {
-    //   this.modal = this.modalService.checkModal();
-    //   if (this.modal)
-    //     this.displayModal();
-    // }, 0);
   }
 
   routerEvents() {
@@ -93,11 +96,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   hideError() {
-    this.errorMessage = null;
+    this.errorMessage = '';
   }
 
   ngOnDestroy() {
     this.errorSub.unsubscribe();
+    this.authHeaderSub.unsubscribe();
     if (this.modalCloseSub)
       this.modalCloseSub.unsubscribe();
   }

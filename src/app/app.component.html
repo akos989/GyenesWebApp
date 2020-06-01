@@ -1,6 +1,6 @@
 <div
     class="error"
-    *ngIf="errorMessage">
+    *ngIf="errorMessage !== ''">
     <div class="row">
         <div class="col-9 middle-text" style="color: rgb(255, 235, 204);">
             {{errorMessage}}
@@ -13,8 +13,12 @@
     </div>    
 </div>
 <ng-template appPlaceholder></ng-template>
-<app-header></app-header>
-<div style="width: 100%;">
+<div *ngIf="!authHeader; else authHeaderBlock">
+    <app-header></app-header>
+</div>
+<ng-template #authHeaderBlock>
+    <app-operator-header></app-operator-header>
+</ng-template><div style="width: 100%;">
     <div *ngIf="isLoading">
         <app-loading-spinner></app-loading-spinner>
     </div>

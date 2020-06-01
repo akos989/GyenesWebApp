@@ -46,7 +46,10 @@ export class ErrorHandleService {
             break;
             case 'DATE_CLOSED':
                 message = 'A kiválasztott dátumon sajnos nem üzemel a pálya!';
-            break;            
+            break;
+            case 'NO_FOR_TODAY':
+                message = '';
+            break;
             default:
                 message = 'Valami hiba történt, próbálja újra!';
                 this.router.navigate(['/home']);
