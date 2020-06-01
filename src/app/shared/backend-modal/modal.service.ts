@@ -48,15 +48,13 @@ export class ModalService {
                     return responseData.modal;
                 }),
                 tap((modal)=> {
-                    this.modal = modal;
+                    if (modal.name !== '')
+                        this.modal = modal;
                 }),
                 catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
                     this.errorHandler.newError(errorRes.error.error);
                     return throwError(errorRes);
                 })
             );
-
-        // this.modal = new Modal('Nyitási akció', 'Június 15-ig mindenki 20% százalék kedvezményt kap!',
-        // '../../../../assets/pictures/paintball.jpg');
     }
 }

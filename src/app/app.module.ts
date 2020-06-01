@@ -56,6 +56,16 @@ import { TrenchMapComponent } from './client/map/trench-map/trench-map.component
 import { ModalComponent } from './shared/backend-modal/modal/modal.component';
 import { CookieComponent } from './shared/cookie/cookie.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { LoginComponent } from './shared/login/login.component';
+import { OperatorHeaderComponent } from './operators/operator-header/operator-header.component';
+import { MessagesComponent } from './operators/messages/messages.component';
+import { ModalsComponent } from './operators/modals/modals.component';
+import { MyProfileComponent } from './operators/my-profile/my-profile.component';
+import { NoDatesComponent } from './operators/no-dates/no-dates.component';
+import { OperatorPackagesComponent } from './operators/operator-packages/operator-packages.component';
+import { ReservationsComponent } from './operators/reservations/reservations.component';
+import { UsersComponent } from './operators/users/users.component';
+import { OperatorComponent } from './operators/operators.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -104,7 +114,17 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     TrenchMapComponent,
     ModalComponent,
     CookieComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    LoginComponent,
+    OperatorHeaderComponent,
+    MessagesComponent,
+    ModalsComponent,
+    MyProfileComponent,
+    NoDatesComponent,
+    OperatorPackagesComponent,
+    ReservationsComponent,
+    UsersComponent,
+    OperatorComponent
   ],
   imports: [
     BrowserModule,

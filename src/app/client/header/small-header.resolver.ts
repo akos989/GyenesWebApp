@@ -1,4 +1,4 @@
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HeaderService } from './header.service';
 import { Injectable } from '@angular/core';
@@ -10,6 +10,13 @@ export class SmallHeaderResolver implements Resolve<boolean> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
       Observable<boolean> | Promise<boolean> | boolean {
+        const routePart: string = route.url[0].path.split('/')[0];
+        if (routePart === 'operators') {
+            this.headerService.authPage(true);
+            return false;
+        } else {
+            this.headerService.authPage(false);
+        }
         if (route.url[0].path === '' || route.url[0].path === 'home') {
             this.headerService.newPage(false);
             return false;

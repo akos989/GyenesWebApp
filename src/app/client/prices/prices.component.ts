@@ -21,37 +21,37 @@ export class PricesComponent implements OnInit, AfterViewInit, OnDestroy {
     new Equipment(
       'Paintball fegyver',
       'A legjobb markereket használjuk, amit a piac biztosít. Típusa: Tippman 98 Rental.',
-      'color-gun.png'
+      'felszereles/color-gun.png'
     ),
     new Equipment(
       'Palack',
       'Sűrített levegős palack. Típusa: Tippman HP Basic 48/3000 psi.',
-      'air-color.png'
+      'felszereles/air-color.png'
     ),
     new Equipment(
       'Tárak',
       'Tippman tár 200 golyós férőhellyel.',
-      'bullets-color.png'
+      'felszereles/bullets-color.png'
     ),
     new Equipment(
       'Maszkok',
       'Vforce Gen3 thermal lencsével.',
-      'color-mask.png'
+      'felszereles/color-mask.png'
     ),
     new Equipment(
       'Overál',
       '',
-      'overall-color.png'
+      'felszereles/overall-color.png'
     ),
     new Equipment(
       'Kesztyű',
       '',
-      'color-gloves.png'
+      'felszereles/color-gloves.png'
     ),
     new Equipment(
       'Védőmellény',
       '',
-      'vest-color.png'
+      'felszereles/vest-color.png'
     ) 
   ];
 
