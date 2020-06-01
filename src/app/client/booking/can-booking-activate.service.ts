@@ -14,7 +14,6 @@ export class BookingGuard implements CanActivate {
         :Observable<boolean> | Promise<boolean> | boolean 
     {
             if (this.reservationService.submitted) {
-
                 this.activeRoute.fragment.subscribe((value)=> {
                     if (value) {
                         if (value === 'booking')

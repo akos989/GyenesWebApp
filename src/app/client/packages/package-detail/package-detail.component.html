@@ -4,16 +4,13 @@
     (click)="continue()"
     [ngClass]="{selected: selected}">
     <mat-card-header>
-        <div class="middle-text pb-2">
-            {{ package.name }}
+        <div class="middle-text pb-2 font-weight-bold">
+            {{ package.fromNumberLimit }} - {{ package.toNumberLimit }} fő
+            <div class="hr mt-2 mb-2"></div>
         </div>
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src="../../../../assets/pictures/package.jpg" alt="package">
     <mat-card-content>
-            <div class="small-text text-center font-weight-bold"> Létszám: </div>
-            <div class="small-text  text-center">
-                {{ package.fromNumberLimit }} - {{ package.toNumberLimit }} fő
-            </div>
             <div class="small-text text-center font-weight-bold"> Alapár: </div>
             <div class="small-text  text-center">
                 {{ package.basePrice }} Ft
@@ -31,8 +28,11 @@
     <mat-card-actions>
         <div class="text-center">
             <div class="col-12 pb-3">
-                <div (click)="openDialog($event)" class="cbtn cbtn-one mini" style="z-index: 40;">
+                <div (click)="openDialog($event)" class="cbtn cbtn-one mini" style="z-index: 40; margin-bottom: 1.6vh;">
                     <span>Részletek</span>
+                </div>
+                <div (click)="reserv()" class="cbtn cbtn-one mini" style="z-index: 40;">
+                    <span> {{ routeUrl === 'prices' ? 'Lefoglalom' : 'Választ' }} </span>
                 </div>
             </div>
         </div>

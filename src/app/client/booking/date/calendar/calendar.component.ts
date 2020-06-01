@@ -158,7 +158,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   selectDay(day: Day) {
     if (day.off) return;
-    // this.dateService.onSelectionChanged(date);
     this.renderer.addClass(document.body, 'modal-open');
     const componentFactory =
       this.cFResolver.resolveComponentFactory(TimeTableComponent);

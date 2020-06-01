@@ -6,6 +6,7 @@ import { ReservationService } from '../../booking/reservations.service';
 import { PackageModalComponent } from './modal/package-modal.component';
 import { PlaceholderDirective } from 'src/app/shared/placeholder.directive';
 import { BookingService } from '../../booking/booking.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-package-detail',
@@ -19,10 +20,13 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
   selectSub: Subscription;
   @ViewChild(PlaceholderDirective, {static: false}) modalHost: PlaceholderDirective;
   private closeSub: Subscription;
+  routeUrl: string = '';
 
   constructor(private reservationService: ReservationService,
               private cFResolver: ComponentFactoryResolver,
-              private renderer: Renderer2, private bookingService: BookingService) { }
+              private renderer: Renderer2, private bookingService: BookingService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     const currentReservation = this.reservationService.currentReservation;
@@ -39,7 +43,8 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
         else {
           this.selected = false;
         }
-      })
+      });
+    this.routeUrl = this.route.snapshot.url[0].path;
   }
 
   continue() {
@@ -69,6 +74,12 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
         this.continue();
       }
     });
+  }
+
+  reserv() {
+    this.continue();
+    if (this.routeUrl === 'prices')
+      this.router.navigate(['/booking']);
   }
 
   ngOnDestroy() {

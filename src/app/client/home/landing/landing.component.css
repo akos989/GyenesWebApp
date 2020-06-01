@@ -72,11 +72,14 @@ img.scroll-down {
 
 .page {
     height: 100vh; width: 100%;
+    color: black;
 }
 @media screen and (min-width: 721px) {
     .page {
         background-image: url(../../../../assets/pictures/home/home-top-2.jpg);
         background-position: 20% 40%;
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    
     }
 }
 
@@ -85,5 +88,7 @@ img.scroll-down {
     .page {
         background-image: url(../../../../assets/pictures/home/home-top-phone.jpg);
         background-position: 50% 35%;
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    
     }
 }

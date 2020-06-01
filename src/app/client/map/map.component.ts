@@ -12,42 +12,40 @@ export class MapComponent implements OnInit {
   open: boolean[] = [false, false, false];
   fields: Field[] = [
     new Field(
-      'Elhagyott Város', 'Mindent megtalálni benne, ami egy elhagyott városba való. Blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
+      'Elhagyott Város', 'A legnagyobb pályánk, ami 4000 négyzetméteren terül el, akár 35 fő is játszhat rajta. Itt próbálhatjátok ki a legtöbb játékmódot, mint a Capure the Point, TDM, Capture the Flag stb..',
       'city.jpg',
       [
-        new Equipment('Autóroncs', 'Sok széttört autó', 'wreckage.png'),
-        new Equipment('Minibusz', 'fsdf pályán...', 'minibus.jpg'),
-        new Equipment('Minibusz 2', 'Autogumikbólsdf kirakott fedezék', 'minibus.png'),
-        new Equipment('Konténer', 'Több gumi egymásraasdf', 'container.png'),
-        new Equipment('Ifa', 'A híres IFA', 'ifa.jpg'),
-        new Equipment('Kukakonténer', 'Asdfas híres kuka', 'rubbish.png'),
-        new Equipment('Raklapháromszög', 'lkajsdflkj', 'pallet.png')
+        new Equipment('Autóroncs', '', 'elemek/wreckage.png'),
+        new Equipment('Kisbusz', '', 'elemek/minibusz.png'),
+        new Equipment('Konténer', '', 'elemek/container.png'),
+        new Equipment('Ifa', '', 'elemek/ifa.png'),
+        new Equipment('Szemeteskonténer', '', 'elemek/kuka-min.png'),
+        new Equipment('Raklapháromszög', '', 'elemek/raklap-min.png')
       ],
       '','city', 7
     ),
     new Field(
-      'Versenypálya', 'Szabványos versenypálya... blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
+      'Speedball pálya', '5 vs 5 szabvány speedball versenypálya, de kisebb és nagyobb csapatoknak is kiváló.',
       'competition.jpg',
       [
-        new Equipment('Cső', 'Cső amibe bele lehet bújni', 'pipe.png'),
-        new Equipment('Hordók', 'Sok van elszórva a pályán...', 'petrol.png'),
-        new Equipment('Gumi háromszög', 'Autogumikból kirakott fedezék', 'tire-triangle.png'),
-        new Equipment('Autó gumi torony', 'Több gumi egymásra téve', 'tires.png'),
-        new Equipment('Elválasztó fal', 'Elválasztja a két játékrészt', 'separator.png')
+        new Equipment('Cső', '', 'elemek/cso-min.png'),
+        new Equipment('Hordók', '', 'elemek/petrol.png'),
+        new Equipment('Gumi háromszög', '', 'elemek/gumi3-min.png'),
+        new Equipment('Autó gumi torony', '', 'elemek/tires.png')
       ],
-      'Nincs sok különböző akadály de ebből sok van :D', 'competition', 5
+      'A nagy csapatok, kisebb csoportokra osztva, körmérkőzést játszhatnak.', 'competition', 5
     ),
     new Field(
-      'Árkos pálya', 'Ezen a pályán blajalsdjflajsdflkjasd flkasjd flaksdjf lkasdj faklsdj flkasdfj laskdjf askldfj askldfj askldfj askldfj askldfj.',
+      'Árkos pálya', 'A pályán a vár elfoglalása a cél, amely az árokrendszeren, dombokon és más akadályon keresztül kísérelhető meg.',
       'trench.jpg',
       [
-        new Equipment('Vár', 'Ez egy vár, ahol el lehet bújni.', 'tower.png'),
-        new Equipment('Árok', 'Ezz a pálya jellegzetessége...', 'trench.jpg'),
-        new Equipment('Gumi háromszög', 'Autogumikból kirakott fedezék', 'tire-triangle.png'),
-        new Equipment('Gerenda X', 'Kettő is van belőle a pályán...', 'lumber-x.png'),
-        new Equipment('Homokkupac', 'Nagy homokkupac kiváló fedezéknek', 'mound.jpg')
+        new Equipment('Árokrendszer', '', 'elemek/trench-min.png'),
+        new Equipment('Vár', '', 'elemek/var-min.png'),
+        new Equipment('Gumi háromszög', '', 'elemek/gumi3-min.png'),
+        new Equipment('Fa X', '', 'elemek/fa_x-min.png'),
+        new Equipment('Domb', '', 'elemek/mound.png')
       ],
-      'Laskdjfaslfjs dasldkfj asldkfj  askldjf askldfj.', 'trench', 6
+      '', 'trench', 6
     )
 ];
 

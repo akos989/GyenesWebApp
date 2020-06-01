@@ -3,12 +3,51 @@
     <div
         *ngIf="ready"
         class="row">
-        <div class="col-xl-8 col-12 text-left">
+        <div class="col-xl-5 col-12 pt-3 top50">
             <div>
-                <div class="text-center pb-2 pt-2 font-weight-bold">
-                    Megadott foglalási adatok
+                <div class="text-large" >Foglalás jováhagyása</div>
+                <form (ngSubmit)="onSubmit()" #f="ngForm">
+                    <div class="pb-5">
+                        Kijelentem, hogy a foglalási feltételeket elfogadom.......
+                    </div>
+                    <label 
+                        (click)="touch()"
+                        class="label">
+                        <div class="toggle">
+                            <input
+                            class="toggle-state" type="checkbox"
+                            name="admission"
+                            ngModel
+                            required #admissionBox="ngModel">
+                            <div class="toggle-inner">
+                                <div class="indicator"></div>
+                            </div>
+                            <div class="active-bg"></div>
+                        </div>
+                        <div class="label-text">Elfogadom</div>
+                        </label>
+                </form>
+            </div>
+                <div class="text-center pt-5 pb-5">
+                    <div
+                        *ngIf="admissionBox.valid"
+                        (click)="onSubmit()"
+                        class="cbtn cbtn-one small">
+                        <span>Jóváhagyás</span>
+                    </div>
                 </div>
-                <div class="hr mb-5"></div>
+            <div
+                *ngIf="isLoading"
+                class="text-center">
+                Betöltés...
+            </div>
+            <div class="hr d-xl-none my-5"></div>
+        </div>
+        <div class="col-xl-7 col-12 text-left first-col small-text">
+            <div class="text-center padding-bottom-8 pt-2 font-weight-bold">
+                Megadott foglalási adatok
+            </div>
+            <div>
                 <div class="row pb-lg-3 text-center">
                     <div class="col-lg-4 col-12 text-lg-right font-weight-bold">
                         Név:
@@ -61,7 +100,7 @@
                             Időtartam: {{ package.duration }} óra
                         </div>
                         <div>
-                            Kezdőár: {{ package.basePrice }} Ft
+                            Alapár: {{ package.basePrice }} Ft
                         </div>
                         <div>
                             Ft / lövedék: {{ package.bulletPrice }} Ft
@@ -82,45 +121,6 @@
                 </div>
             </div>
             <div class="hr d-xl-none my-5"></div>
-        </div>
-        <div class="col-xl-4 col-12 top50">
-            <div>
-                <div class="text-large" >Foglalás jováhagyása</div>
-                <form (ngSubmit)="onSubmit()" #f="ngForm">
-                    <div class="pb-5">
-                        Kijelentem, hogy a foglalási feltételeket elfogadom.......
-                    </div>
-                    <label 
-                        (click)="touch()"
-                        class="label">
-                        <div class="toggle">
-                            <input
-                            class="toggle-state" type="checkbox"
-                            name="admission"
-                            ngModel
-                            required #admissionBox="ngModel">
-                            <div class="toggle-inner">
-                                <div class="indicator"></div>
-                            </div>
-                            <div class="active-bg"></div>
-                        </div>
-                        <div class="label-text">Elfogadom</div>
-                        </label>
-                </form>
-            </div>
-                <div class="text-center pt-5 pb-5">
-                    <div
-                        *ngIf="admissionBox.valid"
-                        (click)="onSubmit()"
-                        class="cbtn cbtn-one small">
-                        <span>Jóváhagyás</span>
-                    </div>
-                </div>
-            <div
-                *ngIf="isLoading"
-                class="text-center">
-                Betöltés...
-            </div>
         </div>
     </div>
 </div>

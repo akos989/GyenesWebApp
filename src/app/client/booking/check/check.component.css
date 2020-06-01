@@ -27,6 +27,9 @@ hr.small {
         position: relative;
         top: 15vh;
     }
+    .first-col {
+      border-left: 3px solid rgb(209, 81, 26);
+    }
 }
   .label {
     display: inline-flex;

@@ -1,41 +1,8 @@
 <div class="padding-top-4">
-    <!-- <mat-horizontal-stepper id="packages-stepper" #stepper>
-        <mat-step label="Normal">
-            <div class="text-center pb-5">
-                <div
-                    (click)="next(stepper)"
-                    class="cbtn cbtn-one small dark">
-                    <span>Akciós</span>
-                </div>
-            </div>
-            <div class="row">
-                <div *ngFor="let package of getNotSale()"
-                    class="col-xl-4 col-md-6 px-md-5 col-lg-6 col-12 pb-5">
-                    <app-package-detail [package]="package"></app-package-detail>
-                </div>
-            </div>
-        </mat-step>
-        <mat-step label="Akciós">
-            <div class="text-center pb-5">
-                <div 
-                    (click)="back(stepper)"
-                    class="cbtn cbtn-one small dark">
-                    <span>Normál</span>
-                </div>
-            </div>
-            <div class="row">
-                <div *ngFor="let package of getSale()"
-                    class="col-xl-4 col-md-6 px-md-5 col-lg-6 col-12 pb-5">
-                    <app-package-detail [package]="package"></app-package-detail>
-                </div>
-            </div>
-        </mat-step>
-    </mat-horizontal-stepper> -->
-
     <mat-accordion #packages>
         <mat-expansion-panel
             *ngFor="let packageType of getPackgeTypes()"
-            [expanded]="packageType.id === selectedTypeId">
+            [expanded]="isExtended(packageType)">
             <mat-expansion-panel-header (click)="scrollListTop()">
                 <mat-panel-title>
                     <div class="middle-text font-weight-bold">
@@ -45,7 +12,7 @@
             </mat-expansion-panel-header>    
             <div class="row justify-content-center">
                 <div *ngFor="let package of packageType.packages"
-                    class="col-xl-3 col-md-4 col-sm-6 col-12 px-md-5 pb-5">
+                    class="col-xl-3 col-md-4 col-sm-6 col-12 pb-5">
                     <app-package-detail [package]="package"></app-package-detail>
                 </div>
             </div>

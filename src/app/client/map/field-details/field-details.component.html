@@ -7,22 +7,35 @@
         <div class="middle-top-text text-center pb-2 pt-5 font-weight-bold">{{field.name}}</div>
         <hr class="orange pb-5">
         <div class="middle-text"> {{field.description}} </div>
-        <hr class="orange small">
-        <div class="middle-top-text pb-5 pt-3">Elemek</div>
-        <div class="row">
-            <div
-                *ngFor="let equipment of field.equipments"
-                class="col-xl-4 col-sm-6 col-12 pb-5">
-                <app-description-card [equipment]="equipment"></app-description-card>
-            </div>
-        </div>
+        <hr *ngIf="field.optDescription !== ''" class="orange small">
         <div 
-            *ngIf="field.optDescription !== ''"
-            class="middle-text pb-5"> {{field.optDescription}} </div>     
-            <!-- lehet small-text is ki kell majd próbálni hogy egyáltalán kell e -->
-        <app-slider 
-        [root]="field.imgRoot"
-        [number]="field.imgNumber"
-        [mode]="1"></app-slider>
+        *ngIf="field.optDescription !== ''"
+        class="middle-text pb-5"> {{field.optDescription}} </div>
+        <mat-accordion>
+            <mat-expansion-panel
+                class="small-padding"
+                [expanded]="false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="middle-text font-weight-bold">
+                            Elemek
+                        </div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="row">
+                    <div
+                        *ngFor="let equipment of field.equipments"
+                        class="col-xl-4 col-sm-6 col-12 pb-5">
+                        <app-description-card [equipment]="equipment"></app-description-card>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <div class="pt-5">
+            <app-slider
+                [root]="field.imgRoot"
+                [number]="field.imgNumber"
+                [mode]="1"></app-slider>
+        </div>
     </div>
 </div>

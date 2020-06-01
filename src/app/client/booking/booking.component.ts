@@ -1,15 +1,16 @@
-import { Component, OnInit, OnDestroy, AfterViewInit} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { BookingService } from './booking.service';
 import { Subscription } from 'rxjs';
 import { ReservationService } from './reservations.service';
 import { MatStepper } from '@angular/material/stepper';
+import { PackageService } from '../packages/package.service';
 
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
-export class BookingComponent implements OnInit, OnDestroy, AfterViewInit {
+export class BookingComponent implements OnInit, OnDestroy {
 
   private packageSub: Subscription;
   private infoChaneSub: Subscription;
@@ -20,17 +21,26 @@ export class BookingComponent implements OnInit, OnDestroy, AfterViewInit {
   infoNext: boolean = false;
 
   constructor(private bookingService: BookingService,
-              private reservationService: ReservationService) { }
+              private reservationService: ReservationService,
+              private packageService: PackageService) { }
 
   ngOnInit(): void {
     const currentReservation = this.reservationService.currentReservation;
     if ( currentReservation ) {
-      if (currentReservation.packageId)
-        this.packageNext = true;
-      if (currentReservation.name)
-        this.infoNext = true;
-    }
-
+      if (currentReservation.packageId) {
+          if (!(this.packageService.findType(currentReservation.packageId) &&
+                this.packageService.findById(currentReservation.packageId))
+              ) 
+          {
+            currentReservation.packageId = null;
+              this.reservationService.currentReservation = currentReservation;
+          } else
+            this.packageNext = true;
+        }
+        if (currentReservation.name)
+          this.infoNext = true;
+      }
+    
     this.packageSub = this.bookingService.packageSelected
       .subscribe( result => {
         if (result && result != "")
@@ -54,10 +64,6 @@ export class BookingComponent implements OnInit, OnDestroy, AfterViewInit {
         }, 0);
       });
   }
-
-  ngAfterViewInit() {
-  }
-
   goForward(stepper: MatStepper) {
     stepper.next();
     this.scrollTop();

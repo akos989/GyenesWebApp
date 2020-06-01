@@ -34,6 +34,14 @@ export class PackagesComponent implements OnInit {
         }
   }
 
+  isExtended(packageType: PackageType): boolean {
+    if (this.selectedTypeId && this.selectedTypeId === packageType.id)
+      return true;
+    if (!this.selectedTypeId && packageType.name === 'Normál')
+      return true;
+    return false;
+  }
+
   getPackgeTypes(): PackageType[] {
     return this.packages;
   }

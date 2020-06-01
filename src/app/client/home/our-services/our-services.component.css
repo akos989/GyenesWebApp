@@ -16,4 +16,5 @@ img{
 img.services {
     width: 70%;
     border-radius: 25px;
+    margin-bottom: 2vh;
 }

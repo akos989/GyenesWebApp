@@ -72,7 +72,6 @@ export class PackageService {
     }
 
     findType(id: string): PackageType {
-        this.loadFromBackend();
         for(const type of this.packages)
             for (const p of type.packages) {
                 if (p._id === id)
@@ -82,7 +81,6 @@ export class PackageService {
     }
 
     findById(id: string): Package {
-        this.loadFromBackend();
         for(const type of this.packages)
             for (const p of type.packages) {
                 if (p._id === id)

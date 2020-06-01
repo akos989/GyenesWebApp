@@ -1,17 +1,12 @@
 <div 
-    class="component-home">
-    <app-landing></app-landing>    
+    class="component dark">
+    <app-landing></app-landing>
     <app-best-track id="trigger"></app-best-track>
     <app-our-services></app-our-services>
-    <div class="dark-background">
-        <div class="big-padding large-text">
-          <div class="padding-bottom-4">Legjobb képeink:</div>
-            <app-slider 
-                [root]="'home'"
-                [number]="7"></app-slider>    
+    <div class="medium-padding large-text">
+        <app-slider 
+            [root]="'home'"
+            [number]="7"></app-slider>    
         </div>
-        <div class="component dark">
-            <app-book-now></app-book-now>
-        </div>
-    </div>
+    <app-book-now></app-book-now>
 </div>

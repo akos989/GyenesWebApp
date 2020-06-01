@@ -1,9 +1,19 @@
 .cookie-body {
     position: fixed;
-    bottom: 0px;
-    width: 100%;
-    left: 0px;
-    background-color: rgba(45, 100, 200, .95);
+    bottom: 2vw;
+    width: 23%;
+    left: 75%;
+    background-color: rgba(0, 0, 0, .75);
     z-index: 200;
     color: rgb(255, 235, 204);
+    border-radius: 25px;
+    padding: 15px;
+}
+@media screen and (max-width: 720px) {
+    .cookie-body {
+        bottom: 0vw;
+        width: 100%;
+        left: 0px;
+        border-radius: 25px 25px 0px 0px;
+    }
 }

@@ -25,7 +25,7 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
       new ScrollMagic.Scene({
         triggerElement: '#trigger',
         triggerHook: 0,
-        offset: -100,
+        offset: -230,
         duration: 10000
       })
         .setClassToggle("hr.left", "open")
@@ -36,7 +36,7 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
       new ScrollMagic.Scene({
           triggerElement: '#trigger',
           triggerHook: 0,
-          offset: -100,
+          offset: -230,
           duration: 10000
         })
         .setClassToggle("#best-track-map", "open")

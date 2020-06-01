@@ -196,13 +196,6 @@ hr.left.open {
     background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8));
     color: rgb(32, 32, 32);
 }
-
-.dark-background {
-    width: 100%;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8));
-    color: rgb(255, 235, 204);
-}
-
 .big-padding {
     position: relative;
     padding-top: 25vh;
@@ -261,10 +254,13 @@ hr.left.open {
     padding-top: 0.3vh;
 }
 .cbtn.mini {
+    display: block;
     line-height: 3.75vh;
     height: 4vh;
-    width: 80%;
+    width: auto;
     font-size: 2.5vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
 }
 .cbtn-one {
     position: relative;
@@ -449,11 +445,17 @@ hr.left.open {
     font-family: luloFontFull;
     src: url(./assets/fonts/lulo-clean.ttf);
 }
-
+@font-face {
+    font-family: archivoBlack;
+    src: url(./assets/fonts/ArchivoBlack.otf);
+}
 .lulo {
     font-family: luloFont;
 }
 
 .lulo-full {
     font-family: luloFontFull;
+}
+.archivo-black {
+    font-family: archivoBlack;
 }

@@ -46,7 +46,7 @@ export class LandingComponent implements AfterViewInit {
   scrollDown() {
     const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     window.scrollTo({
-      top: (vh + 200),
+      top: (vh),
       behavior: 'smooth'
     });
   }

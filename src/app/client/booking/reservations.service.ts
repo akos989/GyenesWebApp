@@ -201,14 +201,13 @@ export class ReservationService {
         
     private retrieveFromLocalStorage() {
         const lStorageReserv =
-        JSON.parse(localStorage.getItem('currentReservation'));
-
+            JSON.parse(localStorage.getItem('currentReservation'));
         if (lStorageReserv !== null && lStorageReserv !== "") {
             this._currentReservation = lStorageReserv;
             if ( lStorageReserv.date !== null && lStorageReserv.date !== '' ) {
                 this.setCurrentReservationDateFromString( lStorageReserv.date );
             }
-        }    
+        }
     }
 
     private setCurrentReservationDateFromString(dateString: string) {

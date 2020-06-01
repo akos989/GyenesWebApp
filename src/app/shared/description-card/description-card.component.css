@@ -1,5 +1,6 @@
 img {
-    height: 10vw;
+    height: 9vw;
+    object-fit: contain;
     -webkit-transition: .20s ease-in-out;
     -moz-transition: .20s ease-in-out;
     -o-transition: .20s ease-in-out;

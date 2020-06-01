@@ -21,7 +21,6 @@ import { CurrentReservationResolver } from './client/booking/current-reservation
 const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
-    // ,    resolve:{}
   },
   { path: 'home', component: HomeComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'map', component: MapComponent, resolve:{small: SmallHeaderResolver} },
@@ -41,8 +40,7 @@ const routes: Routes = [
       small: SmallHeaderResolver, 
       PackageResolver,
       ReservationResolver,
-      NoDateResolver,
-      CurrentReservationResolver
+      NoDateResolver
     }
   },
   {
