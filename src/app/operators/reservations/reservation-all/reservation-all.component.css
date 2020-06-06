@@ -1,0 +1,24 @@
+button {
+    height: 6vh;
+    width: 14vh;
+    font-size: 2.5vh;
+    background-color: rgb(209, 81, 26);
+    border: 0px;
+    border-radius: 5px;
+    color: blanchedalmond;
+    outline: none;
+}
+button:disabled {
+    pointer-events: none;
+    cursor: default;
+    background-color: rgba(209, 81, 26, 0.2);
+    color: darkslategray;
+}
+@media (hover: hover) {
+    button:hover {
+        background-color: rgba(209, 81, 26, 0.5);    
+    }
+    button:disabled {
+        background-color: rgba(209, 81, 26, 0.2);
+    }
+}

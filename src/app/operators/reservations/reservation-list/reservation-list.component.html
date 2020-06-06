@@ -1,0 +1,42 @@
+<div 
+    *ngIf="checkedNum > 0"
+    class="row py-3 sticky">
+    <div class="col-md-3 col-6 text-left">
+        <div 
+            (click)="checkAll()"
+            class="cbtn cbtn-one mini2">
+            <span>Összes {{allValue ? 'ki' : 'be'}}</span>
+        </div>
+    </div>
+    <div class="col-md-3 col-6 text-center middle-text">Kijelölve: {{checkedNum}}</div>
+    <div class="col-md-3 col-6 text-center">
+        <div 
+            (click)="onDelete()"
+            class="cbtn cbtn-one mini2">
+            <span>Törlés</span>
+        </div>
+    </div>
+    <div class="col-md-3 col-6 text-center">
+        <div 
+            (click)="onChangeActivation()"
+            class="cbtn cbtn-one mini2">
+            <span> {{ activeMode ? 'Archiválás' : 'Aktiválás' }} </span>
+        </div>
+    </div>
+</div>
+<form #f="ngForm">
+    <div
+        class="middle-text"
+        *ngFor="let reservation of reservations">
+        <label [for]="reservation._id" class="label">
+            <div class="row line">
+                <div class="col-2">
+                    <input type="checkbox" ngModel [name]="reservation._id" [id]="reservation._id" class="large-checkbox">
+                </div>
+                <div class="col-10">
+                    <app-reservation-details [reservation]="reservation"></app-reservation-details>
+                </div>
+            </div>
+        </label>
+    </div>
+</form>

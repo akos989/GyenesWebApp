@@ -13,11 +13,19 @@ export class OperatorHeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  openNav() {
+  toggleOpen(event) {
+    event.stopPropagation();
+    event.preventDefault();
     this.open = !this.open;
     if (this.open)
       this.renderer.addClass(document.body, 'modal-open');
     else
       this.renderer.removeClass(document.body, 'modal-open');
+  }
+  closeNav(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    this.open = false;
+    this.renderer.removeClass(document.body, 'modal-open');
   }
 }

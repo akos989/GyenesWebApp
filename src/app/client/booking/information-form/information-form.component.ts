@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnChanges, AfterViewChecked, AfterContentChecked, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -71,7 +71,8 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
     }
     this.reservationForm = new FormGroup({
       'name': new FormControl(name, Validators.required),
-      'email': new FormControl(email, [Validators.required, Validators.email]),
+      'email': new FormControl(email, [Validators.required, Validators.email,
+                                       Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ )]),
       'phoneNumber': new FormControl(phoneNumber, [Validators.required]),
       'playernumber': new FormControl(playernumber,
                                       [

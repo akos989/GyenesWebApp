@@ -1,0 +1,18 @@
+<div class="text-center pt-5">
+    <button [disabled]="activeMode" (click)="toggleActive(true, stepper)">Aktív</button>
+    <button [disabled]="!activeMode" (click)="toggleActive(false, stepper)">Archivált</button>
+</div>
+<mat-horizontal-stepper id="operator-reservations" linear #stepper>
+    <mat-step label="Aktív">
+        <div class="medium-padding">
+            <div class="middle-top-text text-center pb-5">Aktív foglalások</div>
+            <app-reservation-list [activeMode]="true"></app-reservation-list>
+        </div>
+    </mat-step>
+    <mat-step label="Archived">
+        <div class="medium-padding">
+            <div class="middle-top-text text-center pb-5">Archivált foglalások</div>
+            <app-reservation-list [activeMode]="false"></app-reservation-list>
+        </div>
+    </mat-step>    
+</mat-horizontal-stepper>

@@ -1,0 +1,14 @@
+<div 
+    class="row middle-text">
+    <div class="col-md-4 col-12">{{reservation.name}}</div>
+    <div class="col-md-4 col-12">
+        {{ reservation.date.toISOString().slice(0,10) }} {{reservation.date.toISOString().slice(11,16) }}
+    </div>
+    <div class="col-md-4 col-8">
+        <div 
+            (click)="openModal($event)"
+            class="cbtn cbtn-one mini2" style="z-index: 40;">
+            <span>Részletek</span>
+        </div>
+    </div>
+</div>
