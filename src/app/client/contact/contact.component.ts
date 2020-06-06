@@ -15,6 +15,7 @@ export class ContactComponent {
   @ViewChild('f') submitForm: NgForm;
   @ViewChild('scrollTo') thanksElement: ElementRef;
   submitted: boolean = false;
+  pattern = "/^(([^<>()\[\]\\.,;:\s@\x22]+(\.[^<>()\[\]\\.,;:\s@\x22]+)*)|(\x22.+\x22))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/"
 
   constructor(private http: HttpClient, private errorHandler: ErrorHandleService) { }
 

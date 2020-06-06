@@ -25,6 +25,10 @@ import { NoDatesComponent } from './operators/no-dates/no-dates.component';
 import { ModalsComponent } from './operators/modals/modals.component';
 import { MyProfileComponent } from './operators/my-profile/my-profile.component';
 import { OperatorPackagesComponent } from './operators/operator-packages/operator-packages.component';
+import { OperatorsReservationResolver } from './operators/reservations/operators-reservation-resolver.service';
+import { ReservationStartComponent } from './operators/reservations/reservation-start/reservation-start.component';
+import { ReservationAllComponent } from './operators/reservations/reservation-all/reservation-all.component';
+import { ReservationNewComponent } from './operators/reservations/reservation-new/reservation-new.component';
 
 const routes: Routes = [
   {
@@ -64,7 +68,24 @@ const routes: Routes = [
         resolve: {small: SmallHeaderResolver},
         //resolver
         children: [
-            { path: '', pathMatch: 'full', component: ReservationsComponent },
+            { 
+              path: '', pathMatch: 'full', component: ReservationsComponent,
+              resolve: { OperatorsReservationResolver },
+              children: [
+                { path: '', pathMatch: 'full', component: ReservationAllComponent},
+                { path: 'list', component: ReservationAllComponent},
+                {
+                  path: 'new', component: ReservationNewComponent,
+                  resolve: {
+                    PackageResolver,
+                    ReservationResolver,
+                    NoDateResolver
+                    // ,
+                    // EditReservationResolver
+                  }
+                }
+              ]
+            },
             { path: 'messages', component: MessagesComponent },
             { path: 'packages', component: OperatorPackagesComponent },
             { path: 'users', component: UsersComponent },

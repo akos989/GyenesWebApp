@@ -12,7 +12,7 @@ export class MapComponent implements OnInit {
   open: boolean[] = [false, false, false];
   fields: Field[] = [
     new Field(
-      'Elhagyott Város', 'A legnagyobb pályánk, ami 4000 négyzetméteren terül el, akár 35 fő is játszhat rajta. Itt próbálhatjátok ki a legtöbb játékmódot, mint a Capure the Point, TDM, Capture the Flag stb..',
+      'Elhagyott város', 'A legnagyobb pályánk, ami 4000 négyzetméteren terül el, akár 35 fő is játszhat rajta. Itt próbálhatjátok ki a legtöbb játékmódot, mint a Capure the Point, TDM, Capture the Flag stb..',
       'city.jpg',
       [
         new Equipment('Autóroncs', '', 'elemek/wreckage.png'),
@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
         new Equipment('Konténer', '', 'elemek/container.png'),
         new Equipment('Ifa', '', 'elemek/ifa.png'),
         new Equipment('Szemeteskonténer', '', 'elemek/kuka-min.png'),
-        new Equipment('Raklapháromszög', '', 'elemek/raklap-min.png')
+        new Equipment('Palánk', '', 'elemek/raklap-min.png')
       ],
       '','city', 7
     ),
@@ -36,13 +36,13 @@ export class MapComponent implements OnInit {
       'A nagy csapatok, kisebb csoportokra osztva, körmérkőzést játszhatnak.', 'competition', 5
     ),
     new Field(
-      'Árkos pálya', 'A pályán a vár elfoglalása a cél, amely az árokrendszeren, dombokon és más akadályon keresztül kísérelhető meg.',
+      'Vár és árok pálya', 'A pályán a vár elfoglalása a cél, amely az árokrendszeren, dombokon és más akadályon keresztül kísérelhető meg.',
       'trench.jpg',
       [
         new Equipment('Árokrendszer', '', 'elemek/trench-min.png'),
         new Equipment('Vár', '', 'elemek/var-min.png'),
         new Equipment('Gumi háromszög', '', 'elemek/gumi3-min.png'),
-        new Equipment('Fa X', '', 'elemek/fa_x-min.png'),
+        new Equipment('Barikád', '', 'elemek/fa_x-min.png'),
         new Equipment('Domb', '', 'elemek/mound.png')
       ],
       '', 'trench', 6

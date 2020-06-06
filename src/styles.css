@@ -42,6 +42,9 @@
     background-color: rgb(32, 32, 32);
     overflow: unset !important;
 }
+#operator-reservations .mat-horizontal-stepper-header-container {
+    display: none;
+}
 .mat-horizontal-stepper-header-container {
     background-color: rgb(32, 32, 32);
     height: 5vh;

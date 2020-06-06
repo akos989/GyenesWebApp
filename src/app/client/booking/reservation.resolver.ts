@@ -9,8 +9,7 @@ export class ReservationResolver implements Resolve<Reservation[]> {
     constructor(private reservationService: ReservationService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-       if (this.reservationService.reservations.length > 0) {
-           this.reservationService.loadReservations()
+        if (this.reservationService.reservations.length > 0) {
             return this.reservationService.reservations;
         } else {
             return this.reservationService.loadReservations();
