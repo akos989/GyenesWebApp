@@ -29,7 +29,7 @@ import { OperatorsReservationResolver } from './operators/reservations/operators
 import { ReservationAllComponent } from './operators/reservations/reservation-all/reservation-all.component';
 import { ReservationNewComponent } from './operators/reservations/reservation-new/reservation-new.component';
 import { NewReservationResolver } from './operators/reservations/reservation-new/new-reservation-resolver.service';
-import { resolve } from 'dns';
+import { AuthGuard } from './shared/login/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -63,11 +63,15 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'szechenyi', component: SzechenyiComponent, resolve:{small: SmallHeaderResolver} },
   { path: 'privacy', component: PrivacyStatementComponent, resolve:{small: SmallHeaderResolver} },
-  { path: 'login', component: LoginComponent, resolve:{small: SmallHeaderResolver} },
+  {
+    path: 'login', component: LoginComponent,
+    resolve:{small: SmallHeaderResolver},
+    canActivate: [AuthGuard]
+  },
   { 
         path: 'operators', component: OperatorComponent,
         resolve: {small: SmallHeaderResolver},
-        //resolver
+        canActivate: [AuthGuard],
         children: [
             { 
               path: '', component: ReservationsComponent,
