@@ -1,8 +1,10 @@
 <div class="component nooverflow dark">
-    <app-page-header
-        [src]="'booking.jpg'"
-        [title]="'Foglalj most'">
-    </app-page-header>
+    <div *ngIf="!operator">
+        <app-page-header
+            [src]="'booking.jpg'"
+            [title]="'Foglalj most'">
+        </app-page-header>
+    </div>
     <mat-horizontal-stepper id="stepper" linear #stepper>
         <div id="packageTrigger" class="medium-padding">
             <mat-step label="Csomag" [completed]="packageNext">
@@ -77,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <app-check></app-check>
+                <app-check [operator]="operator"></app-check>
             </mat-step>
         </div>
        </mat-horizontal-stepper>

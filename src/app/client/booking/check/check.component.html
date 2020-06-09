@@ -4,7 +4,7 @@
         *ngIf="ready"
         class="row">
         <div class="col-xl-5 col-12 pt-3 top50">
-            <div>
+            <div *ngIf="!operator">
                 <div class="text-large" >Foglalás jováhagyása</div>
                 <form (ngSubmit)="onSubmit()" #f="ngForm">
                     <div class="pb-5">
@@ -28,14 +28,14 @@
                         </label>
                 </form>
             </div>
-                <div class="text-center pt-5 pb-5">
-                    <div
-                        *ngIf="admissionBox.valid"
-                        (click)="onSubmit()"
-                        class="cbtn cbtn-one small">
-                        <span>Jóváhagyás</span>
-                    </div>
+            <div class="text-center pt-5 pb-5">
+                <div
+                    *ngIf="(submitForm && submitForm.form && submitForm.form.get('admission') && submitForm.form.get('admission').valid) || operator"
+                    (click)="onSubmit()"
+                    class="cbtn cbtn-one small">
+                    <span>{{!operator ? 'Jóváhagyás' : 'Mentés'}}</span>
                 </div>
+            </div>
             <div
                 *ngIf="isLoading"
                 class="text-center">

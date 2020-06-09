@@ -20,6 +20,8 @@ class Range {
 
 @Injectable({providedIn: 'root'})
 export class ReservationService {
+    
+    isOperatorEditing: boolean = false;
 
     constructor(private packageService: PackageService, private http: HttpClient,
                 private errorHandler: ErrorHandleService,
@@ -41,6 +43,7 @@ export class ReservationService {
     }
     public set currentReservation(value: Reservation) {
         this._currentReservation = value;
+        console.log(value)
         if (this.acceptCookiesS.accepted)
             this.saveToLocalStorage();
         this.currReservationUpdated.next(this._currentReservation);
@@ -86,8 +89,8 @@ export class ReservationService {
 
                     for (const reservation of responseData.reservations) {                    
                         reservationArray.push(new Reservation(
-                            null, null, null, null, reservation.playerNumber, null,
-                            reservation.packageId,
+                            reservation._id, null, null, null, reservation.playerNumber,
+                            null, reservation.packageId,
                             this.dateFromString(reservation.date.toString(), 0)
                         ));
                     }
@@ -129,7 +132,8 @@ export class ReservationService {
             let intersectionNumber: number = 0;
             const reservations = this.getReservationsOnSelectedDate(selectedDate);
             for( let reservation of reservations ) {
-                if ( this.intersect(hour, reservation) ) {
+                if ( reservation._id !== this._currentReservation._id &&
+                     this.intersect(hour, reservation) ) {
                     tmpPlayerNumber += reservation.playerNumber;
                     intersectionNumber++;
                 }
@@ -177,8 +181,10 @@ export class ReservationService {
             packageId: this._currentReservation.packageId,
             date: this.stringFromDate(this._currentReservation.date)
         };
-
-        return this.http.post('/api/reservations/', body);
+        if (!this.isOperatorEditing)
+            return this.http.post('/api/reservations/', body);
+        else 
+            return this.http.patch('/api/reservations/'+this._currentReservation._id, body);
     }
 
     private getReservationsOnSelectedDate(selectedDate: Date): Reservation[] {

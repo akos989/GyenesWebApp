@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { BookingService } from './booking.service';
 import { Subscription } from 'rxjs';
 import { ReservationService } from './reservations.service';
@@ -15,6 +15,8 @@ export class BookingComponent implements OnInit, OnDestroy {
   private packageSub: Subscription;
   private infoChaneSub: Subscription;
   private dateSelectSub: Subscription;
+
+  @Input() operator: boolean = false;
 
   packageNext: boolean = false;
   dateNext: boolean = false;
