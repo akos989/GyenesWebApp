@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FacebookModule } from 'ngx-facebook';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
@@ -71,6 +71,7 @@ import { ReservationDetailsComponent } from './operators/reservations/reservatio
 import { ReservationDetailsModalComponent } from './operators/reservations/reservation-details-modal/reservation-details-modal.component';
 import { ReservationAllComponent } from './operators/reservations/reservation-all/reservation-all.component';
 import { ReservationNewComponent } from './operators/reservations/reservation-new/reservation-new.component';
+import { AuthInterceptor } from './shared/login/auth-interceptor.service';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -156,6 +157,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     { 
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
