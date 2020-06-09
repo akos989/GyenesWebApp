@@ -1,6 +1,11 @@
-<div class="text-center pt-5">
-    <button [disabled]="activeMode" (click)="toggleActive(true, stepper)">Aktív</button>
-    <button [disabled]="!activeMode" (click)="toggleActive(false, stepper)">Archivált</button>
+<div class="row justify-content-end pt-5" style="width: 100%;">
+    <div class="col-4 text-center">
+        <button [disabled]="activeMode" (click)="toggleActive(true, stepper)">Aktív</button>
+        <button [disabled]="!activeMode" (click)="toggleActive(false, stepper)">Archivált</button>
+    </div>
+    <div class="col-4 text-right">
+        <button [routerLink]="['new']" class="round">+</button>
+    </div>
 </div>
 <mat-horizontal-stepper id="operator-reservations" linear #stepper>
     <mat-step label="Aktív">

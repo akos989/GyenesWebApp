@@ -1,1 +1,35 @@
-<p>reservation-details-modal works!</p>
+<div class="backdrop" (click)="onClose()"></div>
+<div class="alert-box">
+    <div class="middle-text close-x pb-3">
+       <span (click)="onClose()">X</span>
+    </div>
+    <div class="content middle-text">
+        <div class="font-weight-bold">Adatok</div>
+        <hr class="orange big">
+        <div class="font-weight-bold">Név:</div>
+        <div class="pb-4 font-italic">{{reservation.name}}</div>
+        <div class="font-weight-bold">Email:</div>
+        <div class="pb-4 font-italic">{{reservation.email}}</div>
+        <div class="font-weight-bold">Telefonszám:</div>
+        <div class="pb-4 font-italic">{{reservation.phoneNumber}}</div>
+        <div class="font-weight-bold">Játékosszám:</div>
+        <div class="pb-4 font-italic">{{reservation.playerNumber}} fő</div>
+        <div class="font-weight-bold">Dátum:</div>
+        <div class="pb-4 font-italic">
+            {{ reservation.date.toISOString().slice(0,10) }} {{reservation.date.toISOString().slice(11,16) }}
+        </div>
+        <div class="font-weight-bold">Csomag:</div>
+        <div>Alapár: {{package.basePrice}} Ft</div>        
+        <div>Golyóár: {{package.bulletPrice}} Ft/db</div>        
+        <div>Tartalmaz: {{package.includedBullets}} db</div>        
+        <div>Időtartam: {{package.duration}} óra</div>
+        <div
+            class="padding-top-2 padding-bottom-4">
+            <div
+                (click)="onEdit()"
+                class="cbtn cbtn-one small">
+                <span> Módosítás </span>
+            </div>
+        </div>
+    </div>
+</div>

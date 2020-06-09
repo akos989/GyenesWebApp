@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Reservation } from 'src/app/shared/models/reservation.model';
+import { PackageService } from 'src/app/client/packages/package.service';
+import { Package } from 'src/app/shared/models/package.model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-reservation-details-modal',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationDetailsModalComponent implements OnInit {
 
-  constructor() { }
+  @Input() reservation: Reservation;
+  package: Package;
+  close = new Subject<boolean>();
+  
+  constructor(private packageService: PackageService) { }
 
   ngOnInit(): void {
+    this.package = this.packageService.findById(this.reservation.packageId);
+  }
+  onClose() {
+    event.stopPropagation();
+    event.preventDefault();
+    this.close.next(false);
+  }
+  onEdit() {
+    event.stopPropagation();
+    event.preventDefault();
+    this.close.next(true);
   }
 
 }

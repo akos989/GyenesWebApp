@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ReservationService } from 'src/app/client/booking/reservations.service';
@@ -28,6 +28,7 @@ export class CheckComponent implements OnInit, OnDestroy {
   package: Package = null;
   packageType: PackageType = null;
   ready: boolean = false;
+  @Input() operator = false;
 
   constructor(private reservationService: ReservationService,
               private router: Router, private errorHandler: ErrorHandleService,
@@ -55,17 +56,22 @@ export class CheckComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    if (this.submitForm.form.controls.admission.valid &&
-        this.submitForm.form.controls.admission.touched)
+    if ((this.submitForm && this.submitForm.form.controls.admission.valid &&
+        this.submitForm.form.controls.admission.touched) || this.operator)
     {
       this.isLoading = true;
-      //ez majd http observable-t ad vissza és subscribe fog kelleni
       this.submitResultSub = this.reservationService.submitCurrentReservation()
         .subscribe(
           responseData => {
             this.isLoading = false;
-            this.reservationService.submitted = true;
-            this.router.navigate(['/confirm']);
+            if (!this.operator) {
+              this.router.navigate(['/confirm']);
+              this.reservationService.submitted = true;
+            }
+            else {
+              this.router.navigate(['/operators']);
+              this.reservationService.currentReservation = new Reservation('1', null, null, null, null, null, null, null);
+            }
           },
           (errorRes: {error: {error: {error: string, message: any}}}) => {
               this.isLoading = false;

@@ -69,7 +69,6 @@ import { OperatorComponent } from './operators/operators.component';
 import { ReservationListComponent } from './operators/reservations/reservation-list/reservation-list.component';
 import { ReservationDetailsComponent } from './operators/reservations/reservation-details/reservation-details.component';
 import { ReservationDetailsModalComponent } from './operators/reservations/reservation-details-modal/reservation-details-modal.component';
-import { ReservationStartComponent } from './operators/reservations/reservation-start/reservation-start.component';
 import { ReservationAllComponent } from './operators/reservations/reservation-all/reservation-all.component';
 import { ReservationNewComponent } from './operators/reservations/reservation-new/reservation-new.component';
 
@@ -134,7 +133,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReservationListComponent,
     ReservationDetailsComponent,
     ReservationDetailsModalComponent,
-    ReservationStartComponent,
     ReservationAllComponent,
     ReservationNewComponent
   ],
