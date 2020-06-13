@@ -1,0 +1,14 @@
+<div 
+    *ngIf="reservations.length > 0"
+    class="medium-padding">
+    <div class="middle-top-text text-center">
+        Új foglalások
+    </div>
+    <div class="middle-text">
+        <div *ngFor="let reservation of reservations">
+            <div class="line danger">
+                <app-reservation-details [reservation]="reservation"></app-reservation-details>
+            </div>
+        </div>
+    </div>
+</div>

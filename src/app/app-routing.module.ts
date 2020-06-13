@@ -30,6 +30,7 @@ import { ReservationAllComponent } from './operators/reservations/reservation-al
 import { ReservationNewComponent } from './operators/reservations/reservation-new/reservation-new.component';
 import { NewReservationResolver } from './operators/reservations/reservation-new/new-reservation-resolver.service';
 import { AuthGuard } from './shared/login/auth-guard.service';
+import { CurrentUserResolver } from './shared/login/current-user-resolver.service';
 
 const routes: Routes = [
   {
@@ -70,7 +71,7 @@ const routes: Routes = [
   },
   { 
         path: 'operators', component: OperatorComponent,
-        resolve: {small: SmallHeaderResolver},
+        resolve: {small: SmallHeaderResolver, currentUser: CurrentUserResolver},
         canActivate: [AuthGuard],
         children: [
             { 

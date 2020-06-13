@@ -72,6 +72,7 @@ import { ReservationDetailsModalComponent } from './operators/reservations/reser
 import { ReservationAllComponent } from './operators/reservations/reservation-all/reservation-all.component';
 import { ReservationNewComponent } from './operators/reservations/reservation-new/reservation-new.component';
 import { AuthInterceptor } from './shared/login/auth-interceptor.service';
+import { NotViewedReservationsComponent } from './operators/reservations/not-viewed-reservations/not-viewed-reservations.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -135,7 +136,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReservationDetailsComponent,
     ReservationDetailsModalComponent,
     ReservationAllComponent,
-    ReservationNewComponent
+    ReservationNewComponent,
+    NotViewedReservationsComponent
   ],
   imports: [
     BrowserModule,
