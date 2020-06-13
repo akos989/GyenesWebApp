@@ -14,7 +14,9 @@
         <li><a
             (click)="closeNav($event)"
             routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-            [routerLink]="['/operators/']">Foglalások</a></li>
+            [routerLink]="['/operators/']">
+            Foglalások <span *ngIf="newResNumber > 0" class="small-text badge">({{newResNumber}})</span>
+        </a></li>
         <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['/operators/messages']">Üzenetek</a></li>
         <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['/operators/packages']">Csomagok</a></li>
         <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['operators/users']">Operátorok</a></li>

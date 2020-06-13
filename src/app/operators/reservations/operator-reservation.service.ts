@@ -80,7 +80,7 @@ export class OperatorResService {
             }
         );
     }
-    findById(id: string) {
+    findById(id: string): Reservation {
         return this.reservations.filter((reservation)=> {return (reservation._id === id)})[0];
     }
     updateReservation(res: Reservation) {        

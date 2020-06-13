@@ -1,4 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { AuthService } from 'src/app/shared/login/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-operator-header',
@@ -7,11 +9,18 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 })
 export class OperatorHeaderComponent implements OnInit {
 
-  open:boolean = false
+  open:boolean = false;
+  currentUserSub: Subscription;
+  newResNumber: number = 0;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2, private authService: AuthService) { }
 
   ngOnInit(): void {
+    if (this.authService.currentUser)
+      this.newResNumber = this.authService.currentUser.newReservations.length;
+    this.currentUserSub = this.authService.newResNumberChange.subscribe(() => {
+      this.newResNumber = this.authService.currentUser.newReservations.length;
+    });
   }
   toggleOpen(event) {
     event.stopPropagation();

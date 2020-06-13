@@ -9,12 +9,18 @@ input.large-checkbox {
     padding: 1vh;
     margin-bottom: 2vh;
 }
+.line.danger {
+    border: calc(0.05vw + 0.3vh) solid red;
+}
 label.label {
     width: 100%;
     z-index: 20;
 }
 @media (hover: hover) {
     label.label:hover .line{
+        border: calc(0.05vw + 0.3vh) solid rgb(209, 81, 26);
+    }
+    .line:hover {
         border: calc(0.05vw + 0.3vh) solid rgb(209, 81, 26);
     }
 }

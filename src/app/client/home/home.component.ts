@@ -1,5 +1,6 @@
 import { Component, OnDestroy, AfterViewInit } from '@angular/core';
 import { HeaderService } from '../header/header.service';
+import { ActivatedRoute } from '@angular/router';
 
 declare var ScrollMagic: any;
 

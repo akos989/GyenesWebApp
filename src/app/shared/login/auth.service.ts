@@ -4,17 +4,22 @@ import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { ErrorHandleService } from '../error-handle.service';
+import { Subject } from 'rxjs';
 
 export class User {
     constructor(
         public email: string,
         public localId: string,
+        public newReservations: string[],
         private _token: string,
         private _tokenExpirationDate: Date) { }
     get token() {
         if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate)
             return null;
         return this._token;
+    }
+    get tokenExpirationDate(): Date {
+        return this._tokenExpirationDate;
     }
 }
 
@@ -23,10 +28,13 @@ interface UserData {
     email: string;
     expiresIn: string;
     token: string;
+    newReservations: string[];
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+    currentUserChanged = new Subject<User>();
+    newResNumberChange = new Subject<void>();
     private _currentUser: User = null;
     public get currentUser() {
         if (!this._currentUser) {
@@ -60,7 +68,10 @@ export class AuthService {
                 return throwError(errorRes);
             }),
             tap(resData => {
-                this.handleAuth(resData.email, resData.localId, resData.token, +resData.expiresIn);
+                this.handleAuth(
+                    resData.email, resData.localId,
+                    resData.token, +resData.expiresIn, resData.newReservations
+                );
             })
         );
     }
@@ -72,10 +83,63 @@ export class AuthService {
         this.tokenExpirationTimer = null;
         this.router.navigate(['/home']);
     }
+    fetchCurrentUser() {
+        if (this.currentUser) {
+            this.http.post<{operator: UserData}>('api/operators/my_account', {operatorId: this._currentUser.localId})
+                .subscribe(
+                    resData => {
+                        const user = new User(
+                            this._currentUser.email, this._currentUser.localId,
+                            resData.operator.newReservations,
+                            this._currentUser.token, this._currentUser.tokenExpirationDate
+                        );
+                        this.currentUser = user;
+                        this.currentUserChanged.next(user);
+                    },
+                    (errorRes: {error: {error: {error: string, message: any}}}) => {
+                        this.errorHandler.newError(errorRes.error.error);
+                        return throwError(errorRes);
+                    }
+                );
+        }
+    }
+    viewReservation(id: string) {
+        const newReservations = this._currentUser.newReservations.filter(resId => {
+            return resId !== id;
+        });
+        if (newReservations.length !== this._currentUser.newReservations.length) {
+            this.http.post(
+                'api/operators/view_reservation',
+                {
+                    operatorId: this._currentUser.localId,
+                    reservationId: id
+                }
+            )
+            .subscribe(
+                resData => {
+                    const user = new User(
+                        this._currentUser.email, this._currentUser.localId,
+                        newReservations,
+                        this._currentUser.token, this._currentUser.tokenExpirationDate
+                    );
+                    this.currentUser = user;
+                    this.newResNumberChange.next();
+                },
+                (errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                }
+            );
+        }
+    }
+    newUserNotification() {
+        this.currentUserChanged.next(this._currentUser);
+    }
     private autoLogin() {
         const userData: {
             email: string,
             localId: string,
+            newReservations: string[],
             _token: string,
             _tokenExpirationDate: string
         } = JSON.parse(localStorage.getItem('userData'));
@@ -84,8 +148,9 @@ export class AuthService {
         }
         const loadedUser = new User(
             userData.email, 
-            userData.localId, 
-            userData._token, 
+            userData.localId,
+            userData.newReservations, 
+            userData._token,
             new Date(userData._tokenExpirationDate)
         );
         if (loadedUser.token) {
@@ -101,9 +166,9 @@ export class AuthService {
             this.logout();
         }, duration);
     }
-    private handleAuth(email: string, userId: string, token: string, expiresIn: number) {
+    private handleAuth(email: string, userId: string, token: string, expiresIn: number, newRes: string[]) {
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-        this.currentUser = new User(email, userId, token, expirationDate);
+        this.currentUser = new User(email, userId, newRes, token, expirationDate);
         this.autoLogout(expiresIn * 1000);
     }
 }

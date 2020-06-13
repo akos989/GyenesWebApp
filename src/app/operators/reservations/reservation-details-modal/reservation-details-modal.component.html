@@ -25,6 +25,14 @@
         <div>Tartalmaz: {{package.includedBullets}} db</div>        
         <div>Időtartam: {{package.duration}} óra</div>
         <div
+            class="padding-top-2 padding-bottom-2">
+            <div
+                (click)="onDelete()"
+                class="cbtn cbtn-one small">
+                <span> Törlés </span>
+            </div>
+        </div>
+        <div
             class="padding-top-2 padding-bottom-4">
             <div
                 (click)="onEdit()"
