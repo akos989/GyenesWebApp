@@ -52,6 +52,10 @@ export class ErrorHandleService {
             break;
             case 'NOT_UPDATED_ARCHIVE':
                 message = 'Valami hiba miatt nem lettek frissítve a foglalások!'
+            break;
+            case 'AUTH_FAILED':
+                message = 'Helytelen jelszó vagy email!'
+            break;
             default:
                 message = 'Valami hiba történt, próbálja újra!';
                 this.router.navigate(['/home']);

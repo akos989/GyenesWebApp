@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       this.loginForm.form.controls.password.value
     ).subscribe(resData => {
       this.isLoading = false;
+      this.loginForm.reset();
       this.router.navigate(['/operators']);
     },
     error => {

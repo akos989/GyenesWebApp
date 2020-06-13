@@ -2,7 +2,8 @@ export class Reservation {
 
     constructor(public _id: string, public name: string, public email: string,
         public phoneNumber: string, public playerNumber: number, public notes: string,
-        public packageId: string, public date: Date, public archived: boolean = false) {
+        public packageId: string, public date: Date, public archived: boolean = false,
+        public timeStamp: Date = new Date()) {
     }
 
     public equals(other: Reservation): boolean {

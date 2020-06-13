@@ -30,3 +30,16 @@ button:disabled {
         background-color: rgba(209, 81, 26, 0.2);
     }
 }
+button.arrow {
+    margin-left: 2vw;
+    width: auto;
+}
+.active {
+    border: 3px solid green;
+}
+img.up {
+    transform: rotateX(180deg);
+}
+.row {
+    margin: 0;
+}
