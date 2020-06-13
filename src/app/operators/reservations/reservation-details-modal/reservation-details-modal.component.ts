@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { Reservation } from 'src/app/shared/models/reservation.model';
 import { PackageService } from 'src/app/client/packages/package.service';
 import { Package } from 'src/app/shared/models/package.model';
@@ -19,7 +19,8 @@ export class ReservationDetailsModalComponent implements OnInit {
   
   constructor(private packageService: PackageService,
               private OResService: OperatorResService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.package = this.packageService.findById(this.reservation.packageId);
@@ -42,6 +43,13 @@ export class ReservationDetailsModalComponent implements OnInit {
     event.preventDefault();
     this.OResService.deleteReservations([this.reservation._id]);
     this.close.next(false);
+    this.renderer.removeClass(document.body, 'modal-open');
+  }
+  onArchive() {
+    event.stopPropagation();
+    event.preventDefault();
+    this.OResService.archiveReservations([this.reservation._id], !this.reservation.archived);
+    this.renderer.removeClass(document.body, 'modal-open');
   }
   private notifyUserChange() {
     this.authService.newUserNotification();
