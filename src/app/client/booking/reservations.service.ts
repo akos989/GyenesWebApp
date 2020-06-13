@@ -9,6 +9,7 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 import { Subject } from 'rxjs';
 import { AcceptCookieService } from 'src/app/shared/cookie/cookie.service';
 import { CookieService } from 'ngx-cookie-service';
+import { OperatorResService } from 'src/app/operators/reservations/operator-reservation.service';
 
 class Hour {
     constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -26,10 +27,11 @@ export class ReservationService {
     constructor(private packageService: PackageService, private http: HttpClient,
                 private errorHandler: ErrorHandleService,
                 private acceptCookiesS: AcceptCookieService,
-                private cookieService: CookieService) {}
+                private cookieService: CookieService,
+                private oResService: OperatorResService) {}
     currReservationUpdated = new Subject<Reservation>();
 
-    private _currentReservation: Reservation = null;   
+    private _currentReservation: Reservation = null;
 
     public get currentReservation(): Reservation {
         if (this._currentReservation == null) {
@@ -43,7 +45,6 @@ export class ReservationService {
     }
     public set currentReservation(value: Reservation) {
         this._currentReservation = value;
-        console.log(value)
         if (this.acceptCookiesS.accepted)
             this.saveToLocalStorage();
         this.currReservationUpdated.next(this._currentReservation);
@@ -104,25 +105,6 @@ export class ReservationService {
                     return throwError(errorRes);
                 })
             );
-
-        // this.reservations = [
-        //     new Reservation(
-        //         '1', 'morvai', 'adf@asdf.com', '0123457898', 12, '', '5eb272ac3ba174183da688a0',
-        //         new Date(2020, 4, 11, 12)
-        //     ),
-        //     new Reservation(
-        //         '2', 'morvai', 'adf@asdf.com', '0123457898', 25, '', '5eb272ac3ba174183da688a0',
-        //         new Date(2020, 4, 11, 12)
-        //     ),
-        //     new Reservation(
-        //         '3', 'morvai', 'adf@asdf.com', '0123457898', 10, '', '5eb272ac3ba174183da688a0',
-        //         new Date(2020, 4, 11, 10)
-        //     ),
-        //     new Reservation(
-        //         '4', 'morvai', 'adf@asdf.com', '0123457898', 17, '', '5eb272ac3ba174183da688a0',
-        //         new Date(2020, 4, 11, 16)
-        //     )
-        // ];
     }
 
     checkHoursOnSelectedDate(selectedDate: Date): Hour[] {
@@ -182,9 +164,15 @@ export class ReservationService {
             date: this.stringFromDate(this._currentReservation.date)
         };
         if (!this.isOperatorEditing)
-            return this.http.post('/api/reservations/', body);
-        else 
-            return this.http.patch('/api/reservations/'+this._currentReservation._id, body);
+            return this.http.post<{reservation: Reservation}>('/api/reservations/', body)
+                .pipe(tap(resData => {
+                    this.oResService.updateReservation(resData.reservation);
+                }));
+                else 
+                return this.http.patch<{reservation: Reservation}>('/api/reservations/'+this._currentReservation._id, body)
+                .pipe(tap(resData => {
+                    this.oResService.updateReservation(resData.reservation);
+            }));;
     }
 
     private getReservationsOnSelectedDate(selectedDate: Date): Reservation[] {

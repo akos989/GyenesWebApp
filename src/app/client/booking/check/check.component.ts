@@ -9,6 +9,7 @@ import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 import { Package } from 'src/app/shared/models/package.model';
 import { PackageService } from '../../packages/package.service';
 import { PackageType } from 'src/app/shared/models/package-type.model';
+import { OperatorResService } from 'src/app/operators/reservations/operator-reservation.service';
 
 @Component({
   selector: 'app-check',
@@ -32,7 +33,8 @@ export class CheckComponent implements OnInit, OnDestroy {
 
   constructor(private reservationService: ReservationService,
               private router: Router, private errorHandler: ErrorHandleService,
-              private packageService: PackageService) { }
+              private packageService: PackageService,
+              private OResService: OperatorResService) { }
 
   ngOnInit(): void {
     if (this.reservationService.isCurrentReady()) {
