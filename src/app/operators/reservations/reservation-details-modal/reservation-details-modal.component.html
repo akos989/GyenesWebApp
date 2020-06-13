@@ -35,6 +35,14 @@
         <div
             class="padding-top-2 padding-bottom-4">
             <div
+                (click)="onArchive()"
+                class="cbtn cbtn-one small">
+                <span> {{reservation.archived ? 'Aktiválás' : 'Archiválás'}} </span>
+            </div>
+        </div>
+        <div
+            class="padding-top-2 padding-bottom-4">
+            <div
                 (click)="onEdit()"
                 class="cbtn cbtn-one small">
                 <span> Módosítás </span>
