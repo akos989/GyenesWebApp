@@ -15,6 +15,6 @@ export class NewReservationResolver implements Resolve<any> {
             this.reservationService.isOperatorEditing = true;
         }
         else
-        this.reservationService.isOperatorEditing = false;
+            this.reservationService.isOperatorEditing = false;
     }
 }

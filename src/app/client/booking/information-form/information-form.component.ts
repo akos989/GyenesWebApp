@@ -37,16 +37,17 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
         const pack = this.packageService.findById(packageId);
         this.maxPlayerNumber = pack.toNumberLimit;
         this.minPlayerNumber = pack.fromNumberLimit;
-        this.reservationForm.get('playernumber').updateValueAndValidity();
-        if(this.reservationForm.get('playernumber').value !== null)
+        if(this.reservationForm.get('playernumber').value !== null) {
           this.reservationForm.get('playernumber').markAsTouched();
+          this.reservationForm.get('playernumber').updateValueAndValidity();
+        }
         this.bookingSevice.onInfoChange(
           this.reservationForm.valid, this.reservationForm.get('playernumber').value);
       });
 
     const currentReservation = this.reservationService.currentReservation;
 
-    if ( currentReservation && currentReservation.name ) {
+    if ( currentReservation && (currentReservation.name || currentReservation.phoneNumber || currentReservation.playerNumber) ) {
       this.editMode = true;
       this.prevData = currentReservation;
     }    
@@ -125,7 +126,7 @@ export class InformationFormComponent implements OnInit, AfterViewChecked {
 
   private updateCurrentData() {
     const currReservation = this.reservationService.currentReservation;
-    this.currentData = new Reservation('1',
+    this.currentData = new Reservation(currReservation._id,
       this.reservationForm.get('name').value,
       this.reservationForm.get('email').value,
       this.reservationForm.get('phoneNumber').value,

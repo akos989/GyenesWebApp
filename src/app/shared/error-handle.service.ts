@@ -50,6 +50,8 @@ export class ErrorHandleService {
             case 'NO_FOR_TODAY':
                 message = '';
             break;
+            case 'NOT_UPDATED_ARCHIVE':
+                message = 'Valami hiba miatt nem lettek frissítve a foglalások!'
             default:
                 message = 'Valami hiba történt, próbálja újra!';
                 this.router.navigate(['/home']);

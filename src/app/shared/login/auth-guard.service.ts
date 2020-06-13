@@ -11,7 +11,6 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
         :Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-            console.log(this.authService.currentUser)
             const routePart: string = route.url[0].path.split('/')[0];
             if (this.authService.currentUser) {
                 if (routePart === 'login')

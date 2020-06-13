@@ -21,6 +21,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   packageNext: boolean = false;
   dateNext: boolean = false;
   infoNext: boolean = false;
+  private infoNextInterval: any = null;
 
   constructor(private bookingService: BookingService,
               private reservationService: ReservationService,
@@ -53,8 +54,12 @@ export class BookingComponent implements OnInit, OnDestroy {
 
     this.infoChaneSub = this.bookingService.infoChange
       .subscribe( result => {
+        if (this.infoNextInterval) {
+          clearTimeout(this.infoNextInterval);
+          this.infoNextInterval = null;
+        }
         if (result !== this.infoNext)
-          setTimeout(() => {
+          this.infoNextInterval = setTimeout(() => {
             this.infoNext = result;
           }, 0);
       });

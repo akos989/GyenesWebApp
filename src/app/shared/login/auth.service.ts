@@ -40,7 +40,6 @@ export class AuthService {
             localStorage.setItem('userData', JSON.stringify(this._currentUser));
         else
             localStorage.removeItem('userData');
-        console.log(this._currentUser);
     }
     private tokenExpirationTimer: any;
 
