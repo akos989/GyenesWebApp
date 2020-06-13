@@ -28,7 +28,7 @@ export class NotViewedReservationsComponent implements OnInit {
   private getNewReservations() {
     this.reservations = [];
     this.currentUser.newReservations.forEach(resId => {
-      this.reservations.push(this.oResService.findById(resId));
+      this.reservations.unshift(this.oResService.findById(resId));
     });
   }
 }

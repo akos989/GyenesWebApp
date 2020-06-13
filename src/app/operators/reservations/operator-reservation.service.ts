@@ -17,8 +17,10 @@ export class OperatorResService {
             .pipe(
                 map(resData => {
                     resData.reservations.map(reservation => {
-                        const date: Date = this.dateFromString(reservation.date.toString(), 0);
+                        let date: Date = this.dateFromString(reservation.date.toString(), 0);
                         reservation.date = date;
+                        date = this.dateFromString(reservation.timeStamp.toString(), 2);
+                        reservation.timeStamp = date;
                     });
                     return resData.reservations;
                 }),
@@ -94,6 +96,13 @@ export class OperatorResService {
         this.reservationsChanged.next();
     }
 
+    sortReservations(comparator: any, desc: boolean = true) {
+        this.reservations.sort(comparator);
+        if (!desc)
+            this.reservations.reverse();
+        this.reservationsChanged.next();
+    }
+
     private dateFromString(dateString: string, plus: number): Date {
         const dateParts:string[] = dateString.split('T');
 
@@ -103,5 +112,19 @@ export class OperatorResService {
             +(dateParts[0].split('-')[2]),
             +(dateParts[1].split(':')[0]) + plus       
         );
+    }
+    dateComparator(resA: Reservation, resB: Reservation) {
+        if (resA.date.getTime() < resB.date.getTime())
+            return -1;
+        if (resA.date.getTime() > resB.date.getTime())
+            return 1;
+        return 0;
+    }
+    creationComparator(resA: Reservation, resB: Reservation) {
+        if (resA.timeStamp.getTime() > resB.timeStamp.getTime())
+            return -1;
+        if (resA.timeStamp.getTime() < resB.timeStamp.getTime())
+            return 1;
+        return 0;
     }
 }

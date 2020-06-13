@@ -38,13 +38,15 @@
                         Jelszó megadása kötelező!
                     </span>
                 </div>                
-                <div class="text-center pb-5">
-                    <div
-                        *ngIf="f.valid"
+                <div *ngIf="f.valid" class="text-center pb-5">
+                    <button type="submit" class="btn btn-primary">Belépés</button>
+                    <!-- <div
+                        onClick="javascript:this.form.submit();"
+                        
                         (click)="onSubmit()"
                         class="cbtn cbtn-one small">
                         <span>Belépés</span>
-                    </div>
+                    </div> -->
                 </div>
             </form>
   
