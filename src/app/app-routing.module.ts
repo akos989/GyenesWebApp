@@ -31,7 +31,7 @@ import { ReservationNewComponent } from './operators/reservations/reservation-ne
 import { NewReservationResolver } from './operators/reservations/reservation-new/new-reservation-resolver.service';
 import { AuthGuard } from './shared/login/auth-guard.service';
 import { CurrentUserResolver } from './shared/login/current-user-resolver.service';
-
+import { MessageResolver } from './operators/messages/messages-resolver.service';
 const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
@@ -71,7 +71,7 @@ const routes: Routes = [
   },
   { 
         path: 'operators', component: OperatorComponent,
-        resolve: {small: SmallHeaderResolver, currentUser: CurrentUserResolver},
+        resolve: {small: SmallHeaderResolver, currentUser: CurrentUserResolver, MessageResolver},
         canActivate: [AuthGuard],
         children: [
             { 
@@ -97,7 +97,7 @@ const routes: Routes = [
                 }
               ]
             },
-            { path: 'messages', component: MessagesComponent },
+            { path: 'messages', component: MessagesComponent},
             {
               path: 'packages', component: OperatorPackagesComponent,
               resolve: { PackageResolver }

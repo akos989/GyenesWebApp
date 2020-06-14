@@ -73,6 +73,10 @@ import { ReservationAllComponent } from './operators/reservations/reservation-al
 import { ReservationNewComponent } from './operators/reservations/reservation-new/reservation-new.component';
 import { AuthInterceptor } from './shared/login/auth-interceptor.service';
 import { NotViewedReservationsComponent } from './operators/reservations/not-viewed-reservations/not-viewed-reservations.component';
+import { NewMessagesComponent } from './operators/messages/new-messages/new-messages.component';
+import { MessagesListComponent } from './operators/messages/messages-list/messages-list.component';
+import { MessageDetailComponent } from './operators/messages/message-detail/message-detail.component';
+import { MessageDetailModalComponent } from './operators/messages/message-detail/message-detail-modal/message-detail-modal.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -137,7 +141,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReservationDetailsModalComponent,
     ReservationAllComponent,
     ReservationNewComponent,
-    NotViewedReservationsComponent
+    NotViewedReservationsComponent,
+    NewMessagesComponent,
+    MessagesListComponent,
+    MessageDetailComponent,
+    MessageDetailModalComponent
   ],
   imports: [
     BrowserModule,

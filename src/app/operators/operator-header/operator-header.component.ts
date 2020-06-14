@@ -1,25 +1,33 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/shared/login/auth.service';
 import { Subscription } from 'rxjs';
+import { MessagesService } from '../messages/messages.service';
 
 @Component({
   selector: 'app-operator-header',
   templateUrl: './operator-header.component.html',
   styleUrls: ['./operator-header.component.css']
 })
-export class OperatorHeaderComponent implements OnInit {
+export class OperatorHeaderComponent implements OnInit, OnDestroy {
 
   open:boolean = false;
   currentUserSub: Subscription;
   newResNumber: number = 0;
+  newMessageSub: Subscription;
+  messageNum: number = 0;
 
-  constructor(private renderer: Renderer2, private authService: AuthService) { }
+  constructor(private renderer: Renderer2, private authService: AuthService,
+              private messageService: MessagesService) { }
 
   ngOnInit(): void {
     if (this.authService.currentUser)
       this.newResNumber = this.authService.currentUser.newReservations.length;
     this.currentUserSub = this.authService.newResNumberChange.subscribe(() => {
       this.newResNumber = this.authService.currentUser.newReservations.length;
+    });
+    this.messageNum = this.messageService.getNotReplied().length;
+    this.newMessageSub = this.messageService.newMessages.subscribe(()=> {
+      this.messageNum = this.messageService.getNotReplied().length;
     });
   }
   toggleOpen(event) {
@@ -36,5 +44,9 @@ export class OperatorHeaderComponent implements OnInit {
     event.preventDefault();
     this.open = false;
     this.renderer.removeClass(document.body, 'modal-open');
+  }
+  ngOnDestroy() {
+    this.newMessageSub.unsubscribe();
+    this.currentUserSub.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2, ComponentFactoryResolver, ViewChild, OnDestroy } from '@angular/core';
+import { Component, Input, Renderer2, ComponentFactoryResolver, ViewChild, OnDestroy } from '@angular/core';
 import { Reservation } from 'src/app/shared/models/reservation.model';
 import { PlaceholderDirective } from 'src/app/shared/placeholder.directive';
 import { ReservationDetailsModalComponent } from '../reservation-details-modal/reservation-details-modal.component';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './reservation-details.component.html',
   styleUrls: ['./reservation-details.component.css']
 })
-export class ReservationDetailsComponent implements OnInit, OnDestroy {
+export class ReservationDetailsComponent implements OnDestroy {
 
   @Input() reservation: Reservation;
   @ViewChild(PlaceholderDirective, {static: false}) modalHost: PlaceholderDirective;
@@ -19,8 +19,6 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy {
   constructor(private renderer: Renderer2, private cFResolver: ComponentFactoryResolver,
               private router: Router) { }
 
-  ngOnInit(): void {
-  }
   openModal(event) {
     event.stopPropagation();
     event.preventDefault();
