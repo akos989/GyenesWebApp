@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Renderer2, OnDestroy, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css']
 })
-export class MessagesComponent implements OnInit {
+export class MessagesComponent implements AfterViewInit, OnDestroy {
 
-  constructor() { }
+  constructor(private renderer: Renderer2) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    this.renderer.addClass(document.getElementById('operatorBase'), 'nooverflow');
   }
-
+  ngOnDestroy() {
+    this.renderer.removeClass(document.getElementById('operatorBase'), 'nooverflow');
+  }
 }

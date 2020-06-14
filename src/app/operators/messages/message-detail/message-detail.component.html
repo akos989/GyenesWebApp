@@ -1,0 +1,18 @@
+<ng-template appPlaceholder></ng-template>
+<div 
+    class="row middle-text text-center">
+    <div class="col-md-6 col-12 font-weight-bold">{{message.name}}</div>
+    <div class="col-md-6 col-12 font-italic">
+        {{ message.timestamp.toISOString().slice(0,10) }}
+        {{ (message.timestamp.getHours() < 10 ? '0' + message.timestamp.getHours() + ':' : message.timestamp.getHours() + ':') + (message.timestamp.getMinutes() < 10 ? '0' + message.timestamp.getMinutes() : message.timestamp.getMinutes()) }}
+    </div>
+</div>
+<hr class="orange">
+<div class="text-left small-text pt-4">{{message.text.slice(0, 100)}}{{message.text.length > 100 ? '...' : ''}}</div>
+<div class="text-center py-3">
+    <div 
+        (click)="onOpen($event)"
+        class="cbtn cbtn-one mini2" style="z-index: 40;">
+        <span>Részletek</span>
+    </div>
+</div>

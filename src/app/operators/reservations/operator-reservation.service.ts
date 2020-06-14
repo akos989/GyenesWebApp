@@ -50,18 +50,18 @@ export class OperatorResService {
                 ids: reservationIds
             },
           };
-        this.http.delete('api/reservations', options
-        ).subscribe(
-            resData => {
-                this.reservations = this.reservations.filter((reservation) => {
-                    return !reservationIds.some(id => id === reservation._id);
-                });
-                this.reservationsChanged.next();
-            },
-            (errorRes: {error: {error: {error: string, message: any}}}) => {
-                this.errorHandler.newError(errorRes.error.error);
-            }
-        );
+        this.http.delete('api/reservations', options)
+            .subscribe(
+                resData => {
+                    this.reservations = this.reservations.filter((reservation) => {
+                        return !reservationIds.some(id => id === reservation._id);
+                    });
+                    this.reservationsChanged.next();
+                },
+                (errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                }
+            );
     }
     archiveReservations(reservationIds: string[], toBeArchived: boolean) {
         this.http.post(

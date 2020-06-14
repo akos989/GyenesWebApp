@@ -56,6 +56,12 @@ export class ErrorHandleService {
             case 'AUTH_FAILED':
                 message = 'Helytelen jelszó vagy email!'
             break;
+            case 'NOT_FOUND':
+                message = 'Nem található!'
+            break;
+            case 'NO_REPLY_BODY':
+                message = 'Nincs válasz!'
+            break;            
             default:
                 message = 'Valami hiba történt, próbálja újra!';
                 this.router.navigate(['/home']);
