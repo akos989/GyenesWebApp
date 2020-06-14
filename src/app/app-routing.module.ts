@@ -32,6 +32,8 @@ import { NewReservationResolver } from './operators/reservations/reservation-new
 import { AuthGuard } from './shared/login/auth-guard.service';
 import { CurrentUserResolver } from './shared/login/current-user-resolver.service';
 import { MessageResolver } from './operators/messages/messages-resolver.service';
+import { NoDateStartComponent } from './operators/no-dates/no-date-start/no-date-start.component';
+import { NoDateNewComponent } from './operators/no-dates/no-date-new/no-date-new.component';
 const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
@@ -103,10 +105,17 @@ const routes: Routes = [
               resolve: { PackageResolver }
             },
             { path: 'users', component: UsersComponent },
-            { path: 'no-dates', component: NoDatesComponent },
+            { 
+              path: 'no-dates', component: NoDatesComponent,
+              resolve: { NoDateResolver },
+              children: [
+                { path: '', pathMatch: 'full', component: NoDateStartComponent },
+                { path: 'new', component: NoDateNewComponent, resolve: ReservationResolver },
+                { path: ':id/edit', component: NoDateNewComponent, resolve: ReservationResolver }
+              ]
+            },
             { path: 'pop-ups', component: ModalsComponent },
-            { path: 'my-profile', component: MyProfileComponent },
-            
+            { path: 'my-profile', component: MyProfileComponent }            
         ]
     }
 ];

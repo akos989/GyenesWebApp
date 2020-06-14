@@ -16,14 +16,11 @@ export class NoDatesService {
     constructor(private http: HttpClient, private errorHandler: ErrorHandleService) {}
 
     loadNoDates() {
-        //server http
-
         return this.http
             .get<{noDates: NoDate[]}>('api/no_dates/')
             .pipe(
                 map((responseData) => {
                     const noDatesArray: NoDate[] = [];
-
                     for (const nod of responseData.noDates) {
                         let tmpNod = nod;
                         tmpNod.fromDate =
@@ -41,13 +38,7 @@ export class NoDatesService {
                     this.errorHandler.newError(errorRes.error.error);
                     return throwError(errorRes);
                 })
-                // , delay(4000)
             );
-
-        // this.noDates = [
-        //     new NoDate(new Date(2020, 4, 1), new Date(2020, 4, 7), 'sdf'),
-        //     new NoDate(new Date(2020, 4, 21), new Date(2020, 11, 23), 'COVID19')
-        // ];
     }
 
     isClosed(date: Date): string {

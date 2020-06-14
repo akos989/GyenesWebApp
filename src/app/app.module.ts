@@ -77,6 +77,11 @@ import { NewMessagesComponent } from './operators/messages/new-messages/new-mess
 import { MessagesListComponent } from './operators/messages/messages-list/messages-list.component';
 import { MessageDetailComponent } from './operators/messages/message-detail/message-detail.component';
 import { MessageDetailModalComponent } from './operators/messages/message-detail/message-detail-modal/message-detail-modal.component';
+import { NoDateListComponent } from './operators/no-dates/no-date-list/no-date-list.component';
+import { NoDateStartComponent } from './operators/no-dates/no-date-start/no-date-start.component';
+import { NoDateDetailComponent } from './operators/no-dates/no-date-detail/no-date-detail.component';
+import { NoDateNewComponent } from './operators/no-dates/no-date-new/no-date-new.component';
+import { NoDateDetailModalComponent } from './operators/no-dates/no-date-detail-modal/no-date-detail-modal.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -145,7 +150,12 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NewMessagesComponent,
     MessagesListComponent,
     MessageDetailComponent,
-    MessageDetailModalComponent
+    MessageDetailModalComponent,
+    NoDateListComponent,
+    NoDateStartComponent,
+    NoDateDetailComponent,
+    NoDateNewComponent,
+    NoDateDetailModalComponent
   ],
   imports: [
     BrowserModule,
