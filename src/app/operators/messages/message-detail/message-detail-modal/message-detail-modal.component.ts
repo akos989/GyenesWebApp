@@ -22,9 +22,13 @@ export class MessageDetailModalComponent implements OnInit, OnDestroy {
     this.renderer.addClass(document.body, 'modal-open');
   }
   onClose() {
+    event.stopPropagation();
+    event.preventDefault();
     this.close.emit();
   }
   onReply() {
+    event.stopPropagation();
+    event.preventDefault();
     if (this.messageForm.form.controls.replyBody.value !== '') {
       this.messageService.reply(
         this.messageForm.form.controls.replyBody.value, 
@@ -33,6 +37,8 @@ export class MessageDetailModalComponent implements OnInit, OnDestroy {
     }
   }
   onDelete() {
+    event.stopPropagation();
+    event.preventDefault();
     this.messageService.delete([this.message._id]);
   }
   ngOnDestroy() {

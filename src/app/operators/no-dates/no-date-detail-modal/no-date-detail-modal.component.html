@@ -1,1 +1,36 @@
-<p>no-date-detail-modal works!</p>
+<div class="backdrop" (click)="onClose()"></div>
+<div class="alert-box">
+    <div class="middle-text close-x pb-3">
+       <span (click)="onClose()">X</span>
+    </div>
+    <div class="content middle-text">
+        <div class="font-weight-bold">Kezdő dátum:</div>
+        <div class="pb-4 font-italic">
+            {{ noDate.fromDate.toISOString().slice(0,10) }}
+            {{ (noDate.fromDate.getHours() < 10 ? '0' + noDate.fromDate.getHours() + ':' : noDate.fromDate.getHours() + ':') + (noDate.fromDate.getMinutes() < 10 ? '0' + noDate.fromDate.getMinutes() : noDate.fromDate.getMinutes()) }}
+        </div>
+        <div class="font-weight-bold">Vég dátum:</div>
+        <div class="pb-4 font-italic">
+            {{ noDate.toDate.toISOString().slice(0,10) }}
+            {{ (noDate.toDate.getHours() < 10 ? '0' + noDate.toDate.getHours() + ':' : noDate.toDate.getHours() + ':') + (noDate.toDate.getMinutes() < 10 ? '0' + noDate.toDate.getMinutes() : noDate.toDate.getMinutes()) }}
+        </div>
+        <div class="font-weight-bold">Indok:</div>
+        <div class="pb-4 font-italic">{{noDate.reason}}</div>
+        <div
+            class="padding-top-2 padding-bottom-2">
+            <div
+                (click)="onUpdate()"
+                class="cbtn cbtn-one small">
+                <span> Módosítás </span>
+            </div>
+        </div>
+        <div
+            class="padding-top-2 padding-bottom-2">
+            <div
+                (click)="onDelete()"
+                class="cbtn cbtn-one small">
+                <span> Törlés </span>
+            </div>
+        </div>
+    </div>
+</div>

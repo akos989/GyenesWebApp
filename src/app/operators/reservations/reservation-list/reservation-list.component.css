@@ -12,6 +12,11 @@ input.large-checkbox {
 .line.danger {
     border: calc(0.05vw + 0.3vh) solid red;
 }
+.line.future {
+    border: calc(0.05vw + 0.3vh) solid yellow;
+}.line.today {
+    border: calc(0.05vw + 0.3vh) solid green;
+}
 label.label {
     width: 100%;
     z-index: 20;
