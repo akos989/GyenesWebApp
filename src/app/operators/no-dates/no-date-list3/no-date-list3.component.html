@@ -1,5 +1,5 @@
 <div *ngIf="noDates.length > 0">
-    <div class="middle-top-text padding-top-10 padding-bottom-6 text-center"> Jelenlegi bezárások </div>
+    <div class="middle-top-text padding-top-10 padding-bottom-6 text-center"> Elmúlt bezárások </div>
     <div 
         *ngIf="checkedNum > 0"
         class="row py-3 sticky justify-content-center">
@@ -20,14 +20,14 @@
         </div>
     </div>
 </div>
-<form #today="ngForm">
+<form #past="ngForm">
     <div *ngIf="noDates.length > 0">
         <div
             class="middle-text"
             *ngFor="let noDate of noDates">
             <label [for]="noDate._id" class="label">
                 <div 
-                    class="row line today">
+                    class="row line past">
                     <div class="col-2">
                         <input type="checkbox" ngModel [name]="noDate._id" [id]="noDate._id" class="large-checkbox">
                     </div>

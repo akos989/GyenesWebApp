@@ -82,6 +82,8 @@ import { NoDateStartComponent } from './operators/no-dates/no-date-start/no-date
 import { NoDateDetailComponent } from './operators/no-dates/no-date-detail/no-date-detail.component';
 import { NoDateNewComponent } from './operators/no-dates/no-date-new/no-date-new.component';
 import { NoDateDetailModalComponent } from './operators/no-dates/no-date-detail-modal/no-date-detail-modal.component';
+import { NoDateList2Component } from './operators/no-dates/no-date-list2/no-date-list2.component';
+import { NoDateList3Component } from './operators/no-dates/no-date-list3/no-date-list3.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -155,7 +157,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NoDateStartComponent,
     NoDateDetailComponent,
     NoDateNewComponent,
-    NoDateDetailModalComponent
+    NoDateDetailModalComponent,
+    NoDateList2Component,
+    NoDateList3Component
   ],
   imports: [
     BrowserModule,

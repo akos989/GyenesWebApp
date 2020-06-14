@@ -1,1 +1,19 @@
-<p>no-date-detail works!</p>
+<ng-template appPlaceholder></ng-template>
+<div 
+    class="row middle-text text-center">
+    <div class="col-md-6 col-12">
+        {{ noDate.fromDate.toISOString().slice(0,10) }}
+        {{ (noDate.fromDate.getHours() < 10 ? '0' + noDate.fromDate.getHours() + ':' : noDate.fromDate.getHours() + ':') + (noDate.fromDate.getMinutes() < 10 ? '0' + noDate.fromDate.getMinutes() : noDate.fromDate.getMinutes()) }}
+    </div>
+    <div class="col-md-6 col-12">
+        {{ noDate.toDate.toISOString().slice(0,10) }}
+        {{ (noDate.toDate.getHours() < 10 ? '0' + noDate.toDate.getHours() + ':' : noDate.toDate.getHours() + ':') + (noDate.toDate.getMinutes() < 10 ? '0' + noDate.toDate.getMinutes() : noDate.toDate.getMinutes()) }}
+    </div>
+</div>
+<div class="text-center py-3">
+    <div 
+        (click)="onOpen($event)"
+        class="cbtn cbtn-one mini2" style="z-index: 40;">
+        <span>Részletek</span>
+    </div>
+</div>

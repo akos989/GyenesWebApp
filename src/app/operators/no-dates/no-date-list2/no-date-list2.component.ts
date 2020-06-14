@@ -4,15 +4,15 @@ import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-no-date-list',
-  templateUrl: './no-date-list.component.html',
+  selector: 'app-no-date-list2',
+  templateUrl: './no-date-list2.component.html',
   styleUrls: ['../../reservations/reservation-list/reservation-list.component.css']
 })
-export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
+export class NoDateList2Component implements OnInit, OnDestroy, AfterViewInit {
 
   newDateSub: Subscription;
   noDates: NoDate[] = [];
-  @ViewChild('today') messagesForm: NgForm;
+  @ViewChild('future') messagesForm: NgForm;
   formChangeSub: Subscription;
   checkedNum: number = 0;
   allValue: boolean = false;
@@ -27,10 +27,7 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
       });
   }
   updateNoDates() {
-    this.noDates = [];
-    const noDate = this.noDateService.getCurrent();
-    if (noDate)
-      this.noDates.push(noDate);
+    this.noDates = this.noDateService.getFuture();
   }
   ngAfterViewInit() {
       this.formChangeSub = this.messagesForm.form.valueChanges
