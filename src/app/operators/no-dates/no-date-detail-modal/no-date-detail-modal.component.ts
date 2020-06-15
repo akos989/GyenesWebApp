@@ -31,7 +31,7 @@ export class NoDateDetailModalComponent implements OnInit, OnDestroy {
   onUpdate() {
     event.stopPropagation();
     event.preventDefault();
-    this.router.navigate(['/operators/no-dates/', this.noDate._id, '/edit']);
+    this.router.navigate(['/operators/no-dates', this.noDate._id, 'edit']);
   }
   ngOnDestroy() {
     this.renderer.removeClass(document.body, 'modal-open');

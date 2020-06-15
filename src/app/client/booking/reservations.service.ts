@@ -141,8 +141,8 @@ export class ReservationService {
     }
 
     private isSmallerThanToday(selectedDate: Date, hour: number) {
-        let today: Date = new Date();
-        today.setHours(today.getHours() + 1);
+        let today: Date = this.makeUTCNewDate();
+        today.setHours(today.getHours() + 2);
         today.setMinutes(1);
         let date = new Date(selectedDate.valueOf());
         date.setHours(hour);
@@ -150,6 +150,10 @@ export class ReservationService {
             return true;
         }
         return false;
+    }
+    private makeUTCNewDate(): Date {
+        const now = new Date();
+        return new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes());
     }
     
     submitCurrentReservation() {

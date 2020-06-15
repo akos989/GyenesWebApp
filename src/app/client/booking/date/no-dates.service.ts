@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, from } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
@@ -28,9 +28,9 @@ export class NoDatesService {
                     for (const nod of responseData.noDates) {
                         let tmpNod = nod;
                         tmpNod.fromDate =
-                            this.dateFromString(tmpNod.fromDate.toString(), 2);   
+                            this.dateFromString(tmpNod.fromDate.toString(), 0);   
                         tmpNod.toDate =
-                            this.dateFromString(tmpNod.toDate.toString(), 2);    
+                            this.dateFromString(tmpNod.toDate.toString(), 0);    
                         noDatesArray.push(tmpNod);
                     }
                     return noDatesArray;
@@ -76,37 +76,59 @@ export class NoDatesService {
                 }
             );
     }
-    update(_id: string, reason: string, fromDate: Date, toDate: Date) {
-        let body = {};                    
-        if (reason) {
-            body = {...body, ...{reason: reason}};
-        }
-        if (fromDate) {
-            body = {...body, ...{fromDate: fromDate}};
-        }
-        if (toDate) {
-            body = {...body, ...{toDate: toDate}};
-        }
-        console.log(body);
-        if (Object.keys(body).length !== 0) {
-            this.http.patch<NoDate>('api/no_dates/'+_id, body)
-                .subscribe(
-                    resData => {
-                        this.noDates.map(noDate => {
-                            if (noDate._id === _id) {
-                                noDate = resData;
-                                noDate.fromDate = this.dateFromString(resData.fromDate.toString(), 2);
-                                noDate.toDate = this.dateFromString(resData.toDate.toString(), 2);
-                            }
-                        });
-                        this.newNoDates.next();
-                    },
-                    (errorRes: {error: {error: {error: string, message: any}}}) => {
-                        this.errorHandler.newError(errorRes.error.error);
-                        return throwError(errorRes);
-                    }                
-                );
-        }
+    create( reason: string, fromDate: string, toDate: string) {
+        let body = {
+            reason: reason,
+            fromDate: fromDate,
+            toDate: toDate
+        };
+        return this.http.post<NoDate>('api/no_dates/', body)
+            .pipe(
+                tap(resData => {
+                    let noDate = resData;
+                    noDate.fromDate = this.dateFromString(resData.fromDate.toString(), 0);
+                    noDate.toDate = this.dateFromString(resData.toDate.toString(), 0);
+                    this.noDates.push(noDate);
+                    this.newNoDates.next();
+                }),
+                catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                })
+            );
+    }
+    update(_id: string, reason: string, fromDate: string, toDate: string) {
+        let body = {
+            reason: reason,
+            fromDate: fromDate,
+            toDate: toDate
+        };                    
+        // if (reason) {
+        //     body = {...body, ...{reason: reason}};
+        // }
+        // if (fromDate) {
+        //     body = {...body, ...{fromDate: fromDate}};
+        // }
+        // if (toDate) {
+        //     body = {...body, ...{toDate: toDate}};
+        // }
+        return this.http.patch<NoDate>('api/no_dates/'+_id, body)
+            .pipe(
+                tap(resData => {
+                    let value = resData;
+                    value.fromDate = this.dateFromString(resData.fromDate.toString(), 0);
+                    value.toDate = this.dateFromString(resData.toDate.toString(), 0);
+                    const idx = this.noDates.findIndex(noDate => noDate._id === value._id);
+                    if (idx > -1) {
+                        this.noDates[idx] = value;
+                    }
+                    this.newNoDates.next();
+                }),
+                catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                })
+            );
     }
     getCurrent(): NoDate {
         const date = new Date();
@@ -142,6 +164,9 @@ export class NoDatesService {
         return reservations.filter(res => {
             return startA <= res.date.valueOf() && res.date.valueOf() < endA;
         });
+    }
+    findById(id: string): NoDate {
+        return this.noDates.filter(noDate => {return noDate._id === id})[0];
     }
     private dateFromString(dateString: string, plus: number): Date {
         const dateParts:string[] = dateString.split('T');

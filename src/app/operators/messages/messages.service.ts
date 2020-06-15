@@ -26,6 +26,7 @@ export class MessagesService {
                 }),
                 tap(messages =>{
                     this.messages = messages;
+                    this.messages.reverse();
                     this.newMessages.next();
                 },
                 catchError((errorRes: {error: {error: {error: string, message: any}}}) => {

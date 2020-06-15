@@ -110,8 +110,8 @@ const routes: Routes = [
               resolve: { NoDateResolver },
               children: [
                 { path: '', pathMatch: 'full', component: NoDateStartComponent },
-                { path: 'new', component: NoDateNewComponent, resolve: ReservationResolver },
-                { path: ':id/edit', component: NoDateNewComponent, resolve: ReservationResolver }
+                { path: 'new', component: NoDateNewComponent, resolve: { ReservationResolver } },
+                { path: ':id/edit', component: NoDateNewComponent, resolve: { ReservationResolver } }
               ]
             },
             { path: 'pop-ups', component: ModalsComponent },
