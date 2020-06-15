@@ -46,8 +46,9 @@ export class CalendarComponent implements OnInit, OnDestroy {
               private bookinService: BookingService) { }
 
   ngOnInit(): void {
-    this.today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-    this.refDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+    const now = new Date();
+    this.today = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    this.refDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), 1);
     const reservation: Reservation = this.reservationService.currentReservation;
 
     if (reservation && reservation.date) {

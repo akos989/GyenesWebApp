@@ -13,17 +13,21 @@
         <button 
         [ngClass]="{'active': dateSort}"
         (click)="sortDate()">Dátum</button>
-        <button class="arrow" (click)="dateDesc = dateDesc ? false: true">
+        <button 
+            data-toggle="tooltip" data-placement="right" [title]="dateDesc ? 'Növekvő' : 'Csökkenő'"
+            class="arrow" (click)="dateDesc = dateDesc ? false: true">
             <img
-            [ngClass]="{'up': !dateDesc}"
-            src="../../../../assets/icons/arrowup.png" alt="">
+                [ngClass]="{'up': dateDesc}"
+                src="../../../../assets/icons/arrowup.png" alt="">
         </button>
     </div>
     <div class="col-6">
         <button
             [ngClass]="{'active': !dateSort}"
             (click)="sortCreation()">Létrehozás</button>
-        <button class="arrow" (click)="createDesc = createDesc ? false: true">
+        <button 
+            data-toggle="tooltip" data-placement="right" [title]="!createDesc ? 'Növekvő' : 'Csökkenő'"
+            class="arrow" (click)="createDesc = createDesc ? false: true">
             <img
                 [ngClass]="{'up': !createDesc}"
                 src="../../../../assets/icons/arrowup.png" alt="">

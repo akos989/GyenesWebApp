@@ -485,3 +485,6 @@ hr.left.open {
     font-weight: bolder;
     letter-spacing: 1px;
 }
+.help-block.warning {
+    color: yellow;
+}

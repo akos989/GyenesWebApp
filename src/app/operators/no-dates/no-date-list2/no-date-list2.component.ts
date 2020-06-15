@@ -24,6 +24,7 @@ export class NoDateList2Component implements OnInit, OnDestroy, AfterViewInit {
     this.newDateSub = this.noDateService.newNoDates
       .subscribe( ()=> {
         this.updateNoDates();
+        console.log(this.noDateService)
       });
   }
   updateNoDates() {
