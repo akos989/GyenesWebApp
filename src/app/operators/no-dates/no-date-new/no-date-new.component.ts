@@ -55,7 +55,7 @@ export class NoDateNewComponent implements AfterViewInit, OnDestroy, OnInit {
   onChanges() {
     setTimeout(() => {
       if (this.datesInputValid()) {
-        const fromDate = new Date(this.noDateForm.form.controls.fromDate.value).valueOf();
+        const fromDate = new Date(this.noDateForm.form.controls.fromDate.value+'T04:00Z').valueOf();
         const toDate = new Date(this.noDateForm.form.controls.toDate.value+'T22:00').valueOf();
         this.intersectingDates = this.noDateService.intersects(fromDate, toDate, this.id);
         this.intersectingRes = this.noDateService.intersectsWithReservation(fromDate, toDate);

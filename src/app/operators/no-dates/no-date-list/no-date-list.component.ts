@@ -12,7 +12,7 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   newDateSub: Subscription;
   noDates: NoDate[] = [];
-  @ViewChild('today') messagesForm: NgForm;
+  @ViewChild('today') noDateForm: NgForm;
   formChangeSub: Subscription;
   checkedNum: number = 0;
   allValue: boolean = false;
@@ -33,7 +33,7 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
       this.noDates.push(noDate);
   }
   ngAfterViewInit() {
-      this.formChangeSub = this.messagesForm.form.valueChanges
+      this.formChangeSub = this.noDateForm.form.valueChanges
         .subscribe(()=> {
           this.onChanges();
         });
@@ -49,8 +49,8 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.allValue = !this.allValue;
     const check: boolean = this.allValue;
     this.noDates.forEach((noDate) => {
-      if (this.messagesForm.form.get(noDate._id))
-        this.messagesForm.form.get(noDate._id).patchValue(check);
+      if (this.noDateForm.form.get(noDate._id))
+        this.noDateForm.form.get(noDate._id).patchValue(check);
       });
   }
   onDelete() {
@@ -59,8 +59,8 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
   private getCheckedDates(): NoDate[] {
     return this.noDates
       .filter((noDate) => {
-        if (this.messagesForm.form.get(noDate._id))
-          return this.messagesForm.form.get(noDate._id).value;
+        if (this.noDateForm.form.get(noDate._id))
+          return this.noDateForm.form.get(noDate._id).value;
         return false;
       });
   }
@@ -72,5 +72,6 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   ngOnDestroy() {
     this.newDateSub.unsubscribe();
+    this.formChangeSub.unsubscribe();
   }
 }

@@ -1,1 +1,19 @@
-<p>modal-detail works!</p>
+<ng-template appPlaceholder></ng-template>
+<div 
+    class="row middle-text text-center justify-content-center">
+    <div class="col-xl-5 col-md-6 col-12">
+        {{ modal.fromDate.getFullYear()}}-{{modal.fromDate.getMonth()+1}}-{{modal.fromDate.getDate()}}
+        {{ (modal.fromDate.getHours() < 10 ? '0' + modal.fromDate.getHours() + ':' : modal.fromDate.getHours() + ':') + (modal.fromDate.getMinutes() < 10 ? '0' + modal.fromDate.getMinutes() : modal.fromDate.getMinutes()) }}
+    </div>
+    <div class="col-xl-5 col-md-6 col-12">
+        {{ modal.toDate.getFullYear()}}-{{modal.toDate.getMonth()+1}}-{{modal.toDate.getDate()}}
+        {{ (modal.toDate.getHours() < 10 ? '0' + modal.toDate.getHours() + ':' : modal.toDate.getHours() + ':') + (modal.toDate.getMinutes() < 10 ? '0' + modal.toDate.getMinutes() : modal.toDate.getMinutes()) }}
+    </div>
+    <div class="col-xl-2 col-12">
+        <div 
+            (click)="onOpen($event)"
+            class="cbtn cbtn-one mini2" style="z-index: 40;">
+            <span>Részletek</span>
+        </div>
+    </div>
+</div>

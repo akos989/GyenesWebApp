@@ -34,6 +34,9 @@ import { CurrentUserResolver } from './shared/login/current-user-resolver.servic
 import { MessageResolver } from './operators/messages/messages-resolver.service';
 import { NoDateStartComponent } from './operators/no-dates/no-date-start/no-date-start.component';
 import { NoDateNewComponent } from './operators/no-dates/no-date-new/no-date-new.component';
+import { ModalStartComponent } from './operators/modals/modal-start/modal-start.component';
+import { ModalNewComponent } from './operators/modals/modal-new/modal-new.component';
+import { ModalResolver } from './operators/modals/modal-resolver.service';
 const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
@@ -99,7 +102,7 @@ const routes: Routes = [
                 }
               ]
             },
-            { path: 'messages', component: MessagesComponent},
+            { path: 'messages', component: MessagesComponent },
             {
               path: 'packages', component: OperatorPackagesComponent,
               resolve: { PackageResolver }
@@ -114,7 +117,15 @@ const routes: Routes = [
                 { path: ':id/edit', component: NoDateNewComponent, resolve: { ReservationResolver } }
               ]
             },
-            { path: 'pop-ups', component: ModalsComponent },
+            { 
+              path: 'pop-ups', component: ModalsComponent,
+               resolve: { ModalResolver },
+              children: [
+                { path: '', pathMatch: 'full', component: ModalStartComponent },
+                { path: 'new', component: ModalNewComponent },
+                { path: ':id/edit', component: ModalNewComponent }
+              ]
+            },
             { path: 'my-profile', component: MyProfileComponent }            
         ]
     }
