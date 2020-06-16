@@ -18,16 +18,27 @@ export class ModalNewComponent implements AfterViewInit, OnDestroy, OnInit {
   id: string = null;
   changeSub: Subscription;
   file: any;
+  modal: Modal;
 
   @ViewChild('f') modalForm: NgForm;
 
   constructor(private modalService: ModalService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.modal = new Modal('Cím', 'Itt van valami kis leírás, hogy mikor érvényes meg mi is az...', '');
     this.route.params
     .subscribe(
       (params: Params) => {
         this.id = params['id'];
+        if (this.id) {
+          this.modal = this.modalService.findById(this.id);
+        }
+        const output: HTMLImageElement = document.getElementById('output');
+        if (this.modal.modalImgUrl !== '') {
+          output.src = this.modal.modalImgUrl;
+        } else  {
+          output.src = "../../../../assets/pictures/noimg.png";
+        }
       }
     );
   }
@@ -41,13 +52,12 @@ export class ModalNewComponent implements AfterViewInit, OnDestroy, OnInit {
     });
   }
   initform() {
-    let modal = this.modalService.findById(this.id);
-    const fromDate = new Date(modal.fromDate);
-    const toDate = new Date(modal.toDate);
+    const fromDate = new Date(this.modal.fromDate);
+    const toDate = new Date(this.modal.toDate);
     setTimeout(()=> {
       this.modalForm.form.patchValue({
-        name: modal.name,
-        description: modal.description,
+        name: this.modal.name,
+        description: this.modal.description,
         fromDate: fromDate.toISOString().slice(0,10),
         toDate: toDate.toISOString().slice(0,10)
       });
@@ -64,12 +74,23 @@ export class ModalNewComponent implements AfterViewInit, OnDestroy, OnInit {
       } else {
         this.dateValid = false;
       }
+      if (this.modalForm.form.controls.name.value !== '')
+        this.modal.name = this.modalForm.form.controls.name.value;
+      if (this.modalForm.form.controls.description.value !== '')
+        this.modal.description = this.modalForm.form.controls.description.value;
     },0);
   }
   @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
     if (event && event.item(0)) {
       const file = event && event.item(0);
       this.file = file;
+      var reader = new FileReader();
+      reader.onload = function(){
+        const dataURL = reader.result;
+        const output = document.getElementById('output');
+        output.src = dataURL;
+      };
+      reader.readAsDataURL(file);
     }
   }
 

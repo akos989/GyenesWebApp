@@ -1,60 +1,72 @@
 <div class="medium-padding text-center">
     <div class="middle-top-text"> {{id ? 'Zárt dátum módosítás': 'Új zárt dátum'}}</div>
-    <form (ngSubmit)="onSubmit()" #f="ngForm">
-        <div class="container middle-text">
-            <div class="form-group">
-                <label for="name">Cím</label>
-                <input
-                    type="text" name="name" id="name" #name="ngModel"
-                    ngModel class="form-control" required>
-                <span *ngIf="name.invalid && name.touched" class="help-block">
-                    Cím megadása kötelező!
-                </span>
-            </div>
-            <div class="form-group">
-                <label for="description">Leírás</label>
-                <input type="text" name="description" id="description"ngModel class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="image">Kép</label>
-                <input type="file" name="image" id="image" ngModel class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="reason">Kezdő dátum</label>
-                <input
-                    type="date" name="fromDate" id="fromDate" #fromDate="ngModel"
-                    ngModel class="form-control" required>
-                <span *ngIf="fromDate.invalid && fromDate.touched" class="help-block">
-                    Kezdő dátum megadása kötelező!
-                </span>
-            </div>
-            <div class="form-group">
-                <label for="reason">Vég dátum</label>
-                <input
-                    type="date" name="toDate" id="toDate" #toDate="ngModel"
-                    ngModel class="form-control" required>
-                <span *ngIf="toDate.invalid && toDate.touched" class="help-block">
-                    Vég dátum megadása kötelező!
-                </span>
-            </div>
-            <div class="help-block small-text" *ngIf="fromBiggerError">
-                A kezdődátum nagyobb vagy egyenlő, mint a végdátum!
-            </div>
-            <div *ngIf="intersectingDates.length > 0" class="help-block small-text">
-                Az intervallum ütközik másik zárt dátumokkal:
-                <div *ngFor="let noDate of intersectingDates">
-                    {{ noDate.fromDate.toISOString().slice(0,10) }}
-                    {{ (noDate.fromDate.getHours() < 10 ? '0' + noDate.fromDate.getHours() + ':' : noDate.fromDate.getHours() + ':') + (noDate.fromDate.getMinutes() < 10 ? '0' + noDate.fromDate.getMinutes() : noDate.fromDate.getMinutes()) }}            
-                    - 
-                    {{ noDate.toDate.toISOString().slice(0,10) }}
-                    {{ (noDate.toDate.getHours() < 10 ? '0' + noDate.toDate.getHours() + ':' : noDate.toDate.getHours() + ':') + (noDate.toDate.getMinutes() < 10 ? '0' + noDate.toDate.getMinutes() : noDate.toDate.getMinutes()) }}            
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <div class="container middle-text">
+                    <div class="form-group">
+                        <label for="name">Cím</label>
+                        <input
+                            type="text" name="name" id="name" #name="ngModel"
+                            ngModel class="form-control" required>
+                        <span *ngIf="name.invalid && name.touched" class="help-block">
+                            Cím megadása kötelező!
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Leírás</label>
+                        <input type="text" name="description" id="description"ngModel class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Kép</label>
+                        <input type="file" name="image" id="image" ngModel class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Kezdő dátum</label>
+                        <input
+                            type="date" name="fromDate" id="fromDate" #fromDate="ngModel"
+                            ngModel class="form-control" required>
+                        <span *ngIf="fromDate.invalid && fromDate.touched" class="help-block">
+                            Kezdő dátum megadása kötelező!
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Vég dátum</label>
+                        <input
+                            type="date" name="toDate" id="toDate" #toDate="ngModel"
+                            ngModel class="form-control" required>
+                        <span *ngIf="toDate.invalid && toDate.touched" class="help-block">
+                            Vég dátum megadása kötelező!
+                        </span>
+                    </div>
+                    <div class="help-block small-text" *ngIf="fromBiggerError">
+                        A kezdődátum nagyobb vagy egyenlő, mint a végdátum!
+                    </div>
+                    <div *ngIf="intersectingDates.length > 0" class="help-block small-text">
+                        Az intervallum ütközik másik zárt dátumokkal:
+                        <div *ngFor="let noDate of intersectingDates">
+                            {{ noDate.fromDate.toISOString().slice(0,10) }}
+                            {{ (noDate.fromDate.getHours() < 10 ? '0' + noDate.fromDate.getHours() + ':' : noDate.fromDate.getHours() + ':') + (noDate.fromDate.getMinutes() < 10 ? '0' + noDate.fromDate.getMinutes() : noDate.fromDate.getMinutes()) }}            
+                            - 
+                            {{ noDate.toDate.toISOString().slice(0,10) }}
+                            {{ (noDate.toDate.getHours() < 10 ? '0' + noDate.toDate.getHours() + ':' : noDate.toDate.getHours() + ':') + (noDate.toDate.getMinutes() < 10 ? '0' + noDate.toDate.getMinutes() : noDate.toDate.getMinutes()) }}            
+                        </div>
+                    </div>
+                    <div *ngIf="f.valid && dateValid" class="py-5">
+                        <div (click)="onSubmit()" class="cbtn cbtn-one small">
+                            <span>Mentés</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div *ngIf="f.valid && dateValid" class="pt-5">
-                <div (click)="onSubmit()" class="cbtn cbtn-one small">
-                    <span>Mentés</span>
-                </div>
+            </form>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="content"> 
+                <div class="middle-text text-center">{{modal.name}}</div>
+                <hr class="orange big">
+                <div class="pt-2 text-center small-text"> {{modal.description}} </div>
+                <img id="output">
             </div>
         </div>
-    </form>
+    </div>
 </div>

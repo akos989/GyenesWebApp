@@ -4,4 +4,12 @@
 }
 img {
     border-radius: 25px;
+    height: auto;
+    object-fit: cover;
+    width: 80%;
+}
+.content {
+    padding: 10%;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 25px;
 }
