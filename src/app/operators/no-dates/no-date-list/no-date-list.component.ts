@@ -11,8 +11,11 @@ import { NgForm } from '@angular/forms';
 export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   newDateSub: Subscription;
-  noDates: NoDate[] = [];
-  @ViewChild('today') noDateForm: NgForm;
+  allNoDates: NoDate[] = [];
+  todayNoDate: NoDate = null;
+  futureNoDate: NoDate[] = [];
+  pastNoDate: NoDate[] = [];
+  @ViewChild('f') noDateForm: NgForm;
   formChangeSub: Subscription;
   checkedNum: number = 0;
   allValue: boolean = false;
@@ -27,10 +30,10 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
       });
   }
   updateNoDates() {
-    this.noDates = [];
-    const noDate = this.noDateService.getCurrent();
-    if (noDate)
-      this.noDates.push(noDate);
+    this.allNoDates = this.noDateService.noDates;
+    this.todayNoDate = this.noDateService.getCurrent();
+    this.pastNoDate = this.noDateService.getPast();
+    this.futureNoDate = this.noDateService.getFuture();
   }
   ngAfterViewInit() {
       this.formChangeSub = this.noDateForm.form.valueChanges
@@ -40,7 +43,7 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   onChanges() {
     this.checkedNum = this.getCheckedDates().length;
-    if (this.checkedNum === this.noDates.length)
+    if (this.checkedNum === this.allNoDates.length)
       this.allValue = true;
     else
       this.allValue = false;
@@ -48,7 +51,7 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
   checkAll() {
     this.allValue = !this.allValue;
     const check: boolean = this.allValue;
-    this.noDates.forEach((noDate) => {
+    this.allNoDates.forEach((noDate) => {
       if (this.noDateForm.form.get(noDate._id))
         this.noDateForm.form.get(noDate._id).patchValue(check);
       });
@@ -57,7 +60,7 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.noDateService.delete(this.getCheckedIds());
   }
   private getCheckedDates(): NoDate[] {
-    return this.noDates
+    return this.allNoDates
       .filter((noDate) => {
         if (this.noDateForm.form.get(noDate._id))
           return this.noDateForm.form.get(noDate._id).value;
