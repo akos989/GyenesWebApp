@@ -74,3 +74,8 @@ hr.orange.big {
     left: -10%;
     width: 120%;
 }
+img {
+    width: 70%;
+    height: auto;
+    border-radius: 25px;
+}
