@@ -9,7 +9,6 @@ export class NoDateResolver implements Resolve<any[]> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
        if (this.noDateService.noDates.length > 0) {
-           this.noDateService.loadNoDates();
             return this.noDateService.noDates;
         } else {
             return this.noDateService.loadNoDates();

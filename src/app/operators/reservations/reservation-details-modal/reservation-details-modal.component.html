@@ -26,7 +26,7 @@
         <div>Időtartam: {{package.duration}} óra</div>
         <div class="font-weight-bold">Létrehozva:</div>
         <div class="pb-4 font-italic">
-            {{ reservation.timeStamp.toISOString().slice(0,10) }}
+            {{ reservation.date.getFullYear()}}-{{reservation.date.getMonth()+1}}-{{reservation.date.getDate()}}
             {{ (reservation.timeStamp.getHours() < 10 ? '0' + reservation.timeStamp.getHours() + ':' : reservation.timeStamp.getHours() + ':') + (reservation.timeStamp.getMinutes() < 10 ? '0' + reservation.timeStamp.getMinutes() : reservation.timeStamp.getMinutes()) }}
         </div>
         <div

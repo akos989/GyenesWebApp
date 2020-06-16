@@ -2,16 +2,18 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Modal } from './modal.model';
 import { AcceptCookieService } from '../cookie/cookie.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, tap, catchError } from 'rxjs/operators';
 import { ErrorHandleService } from '../error-handle.service';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ModalService {
 
     modal: Modal = null;
+    modals: Modal[] = [];
+    newModalsSub = new Subject<Modal[]>();
 
     constructor(private cookieService: CookieService,
                 private acceptCookieS: AcceptCookieService,
@@ -56,5 +58,109 @@ export class ModalService {
                     return throwError(errorRes);
                 })
             );
+    }
+    fetchModals() {
+        return this.http.get<{modals: Modal[]}>('api/modals/')
+            .pipe(
+                map(resData => {
+                    let modals: Modal[] = resData.modals;
+                    modals = modals.map(modal => {
+                        modal.fromDate = this.dateFromString(modal.fromDate.toString(), 0);
+                        modal.toDate = this.dateFromString(modal.toDate.toString(), 0);
+                        return modal;
+                    });
+                    return modals;
+                }),
+                tap(modals => {
+                    this.modals = modals;
+                    this.newModalsSub.next(this.modals);
+                }),
+                catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                })
+            );
+    }
+    delete(ids: string[]) {
+        let options = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+            }),
+            body: {
+                ids: ids
+            },
+        };
+        this.http.delete('api/modals/', options)
+            .subscribe(
+                resData => {
+                    this.modals = this.modals.filter(modal => {
+                        return !ids.some(id => id === modal._id);
+                    });
+                    this.newModalsSub.next(this.modals);
+                },
+                (errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                }
+            );
+    }
+    create( formData: FormData) {
+        return this.http.post<Modal>('api/modals/', formData)
+            .pipe(
+                tap(resData => {
+                    let modal = resData;
+                    modal.fromDate = this.dateFromString(resData.fromDate.toString(), 0);
+                    modal.toDate = this.dateFromString(resData.toDate.toString(), 0);
+                    this.modals.push(modal);
+                    this.newModalsSub.next(this.modals);
+                }),
+                catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                })
+            );
+    }
+    update( formData: FormData, modalId: string) {
+        return this.http.patch<Modal>('api/modals/'+modalId, formData)
+            .pipe(
+                tap(resData => {
+                    this.modals = this.modals.map(modal => {
+                        if (modal._id === modalId) {
+                            modal = resData;
+                            modal.fromDate = this.dateFromString(modal.fromDate.toString(), 0);
+                            modal.toDate = this.dateFromString(modal.toDate.toString(), 0);
+                        }
+                        return modal;
+                    });
+                    this.newModalsSub.next(this.modals);
+                }),
+                catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
+                    this.errorHandler.newError(errorRes.error.error);
+                    return throwError(errorRes);
+                })
+            );
+    }
+    findById(id: string): Modal {
+        return this.modals.filter(modal => {return modal._id === id})[0];
+    }
+    intersects(startA: number, endA: number, _id = null): Modal[] {
+        return this.modals.filter(modal => {
+                const startB = modal.fromDate.valueOf();
+                const endB = modal.toDate.valueOf();
+
+                const min = (startA < startB ? [startA, endA] : [startB, endB]);
+                const max = ( (min[0] === startA && min[1] === endA) ? [startB, endB] : [startA, endA] );
+                return (!(min[1] < max[0]) && !(modal._id === _id) );
+        });
+    }
+    private dateFromString(dateString: string, plus: number): Date {
+        const dateParts:string[] = dateString.split('T');
+
+        return new Date(
+            +(dateParts[0].split('-')[0]),
+            +(dateParts[0].split('-')[1]) - 1,
+            +(dateParts[0].split('-')[2]),
+            +(dateParts[1].split(':')[0]) + plus       
+        );
     }
 }
