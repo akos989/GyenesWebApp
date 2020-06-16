@@ -33,11 +33,11 @@ export class ModalNewComponent implements AfterViewInit, OnDestroy, OnInit {
         if (this.id) {
           this.modal = this.modalService.findById(this.id);
         }
-        const output: HTMLImageElement = document.getElementById('output');
+        const output = document.getElementById('output');
         if (this.modal.modalImgUrl !== '') {
-          output.src = this.modal.modalImgUrl;
+          output.setAttribute('src', this.modal.modalImgUrl);
         } else  {
-          output.src = "../../../../assets/pictures/noimg.png";
+          output.setAttribute('src', "../../../../assets/pictures/noimg.png");
         }
       }
     );
@@ -88,7 +88,7 @@ export class ModalNewComponent implements AfterViewInit, OnDestroy, OnInit {
       reader.onload = function(){
         const dataURL = reader.result;
         const output = document.getElementById('output');
-        output.src = dataURL;
+        output.setAttribute('src', dataURL.toString());
       };
       reader.readAsDataURL(file);
     }
