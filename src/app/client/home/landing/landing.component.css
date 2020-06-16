@@ -74,7 +74,7 @@ img.scroll-down {
     height: 100vh; width: 100%;
     color: black;
 }
-@media screen and (min-width: 721px) {
+@media screen and (min-width: 721px) and (max-width: 2350px) {
     .page {
         background-image: url(../../../../assets/pictures/home/home-top-2.jpg);
         background-position: 20% 40%;
@@ -82,11 +82,56 @@ img.scroll-down {
         mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    
     }
 }
-
-
+@media screen and (min-width: 2351px) and (max-width: 3480px) {
+    .page {
+        background-image: url(../../../../assets/pictures/home/home-top-3k.jpg);
+        background-position: 20% 40%;
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    
+    }
+}
+@media screen and (min-width: 3481px) and (max-width: 4180px) {
+    .page {
+        background-image: url(../../../../assets/pictures/home/home-top-4k.jpg);
+        background-position: 20% 40%;
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    
+    }
+}
+@media screen and (min-width: 4181px) and (max-width: 5480px) {
+    .page {
+        background-image: url(../../../../assets/pictures/home/home-top-5k.jpg);
+        background-position: 20% 40%;
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    
+    }
+}
+@media screen and (min-width: 5481px) {
+    .page {
+        background-image: url(../../../../assets/pictures/home/home-top-8k.jpg);
+        background-position: 20% 40%;
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    
+    }
+}
 @media screen and (max-width: 720px) {
     .page {
         background-image: url(../../../../assets/pictures/home/home-top-phone.jpg);
+        background-position: 50% 35%;
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    
+    }
+}
+@media (max-aspect-ratio: 320/480) and (min-width: 721px) and (max-width: 1760px) {
+    .page {
+        background-image: url(../../../../assets/pictures/home/home-top-phone-2k.jpg);
+        background-position: 50% 35%;
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    
+    }
+}@media (max-aspect-ratio: 320/480) and (min-width: 1761px) {
+    .page {
+        background-image: url(../../../../assets/pictures/home/home-top-phone-3k.jpg);
         background-position: 50% 35%;
         -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
         mask-image: linear-gradient(to bottom, black 80%, transparent 100%);    

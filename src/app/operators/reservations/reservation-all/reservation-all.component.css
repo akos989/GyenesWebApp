@@ -37,6 +37,10 @@ button.arrow {
 .active {
     border: 3px solid green;
 }
+img {
+    height: 3vh;
+    width: auto;
+}
 img.up {
     transform: rotateX(180deg);
 }

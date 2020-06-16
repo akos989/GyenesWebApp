@@ -488,3 +488,6 @@ hr.left.open {
 .help-block.warning {
     color: yellow;
 }
+.form-control {
+    font-size: 3vh;
+}
