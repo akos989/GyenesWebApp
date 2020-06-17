@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 import { AcceptCookieService } from 'src/app/shared/cookie/cookie.service';
 import { CookieService } from 'ngx-cookie-service';
 import { OperatorResService } from 'src/app/operators/reservations/operator-reservation.service';
+import { environment } from 'src/environments/environment';
 
 class Hour {
     constructor(public hour: number, public type: string, public remainingNumber: number) {}
@@ -81,9 +82,8 @@ export class ReservationService {
     reservations: Reservation[] = [];
 
     loadReservations() {
-        //szerver kérés
         return this.http
-            .get<{reservations: Reservation[]}>('api/reservations/allForClient')
+            .get<{reservations: Reservation[]}>(environment.serverUrl+'api/reservations/allForClient')
             .pipe(
                 map((responseData) => {
                     const reservationArray: Reservation[] = [];
@@ -157,7 +157,6 @@ export class ReservationService {
     }
     
     submitCurrentReservation() {
-        //http, backendbe küldés, ha nincs hiba submitRes(true), ha van false          
         const body = {
             name: this._currentReservation.name,
             email: this._currentReservation.email,
@@ -168,12 +167,12 @@ export class ReservationService {
             date: this.stringFromDate(this._currentReservation.date)
         };
         if (!this.isOperatorEditing)
-            return this.http.post<{reservation: Reservation}>('/api/reservations/', body)
+            return this.http.post<{reservation: Reservation}>(environment.serverUrl+'api/reservations/', body)
                 .pipe(tap(resData => {
                     this.oResService.updateReservation(resData.reservation);
                 }));
-                else 
-                return this.http.patch<{reservation: Reservation}>('/api/reservations/'+this._currentReservation._id, body)
+        else 
+            return this.http.patch<{reservation: Reservation}>(environment.serverUrl+'api/reservations/'+this._currentReservation._id, body)
                 .pipe(tap(resData => {
                     this.oResService.updateReservation(resData.reservation);
             }));;
@@ -268,5 +267,4 @@ export class ReservationService {
         }
         return true;
     }
-
 }

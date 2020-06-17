@@ -7,6 +7,7 @@ import { map, tap, catchError } from 'rxjs/operators';
 import { ErrorHandleService } from '../error-handle.service';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class ModalService {
@@ -43,8 +44,7 @@ export class ModalService {
     }
 
     fetchModal() {
-        //backend kérés
-        return this.http.get<{modal: Modal}>('api/modals/today')
+        return this.http.get<{modal: Modal}>(environment.serverUrl+'api/modals/today')
             .pipe(
                 map((responseData)=> {
                     return responseData.modal;
@@ -52,6 +52,8 @@ export class ModalService {
                 tap((modal)=> {
                     if (modal.name !== '')
                         this.modal = modal;
+                        this.modal.modalImgUrl = this.makeImagePath(this.modal.modalImgUrl);
+                        console.log(this.modal);
                 }),
                 catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
                     this.errorHandler.newError(errorRes.error.error);
@@ -60,11 +62,12 @@ export class ModalService {
             );
     }
     fetchModals() {
-        return this.http.get<{modals: Modal[]}>('api/modals/')
+        return this.http.get<{modals: Modal[]}>(environment.serverUrl+'api/modals/')
             .pipe(
                 map(resData => {
                     let modals: Modal[] = resData.modals;
                     modals = modals.map(modal => {
+                        modal.modalImgUrl = this.makeImagePath(modal.modalImgUrl);
                         modal.fromDate = this.dateFromString(modal.fromDate.toString(), 0);
                         modal.toDate = this.dateFromString(modal.toDate.toString(), 0);
                         return modal;
@@ -90,7 +93,7 @@ export class ModalService {
                 ids: ids
             },
         };
-        this.http.delete('api/modals/', options)
+        this.http.delete(environment.serverUrl+'api/modals/', options)
             .subscribe(
                 resData => {
                     this.modals = this.modals.filter(modal => {
@@ -105,10 +108,11 @@ export class ModalService {
             );
     }
     create( formData: FormData) {
-        return this.http.post<Modal>('api/modals/', formData)
+        return this.http.post<Modal>(environment.serverUrl+'api/modals/', formData)
             .pipe(
                 tap(resData => {
                     let modal = resData;
+                    modal.modalImgUrl = this.makeImagePath(resData.modalImgUrl);
                     modal.fromDate = this.dateFromString(resData.fromDate.toString(), 0);
                     modal.toDate = this.dateFromString(resData.toDate.toString(), 0);
                     this.modals.push(modal);
@@ -121,12 +125,13 @@ export class ModalService {
             );
     }
     update( formData: FormData, modalId: string) {
-        return this.http.patch<Modal>('api/modals/'+modalId, formData)
+        return this.http.patch<Modal>(environment.serverUrl+'api/modals/'+modalId, formData)
             .pipe(
                 tap(resData => {
                     this.modals = this.modals.map(modal => {
                         if (modal._id === modalId) {
                             modal = resData;
+                            modal.modalImgUrl = this.makeImagePath(resData.modalImgUrl);
                             modal.fromDate = this.dateFromString(modal.fromDate.toString(), 0);
                             modal.toDate = this.dateFromString(modal.toDate.toString(), 0);
                         }
@@ -152,6 +157,9 @@ export class ModalService {
                 const max = ( (min[0] === startA && min[1] === endA) ? [startB, endB] : [startA, endA] );
                 return (!(min[1] < max[0]) && !(modal._id === _id) );
         });
+    }
+    private makeImagePath(imgName: string) {
+        return environment.serverUrl + imgName;
     }
     private dateFromString(dateString: string, plus: number): Date {
         const dateParts:string[] = dateString.split('T');

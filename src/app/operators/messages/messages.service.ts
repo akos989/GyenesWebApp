@@ -5,6 +5,7 @@ import { tap, catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class MessagesService {
@@ -15,7 +16,7 @@ export class MessagesService {
     constructor(private http: HttpClient, private errorHandler: ErrorHandleService) {}
 
     fetchMessages() {
-        return this.http.get<{messages: Message[]}>('api/messages/')
+        return this.http.get<{messages: Message[]}>(environment.serverUrl+'api/messages/')
             .pipe(
                 map(resData => {
                     resData.messages.map(message => {
@@ -49,7 +50,7 @@ export class MessagesService {
                 ids: ids
             },
         };
-        this.http.delete('api/messages/', options)
+        this.http.delete(environment.serverUrl+'api/messages/', options)
             .subscribe(
                 resData => {
                     this.messages = this.messages.filter(message => {
@@ -65,7 +66,7 @@ export class MessagesService {
     }
     reply(replyBody, replier, messageId) {
         return this.http.post<Message>(
-            'api/messages/reply/' + messageId, 
+            environment.serverUrl+'api/messages/reply/' + messageId, 
             {
                 replyBody: replyBody,
                 replier: replier

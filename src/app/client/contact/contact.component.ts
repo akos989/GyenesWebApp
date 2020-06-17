@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -15,8 +16,6 @@ export class ContactComponent {
   @ViewChild('f') submitForm: NgForm;
   @ViewChild('scrollTo') thanksElement: ElementRef;
   submitted: boolean = false;
-  pattern = "/^(([^<>()\[\]\\.,;:\s@\x22]+(\.[^<>()\[\]\\.,;:\s@\x22]+)*)|(\x22.+\x22))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/"
-
   constructor(private http: HttpClient, private errorHandler: ErrorHandleService) { }
 
   onSubmit() {
@@ -25,7 +24,7 @@ export class ContactComponent {
       email: this.submitForm.form.controls.email.value,
       text: this.submitForm.form.controls.text.value
     };
-    this.http.post('/api/messages/', body)
+    this.http.post(environment.serverUrl+'api/messages/', body)
       .pipe(
         catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
           this.errorHandler.newError(errorRes.error.error);

@@ -75,60 +75,61 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { 
-        path: 'operators', component: OperatorComponent,
-        resolve: {small: SmallHeaderResolver, currentUser: CurrentUserResolver, MessageResolver},
-        canActivate: [AuthGuard],
-        children: [
-            { 
-              path: '', component: ReservationsComponent,
-              resolve: { OperatorsReservationResolver, PackageResolver },
-              children: [
-                { path: '', pathMatch: 'full', component: ReservationAllComponent},
-                {
-                  path: 'new', component: ReservationNewComponent,
-                  resolve: {
-                    ReservationResolver,
-                    NoDateResolver,
-                    NewReservationResolver
-                  }
-                },
-                {
-                  path: ':id/edit', component: ReservationNewComponent,
-                  resolve: {
-                    ReservationResolver,
-                    NoDateResolver,
-                    NewReservationResolver
-                  }
+      path: 'operators', component: OperatorComponent,
+      resolve: {small: SmallHeaderResolver, currentUser: CurrentUserResolver, MessageResolver},
+      canActivate: [AuthGuard],
+      children: [
+          { 
+            path: '', component: ReservationsComponent,
+            resolve: { OperatorsReservationResolver, PackageResolver },
+            children: [
+              { path: '', pathMatch: 'full', component: ReservationAllComponent},
+              {
+                path: 'new', component: ReservationNewComponent,
+                resolve: {
+                  ReservationResolver,
+                  NoDateResolver,
+                  NewReservationResolver
                 }
-              ]
-            },
-            { path: 'messages', component: MessagesComponent },
-            {
-              path: 'packages', component: OperatorPackagesComponent,
-              resolve: { PackageResolver }
-            },
-            { path: 'users', component: UsersComponent },
-            { 
-              path: 'no-dates', component: NoDatesComponent,
-              resolve: { NoDateResolver },
-              children: [
-                { path: '', pathMatch: 'full', component: NoDateStartComponent },
-                { path: 'new', component: NoDateNewComponent, resolve: { ReservationResolver } },
-                { path: ':id/edit', component: NoDateNewComponent, resolve: { ReservationResolver } }
-              ]
-            },
-            { 
-              path: 'pop-ups', component: ModalsComponent,
-               resolve: { ModalResolver },
-              children: [
-                { path: '', pathMatch: 'full', component: ModalStartComponent },
-                { path: 'new', component: ModalNewComponent },
-                { path: ':id/edit', component: ModalNewComponent }
-              ]
-            },
-            { path: 'my-profile', component: MyProfileComponent }            
-        ]
-    }
+              },
+              {
+                path: ':id/edit', component: ReservationNewComponent,
+                resolve: {
+                  ReservationResolver,
+                  NoDateResolver,
+                  NewReservationResolver
+                }
+              }
+            ]
+          },
+          { path: 'messages', component: MessagesComponent },
+          {
+            path: 'packages', component: OperatorPackagesComponent,
+            resolve: { PackageResolver }
+          },
+          { path: 'users', component: UsersComponent },
+          { 
+            path: 'no-dates', component: NoDatesComponent,
+            resolve: { NoDateResolver },
+            children: [
+              { path: '', pathMatch: 'full', component: NoDateStartComponent },
+              { path: 'new', component: NoDateNewComponent, resolve: { ReservationResolver } },
+              { path: ':id/edit', component: NoDateNewComponent, resolve: { ReservationResolver } }
+            ]
+          },
+          { 
+            path: 'pop-ups', component: ModalsComponent,
+              resolve: { ModalResolver },
+            children: [
+              { path: '', pathMatch: 'full', component: ModalStartComponent },
+              { path: 'new', component: ModalNewComponent },
+              { path: ':id/edit', component: ModalNewComponent }
+            ]
+          },
+          { path: 'my-profile', component: MyProfileComponent }            
+      ]
+  },
+  { path: '**', redirectTo: '/home'}
 ];
 
 @NgModule({

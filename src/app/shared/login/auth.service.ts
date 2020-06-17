@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { ErrorHandleService } from '../error-handle.service';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export class User {
     constructor(
@@ -56,7 +57,7 @@ export class AuthService {
 
     login(email: string, password: string) {
         return this.http.post<UserData>(
-            'api/operators/login',
+            environment.serverUrl+'api/operators/login',
             {
                 email: email,
                 password: password
@@ -85,7 +86,10 @@ export class AuthService {
     }
     fetchCurrentUser() {
         if (this.currentUser) {
-            this.http.post<{operator: UserData}>('api/operators/my_account', {operatorId: this._currentUser.localId})
+            this.http.post<{operator: UserData}>(
+                environment.serverUrl+'api/operators/my_account',
+                {operatorId: this._currentUser.localId}
+            )
                 .subscribe(
                     resData => {
                         const user = new User(
@@ -109,7 +113,7 @@ export class AuthService {
         });
         if (newReservations.length !== this._currentUser.newReservations.length) {
             this.http.post(
-                'api/operators/view_reservation',
+                environment.serverUrl+'api/operators/view_reservation',
                 {
                     operatorId: this._currentUser.localId,
                     reservationId: id
