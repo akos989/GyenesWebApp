@@ -63,11 +63,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "GyenesWebApp:build"
+            "browserTarget": "GyenesWebApp:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "GyenesWebApp:build:production"
+              "browserTarget": "GyenesWebApp:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             }
           }
         },

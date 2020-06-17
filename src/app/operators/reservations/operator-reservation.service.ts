@@ -4,6 +4,7 @@ import { Subject, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, tap, catchError } from 'rxjs/operators';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class OperatorResService {
@@ -13,7 +14,7 @@ export class OperatorResService {
     fetchReservations() {
         //backend kérés
         return this.http
-            .get<{reservations: Reservation[]}>('api/reservations')
+            .get<{reservations: Reservation[]}>(environment.serverUrl+'api/reservations')
             .pipe(
                 map(resData => {
                     resData.reservations.map(reservation => {
@@ -50,7 +51,7 @@ export class OperatorResService {
                 ids: reservationIds
             },
           };
-        this.http.delete('api/reservations', options)
+        this.http.delete(environment.serverUrl+'api/reservations', options)
             .subscribe(
                 resData => {
                     this.reservations = this.reservations.filter((reservation) => {
@@ -65,7 +66,7 @@ export class OperatorResService {
     }
     archiveReservations(reservationIds: string[], toBeArchived: boolean) {
         this.http.post(
-            'api/reservations/toggleArchived',
+            environment.serverUrl+'api/reservations/toggleArchived',
             {
                 ids: reservationIds,
                 isArchived: toBeArchived

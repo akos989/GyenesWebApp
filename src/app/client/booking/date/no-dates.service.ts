@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject, from } from 'rxjs';
+import { Subject } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { ErrorHandleService } from 'src/app/shared/error-handle.service';
 import { ReservationService } from '../reservations.service';
 import { Reservation } from 'src/app/shared/models/reservation.model';
+import { environment } from 'src/environments/environment';
 
 export class NoDate {
     constructor(public _id: string, public fromDate: Date, public toDate: Date, public reason: string) {}
@@ -21,7 +22,7 @@ export class NoDatesService {
 
     loadNoDates() {
         return this.http
-            .get<{noDates: NoDate[]}>('api/no_dates/')
+            .get<{noDates: NoDate[]}>(environment.serverUrl+'api/no_dates/')
             .pipe(
                 map((responseData) => {
                     const noDatesArray: NoDate[] = [];
@@ -62,7 +63,7 @@ export class NoDatesService {
                 ids: ids
             },
         };
-        this.http.delete('api/no_dates/', options)
+        this.http.delete(environment.serverUrl+'api/no_dates/', options)
             .subscribe(
                 resData => {
                     this.noDates = this.noDates.filter(noDate => {
@@ -82,7 +83,7 @@ export class NoDatesService {
             fromDate: fromDate,
             toDate: toDate
         };
-        return this.http.post<NoDate>('api/no_dates/', body)
+        return this.http.post<NoDate>(environment.serverUrl+'api/no_dates/', body)
             .pipe(
                 tap(resData => {
                     let noDate = resData;
@@ -102,17 +103,8 @@ export class NoDatesService {
             reason: reason,
             fromDate: fromDate,
             toDate: toDate
-        };                    
-        // if (reason) {
-        //     body = {...body, ...{reason: reason}};
-        // }
-        // if (fromDate) {
-        //     body = {...body, ...{fromDate: fromDate}};
-        // }
-        // if (toDate) {
-        //     body = {...body, ...{toDate: toDate}};
-        // }
-        return this.http.patch<NoDate>('api/no_dates/'+_id, body)
+        };
+        return this.http.patch<NoDate>(environment.serverUrl+'api/no_dates/'+_id, body)
             .pipe(
                 tap(resData => {
                     let value = resData;
