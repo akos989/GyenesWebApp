@@ -24,7 +24,12 @@
         width: 30% !important;
     }
 }
-
+@media screen and (max-width: 599px) {
+    .mat-expansion-panel-header {
+        left: 10% !important;
+        width: 80% !important;
+    }
+}
 @media screen and (min-width: 600px) and (max-width: 1300px) {
     .mat-expansion-panel-header {
         left: 25% !important;

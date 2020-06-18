@@ -1,6 +1,5 @@
 img {
     position: relative;
-    /* left: 5%; */
     width: 100%;
     object-fit: cover;
     height: auto;
@@ -16,7 +15,8 @@ img {
 
 .close-x {
     position: relative;
-    right: 0px;
+    top: 15px;
+    right: 15px;
     width: 100%;
     text-align: right;
 }
@@ -34,4 +34,39 @@ img {
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
+}
+.alert-box {
+    top: calc(10vh);
+    bottom: 10vh;
+    position:fixed;
+    overflow-y:hidden;
+    overflow-x:hidden;
+    overflow: auto;
+    height: auto;
+    z-index: 100;
+    background: rgb(20, 20, 20);
+    box-shadow: 2px 4px 4px rgba(146, 144, 144, 0.15);
+    border-radius: 25px;
+    color: blanchedalmond;
+}
+@media screen and (max-width: 600px) {
+    .alert-box {
+        left: 5%;
+        width: 90%;
+    }
+}
+@media screen and (min-width: 601px) {
+    .alert-box {
+        left: 15%;
+        width: 70%;
+    }
+}
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 99;
 }

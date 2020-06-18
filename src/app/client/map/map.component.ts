@@ -1,6 +1,9 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { Field } from './field-details/field.model';
 import { Equipment } from 'src/app/shared/models/equipment.model';
+import { PlaceholderDirective } from 'src/app/shared/placeholder.directive';
+import { Subscription } from 'rxjs';
+import { FieldDetailsComponent } from './field-details/field-details.component';
 
 @Component({
   selector: 'app-map',
@@ -9,6 +12,9 @@ import { Equipment } from 'src/app/shared/models/equipment.model';
 })
 export class MapComponent implements OnInit {
 
+  @ViewChild(PlaceholderDirective, {static: false}) modalHost: PlaceholderDirective;
+  private closeSub: Subscription;
+  
   open: boolean[] = [false, false, false];
   fields: Field[] = [
     new Field(
@@ -49,7 +55,7 @@ export class MapComponent implements OnInit {
     )
 ];
 
-constructor(private renderer: Renderer2) { }
+constructor(private renderer: Renderer2, private cFResolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
   }
@@ -72,4 +78,25 @@ constructor(private renderer: Renderer2) { }
     return this.open[0] || this.open[1] || this.open[2];
   }
 
+  openDialog(event, fieldNumber: number): void {
+    event.stopPropagation();
+    this.renderer.addClass(document.body, 'modal-open');
+    const componentFactory =
+      this.cFResolver.resolveComponentFactory(FieldDetailsComponent);
+    const hostViewContainerRef = this.modalHost.viewContainerRef;
+    hostViewContainerRef.clear();
+
+    const componentRef =
+      hostViewContainerRef.createComponent(componentFactory);
+    componentRef.instance.field = this.fields[fieldNumber];
+    this.closeSub = componentRef.instance.close.subscribe(() => {
+      this.closeSub.unsubscribe();
+      hostViewContainerRef.clear();
+      this.renderer.removeClass(document.body, 'modal-open');
+    });
+  }
+  ngOnDestroy() {
+    if (this.closeSub)
+      this.closeSub.unsubscribe();
+  }
 }
