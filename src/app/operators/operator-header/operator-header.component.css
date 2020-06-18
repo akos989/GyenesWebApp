@@ -3,21 +3,23 @@ nav {
     height: calc(3vh + 2vw + 2vh);
     background-color: black;
     opacity: 0.95;
-    width: 95%;
-    left: 2.5%;
+    width: 100%;
     z-index: 100;
+    padding-left: 5%;
 }
 
 img {
-    position: absolute;
-    left: 0;
-    top: 1vh;
-    width: calc(3vh + 2vw);
-    height: auto;
     -webkit-filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
     filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
     cursor: pointer;
     outline: none;
+}
+img.home {
+    position: absolute;
+    left: 0%;
+    top: 1vh;
+    width: calc(3vh + 2vw);
+    height: auto;
 }
 
 .nav-links {
@@ -35,7 +37,6 @@ a {
     color: rgb(255, 235, 204);
     text-decoration: none;
 }
-
 @media (hover: hover) {
     a:hover {
         color: rgb(209, 81, 26);
@@ -50,17 +51,17 @@ a {
 }
 .logout {
     top: 1vh;
-    width: calc(2vh + 2vw);
-    height: auto;
+    width: auto;
+    height: calc(2.5vh + 1vw);
 }
 @media screen and (max-width: 1025px) {
-    .logout.big {
-        display: none;
+    img.home {
+        left: 5%;
     }
-    .logout.small {
-        display: inline;
+    .logout.open {
         position: absolute;
-        left: 30%;
+        left: 0%;
+        top: 2%;
     }
     .line {
         height: 0.4vh;
@@ -71,7 +72,7 @@ a {
     .hamburger {
         display: inline;
         position: absolute;
-        right: 0;
+        right: 4%;
         top: 1vh;
         cursor: pointer;
         z-index: 200;
