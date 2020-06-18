@@ -30,6 +30,9 @@ export class OperatorHeaderComponent implements OnInit, OnDestroy {
       this.messageNum = this.messageService.getNotReplied().length;
     });
   }
+  logout() {
+    this.authService.logout();
+  }
   toggleOpen(event) {
     event.stopPropagation();
     event.preventDefault();

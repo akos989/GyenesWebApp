@@ -1,7 +1,9 @@
 <div *ngIf="open" (click)="toggleOpen($event)" class="backdrop"></div>
 <nav>
-    <img [routerLink]="['/home']" src="../../../assets/pictures/paintball-logo.png" alt="">
-    <img [ngClass]="{'open': open}" src="../../../assets/icons/logout.png" class="logout small" alt="">
+    <img [routerLink]="['/home']" class="home" src="../../../assets/pictures/paintball-logo.png" alt="">
+    <!-- <img 
+        (click)="logout()"
+        [ngClass]="{'open': open}" src="../../../assets/icons/logout.png" class="logout small" alt=""> -->
     <div 
         (click)="toggleOpen($event)"
         class="hamburger">
@@ -25,6 +27,6 @@
         <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['operators/users']">Operátorok</a></li>
         <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['operators/no-dates']">Zárt dátumok</a></li>
         <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['operators/pop-ups']">Pop-ups</a></li>
-        <li><img [ngClass]="{'open': open}" src="../../../assets/icons/logout.png" class="logout big" alt=""></li>
+        <li><img [ngClass]="{'open': open}" (click)="logout()" src="../../../assets/icons/logout.png" class="logout" alt=""></li>
     </ul>
 </nav>
