@@ -1,34 +1,34 @@
+<ng-template appPlaceholder></ng-template>
 <div class="component dark">
     <div class="padding-bottom-6" style="position: relative;">
         <div class="text-center lulo-full page-header padding-top-6">Pályáink</div>
         <div class="text-center middle-text padding-bottom-6" style="position: relative; z-index: 30;">Böngéssz a pályáink között!</div>
         <img>
-        <div (click)="toggleOpen()" *ngIf="anyOpen()" class="backdrop"></div>
-        <div id="map-navigation">
+        <!-- <div id="map-navigation">
             <div
                 *ngFor="let field of fields; let i = index"
                 [ngClass]="{'open': open[i]}">
                     <app-field-details [field]="field" (close)="toggleOpen(i)"></app-field-details>
             </div>
-        </div>
+        </div> -->
         <div class="togglers-container">
             <div 
                 class="trench-toggle"
-                (click)="toggleOpen(2)">
+                (click)="openDialog($event, 2)">
                 <div class="circle one"></div>
                 <div class="circle two"></div>
                 <div class="circle three"></div>
             </div>
             <div 
                 class="competition-toggle"
-                (click)="toggleOpen(1)">
+                (click)="openDialog($event, 1)">
                 <div class="circle one"></div>
                 <div class="circle two"></div>
                 <div class="circle three"></div>
             </div>
             <div 
                 class="city-toggle"
-                (click)="toggleOpen(0)">
+                (click)="openDialog($event, 0)">
                 <div class="circle one"></div>
                 <div class="circle two"></div>
                 <div class="circle three"></div>

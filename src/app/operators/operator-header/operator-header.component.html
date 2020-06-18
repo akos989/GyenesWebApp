@@ -1,6 +1,7 @@
 <div *ngIf="open" (click)="toggleOpen($event)" class="backdrop"></div>
 <nav>
     <img [routerLink]="['/home']" src="../../../assets/pictures/paintball-logo.png" alt="">
+    <img [ngClass]="{'open': open}" src="../../../assets/icons/logout.png" class="logout small" alt="">
     <div 
         (click)="toggleOpen($event)"
         class="hamburger">
@@ -24,6 +25,6 @@
         <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['operators/users']">Operátorok</a></li>
         <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['operators/no-dates']">Zárt dátumok</a></li>
         <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['operators/pop-ups']">Pop-ups</a></li>
-        <li><a routerLinkActive="active" (click)="closeNav($event)" [routerLink]="['operators/my-profile']">Profilom</a></li>
+        <li><img [ngClass]="{'open': open}" src="../../../assets/icons/logout.png" class="logout big" alt=""></li>
     </ul>
 </nav>

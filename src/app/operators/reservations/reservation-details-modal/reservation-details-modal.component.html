@@ -16,7 +16,7 @@
         <div class="pb-4 font-italic">{{reservation.playerNumber}} fő</div>
         <div class="font-weight-bold">Dátum:</div>
         <div class="pb-4 font-italic">
-            {{ reservation.date.toISOString().slice(0,10) }}
+            {{ reservation.date.getFullYear()}}-{{reservation.date.getMonth()+1}}-{{reservation.date.getDate()}}
             {{ (reservation.date.getHours() < 10 ? '0' + reservation.date.getHours() + ':' : reservation.date.getHours() + ':') + (reservation.date.getMinutes() < 10 ? '0' + reservation.date.getMinutes() : reservation.date.getMinutes()) }}
         </div>
         <div class="font-weight-bold">Csomag:</div>
@@ -26,7 +26,7 @@
         <div>Időtartam: {{package.duration}} óra</div>
         <div class="font-weight-bold">Létrehozva:</div>
         <div class="pb-4 font-italic">
-            {{ reservation.date.getFullYear()}}-{{reservation.date.getMonth()+1}}-{{reservation.date.getDate()}}
+            {{ reservation.timeStamp.getFullYear()}}-{{reservation.timeStamp.getMonth()+1}}-{{reservation.timeStamp.getDate()}}
             {{ (reservation.timeStamp.getHours() < 10 ? '0' + reservation.timeStamp.getHours() + ':' : reservation.timeStamp.getHours() + ':') + (reservation.timeStamp.getMinutes() < 10 ? '0' + reservation.timeStamp.getMinutes() : reservation.timeStamp.getMinutes()) }}
         </div>
         <div

@@ -18,19 +18,21 @@
         </div>
     </div>
 </div>
-<form #f="ngForm">
-    <div
-        class="middle-text"
-        *ngFor="let message of messages">
-        <label [for]="message._id" class="label">
-            <div class="row line">
-                <div class="col-2">
-                    <input type="checkbox" ngModel [name]="message._id" [id]="message._id" class="large-checkbox">
+<div class="medium-padding">
+    <form #f="ngForm">
+        <div
+            class="middle-text"
+            *ngFor="let message of messages">
+            <label [for]="message._id" class="label">
+                <div class="row line">
+                    <div class="col-2">
+                        <input type="checkbox" ngModel [name]="message._id" [id]="message._id" class="large-checkbox">
+                    </div>
+                    <div class="col-10">
+                        <app-message-detail [message]="message"></app-message-detail>
+                    </div>
                 </div>
-                <div class="col-10">
-                    <app-message-detail [message]="message"></app-message-detail>
-                </div>
-            </div>
-        </label>
-    </div>
-</form>
+            </label>
+        </div>
+    </form>
+</div>

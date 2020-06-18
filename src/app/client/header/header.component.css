@@ -8,7 +8,7 @@
       -o-transition: .5s ease-in-out;
       transition: .5s ease-in-out;
       cursor: pointer;
-      z-index: 100;
+      z-index: 200;
   }
 .logo.open {
   -webkit-filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
@@ -25,7 +25,7 @@ img {
   .top-zero {
     top: 0px;
     position: fixed;
-    z-index: 100;
+    z-index: 200;
     opacity: 0;
     background-color: black;
     height: calc(3vh + 2vw + 2vh);
@@ -40,7 +40,7 @@ img {
     width: calc(1vw + 4vh);
     height: 5vh;
     position: fixed;
-    z-index: 100;
+    z-index: 200;
     right:  calc(3vh + 3vw);
     top: calc(6vh + 3.375vw);
     margin: 0px;
@@ -58,7 +58,7 @@ img {
   #nav-icon4 span {
     display: block;
     position: fixed;
-    z-index: 100;
+    z-index: 200;
     height: 0.6vh;
     width: calc(1vw + 4vh);
     background: #000000;
@@ -152,7 +152,7 @@ img {
   #nav-icon4.small span {
     display: block;
     position: fixed;
-    z-index: 100;
+    z-index: 200;
     height: 0.4vh;
     width: calc(1vw + 3vh);
     background: blanchedalmond;
@@ -262,20 +262,20 @@ img {
   bottom: 0vh;
   height: calc(8vh + 2px);
   background-color: transparent;
-  z-index: 101;
+  z-index: 201;
 }
 
 .reservation {
   position: fixed;
   cursor: pointer;
-  z-index: 101;
+  z-index: 201;
   color: #ffebcd;
   outline: none;
 }
 
 .tel {
   position: fixed;
-  z-index: 101;
+  z-index: 201;
   outline: none;
 }
 
@@ -303,7 +303,7 @@ img {
   width: 1px;
   height: calc(3vh + 1vw);
   background-color: #ffebcd;
-  z-index: 101;
+  z-index: 201;
 }
 
 @media screen and (max-width: 520px) {
