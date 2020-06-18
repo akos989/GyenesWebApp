@@ -53,7 +53,6 @@ export class ModalService {
                     if (modal.name !== '')
                         this.modal = modal;
                         this.modal.modalImgUrl = this.makeImagePath(this.modal.modalImgUrl);
-                        console.log(this.modal);
                 }),
                 catchError((errorRes: {error: {error: {error: string, message: any}}}) => {
                     this.errorHandler.newError(errorRes.error.error);

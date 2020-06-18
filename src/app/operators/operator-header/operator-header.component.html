@@ -1,9 +1,6 @@
 <div *ngIf="open" (click)="toggleOpen($event)" class="backdrop"></div>
 <nav>
     <img [routerLink]="['/home']" class="home" src="../../../assets/pictures/paintball-logo.png" alt="">
-    <!-- <img 
-        (click)="logout()"
-        [ngClass]="{'open': open}" src="../../../assets/icons/logout.png" class="logout small" alt=""> -->
     <div 
         (click)="toggleOpen($event)"
         class="hamburger">
