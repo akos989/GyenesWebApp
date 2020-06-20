@@ -1,5 +1,6 @@
 .component {
-    overflow-x: hidden;
+    overflow: unset;
+    -webkit-overflow-scrolling: touch;
     margin: 0px;
     padding-top: 0;
 }

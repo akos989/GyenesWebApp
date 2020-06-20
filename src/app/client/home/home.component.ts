@@ -32,17 +32,6 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
         .setClassToggle("hr.left", "open")
         .addTo(this.ctrl)  
     );
-      
-    this.scrollMagicScenes.push(
-      new ScrollMagic.Scene({
-          triggerElement: '#trigger',
-          triggerHook: 0,
-          offset: -230,
-          duration: 10000
-        })
-        .setClassToggle("#best-track-map", "open")
-        .addTo(this.ctrl)
-    );
     this.scrollMagicScenes.push(
       new ScrollMagic.Scene({
         triggerElement: '#trigger2',
@@ -68,7 +57,7 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
   }
     
   ngOnDestroy() {
-    for (let i:number = 0; i < 4; i++) {
+    for (let i:number = 0; i < this.scrollMagicScenes.length; i++) {
       this.scrollMagicScenes[i].destroy(false);
       this.scrollMagicScenes[i] = null;
     }
