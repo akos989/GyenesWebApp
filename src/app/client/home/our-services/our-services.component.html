@@ -21,9 +21,9 @@
             <div class="col-md-4 col-12 text-center padding-bottom-2">
                 <div class="padding-bottom-2 middle-text font-weight-bold">Változatos pályák</div>
 		<div>
-                	<img class="services" src="../../../../assets/pictures/maps/maps-small.jpg" alt="">
+        <img class="services" src="../../../../assets/pictures/maps/map-small.jpg" alt="">
 		</div>
-                <div class="big-display padding-bottom-4 middle-text text-center font-italic">A 3 különböző pályánkon kipróbálhatjátok magatokat gyors és intenzív, vagy akár lassú és taktikusabb környzetben.</div>
+                <div [routerLink]="['/map']" class="big-display padding-bottom-4 middle-text text-center font-italic">A 3 különböző pályánkon kipróbálhatjátok magatokat gyors és intenzív, vagy akár lassú és taktikusabb környzetben.</div>
                 <div 
                     [routerLink]="['/map']"
                     class="cbtn cbtn-one small dark small-display">
@@ -33,7 +33,7 @@
             <div class="col-md-4 col-12 text-center padding-bottom-2">
                 <div class="padding-bottom-2 font-weight-bold">Minőségi felszerelés</div>
 		<div>
-                	<img class="services" src="../../../../assets/pictures/home/fegyverek.jpg" alt="">
+        <img [routerLink]="['/prices']" class="services" src="../../../../assets/pictures/home/fegyverek.jpg" alt="">
 		</div>                
 		<div class="big-display padding-top-2 padding-bottom-4 middle-text text-center font-italic">Kiváló minőségű, rendszeresen karbantartott felszerelést biztosítunk játékosainknak.</div>
                 <div 
@@ -46,7 +46,7 @@
             <div class="col-md-4 col-12 text-center padding-bottom-2" id="trigger2">
                 <div class="padding-bottom-2 font-weight-bold">Sokszínű játékmód</div>
 		<div>
-                	<img class="services" src="../../../../assets/pictures/home/valtozatos.jpg" alt="">
+        <img [routerLink]="['/game-modes']" class="services" src="../../../../assets/pictures/home/petyike.jpg" alt="">
 		</div>
                 <div class="big-display padding-top-2 padding-bottom-4 middle-text text-center font-italic">Mindegyik pályán több játékmód közül választhattok, így tesszük sokoldalúvá a játszmát.</div>
                 <div 

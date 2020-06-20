@@ -10,3 +10,8 @@
     margin-right: 0px;
     margin-left: 0px;
 }
+.cbtn.mini {
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+    line-height: 0vh;
+}
