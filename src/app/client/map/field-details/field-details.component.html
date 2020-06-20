@@ -1,11 +1,16 @@
 <div class="backdrop" (click)="onClose()"></div>
-<div class="alert-box">
+<div class="alert-box" id="modal">
     <div class="middle-text close-x pb-3">
         <span (click)="onClose()">X</span>
      </div>
     <img [src]="field.imgPath" alt="">
+    <img
+        (click)="scrollDown()"
+        [@buttonState]
+        *ngIf="displayDown"
+        src="../../../../assets/icons/circle.png" class="scroll-down" alt="">
     <div class="medium-padding">
-        <div class="middle-top-text text-center pb-2 pt-5 font-weight-bold">{{field.name}}</div>
+        <div id="title" class="middle-top-text text-center pb-2 pt-2 font-weight-bold">{{field.name}}</div>
         <hr class="orange pb-5">
         <div class="middle-text"> {{field.description}} </div>
         <hr *ngIf="field.optDescription !== ''" class="orange small">
@@ -26,7 +31,7 @@
                 <div class="row">
                     <div
                         *ngFor="let equipment of field.equipments"
-                        class="col-xl-4 col-sm-6 col-12 pb-5">
+                        class="col-lg-6 col-12 pb-5">
                         <app-description-card [equipment]="equipment"></app-description-card>
                     </div>
                 </div>

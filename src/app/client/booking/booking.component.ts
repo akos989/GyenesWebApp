@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input} from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewChild} from '@angular/core';
 import { BookingService } from './booking.service';
 import { Subscription } from 'rxjs';
 import { ReservationService } from './reservations.service';
@@ -22,6 +22,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   dateNext: boolean = false;
   infoNext: boolean = false;
   private infoNextInterval: any = null;
+  @ViewChild('stepper') stepper: MatStepper;
 
   constructor(private bookingService: BookingService,
               private reservationService: ReservationService,
@@ -46,8 +47,13 @@ export class BookingComponent implements OnInit, OnDestroy {
     
     this.packageSub = this.bookingService.packageSelected
       .subscribe( result => {
-        if (result && result != "")
+        if (result && result != "") {
           this.packageNext = true;
+          if (this.stepper) {
+            this.stepper.next();
+            this.scrollTop();
+          }
+        }
         else
           this.packageNext = false
       });

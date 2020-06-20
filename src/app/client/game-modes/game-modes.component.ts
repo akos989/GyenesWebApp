@@ -15,13 +15,17 @@ export class GameModesComponent implements AfterViewInit {
   scrolled = false;
 
   gameModeArray: GameMode[] = [
-    new GameMode('Várfoglalás', 'lakjsdf', "../../../assets/pictures/game-modes/var/20190816_143608.jpg",
+    new GameMode('Várfoglalás',
+    'A játékmód célja a vár elfoglalása, amely az árokrendszeren, dombokon és más akadályon keresztül kísérelhető meg.', "../../../assets/pictures/game-modes/var/capture-the-point.jpg",
     "../../../assets/pictures/game-modes/var/img_20190807_195109.jpg"),
-    new GameMode('Capture the flag', 'lakjsdf', "../../../assets/pictures/minibus.png"),
-    new GameMode('Speedball', 'lakjsdf', "../../../assets/pictures/game-modes/speedball/speedball.jpg"),
-    new GameMode('TDM', 'lakasdasdasdasdasdasd asd asd asd asdasdas djsdf',
+    new GameMode('Capture the flag',
+    'Cél, hogy a pályán elhelyezett zászlót valamelyik csapat megszerezze és a saját bázisára visszajuttassa.', "../../../assets/pictures/game-modes/flag/flag.jpg"),
+    new GameMode('Speedball',
+    'A játék az utolsó emberig tart, vagy addig, amíg valamelyik játékos átjut az ellenfél kezdőpontjára.', "../../../assets/pictures/game-modes/speedball/speedball.jpg", "../../../assets/pictures/game-modes/speedball/speedball2.jpg"),
+    new GameMode('TDM', 'Ebben a játékmódban, ha eltalálnak nem kell kiállnod, hanem a kezedőpontról folytathatod. Az idő leteltével az a csapat veszít, amelyiknek összesen több találatot kapott.',
     "../../../assets/pictures/game-modes/TDM/TDM1.jpg", "../../../assets/pictures/game-modes/TDM/TDM2.jpg"),
-    new GameMode('Capture the point', 'lakjsdf', "../../../assets/pictures/game-modes/capture/capture-the-point.jpg")
+    new GameMode('Capture the point',
+    'A játék előre meghatározott ideig tart. A játékosok feladata az idő leteltéig a ponton a saját zászlójukat benttartsák.', "../../../assets/pictures/game-modes/capture/capture-the-point.jpg")
   ];
 
   @ViewChildren('gameModes') gameModeElements: QueryList<ElementRef>;

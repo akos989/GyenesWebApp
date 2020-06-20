@@ -20,12 +20,17 @@ svg {
     fill: currentColor;
     vertical-align: top;
 }
-img {
+img.speedball {
+    width: calc(3vh + 1vw);
+    height: calc(3vh + 1vw);
+    -webkit-filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
+    filter: invert(90%) sepia(14%) saturate(663%) hue-rotate(329deg) brightness(105%) contrast(101%);
+}
+img.game-mode {
     width: 100%;
     height: auto;
     border-radius: 25px;
 }
-
 .link {
     cursor: pointer;
 }
@@ -59,5 +64,9 @@ hr.orange.small {
 @media (hover: hover) {
     .link:hover {
         color: rgb(209, 81, 26);
+    }
+    .link:hover img.speedball {
+        -webkit-filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
+        filter: invert(32%) sepia(100%) saturate(966%) hue-rotate(350deg) brightness(98%) contrast(93%);
     }
 }
