@@ -18,7 +18,7 @@ img {
   z-index: 0;
 }
 
-@media (min-aspect-ratio: 321/481) {
+@media (min-device-aspect-ratio: 321/481) {
   img {
     content: url(../../../assets/pictures/maps/map-top.jpg);
     left: 5%;
@@ -48,7 +48,7 @@ img {
     top: 60%;
   }
 }
-@media (max-aspect-ratio: 320/480), (max-aspect-ratio: 321/481) and (min-aspect-ratio: 320/480) {
+@media (max-device-aspect-ratio: 320/480), (max-device-aspect-ratio: 321/481) and (min-device-aspect-ratio: 320/480) {
   img {
     content: url(../../../assets/pictures/maps/map-top-phone.jpg);
     width: 90vw;

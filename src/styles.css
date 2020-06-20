@@ -1,14 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
 .mat-expansion-panel {
     padding-bottom: 5vh;
+    -webkit-backface-visibility: hidden;
+}
+#field-exp.mat-expansion-panel {
+     -webkit-transform: translate3d(0,0,0);   
 }
 .mat-expansion-panel.small-padding {
     padding-bottom: 2vh;
 }
 .mat-expansion-panel-header {
-    /* background-color: rgb(112, 107, 107); */
     border: calc(0.05vw + 0.3vh) solid rgb(112, 107, 107);
     border-radius: 25px !important;
     height: auto !important;
@@ -38,7 +40,6 @@
 }
 
 .mat-expansion-panel-header.mat-expanded {
-    /* background: rgba(209, 81, 26, .6) !important; */
     border: calc(0.05vw + 0.3vh) solid rgba(209, 81, 26, .6) !important;
     margin-bottom: 5vh;
 }
@@ -144,13 +145,17 @@
 }
 body {
     margin: 0px;
+    -webkit-backface-visibility: hidden;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
 }
 body.modal-open {
     overflow: hidden;
 }
 .component {
     padding-top: calc(3vh + 2vw + 2vh);
-    overflow-x: hidden;
+    overflow-x: unset;
+    -webkit-overflow-scrolling: touch;
 }
 .component.nooverflow {
     overflow-x: unset;

@@ -35,7 +35,6 @@ import { CheckComponent } from './client/booking/check/check.component';
 import { ConfirmationComponent } from './client/booking/confirmation/confirmation.component';
 import { FieldListComponent } from './client/map/field-list/field-list.component';
 import { FieldDetailsComponent } from './client/map/field-details/field-details.component';
-import { ServicesListComponent } from './client/map/services-list/services-list.component';
 import { ServiceDetailsComponent } from './client/map/service-details/service-details.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SzechenyiComponent } from './shared/szechenyi/szechenyi.component';
@@ -52,7 +51,6 @@ import { PageHeaderComponent } from './shared/page-header/page-header.component'
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BookNowComponent } from './client/book-now/book-now.component';
 import { DescriptionCardComponent } from './shared/description-card/description-card.component';
-import { TrenchMapComponent } from './client/map/trench-map/trench-map.component';
 import { ModalComponent } from './shared/backend-modal/modal/modal.component';
 import { CookieComponent } from './shared/cookie/cookie.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
@@ -120,7 +118,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ConfirmationComponent,
     FieldListComponent,
     FieldDetailsComponent,
-    ServicesListComponent,
     ServiceDetailsComponent,
     FooterComponent,
     SzechenyiComponent,
@@ -132,7 +129,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     PageHeaderComponent,
     BookNowComponent,
     DescriptionCardComponent,
-    TrenchMapComponent,
     ModalComponent,
     CookieComponent,
     LoadingSpinnerComponent,
