@@ -88,3 +88,6 @@ hr.small {
   .toggle-state:checked ~ .toggle-inner .indicator {
      transform: translate3d(25%, 0, 0);
   }
+  a {
+    color: #d3531a;
+  }
