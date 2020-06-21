@@ -5,10 +5,9 @@
         class="row">
         <div class="col-xl-5 col-12 pt-3 top50">
             <div *ngIf="!operator">
-                <div class="text-large" >Foglalás jováhagyása</div>
                 <form (ngSubmit)="onSubmit()" #f="ngForm">
                     <div class="pb-5">
-                        Kijelentem, hogy a foglalási feltételeket elfogadom.......
+                        Kijelentem, hogy elfogadom az <a [routerLink]="['/privacy']">általános szerződési és felhasználási feltételeket!</a>
                     </div>
                     <label 
                         (click)="touch()"

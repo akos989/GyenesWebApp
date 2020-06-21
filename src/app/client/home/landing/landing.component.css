@@ -1,3 +1,6 @@
+.paintball {
+    font-size: 5vw;
+}
 @media screen and (min-width: 1026px) {
     .head-line div {
         -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
@@ -29,10 +32,8 @@
         font-weight: bold;
     }
     .head-line div:nth-child(1) {
-        -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
-        mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
         -webkit-transform: translate3d(0,0,0);
-        font-size: 6vw;
+        font-size: 7.5vw;
         top: 4vh;
         width: 94.5%;
         left: 5vw;
@@ -42,7 +43,7 @@
         -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
         mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
         -webkit-transform: translate3d(0,0,0);
-        font-size: 8vw;
+        font-size: 7vw;
         top: calc(3vh + 10vw);
         width: 97%;
         left: 3vw;

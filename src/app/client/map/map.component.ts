@@ -18,7 +18,7 @@ export class MapComponent implements OnInit {
   open: boolean[] = [false, false, false];
   fields: Field[] = [
     new Field(
-      'Elhagyott város', 'A legnagyobb pályánk, ami 4000 négyzetméteren terül el, akár 35 fő is játszhat rajta. Itt próbálhatjátok ki a legtöbb játékmódot, mint a Capure the Point, TDM, Capture the Flag stb..',
+      'Elhagyatott város', 'A legnagyobb pályánk, ami 4000 négyzetméteren terül el, akár 35 fő is játszhat rajta. Itt próbálhatjátok ki a legtöbb játékmódot, mint a Capure the Point, TDM, Capture the Flag stb..',
       'city.jpg',
       [
         new Equipment('Autóroncs', '', 'elemek/wreckage.png'),
@@ -42,7 +42,7 @@ export class MapComponent implements OnInit {
       'A nagy csapatok, kisebb csoportokra osztva, körmérkőzést játszhatnak.', 'competition', 5
     ),
     new Field(
-      'Vár és árok pálya', 'A pályán a vár elfoglalása a cél, amely az árokrendszeren, dombokon és más akadályon keresztül kísérelhető meg.',
+      'Várfoglalós pálya', 'A pályán a vár elfoglalása a cél, amely az árokrendszeren, dombokon és más akadályon keresztül kísérelhető meg.',
       'trench.jpg',
       [
         new Equipment('Árokrendszer', '', 'elemek/trench-min.png'),

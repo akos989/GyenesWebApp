@@ -109,7 +109,7 @@ export class ReservationService {
 
     checkHoursOnSelectedDate(selectedDate: Date): Hour[] {
         const hours: Hour[] = [];
-        for ( let hour = 8; hour <= 17; hour++ ) {
+        for ( let hour = 8; hour <= 18; hour++ ) {
             let tmpPlayerNumber: number = this._currentReservation.playerNumber;
             let intersectionNumber: number = 0;
             const reservations = this.getReservationsOnSelectedDate(selectedDate);
@@ -142,7 +142,7 @@ export class ReservationService {
 
     private isSmallerThanToday(selectedDate: Date, hour: number) {
         let today: Date = this.makeUTCNewDate();
-        today.setHours(today.getHours() + 2);
+        today.setHours(today.getHours() + 4);
         today.setMinutes(1);
         let date = new Date(selectedDate.valueOf());
         date.setHours(hour);

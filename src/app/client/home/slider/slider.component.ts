@@ -34,7 +34,7 @@ export class SliderComponent implements OnInit {
         slidesPerView: 2
       },
       1500: {
-        slidesPerView: 3
+        slidesPerView: 2
       },
     },
     keyboard: true,

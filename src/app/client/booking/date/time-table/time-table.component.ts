@@ -33,16 +33,6 @@ export class TimeTableComponent implements OnInit {
               { }
 
   ngOnInit() {
-    // this.selectChangedSub = this.dateService.selectionChanged
-    //   .subscribe((date: Date) => {
-    //     this.selectedDate = date;
-    //     this.closedReason = this.noDateService.isClosed(this.selectedDate);
-    //     this.hours = [];
-    //     this.selectedHour = null;
-        
-    //     this.hours =
-    //       this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
-    //   });
     this.hours =
       this.reservationService.checkHoursOnSelectedDate(this.selectedDate);
     this.closedReason = this.noDateService.isClosed(this.selectedDate);   

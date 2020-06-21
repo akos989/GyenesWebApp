@@ -5,13 +5,18 @@
     <div class="medium-padding">
         <div class="container-custom card1 text-center padding-bottom-4 padding-top-4">
             <div class="middle-top-text pb-5">Kedves {{ reservation.name }}!</div>
-            <div class="py-5 middle-text">Nagyon köszönjük a foglalást találkozunk...</div>
-            <div class="middle-text padding-bottom-10">A foglalás adatait emailben elküldtük...</div>
+            <div class="py-5 middle-text">Köszönjük, a foglalást rögzítettük.</div>
+            <div class="middle-text padding-bottom-10">A foglalás adatait emailben elküldtük.</div>
             <div 
-            (click)="newReservation()"
-            class="cbtn cbtn-one small">
-            <span>Új foglalás</span>
-        </div>
+                [routerLink]="'/home'"
+                class="cbtn cbtn-one small mr-3">
+                <span>Kezdőlap</span>
+            </div>
+            <div 
+                (click)="newReservation()"
+                class="cbtn cbtn-one small ml-3">
+                <span>Új foglalás</span>
+            </div> 
     </div>
 </div>
 </div>

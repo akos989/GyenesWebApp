@@ -144,6 +144,7 @@
     border-top-color: rgb(255, 235, 204);
 }
 body {
+    font-family: roboto;
     margin: 0px;
     -webkit-backface-visibility: hidden;
     overscroll-behavior: none;
@@ -216,7 +217,13 @@ hr.left.open {
     padding-right: 5vw;
     padding-bottom: 15vh;
 }
-
+.side-padding {
+    position: relative;
+    padding-top: 10vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    padding-bottom: 10vh;
+}
 .medium-padding {
     padding-top: 10vh;
     padding-left: 5vw;
@@ -461,6 +468,10 @@ hr.left.open {
 @font-face {
     font-family: archivoBlack;
     src: url(./assets/fonts/ArchivoBlack.otf);
+}
+@font-face {
+    font-family: roboto;
+    src: url(./assets/fonts/Roboto-Light.ttf);
 }
 .lulo {
     font-family: luloFont;

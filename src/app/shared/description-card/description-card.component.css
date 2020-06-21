@@ -1,5 +1,5 @@
 img {
-    height: 10vw;
+    height: 8vw;
     object-fit: contain;
     -webkit-transition: .20s ease-in-out;
     -moz-transition: .20s ease-in-out;
@@ -95,5 +95,4 @@ img {
         position: relative;
         opacity: 1;
     }
-
 }
