@@ -67,7 +67,7 @@ export class ModalNewComponent implements AfterViewInit, OnDestroy, OnInit {
     setTimeout(() => {
       if (this.datesInputValid()) {
         const fromDate = new Date(this.modalForm.form.controls.fromDate.value+'T04:00Z').valueOf();
-        const toDate = new Date(this.modalForm.form.controls.toDate.value+'T22:00').valueOf();
+        const toDate = new Date(this.modalForm.form.controls.toDate.value+'T22:00Z').valueOf();
         this.intersectingDates = this.modalService.intersects(fromDate, toDate, this.id);
         this.fromBiggerError = this.fromBigger(fromDate, toDate);
         this.dateValid = this.datesValid();
@@ -99,8 +99,8 @@ export class ModalNewComponent implements AfterViewInit, OnDestroy, OnInit {
       const formData = new FormData();
       formData.append('name', this.modalForm.form.controls.name.value);
       formData.append('description', this.modalForm.form.controls.description.value);
-      formData.append('fromDate', this.modalForm.form.controls.fromDate.value+'T04:00Z');
-      formData.append('toDate', this.modalForm.form.controls.toDate.value+'T22:00Z');
+      formData.append('fromDate', this.modalForm.form.controls.fromDate.value+'T04:00');
+      formData.append('toDate', this.modalForm.form.controls.toDate.value+'T22:00');
       if(this.file)
         formData.append('modalImage', this.file);
       if (!this.id)
