@@ -56,7 +56,7 @@ export class NoDateNewComponent implements AfterViewInit, OnDestroy, OnInit {
     setTimeout(() => {
       if (this.datesInputValid()) {
         const fromDate = new Date(this.noDateForm.form.controls.fromDate.value+'T04:00Z').valueOf();
-        const toDate = new Date(this.noDateForm.form.controls.toDate.value+'T22:00').valueOf();
+        const toDate = new Date(this.noDateForm.form.controls.toDate.value+'T22:00Z').valueOf();
         this.intersectingDates = this.noDateService.intersects(fromDate, toDate, this.id);
         this.intersectingRes = this.noDateService.intersectsWithReservation(fromDate, toDate);
         this.fromBiggerError = this.fromBigger(fromDate, toDate);
@@ -71,14 +71,14 @@ export class NoDateNewComponent implements AfterViewInit, OnDestroy, OnInit {
       if (this.id) {
         this.noDateService.update(
           this.id, this.noDateForm.form.controls.reason.value,
-          this.noDateForm.form.controls.fromDate.value+'T04:00Z',
-          this.noDateForm.form.controls.toDate.value+'T22:00Z'
+          this.noDateForm.form.controls.fromDate.value+'T04:00',
+          this.noDateForm.form.controls.toDate.value+'T22:00'
         ).subscribe(resData => {this.router.navigate(['/operators/no-dates']);});
       } else {
         this.noDateService.create(
           this.noDateForm.form.controls.reason.value,
-          this.noDateForm.form.controls.fromDate.value+'T04:00Z',
-          this.noDateForm.form.controls.toDate.value+'T22:00Z'
+          this.noDateForm.form.controls.fromDate.value+'T04:00',
+          this.noDateForm.form.controls.toDate.value+'T22:00'
         ).subscribe(resData => {this.router.navigate(['/operators/no-dates']);});
       }
     }

@@ -8,6 +8,7 @@
 img {
     width: 100%;
     object-fit: cover;
+    object-position: 0% 45%;
     height: 40vh;
     opacity: 0.5;
     -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
