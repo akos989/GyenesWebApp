@@ -262,7 +262,7 @@
         <div #gameModes *ngFor="let gameMode of gameModeArray" class="content">
             <div class="middle-top-text pt-3 font-weight-bold"> {{gameMode.name}} </div>
             <hr class="orange small pb-4">
-            <div class="middle-text pb-4"> {{gameMode.description}} </div>
+            <div class="middle-text pb-4 col-12"> {{gameMode.description}} </div>
             <div class="row justify-content-center pb-4 px-4">
                 <div class="col-md-6 col-12 pb-4">
                     <img [src]="gameMode.imgUrl1" alt="" class="game-mode">
@@ -275,5 +275,7 @@
             </div>
         </div>
     </div>
-    <app-book-now></app-book-now>
+    <div id="valami">
+        <app-book-now></app-book-now>
+    </div>
 </div>

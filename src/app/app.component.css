@@ -1,6 +1,6 @@
 .error {
     position: fixed;
-    z-index: 200;
+    z-index: 1000;
     background-color: rgba(255,0,0,0.4);
     width: 100vw;
     height: auto;

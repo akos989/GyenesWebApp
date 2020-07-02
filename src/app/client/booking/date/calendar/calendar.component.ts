@@ -61,7 +61,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     this.weeks = [];
     let maxDays: number = this.getDaysOfMonth(refDate);
     const fistDay: number = this.getFirstDayOfMonth(refDate);
-    let tmpDate: Date = new Date(refDate.getFullYear(), refDate.getMonth(), 1);
+    let tmpDate: Date = new Date(refDate.getFullYear(), refDate.getMonth(), 1, 3);
     
     for (let i = 0; i < 5; i++) {
       let tmpWeek = new Week();
@@ -85,7 +85,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
               tmpDay.closed = true;
             }
           }
-          tmpDate = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate() + 1);
+          tmpDate = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate() + 1, 3);
           maxDays--;
           if(this.checkSelection(tmpDay.date)) {
             tmpDay.selected = true;
