@@ -20,17 +20,17 @@ export class PricesComponent implements OnInit, AfterViewInit, OnDestroy {
   equipments: Equipment[] = [
     new Equipment(
       'Paintball fegyver',
-      'A legjobb markereket használjuk, amit a piac biztosít. Típusa: Tippman 98 Rental.',
+      'A legjobb markereket használjuk, amit a piac biztosít. Típusa: Tippmann 98 Rental.',
       'felszereles/color-gun.png'
     ),
     new Equipment(
       'Palack',
-      'Sűrített levegős palack. Típusa: Tippman HP Basic 48/3000 psi.',
+      'Sűrített levegős palack. Típusa: Tippmann HP Basic 48/3000 psi.',
       'felszereles/air-color.png'
     ),
     new Equipment(
       'Tárak',
-      'Tippman tár 200 golyós férőhellyel.',
+      'Tippmann tár 200 golyós férőhellyel.',
       'felszereles/bullets-color.png'
     ),
     new Equipment(

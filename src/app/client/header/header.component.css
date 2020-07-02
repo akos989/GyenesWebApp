@@ -42,7 +42,7 @@ img {
     position: fixed;
     z-index: 200;
     right:  calc(3vh + 3vw);
-    top: calc(3.8vh + 3vw);
+    top: calc(3vh + 3vw + 1.7vh + 1vw);
     margin: 0px;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -54,7 +54,9 @@ img {
     transition: .5s ease-in-out;
     cursor: pointer;
   }
-  
+  #nav-icon4.open {
+    top: calc(4vh + 4vw);
+  }
   #nav-icon4 span {
     display: block;
     position: fixed;

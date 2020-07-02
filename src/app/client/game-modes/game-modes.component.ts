@@ -52,18 +52,13 @@ export class GameModesComponent implements AfterViewInit {
 
   scrollToElement(idx: number) {
     this.extended = false;
-    let positon: number = this.gameModeElements.toArray()[idx].nativeElement.offsetTop;
-    positon -= window.innerHeight * 0.6;
-    const offset = positon - window.pageYOffset;
-    const addition = (offset > 0 ? 10 : -10);
-    if (addition < 0) {
-      positon -= window.innerHeight * 0.2;
-    }
+    let positon: number = this.gameModeElements.toArray()[idx].nativeElement.getBoundingClientRect().top;
+    const addition = ((window.innerHeight * 0.2 > positon) ? 15 : -15);
     let scrollToTop = window.setInterval(() => {
       let pos = window.scrollY;
-      if (!((pos < positon) && (pos > positon - 100))) {
-          window.scrollTo(0, pos + addition);
-          pos += addition;
+      positon = this.gameModeElements.toArray()[idx].nativeElement.getBoundingClientRect().top;
+      if ( !((positon >= window.innerHeight * 0.2) && (positon <= window.innerHeight * 0.23)) ) {
+          window.scrollTo(0, pos - addition);
       } else {
           window.clearInterval(scrollToTop);
       }
