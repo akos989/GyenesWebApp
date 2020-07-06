@@ -19,6 +19,7 @@ export class ModalNewComponent implements AfterViewInit, OnDestroy, OnInit {
   changeSub: Subscription;
   file: any;
   modal: Modal;
+  loading: boolean = false;
 
   @ViewChild('f') modalForm: NgForm;
 
@@ -101,13 +102,18 @@ export class ModalNewComponent implements AfterViewInit, OnDestroy, OnInit {
       formData.append('description', this.modalForm.form.controls.description.value);
       formData.append('fromDate', this.modalForm.form.controls.fromDate.value+'T04:00');
       formData.append('toDate', this.modalForm.form.controls.toDate.value+'T22:00');
+      this.loading = true;
       if(this.file)
         formData.append('modalImage', this.file);
       if (!this.id)
-        this.modalService.create(formData).subscribe(resData => { this.router.navigate(['/operators/pop-ups/']); });
+        this.modalService.create(formData).subscribe(resData => { this.uploaded(); });
       else
-        this.modalService.update(formData, this.id).subscribe(resData => { this.router.navigate(['/operators/pop-ups/']); });
+        this.modalService.update(formData, this.id).subscribe(resData => { this.uploaded(); });
     }
+  }
+  private uploaded() {
+    this.loading = false;
+    this.router.navigate(['/operators/pop-ups/']);
   }
 
   private datesValid(): boolean {

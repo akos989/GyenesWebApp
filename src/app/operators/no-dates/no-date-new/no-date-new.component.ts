@@ -18,6 +18,7 @@ export class NoDateNewComponent implements AfterViewInit, OnDestroy, OnInit {
   fromBiggerError: boolean = false;
   id: string = null;
   changeSub: Subscription;
+  loading: boolean = false;
 
   @ViewChild('f') noDateForm: NgForm;
 
@@ -73,15 +74,19 @@ export class NoDateNewComponent implements AfterViewInit, OnDestroy, OnInit {
           this.id, this.noDateForm.form.controls.reason.value,
           this.noDateForm.form.controls.fromDate.value+'T04:00',
           this.noDateForm.form.controls.toDate.value+'T22:00'
-        ).subscribe(resData => {this.router.navigate(['/operators/no-dates']);});
+        ).subscribe(resData => {this.uploaded();});
       } else {
         this.noDateService.create(
           this.noDateForm.form.controls.reason.value,
           this.noDateForm.form.controls.fromDate.value+'T04:00',
           this.noDateForm.form.controls.toDate.value+'T22:00'
-        ).subscribe(resData => {this.router.navigate(['/operators/no-dates']);});
+        ).subscribe(resData => {this.uploaded();});
       }
     }
+  }
+  private uploaded() {
+    this.loading = false;
+    this.router.navigate(['/operators/no-dates']);
   }
   private datesValid(): boolean {
     return (this.intersectingDates.length === 0 && !this.fromBiggerError);
