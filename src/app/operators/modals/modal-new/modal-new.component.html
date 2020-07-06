@@ -1,4 +1,7 @@
-<div class="medium-padding text-center">
+<div *ngIf="loading">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="!loading" class="medium-padding text-center">
     <div class="middle-top-text"> {{id ? 'Zárt dátum módosítás': 'Új zárt dátum'}}</div>
     <div class="row">
         <div class="col-lg-6 col-12">
