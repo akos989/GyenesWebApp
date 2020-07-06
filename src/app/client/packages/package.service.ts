@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({ providedIn: 'root' })
 export class PackageService {
     packages: PackageType[] = [];
-
+    allPackageTypes: PackageType[] = [];
     constructor(private http: HttpClient, private errorHandler: ErrorHandleService) {}
 
     loadFromBackend() {
@@ -26,6 +26,7 @@ export class PackageService {
                 return packageTypeArray;
             }), 
             tap(packageTypes => {
+                this.allPackageTypes = packageTypes;
                 this.packages = [];
                 for (const type of packageTypes) {
                     const tmpPackages: Package[] = [];
@@ -54,12 +55,16 @@ export class PackageService {
     }
 
     findType(id: string): PackageType {
+        console.log(this.packages)
         for(const type of this.packages)
             for (const p of type.packages) {
                 if (p._id === id)
                     return type;
             }
         return null;
+    }
+    returnType(id: string): PackageType {
+        return this.allPackageTypes.filter(type => {return type.id === id;})[0];
     }
 
     findById(id: string): Package {

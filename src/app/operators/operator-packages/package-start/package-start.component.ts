@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PackageType } from 'src/app/shared/models/package-type.model';
+import { PackageService } from 'src/app/client/packages/package.service';
 
 @Component({
   selector: 'app-package-start',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PackageStartComponent implements OnInit {
 
-  constructor() { }
+  packageTypes: PackageType[] = [];
+
+  constructor(private packageService: PackageService) { }
 
   ngOnInit(): void {
+    this.packageTypes = this.packageService.allPackageTypes;
   }
-
 }

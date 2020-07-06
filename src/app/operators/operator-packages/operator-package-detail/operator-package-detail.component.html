@@ -1,0 +1,13 @@
+<ng-template appPlaceholder></ng-template>
+<div 
+    class="row middle-text">
+    <div class="col-md-4 text-center font-weight-bold col-12">{{package.fromNumberLimit}} - {{package.toNumberLimit}} fő</div>
+    <div class="col-md-4 text-center col-6">{{package.bulletPrice}} Ft/golyó</div>
+    <div class="col-md-4 text-center col-6">
+        <div 
+            (click)="openModal($event)"
+            class="cbtn cbtn-one mini2" style="z-index: 40;">
+            <span>Részletek</span>
+        </div>
+    </div>
+</div>
