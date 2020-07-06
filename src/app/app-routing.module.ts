@@ -37,6 +37,10 @@ import { NoDateNewComponent } from './operators/no-dates/no-date-new/no-date-new
 import { ModalStartComponent } from './operators/modals/modal-start/modal-start.component';
 import { ModalNewComponent } from './operators/modals/modal-new/modal-new.component';
 import { ModalResolver } from './operators/modals/modal-resolver.service';
+import { PackageStartComponent } from './operators/operator-packages/package-start/package-start.component';
+import { PackageTypeNewComponent } from './operators/operator-packages/package-type-new/package-type-new.component';
+import { PackageTypeComponent } from './operators/operator-packages/package-type/package-type.component';
+import { PackageNewComponent } from './operators/operator-packages/package-new/package-new.component';
 const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
@@ -105,7 +109,14 @@ const routes: Routes = [
           { path: 'messages', component: MessagesComponent },
           {
             path: 'packages', component: OperatorPackagesComponent,
-            resolve: { PackageResolver }
+            resolve: { PackageResolver },
+            children: [
+              { path: '', pathMatch: 'full', component: PackageStartComponent },
+              { path: 'new-type', component: PackageTypeNewComponent },
+              { path: ':typeId/edit', component: PackageTypeNewComponent },
+              { path: ':typeId/show', component: PackageTypeComponent, resolve: { ReservationResolver } },
+              { path: ':typeId/new-package', component: PackageNewComponent }
+            ]
           },
           { path: 'users', component: UsersComponent },
           { 

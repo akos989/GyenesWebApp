@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PackageService } from 'src/app/client/packages/package.service';
+import { ActivatedRoute } from '@angular/router';
+import { PackageType } from 'src/app/shared/models/package-type.model';
 
 @Component({
   selector: 'app-package-type',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PackageTypeComponent implements OnInit {
 
-  constructor() { }
+  packageType: PackageType;
+  constructor(private packageService: PackageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(param => {
+      this.packageType = this.packageService.returnType(param['typeId']);
+    });
   }
+  onDelete() {
 
+  }
+  activePackages(): number {
+    return this.packageType.packages.filter(p => {return !p.disabled;}).length;
+  }
 }
