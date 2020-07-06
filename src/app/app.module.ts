@@ -85,6 +85,11 @@ import { ModalDetailComponent } from './operators/modals/modal-detail/modal-deta
 import { ModalDetailModalComponent } from './operators/modals/modal-detail-modal/modal-detail-modal.component';
 import { ModalNewComponent } from './operators/modals/modal-new/modal-new.component';
 import { ModalStartComponent } from './operators/modals/modal-start/modal-start.component';
+import { PackageStartComponent } from './operators/operator-packages/package-start/package-start.component';
+import { PackageTypeComponent } from './operators/operator-packages/package-type/package-type.component';
+import { PackageDetailModalComponent } from './operators/operator-packages/package-detail/package-detail-modal/package-detail-modal.component';
+import { PackageNewComponent } from './operators/operator-packages/package-new/package-new.component';
+import { PackageTypeNewComponent } from './operators/operator-packages/package-type-new/package-type-new.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -161,7 +166,12 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalDetailComponent,
     ModalDetailModalComponent,
     ModalNewComponent,
-    ModalStartComponent
+    ModalStartComponent,
+    PackageStartComponent,
+    PackageTypeComponent,
+    PackageDetailModalComponent,
+    PackageNewComponent,
+    PackageTypeNewComponent
   ],
   imports: [
     BrowserModule,
