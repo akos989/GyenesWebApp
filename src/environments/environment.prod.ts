@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://gyenespaintball.hu:3000/'
+  serverUrl: 'https://gyenespaintball.hu:3000/'
 };

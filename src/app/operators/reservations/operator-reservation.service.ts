@@ -128,4 +128,7 @@ export class OperatorResService {
             return 1;
         return 0;
     }
+    getNumberForPackage(pId: string): Reservation[] {
+        return this.reservations.filter(res => {return res.packageId === pId});
+    }
 }
