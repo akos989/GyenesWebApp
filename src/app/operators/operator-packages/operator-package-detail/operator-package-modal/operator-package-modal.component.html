@@ -25,7 +25,15 @@
                 <span> Módosítás </span>
             </div>
         </div>
+        <div class="text-danger small-text font-italic" *ngIf="reservations.length > 0">
+            <p>{{ reservations.length }} db foglalás tartozik a csomaghoz. Csak akkor lehet törölni, ha nem tartozik hozzá foglalás.</p>
+            <p>Foglalási nevek:</p>
+            <p *ngFor="let res of reservations">
+                {{res.name}}
+            </p>
+        </div>
         <div
+            *ngIf="reservations.length === 0"
             class="padding-top-2 padding-bottom-2">
             <div
                 (click)="onDelete()"

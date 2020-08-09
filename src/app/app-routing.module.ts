@@ -113,8 +113,8 @@ const routes: Routes = [
             children: [
               { path: '', pathMatch: 'full', component: PackageStartComponent },
               { path: 'new-type', component: PackageTypeNewComponent },
-              { path: ':typeId/edit', component: PackageTypeNewComponent },
-              { path: ':typeId/show', component: PackageTypeComponent, resolve: { ReservationResolver } },
+              { path: ':typeId/edit/:packageId', component: PackageTypeNewComponent, resolve: { OperatorsReservationResolver } },
+              { path: ':typeId/show', component: PackageTypeComponent, resolve: { OperatorsReservationResolver } },
               { path: ':typeId/new-package', component: PackageNewComponent }
             ]
           },

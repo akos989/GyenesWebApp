@@ -18,7 +18,7 @@ export class NoDateNewComponent implements AfterViewInit, OnDestroy, OnInit {
   fromBiggerError: boolean = false;
   id: string = null;
   changeSub: Subscription;
-  loading: boolean = false;
+  loading: boolean = false; 
 
   @ViewChild('f') noDateForm: NgForm;
 

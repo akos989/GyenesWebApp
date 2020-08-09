@@ -1,1 +1,79 @@
-<p>package-new works!</p>
+<div *ngIf="loading">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="!loading" class="medium-padding text-center">
+    <div class="middle-top-text"> {{packageId ? 'Csomag módosítás': 'Új csomag'}}</div>
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="container-custom middle-text">
+            <div class="form-group">
+                <label for="fromNumberLimit">Min. létszám</label>
+                <input
+                    type="number" name="fromNumberLimit" id="fromNumberLimit" #fromNumberLimit="ngModel"
+                    ngModel class="form-control" required min="0">
+                <span *ngIf="fromNumberLimit.invalid && fromNumberLimit.touched" class="help-block">
+                    Minimum létszám megadása kötelező!
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="toNumberLimit">Max. létszám</label>
+                <input
+                    type="number" name="toNumberLimit" id="toNumberLimit" #toNumberLimit="ngModel"
+                    ngModel class="form-control" required min="0">
+                <span *ngIf="toNumberLimit.invalid && toNumberLimit.touched" class="help-block">
+                    Maximum létszám megadása kötelező!
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="bulletPrice">Golyó ár</label>
+                <input
+                    type="number" name="bulletPrice" id="bulletPrice" #bulletPrice="ngModel"
+                    ngModel class="form-control" required min="0">
+                <span *ngIf="bulletPrice.invalid && bulletPrice.touched" class="help-block">
+                    Golyó ár megadása kötelező!
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="basePrice">Alap ár</label>
+                <input
+                    type="number" name="basePrice" id="basePrice" #basePrice="ngModel"
+                    ngModel class="form-control" required min="0">
+                <span *ngIf="basePrice.invalid && basePrice.touched" class="help-block">
+                    Alap ár megadása kötelező!
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="duration">Időtartam</label>
+                <input
+                    type="number" name="duration" id="duration" #duration="ngModel"
+                    ngModel class="form-control" required min="0">
+                <span *ngIf="duration.invalid && duration.touched" class="help-block">
+                    Időtartam megadása kötelező!
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="includedBullets">Tartalmazott golyók száma</label>
+                <input
+                    type="number" name="includedBullets" id="includedBullets" 
+                    ngModel class="form-control" min="0">
+            </div>
+            <div class="form-group">
+                <label for="disabled">Aktív</label>
+                <select name="disabled" id="disabled" ngModel class="form-control">
+                    <option value="true">Igen</option>
+                    <option value="false">Nem</option>
+                </select>
+            </div>            
+            <div class="form-group">
+                <label for="description">Leírás</label>
+                <textarea name="description" id="description" cols="10" rows="4"
+                    ngModel class="form-control"></textarea>
+            </div>
+            
+            <div *ngIf="f.valid" class="pt-5">
+                <div (click)="onSubmit()" class="cbtn cbtn-one small">
+                    <span>Mentés</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

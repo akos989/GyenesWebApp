@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Package } from 'src/app/shared/models/package.model';
+import { OperatorResService } from 'src/app/operators/reservations/operator-reservation.service';
+import { Reservation } from 'src/app/shared/models/reservation.model';
+import { PackageService } from 'src/app/client/packages/package.service';
 
 @Component({
   selector: 'app-operator-package-modal',
@@ -11,12 +14,18 @@ export class OperatorPackageModalComponent implements OnInit, OnDestroy {
 
   @Input() package: Package;
   @Output() close = new EventEmitter<void>();
-  
-  constructor(private renderer: Renderer2,
-              private router: Router) { }
+  reservations: Reservation[] = [];
+  typeId: string;
+
+  constructor(private renderer: Renderer2, private route: ActivatedRoute,
+              private router: Router, private oResService: OperatorResService, private packageService: PackageService) { }
 
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'modal-open');
+    this.reservations = this.oResService.getNumberForPackage(this.package._id);
+    this.route.params.subscribe(params => {
+      this.typeId = params['typeId'];
+    });
   }
   onClose() {
     event.stopPropagation();
@@ -26,7 +35,9 @@ export class OperatorPackageModalComponent implements OnInit, OnDestroy {
   onDelete() {
     event.stopPropagation();
     event.preventDefault();
-    // this.noDateService.delete([this.noDate._id]);
+    if (this.reservations.length === 0) {
+      this.packageService.deletePackage([this.package._id], this.typeId);
+    }
   }
   onUpdate() {
     event.stopPropagation();
