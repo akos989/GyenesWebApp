@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
-import { NoDatesService, NoDate } from 'src/app/client/booking/date/no-dates.service';
-import { Subscription } from 'rxjs';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit, OnDestroy, AfterViewInit, ViewChild} from '@angular/core';
+import {NoDatesService, NoDate} from 'src/app/client/booking/date/no-dates.service';
+import {Subscription} from 'rxjs';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-no-date-list',
@@ -17,62 +17,74 @@ export class NoDateListComponent implements OnInit, OnDestroy, AfterViewInit {
   pastNoDate: NoDate[] = [];
   @ViewChild('f') noDateForm: NgForm;
   formChangeSub: Subscription;
-  checkedNum: number = 0;
-  allValue: boolean = false;
+  checkedNum = 0;
+  allValue = false;
 
-  constructor(private noDateService: NoDatesService) { }
+  constructor(private noDateService: NoDatesService) {
+  }
 
   ngOnInit(): void {
     this.updateNoDates();
     this.newDateSub = this.noDateService.newNoDates
-      .subscribe( ()=> {
+      .subscribe(() => {
         this.updateNoDates();
       });
   }
+
   updateNoDates() {
     this.allNoDates = this.noDateService.noDates;
     this.todayNoDate = this.noDateService.getCurrent();
     this.pastNoDate = this.noDateService.getPast();
     this.futureNoDate = this.noDateService.getFuture();
   }
+
   ngAfterViewInit() {
-      this.formChangeSub = this.noDateForm.form.valueChanges
-        .subscribe(()=> {
-          this.onChanges();
-        });
+    this.formChangeSub = this.noDateForm.form.valueChanges
+      .subscribe(() => {
+        this.onChanges();
+      });
   }
+
   onChanges() {
     this.checkedNum = this.getCheckedDates().length;
-    if (this.checkedNum === this.allNoDates.length)
+    if (this.checkedNum === this.allNoDates.length) {
       this.allValue = true;
-    else
+    } else {
       this.allValue = false;
+    }
   }
+
   checkAll() {
     this.allValue = !this.allValue;
     const check: boolean = this.allValue;
     this.allNoDates.forEach((noDate) => {
-      if (this.noDateForm.form.get(noDate._id))
-        this.noDateForm.form.get(noDate._id).patchValue(check);
-      });
+      if (this.noDateForm.form.get(noDate._id.toString())) {
+        this.noDateForm.form.get(noDate._id.toString()).patchValue(check);
+      }
+    });
   }
+
   onDelete() {
     this.noDateService.delete(this.getCheckedIds());
   }
+
   private getCheckedDates(): NoDate[] {
     return this.allNoDates
       .filter((noDate) => {
-        if (this.noDateForm.form.get(noDate._id))
-          return this.noDateForm.form.get(noDate._id).value;
+        if (this.noDateForm.form.get(noDate._id.toString())) {
+          return this.noDateForm.form.get(noDate._id.toString()).value;
+        }
         return false;
       });
   }
+
   private getCheckedIds(): string[] {
     return this.getCheckedDates()
       .map((noDate) => {
         return noDate._id;
       });
   }
+
   ngOnDestroy() {
     this.newDateSub.unsubscribe();
     this.formChangeSub.unsubscribe();

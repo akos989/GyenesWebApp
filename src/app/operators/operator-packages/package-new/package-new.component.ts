@@ -75,7 +75,6 @@ export class PackageNewComponent implements OnInit,AfterViewInit {
           this.onSubscribe();
         });
       } else {
-        console.log(formData)
         this.packageService.createPackage(formData, this.typeId).subscribe(resData => {
           this.onSubscribe();
         });

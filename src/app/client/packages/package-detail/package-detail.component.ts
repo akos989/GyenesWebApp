@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, ComponentFactoryResolver, ViewChild, OnDestroy, Renderer2 } from '@angular/core';
-import { Subscription } from 'rxjs/internal/Subscription';
+import {Component, OnInit, Input, ComponentFactoryResolver, ViewChild, OnDestroy, Renderer2} from '@angular/core';
+import {Subscription} from 'rxjs/internal/Subscription';
 
-import { Package } from 'src/app/shared/models/package.model';
-import { ReservationService } from '../../booking/reservations.service';
-import { PackageModalComponent } from './modal/package-modal.component';
-import { PlaceholderDirective } from 'src/app/shared/placeholder.directive';
-import { BookingService } from '../../booking/booking.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Package} from 'src/app/shared/models/package.model';
+import {ReservationService} from '../../booking/reservations.service';
+import {PackageModalComponent} from './modal/package-modal.component';
+import {PlaceholderDirective} from 'src/app/shared/placeholder.directive';
+import {BookingService} from '../../booking/booking.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-package-detail',
@@ -26,21 +26,21 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
               private cFResolver: ComponentFactoryResolver,
               private renderer: Renderer2, private bookingService: BookingService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     const currentReservation = this.reservationService.currentReservation;
 
-    if ( currentReservation && currentReservation.packageId === this.package._id ) {
+    if (currentReservation && currentReservation.packageId === this.package._id) {
       this.selected = true;
       this.bookingService.onSelectPackage(this.package._id);
     }
     this.selectSub = this.bookingService.packageSelected
-      .subscribe( id => {
+      .subscribe(id => {
         if (id === this.package._id) {
           this.selected = true;
-        }
-        else {
+        } else {
           this.selected = false;
         }
       });
@@ -78,14 +78,17 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
 
   reserv() {
     this.continue();
-    if (this.routeUrl === 'prices')
+    if (this.routeUrl === 'prices') {
       this.router.navigate(['/booking']);
+    }
   }
 
   ngOnDestroy() {
-    if(this.closeSub)
+    if (this.closeSub) {
       this.closeSub.unsubscribe();
-    if(this.selectSub)
+    }
+    if (this.selectSub) {
       this.selectSub.unsubscribe();
+    }
   }
 }

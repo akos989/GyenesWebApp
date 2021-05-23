@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
-import { Modal } from 'src/app/shared/backend-modal/modal.model';
-import { Subscription } from 'rxjs';
-import { NgForm } from '@angular/forms';
-import { ModalService } from 'src/app/shared/backend-modal/modal.service';
+import {Component, OnInit, ViewChild, OnDestroy, AfterViewInit} from '@angular/core';
+import {Modal} from 'src/app/shared/backend-modal/modal.model';
+import {Subscription} from 'rxjs';
+import {NgForm} from '@angular/forms';
+import {ModalService} from 'src/app/shared/backend-modal/modal.service';
 
 @Component({
   selector: 'app-modals-list',
@@ -18,56 +18,67 @@ export class ModalsListComponent implements OnInit, OnDestroy, AfterViewInit {
   newModalSub: Subscription;
   @ViewChild('f') modalsForm: NgForm;
   formChangeSub: Subscription;
-  checkedNum: number = 0;
-  allValue: boolean = false;
-  
-  constructor(private modalService: ModalService) { }
+  checkedNum = 0;
+  allValue = false;
+
+  constructor(private modalService: ModalService) {
+  }
 
   ngOnInit(): void {
     this.updateNoDates();
     this.newModalSub = this.modalService.newModalsSub
-      .subscribe( ()=> {
+      .subscribe(() => {
         this.updateNoDates();
       });
   }
+
   ngAfterViewInit() {
     this.formChangeSub = this.modalsForm.form.valueChanges
-    .subscribe(()=> {
-      this.onChanges();
-    });
+      .subscribe(() => {
+        this.onChanges();
+      });
   }
+
   onChanges() {
     this.checkedNum = this.getCheckedDates().length;
-    if (this.checkedNum === this.allModals.length)
+    if (this.checkedNum === this.allModals.length) {
       this.allValue = true;
-    else
+    } else {
       this.allValue = false;
+    }
   }
+
   checkAll() {
     this.allValue = !this.allValue;
     const check: boolean = this.allValue;
     this.allModals.forEach((modal) => {
-      if (this.modalsForm.form.get(modal._id))
-      this.modalsForm.form.get(modal._id).patchValue(check);
+      if (this.modalsForm.form.get(modal._id.toString())) {
+        this.modalsForm.form.get(modal._id.toString()).patchValue(check);
+      }
     });
   }
+
   onDelete() {
     this.modalService.delete(this.getCheckedIds());
   }
+
   private getCheckedDates(): Modal[] {
     return this.allModals
       .filter((modal) => {
-        if (this.modalsForm.form.get(modal._id))
-          return this.modalsForm.form.get(modal._id).value;
+        if (this.modalsForm.form.get(modal._id.toString())) {
+          return this.modalsForm.form.get(modal._id.toString()).value;
+        }
         return false;
       });
   }
+
   private getCheckedIds(): string[] {
     return this.getCheckedDates()
-    .map((modal) => {
-      return modal._id;
-    });
+      .map((modal) => {
+        return modal._id;
+      });
   }
+
   private updateNoDates() {
     this.allModals = this.modalService.modals;
     const now = new Date();
@@ -82,6 +93,7 @@ export class ModalsListComponent implements OnInit, OnDestroy, AfterViewInit {
       return (modal.toDate.valueOf() < today.valueOf());
     });
   }
+
   ngOnDestroy() {
     this.newModalSub.unsubscribe();
     this.formChangeSub.unsubscribe();

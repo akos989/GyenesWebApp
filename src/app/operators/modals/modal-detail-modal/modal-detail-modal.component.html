@@ -18,6 +18,7 @@
         <div class="pb-4 font-italic">{{modal.name}}</div>
         <div class="font-weight-bold">Leírás:</div>
         <div class="pb-4 font-italic">{{modal.description}}</div>
+        <div>modalimagurl: {{modal.modalImgUrl}}</div>
         <div *ngIf="modal.modalImgUrl !== ''" class="pb-4">
             <img [src]="modal.modalImgUrl" alt="">
         </div>

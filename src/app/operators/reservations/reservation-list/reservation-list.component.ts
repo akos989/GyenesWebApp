@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
-import { Reservation } from 'src/app/shared/models/reservation.model';
-import { OperatorResService } from '../operator-reservation.service';
-import { Subscription } from 'rxjs/internal/Subscription';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit, Input, OnDestroy, ViewChild, AfterViewInit} from '@angular/core';
+import {Reservation} from 'src/app/shared/models/reservation.model';
+import {OperatorResService} from '../operator-reservation.service';
+import {Subscription} from 'rxjs/internal/Subscription';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-reservation-list',
@@ -16,35 +16,36 @@ export class ReservationListComponent implements OnInit, OnDestroy, AfterViewIni
   reservationsChangedSub: Subscription;
   @ViewChild('f') reservationForm: NgForm;
   formChangeSub: Subscription;
-  checkedNum: number = 0;
-  allValue: boolean = false;
+  checkedNum = 0;
+  allValue = false;
 
-  constructor(private oRService: OperatorResService) { }
+  constructor(private oRService: OperatorResService) {
+  }
 
   ngOnInit(): void {
     this.updateReservations();
     this.reservationsChangedSub = this.oRService.reservationsChanged
-    .subscribe(() => {
-      this.updateReservations();
-    });
-
+      .subscribe(() => {
+        this.updateReservations();
+      });
   }
+
   ngAfterViewInit() {
     this.formChangeSub = this.reservationForm.form.valueChanges
-      .subscribe(()=> {
+      .subscribe(() => {
         this.onChanges();
-      });    
+      });
   }
+
   onChanges() {
     this.checkedNum = this.getCheckedReservations().length;
-    if (this.checkedNum === this.reservations.length)
-      this.allValue = true;
-    else
-      this.allValue = false;
+    this.allValue = this.checkedNum === this.reservations.length;
   }
+
   onDelete() {
     this.oRService.deleteReservations(this.getCheckedIds());
   }
+
   onChangeActivation() {
     this.oRService.archiveReservations(this.getCheckedIds(), this.activeMode);
   }
@@ -53,9 +54,10 @@ export class ReservationListComponent implements OnInit, OnDestroy, AfterViewIni
     this.allValue = !this.allValue;
     const check: boolean = this.allValue;
     this.reservations.forEach((reservation) => {
-      if (this.reservationForm.form.get(reservation._id))
-        this.reservationForm.form.get(reservation._id).patchValue(check);
-      });
+      if (this.reservationForm.form.get(reservation._id.toString())) {
+        this.reservationForm.form.get(reservation._id.toString()).patchValue(check);
+      }
+    });
   }
 
   private getCheckedIds(): string[] {
@@ -68,14 +70,17 @@ export class ReservationListComponent implements OnInit, OnDestroy, AfterViewIni
   private getCheckedReservations(): Reservation[] {
     return this.reservations
       .filter((reservation) => {
-        if (this.reservationForm.form.get(reservation._id))
-          return this.reservationForm.form.get(reservation._id).value;
+        if (this.reservationForm.form.get(reservation._id.toString())) {
+          return this.reservationForm.form.get(reservation._id.toString()).value;
+        }
         return false;
       });
   }
+
   private updateReservations() {
     this.reservations = this.activeMode ? this.oRService.getAcitve() : this.oRService.getArchived();
   }
+
   ngOnDestroy() {
     this.reservationsChangedSub.unsubscribe();
     this.formChangeSub.unsubscribe();

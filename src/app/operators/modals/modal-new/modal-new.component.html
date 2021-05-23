@@ -25,7 +25,7 @@
                         <input type="file" name="image" id="image" ngModel class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="reason">Kezdő dátum</label>
+                        <label for="fromDate">Kezdő dátum</label>
                         <input
                             type="date" name="fromDate" id="fromDate" #fromDate="ngModel"
                             ngModel class="form-control" required>
@@ -34,7 +34,7 @@
                         </span>
                     </div>
                     <div class="form-group">
-                        <label for="reason">Vég dátum</label>
+                        <label for="toDate">Vég dátum</label>
                         <input
                             type="date" name="toDate" id="toDate" #toDate="ngModel"
                             ngModel class="form-control" required>
@@ -49,10 +49,10 @@
                         Az intervallum ütközik másik zárt dátumokkal:
                         <div *ngFor="let noDate of intersectingDates">
                             {{ noDate.fromDate.toISOString().slice(0,10) }}
-                            {{ (noDate.fromDate.getHours() < 10 ? '0' + noDate.fromDate.getHours() + ':' : noDate.fromDate.getHours() + ':') + (noDate.fromDate.getMinutes() < 10 ? '0' + noDate.fromDate.getMinutes() : noDate.fromDate.getMinutes()) }}            
-                            - 
+                            {{ (noDate.fromDate.getHours() < 10 ? '0' + noDate.fromDate.getHours() + ':' : noDate.fromDate.getHours() + ':') + (noDate.fromDate.getMinutes() < 10 ? '0' + noDate.fromDate.getMinutes() : noDate.fromDate.getMinutes()) }}
+                            -
                             {{ noDate.toDate.toISOString().slice(0,10) }}
-                            {{ (noDate.toDate.getHours() < 10 ? '0' + noDate.toDate.getHours() + ':' : noDate.toDate.getHours() + ':') + (noDate.toDate.getMinutes() < 10 ? '0' + noDate.toDate.getMinutes() : noDate.toDate.getMinutes()) }}            
+                            {{ (noDate.toDate.getHours() < 10 ? '0' + noDate.toDate.getHours() + ':' : noDate.toDate.getHours() + ':') + (noDate.toDate.getMinutes() < 10 ? '0' + noDate.toDate.getMinutes() : noDate.toDate.getMinutes()) }}
                         </div>
                     </div>
                     <div *ngIf="f.valid && dateValid" class="py-5">
@@ -64,7 +64,7 @@
             </form>
         </div>
         <div class="col-lg-6 col-12">
-            <div class="content"> 
+            <div class="content">
                 <div class="middle-text text-center">{{modal.name}}</div>
                 <hr class="orange big">
                 <div class="pt-2 text-center small-text"> {{modal.description}} </div>

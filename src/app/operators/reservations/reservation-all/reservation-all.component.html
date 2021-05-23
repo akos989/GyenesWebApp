@@ -11,12 +11,12 @@
 <div class="row text-center pt-5">
     <div class="col-12 middle-text">Rendezés</div>
     <div class="col-6">
-        <button 
+        <button
         [ngClass]="{'active': dateSort}"
         (click)="sortDate()">Dátum</button>
-        <button 
+        <button
             data-toggle="tooltip" data-placement="right" [title]="dateDesc ? 'Növekvő' : 'Csökkenő'"
-            class="arrow" (click)="dateDesc = dateDesc ? false: true">
+            class="arrow" (click)="dateDesc = !dateDesc">
             <img
                 [ngClass]="{'up': dateDesc}"
                 src="../../../../assets/icons/arrowup.png" alt="">
@@ -26,9 +26,9 @@
         <button
             [ngClass]="{'active': !dateSort}"
             (click)="sortCreation()">Létrehozás</button>
-        <button 
+        <button
             data-toggle="tooltip" data-placement="right" [title]="!createDesc ? 'Növekvő' : 'Csökkenő'"
-            class="arrow" (click)="createDesc = createDesc ? false: true">
+            class="arrow" (click)="createDesc = !createDesc">
             <img
                 [ngClass]="{'up': !createDesc}"
                 src="../../../../assets/icons/arrowup.png" alt="">
@@ -47,5 +47,5 @@
             <div class="middle-top-text text-center pb-5">Archivált foglalások</div>
             <app-reservation-list [activeMode]="false"></app-reservation-list>
         </div>
-    </mat-step>    
+    </mat-step>
 </mat-horizontal-stepper>

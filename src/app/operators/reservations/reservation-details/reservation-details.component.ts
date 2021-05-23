@@ -17,7 +17,8 @@ export class ReservationDetailsComponent implements OnDestroy {
   closeSub: Subscription;
 
   constructor(private renderer: Renderer2, private cFResolver: ComponentFactoryResolver,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   openModal(event) {
     event.stopPropagation();
@@ -38,7 +39,7 @@ export class ReservationDetailsComponent implements OnDestroy {
       if (result) {
         this.router.navigate(['/operators', this.reservation._id, 'edit']);
       }
-    }); 
+    });
   }
 
   ngOnDestroy() {

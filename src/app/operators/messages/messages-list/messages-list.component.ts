@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
-import { MessagesService } from '../messages.service';
-import { Subscription } from 'rxjs';
-import { Message } from 'src/app/shared/models/message.model';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit, OnDestroy, ViewChild, AfterViewInit} from '@angular/core';
+import {MessagesService} from '../messages.service';
+import {Subscription} from 'rxjs';
+import {Message} from 'src/app/shared/models/message.model';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-messages-list',
@@ -15,11 +15,12 @@ export class MessagesListComponent implements OnInit, OnDestroy, AfterViewInit {
   messages: Message[] = [];
   @ViewChild('f') messagesForm: NgForm;
   formChangeSub: Subscription;
-  checkedNum: number = 0;
-  allValue: boolean = false;
+  checkedNum = 0;
+  allValue = false;
 
-  constructor(protected messageService: MessagesService) { }
-  
+  constructor(protected messageService: MessagesService) {
+  }
+
   ngOnInit(): void {
     this.updateMessages();
     this.newMessgeSub = this.messageService.newMessages
@@ -27,47 +28,58 @@ export class MessagesListComponent implements OnInit, OnDestroy, AfterViewInit {
         this.updateMessages();
       });
   }
+
   ngAfterViewInit() {
     this.formChangeSub = this.messagesForm.form.valueChanges
-      .subscribe(()=> {
+      .subscribe(() => {
         this.onChanges();
-      });    
+      });
   }
+
   onChanges() {
     this.checkedNum = this.getCheckedMessages().length;
-    if (this.checkedNum === this.messages.length)
+    if (this.checkedNum === this.messages.length) {
       this.allValue = true;
-    else
+    } else {
       this.allValue = false;
+    }
   }
+
   checkAll() {
     this.allValue = !this.allValue;
     const check: boolean = this.allValue;
     this.messages.forEach((message) => {
-      if (this.messagesForm.form.get(message._id))
-        this.messagesForm.form.get(message._id).patchValue(check);
-      });
+      if (this.messagesForm.form.get(message._id.toString())) {
+        this.messagesForm.form.get(message._id.toString()).patchValue(check);
+      }
+    });
   }
+
   onDelete() {
     this.messageService.delete(this.getCheckedIds());
   }
+
   private updateMessages() {
     this.messages = this.messageService.messages;
   }
+
   private getCheckedMessages(): Message[] {
     return this.messages
       .filter((message) => {
-        if (this.messagesForm.form.get(message._id))
-          return this.messagesForm.form.get(message._id).value;
+        if (this.messagesForm.form.get(message._id.toString())) {
+          return this.messagesForm.form.get(message._id.toString()).value;
+        }
         return false;
       });
   }
+
   private getCheckedIds(): string[] {
     return this.getCheckedMessages()
       .map((message) => {
         return message._id;
       });
   }
+
   ngOnDestroy(): void {
     this.newMessgeSub.unsubscribe();
     this.formChangeSub.unsubscribe();
