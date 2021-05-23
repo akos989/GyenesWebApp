@@ -1,13 +1,9 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild, Renderer2, ComponentFactoryResolver, AfterViewInit } from '@angular/core';
-import { Router, NavigationStart, RouterEvent, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { ErrorHandleService } from './shared/error-handle.service';
-import { ModalService } from './shared/backend-modal/modal.service';
-import { PlaceholderDirective } from './shared/placeholder.directive';
-import { ModalComponent } from './shared/backend-modal/modal/modal.component';
-import { Modal } from './shared/backend-modal/modal.model';
-import { AcceptCookieService } from './shared/cookie/cookie.service';
-import { HeaderService } from './client/header/header.service';
+import {Component, ComponentFactoryResolver, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation} from '@angular/core';
+import {NavigationEnd, NavigationStart, Router, RouterEvent} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {ErrorHandleService} from './shared/error-handle.service';
+import {PlaceholderDirective} from './shared/placeholder.directive';
+import {AcceptCookieService} from './shared/cookie/cookie.service';
 
 @Component({
   selector: 'app-root',
@@ -16,25 +12,21 @@ import { HeaderService } from './client/header/header.service';
   encapsulation: ViewEncapsulation.None
 
 })
-export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'GyenesWebApp';
   errorSub: Subscription;
   cookieSub: Subscription;
-  modalCloseSub: Subscription;
-  checkModalSub: Subscription;
   isLoading = false;
-  errorMessage: string = '';
+  errorMessage = '';
   @ViewChild(PlaceholderDirective, {static: false}) modalHost: PlaceholderDirective;
-  modal: Modal = null;
   cookies: boolean;
-  authHeaderSub: Subscription;
-  authHeader: boolean = false;
+  authHeader = false;
 
-  constructor(private _router: Router, private errorHandler: ErrorHandleService,
-              private modalService: ModalService, private renderer: Renderer2,
+  constructor(private router: Router, private errorHandler: ErrorHandleService,
+              private renderer: Renderer2,
               private cFResolver: ComponentFactoryResolver,
-              private acceptCookieS: AcceptCookieService,
-              private headerService: HeaderService) {}
+              private acceptCookieS: AcceptCookieService) {
+  }
 
   ngOnInit() {
     this.routerEvents();
@@ -45,26 +37,13 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     this.cookies = this.acceptCookieS.displayAcceptCookies();
     this.cookieSub = this.acceptCookieS.answered
-      .subscribe(()=> {
+      .subscribe(() => {
         this.cookies = false;
-      });
-    this.authHeaderSub = this.headerService.auth
-      .subscribe((authHeader) => {
-        this.authHeader = authHeader;
-      });
-  }
-
-  ngAfterViewInit() {
-    this.checkModalSub = this.modalService.checkModal()
-      .subscribe(()=> {
-        this.modal = this.modalService.modal;
-        if (this.modal)
-          this.displayModal();
       });
   }
 
   routerEvents() {
-    this._router.events.subscribe((event: RouterEvent) => {
+    this.router.events.subscribe((event: RouterEvent) => {
       switch (true) {
         case event instanceof NavigationStart: {
           this.isLoading = true;
@@ -78,31 +57,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  displayModal() {
-    this.renderer.addClass(document.body, 'modal-Open');
-    const componentFactory =
-        this.cFResolver.resolveComponentFactory(ModalComponent);
-    const hostViewContainerRef = this.modalHost.viewContainerRef;
-    hostViewContainerRef.clear();
-
-    const componentRef =
-        hostViewContainerRef.createComponent(componentFactory);
-    componentRef.instance.modal = this.modal;
-    this.modalCloseSub = componentRef.instance.close.subscribe(() => {
-        this.modalCloseSub.unsubscribe();
-        hostViewContainerRef.clear();
-        this.renderer.removeClass(document.body, 'modal-Open');
-    });
-  }
-
   hideError() {
     this.errorMessage = '';
   }
 
   ngOnDestroy() {
     this.errorSub.unsubscribe();
-    this.authHeaderSub.unsubscribe();
-    if (this.modalCloseSub)
-      this.modalCloseSub.unsubscribe();
   }
 }

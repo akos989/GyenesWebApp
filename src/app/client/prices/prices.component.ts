@@ -1,22 +1,20 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { BookingService } from '../booking/booking.service';
-import { Subscription } from 'rxjs';
-import { ReservationService } from '../booking/reservations.service';
-import { Equipment } from 'src/app/shared/models/equipment.model';
-import ScrollReveal from 'scrollreveal'
-import { ActivatedRoute } from '@angular/router';
+import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {Equipment} from 'src/app/shared/models/equipment.model';
+import ScrollReveal from 'scrollreveal';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-prices',
   templateUrl: './prices.component.html',
   styleUrls: ['./prices.component.css']
 })
-export class PricesComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PricesComponent implements AfterViewInit, OnDestroy {
 
-  packageSelected = false;
-  packageSelectionSub: Subscription;
   fragmentSub: Subscription;
+
   @ViewChild('equipmentsElement', {static: false}) equipmentsRef: ElementRef;
+
   equipments: Equipment[] = [
     new Equipment(
       'Paintball fegyver',
@@ -52,30 +50,19 @@ export class PricesComponent implements OnInit, AfterViewInit, OnDestroy {
       'Védőmellény',
       '',
       'felszereles/vest-color.png'
-    ) 
+    )
   ];
 
-  constructor(private bookingService: BookingService, private resService: ReservationService,
-              private route: ActivatedRoute) { }
-
-  ngOnInit(): void {
-    this.packageSelectionSub = this.bookingService.packageSelected
-      .subscribe(result => {
-        this.packageSelected = true;
-      });
-    const currRes = this.resService.currentReservation;
-    if (currRes && currRes.packageId) {
-      this.packageSelected = true;
-    }
+  constructor(private route: ActivatedRoute) {
   }
 
   ngAfterViewInit() {
-    setTimeout(()=> {
-      ScrollReveal({ reset: true });
-      ScrollReveal().reveal('.reveal', { delay: 200 });
+    setTimeout(() => {
+      ScrollReveal({reset: true});
+      ScrollReveal().reveal('.reveal', {delay: 200});
     }, 0);
     this.fragmentSub = this.route.fragment
-    .subscribe((fragment) => {
+      .subscribe((fragment) => {
         if (fragment === 'equipments') {
           window.scrollTo(0, this.equipmentsRef.nativeElement.offsetTop);
         }
@@ -83,7 +70,8 @@ export class PricesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.fragmentSub)
+    if (this.fragmentSub) {
       this.fragmentSub.unsubscribe();
+    }
   }
 }

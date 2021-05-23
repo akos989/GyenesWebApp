@@ -1,0 +1,57 @@
+[
+  {
+    "id": "5eefbf27204f9a63f1ced102",
+    "packages": [
+      {
+        "_id": "5eefc05efd02387006517785",
+        "duration": 2,
+        "disabled": false,
+        "includedBullets": 0,
+        "description": "",
+        "name": "Nagyon kicsi",
+        "fromNumberLimit": 8,
+        "toNumberLimit": 14,
+        "bulletPrice": 15,
+        "basePrice": 3000
+      },
+      {
+        "_id": "5eefc0a9904c4270ba1b90d1",
+        "duration": 2,
+        "disabled": false,
+        "includedBullets": 0,
+        "description": "",
+        "name": "Kicsi",
+        "fromNumberLimit": 15,
+        "toNumberLimit": 20,
+        "bulletPrice": 14,
+        "basePrice": 3000
+      },
+      {
+        "_id": "5eefc0f9904c4270ba1b90d2",
+        "duration": 2,
+        "disabled": false,
+        "includedBullets": 0,
+        "description": "",
+        "name": "Kicsit nagy",
+        "fromNumberLimit": 21,
+        "toNumberLimit": 27,
+        "bulletPrice": 12,
+        "basePrice": 3000
+      },
+      {
+        "_id": "5eefc10d904c4270ba1b90d3",
+        "duration": 2,
+        "disabled": false,
+        "includedBullets": 0,
+        "description": "",
+        "name": "Nagy",
+        "fromNumberLimit": 28,
+        "toNumberLimit": 35,
+        "bulletPrice": 10,
+        "basePrice": 3000
+      }
+    ],
+    "sale": false,
+    "name": "Normál"
+  }
+]

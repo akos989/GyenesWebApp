@@ -18,9 +18,6 @@
                 </div>
                 <div class="pb-3 font-weight-bold">Email cím</div>
                 <div class="orange pl-md-5 pb-5">
-                    <!-- <a href="mailto:kapcsolat@gyenespaintball.hu">
-                        kapcsolat@gyenespaintball.hu
-                    </a><br> -->
                     <a href="mailto:gyenespaintball@gmail.com">
                         gyenespaintball@gmail.com
                     </a>
@@ -32,91 +29,6 @@
                     class="googlemaps"
                     src="https://maps.google.com/maps?q=46.768861,17.273519&hl=es;z=14&amp;output=embed" allowfullscreen>
                 </iframe>
-            </div>
-        </div>
-        <div
-            *ngIf="!submitted"
-            class="row justify-content-center">
-            <div class="col-md-6 col-11 card">
-                <div class="middle-top-text font-weight-bold py-5 text-center">
-                    Küldj üzenetet!
-                </div>
-                <form (ngSubmit)="onSubmit()" #f="ngForm">
-                    <div class="group">
-                        <input
-                            type="text" name="name"
-                            required
-                            ngModel #nameInput="ngModel"
-                            class="middle-text">
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label class="middle-text">Név</label>
-                        <span
-                            *ngIf="nameInput.invalid && nameInput.touched"
-                            class="help-block small-text">
-                            Név megadása kötelező!
-                        </span>
-                    </div>
-                    <div class="group">
-                        <input
-                            type="email" name="email"
-                            required
-                            email
-                            ngModel #emailInput="ngModel"
-                            class="middle-text"
-                            [ngClass]="{notempty: emailInput.value != ''}"
-                            >
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label class="middle-text">Email cím</label>
-                        <span
-                            *ngIf="emailInput.invalid && emailInput.touched"
-                            class="help-block small-text">
-                            Helyes email cím megadása kötelező!
-                        </span>
-                    </div>
-                    <div class="group">
-                        <textarea
-                            name="text"
-                            required
-                            ngModel
-                            #messageInput="ngModel"
-                            class="middle-text"
-                            rows="4">                        
-                        </textarea>
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        <label class="middle-text">Üzenet</label>
-                        <span
-                            *ngIf="messageInput.invalid && messageInput.touched"
-                            class="help-block small-text">
-                            Az üzenet nem lehet üres!
-                        </span>
-                    </div>
-                    <div class="text-center pb-5">
-                        <div
-                            *ngIf="f.valid"
-                            (click)="onSubmit()"
-                            class="cbtn cbtn-one small">
-                            <span>Küldés</span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div
-            *ngIf="submitted"
-            class="text-center">
-            <div class="middle-top-text pb-3">
-                Köszönjük, hogy írtál nekünk!
-            </div>
-            <div class="middle-text pb-5">
-                Csapatunk mihamarabb felveszi veled emailben a kapcsolatot!
-            </div>
-            <div
-                (click)="newMessage()"
-                class="cbtn cbtn-one small">
-                <span>Új üzenet</span>
             </div>
         </div>
     </div>

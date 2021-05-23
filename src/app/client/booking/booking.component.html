@@ -1,86 +1,19 @@
-<div class="component nooverflow dark">
-    <div *ngIf="!operator">
-        <app-page-header
-            [src]="'booking.jpg'"
-            [title]="'Foglalj most'">
-        </app-page-header>
+<div class="component dark">
+  <img src="assets/pictures/construction.jpg" class="landing" alt="">
+  <div class="construction text-center middle-text">
+    <div class="middle-top-text"> Az oldal felújítás alatt</div>
+    <div class="hr mb-4"></div>
+    <div>Információkért keressetek telefonon vagy emailben!</div>
+    <div>
+      <a class="orange" href="mailto:gyenespaintball@gmail.com">gyenespaintball@gmail.com</a>
     </div>
-    <mat-horizontal-stepper id="stepper" linear #stepper>
-        <div id="packageTrigger" class="medium-padding">
-            <mat-step label="Csomag" [completed]="packageNext">
-                <div id="packageStep" class="row button-sticky">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-6 col-sm-8 col-7"></div>
-                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
-                        <div
-                            [ngClass]="{'disabled': !packageNext, 'enabled': packageNext}"
-                            (click)="goForward(stepper)"
-                            class="cbtn cbtn-one mini">
-                            <span>Tovább</span>
-                        </div>
-                    </div>
-                </div>
-                    <app-choose-package></app-choose-package>
-                </mat-step>
-            </div>
-            <div class="medium-padding">
-            <mat-step label="Adatok" [completed]="infoNext">
-                <div id="infoStep" class="row button-sticky">
-                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
-                        <div
-                            (click)="goBack(stepper)"
-                            class="cbtn cbtn-one mini">
-                            <span>Vissza</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-4 col-2"></div>
-                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
-                        <div
-                            [ngClass]="{'disabled': !infoNext, 'enabled': infoNext}"
-                            (click)="goForward(stepper)"
-                            class="cbtn cbtn-one mini">
-                            <span>Tovább</span>
-                        </div>
-                    </div>
-                </div>
-                <app-information-form #form></app-information-form>
-            </mat-step>
-            </div>
-            <mat-step label="Dátum" [completed]="dateNext">
-                <div id="dateStep" class="row button-sticky">
-                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
-                        <div
-                            (click)="goBack(stepper)"
-                            class="cbtn cbtn-one mini">
-                            <span>Vissza</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-4 col-2"></div>
-                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
-                        <div
-                            [ngClass]="{'disabled': !dateNext, 'enabled': dateNext}"
-                            (click)="goForward(stepper)"
-                            class="cbtn cbtn-one mini">
-                            <span>Tovább</span>
-                        </div>
-                    </div>
-                </div>
-                <app-date></app-date>
-            </mat-step>
-            <div class="medium-padding">
-            <mat-step label="Ellenőrzés" completed="false">
-                <div id="checkStep" class="row button-sticky">
-                    <div class="col-md-3 col-sm-4 col-5 text-center pb-3">
-                        <div
-                            (click)="goBack(stepper)"
-                            class="cbtn cbtn-one mini">
-                            <span>Vissza</span>
-                        </div>
-                    </div>
-                </div>
-                <app-check [operator]="operator"></app-check>
-            </mat-step>
-        </div>
-       </mat-horizontal-stepper>
+    <div>
+      <div>
+        <a class="orange" href="tel:+36208028647">+36208028647</a>
+      </div>
+      <div>
+        <a class="orange" href="tel:+36306083283">+36306083283</a>
+      </div>
+    </div>
+  </div>
 </div>

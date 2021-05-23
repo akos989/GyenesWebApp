@@ -1,5 +1,5 @@
-import { Component, OnInit, Renderer2, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { HeaderService } from './header.service';
+import {AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {HeaderService} from './header.service';
 
 @Component({
   selector: 'app-header',
@@ -10,19 +10,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   navigationOpen = false;
   small: boolean;
-  smallBeforeNav:boolean = null;
+  smallBeforeNav: boolean = null;
   dropDownOpen: boolean = false;
   @ViewChild('dropToggle', {static: false}) toggler: ElementRef;
 
   constructor(private renderer: Renderer2,
-              private headerService: HeaderService) { }
-  
+              private headerService: HeaderService) {
+  }
+
   ngOnInit(): void {
     this.small = false;
     this.headerService.small
-      .subscribe( 
-        (small: boolean) => {          
-          setTimeout( () => {
+      .subscribe(
+        (small: boolean) => {
+          setTimeout(() => {
             this.small = small;
             this.navigationOpen = false;
             this.renderer.removeClass(document.body, 'modal-open');
@@ -33,10 +34,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.renderer.listen(window, 'click', (event) => {
-      if (this.dropDownOpen)
-        if( this.toggler && !this.toggler.nativeElement.contains(event.target) ){
+      if (this.dropDownOpen) {
+        if (this.toggler && !this.toggler.nativeElement.contains(event.target)) {
           this.dropDownOpen = false;
         }
+      }
     });
   }
 
@@ -45,8 +47,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   navigatonClicked() {
-   if (!this.navigationOpen)
+    if (!this.navigationOpen) {
       this.smallBeforeNav = this.small;
+    }
     this.navigationOpen = !this.navigationOpen;
 
     if (this.navigationOpen) {
@@ -54,9 +57,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.small = false;
     } else {
       this.renderer.removeClass(document.body, 'modal-open');
-      if (this.smallBeforeNav !== null)
+      if (this.smallBeforeNav !== null) {
         this.small = this.smallBeforeNav;
-    }      
+      }
+    }
   }
 
   toggleDropDown() {

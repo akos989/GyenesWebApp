@@ -1,20 +1,20 @@
-import { Component, OnInit, Renderer2, ViewChild, ComponentFactoryResolver } from '@angular/core';
-import { Field } from './field-details/field.model';
-import { Equipment } from 'src/app/shared/models/equipment.model';
-import { PlaceholderDirective } from 'src/app/shared/placeholder.directive';
-import { Subscription } from 'rxjs';
-import { FieldDetailsComponent } from './field-details/field-details.component';
+import {Component, ComponentFactoryResolver, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Field} from './field-details/field.model';
+import {Equipment} from 'src/app/shared/models/equipment.model';
+import {PlaceholderDirective} from 'src/app/shared/placeholder.directive';
+import {Subscription} from 'rxjs';
+import {FieldDetailsComponent} from './field-details/field-details.component';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
 
   @ViewChild(PlaceholderDirective, {static: false}) modalHost: PlaceholderDirective;
   private closeSub: Subscription;
-  
+
   open: boolean[] = [false, false, false];
   fields: Field[] = [
     new Field(
@@ -28,7 +28,7 @@ export class MapComponent implements OnInit {
         new Equipment('Szemeteskonténer', '', 'elemek/kuka-min.png'),
         new Equipment('Palánk', '', 'elemek/raklap-min.png')
       ],
-      '','city', 7
+      '', 'city', 7
     ),
     new Field(
       'Speedball pálya', '5 vs 5 szabvány speedball versenypálya, de kisebb és nagyobb csapatoknak is kiváló.',
@@ -53,9 +53,10 @@ export class MapComponent implements OnInit {
       ],
       '', 'trench', 6
     )
-];
+  ];
 
-constructor(private renderer: Renderer2, private cFResolver: ComponentFactoryResolver) { }
+  constructor(private renderer: Renderer2, private cFResolver: ComponentFactoryResolver) {
+  }
 
   ngOnInit(): void {
   }
@@ -68,10 +69,11 @@ constructor(private renderer: Renderer2, private cFResolver: ComponentFactoryRes
     } else {
       this.open[idx] = !this.open[idx];
     }
-    if (this.anyOpen())
+    if (this.anyOpen()) {
       this.renderer.addClass(document.body, 'modal-open');
-    else
+    } else {
       this.renderer.removeClass(document.body, 'modal-open');
+    }
   }
 
   anyOpen(): boolean {
@@ -95,8 +97,10 @@ constructor(private renderer: Renderer2, private cFResolver: ComponentFactoryRes
       this.renderer.removeClass(document.body, 'modal-open');
     });
   }
+
   ngOnDestroy() {
-    if (this.closeSub)
+    if (this.closeSub) {
       this.closeSub.unsubscribe();
+    }
   }
 }

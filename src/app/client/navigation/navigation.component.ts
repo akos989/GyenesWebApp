@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-navigation',
@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  @Input() open:boolean;
+  @Input() open: boolean;
   @Output() linkClick = new EventEmitter<void>();
 
   ngOnInit(): void {

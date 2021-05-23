@@ -1,18 +1,17 @@
-import { Injectable } from "@angular/core";
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { PackageService } from './package.service';
-import { PackageType } from 'src/app/shared/models/package-type.model';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {PackageService} from './package.service';
+import {PackageType} from 'src/app/shared/models/package-type.model';
 
 @Injectable({providedIn: 'root'})
 export class PackageResolver implements Resolve<PackageType[]> {
 
-    constructor(private packageService: PackageService) {}
+  constructor(private packageService: PackageService) {
+  }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this.packageService.packages.length > 0) {            
-            return this.packageService.packages;
-        } else {
-            return this.packageService.loadFromBackend();
-        }
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (this.packageService.packages.length > 0) {
+      return this.packageService.packages;
     }
+  }
 }

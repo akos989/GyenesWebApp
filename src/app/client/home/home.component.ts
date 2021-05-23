@@ -1,6 +1,5 @@
-import { Component, OnDestroy, AfterViewInit } from '@angular/core';
-import { HeaderService } from '../header/header.service';
-import { ActivatedRoute } from '@angular/router';
+import {AfterViewInit, Component, OnDestroy} from '@angular/core';
+import {HeaderService} from '../header/header.service';
 
 declare var ScrollMagic: any;
 
@@ -11,7 +10,7 @@ declare var ScrollMagic: any;
 })
 export class HomeComponent implements OnDestroy, AfterViewInit {
 
-  smallHeader: boolean = false;
+  smallHeader = false;
   ctrl = new ScrollMagic.Controller();
   scrollMagicScenes = [];
 
@@ -29,8 +28,8 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
         offset: -230,
         duration: 10000
       })
-        .setClassToggle("hr.left", "open")
-        .addTo(this.ctrl)  
+        .setClassToggle('hr.left', 'open')
+        .addTo(this.ctrl)
     );
     this.scrollMagicScenes.push(
       new ScrollMagic.Scene({
@@ -39,7 +38,7 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
         offset: -400,
         duration: 10000
       })
-        .setClassToggle("hr.center", "open")
+        .setClassToggle('hr.center', 'open')
         .addTo(this.ctrl)
     );
     this.scrollMagicScenes.push(
@@ -55,13 +54,13 @@ export class HomeComponent implements OnDestroy, AfterViewInit {
         .addTo(this.ctrl)
     );
   }
-    
+
   ngOnDestroy() {
-    for (let i:number = 0; i < this.scrollMagicScenes.length; i++) {
+    for (let i = 0; i < this.scrollMagicScenes.length; i++) {
       this.scrollMagicScenes[i].destroy(false);
       this.scrollMagicScenes[i] = null;
     }
     this.ctrl.destroy(false);
     this.ctrl = null;
-  }  
+  }
 }
