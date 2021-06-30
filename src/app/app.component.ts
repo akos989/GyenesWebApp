@@ -1,13 +1,23 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, ViewChild, Renderer2, ComponentFactoryResolver, AfterViewInit } from '@angular/core';
-import { Router, NavigationStart, RouterEvent, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { ErrorHandleService } from './shared/error-handle.service';
-import { ModalService } from './shared/backend-modal/modal.service';
-import { PlaceholderDirective } from './shared/placeholder.directive';
-import { ModalComponent } from './shared/backend-modal/modal/modal.component';
-import { Modal } from './shared/backend-modal/modal.model';
-import { AcceptCookieService } from './shared/cookie/cookie.service';
-import { HeaderService } from './client/header/header.service';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewEncapsulation,
+  ViewChild,
+  Renderer2,
+  ComponentFactoryResolver,
+  AfterViewInit
+} from '@angular/core';
+import {Router, NavigationStart, RouterEvent, NavigationEnd} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {ErrorHandleService} from './shared/error-handle.service';
+import {ModalService} from './shared/backend-modal/modal.service';
+import {PlaceholderDirective} from './shared/placeholder.directive';
+import {ModalComponent} from './shared/backend-modal/modal/modal.component';
+import {Modal} from './shared/backend-modal/modal.model';
+import {AcceptCookieService} from './shared/cookie/cookie.service';
+import {HeaderService} from './client/header/header.service';
+import {FacebookService, InitParams} from '@jemys89/ngx-facebook';
 
 @Component({
   selector: 'app-root',
@@ -23,20 +33,23 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   modalCloseSub: Subscription;
   checkModalSub: Subscription;
   isLoading = false;
-  errorMessage: string = '';
+  errorMessage = '';
   @ViewChild(PlaceholderDirective, {static: false}) modalHost: PlaceholderDirective;
   modal: Modal = null;
   cookies: boolean;
   authHeaderSub: Subscription;
-  authHeader: boolean = false;
+  authHeader = false;
 
-  constructor(private _router: Router, private errorHandler: ErrorHandleService,
+  constructor(private router: Router, private errorHandler: ErrorHandleService,
               private modalService: ModalService, private renderer: Renderer2,
               private cFResolver: ComponentFactoryResolver,
               private acceptCookieS: AcceptCookieService,
-              private headerService: HeaderService) {}
+              private headerService: HeaderService,
+              private facebookService: FacebookService) {
+  }
 
   ngOnInit() {
+    this.initFacebookService();
     this.routerEvents();
     this.errorSub = this.errorHandler.error
       .subscribe(errorMessage => {
@@ -45,7 +58,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     this.cookies = this.acceptCookieS.displayAcceptCookies();
     this.cookieSub = this.acceptCookieS.answered
-      .subscribe(()=> {
+      .subscribe(() => {
         this.cookies = false;
       });
     this.authHeaderSub = this.headerService.auth
@@ -56,15 +69,16 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.checkModalSub = this.modalService.checkModal()
-      .subscribe(()=> {
+      .subscribe(() => {
         this.modal = this.modalService.modal;
-        if (this.modal)
+        if (this.modal) {
           this.displayModal();
+        }
       });
   }
 
   routerEvents() {
-    this._router.events.subscribe((event: RouterEvent) => {
+    this.router.events.subscribe((event: RouterEvent) => {
       switch (true) {
         case event instanceof NavigationStart: {
           this.isLoading = true;
@@ -81,17 +95,17 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   displayModal() {
     this.renderer.addClass(document.body, 'modal-Open');
     const componentFactory =
-        this.cFResolver.resolveComponentFactory(ModalComponent);
+      this.cFResolver.resolveComponentFactory(ModalComponent);
     const hostViewContainerRef = this.modalHost.viewContainerRef;
     hostViewContainerRef.clear();
 
     const componentRef =
-        hostViewContainerRef.createComponent(componentFactory);
+      hostViewContainerRef.createComponent(componentFactory);
     componentRef.instance.modal = this.modal;
     this.modalCloseSub = componentRef.instance.close.subscribe(() => {
-        this.modalCloseSub.unsubscribe();
-        hostViewContainerRef.clear();
-        this.renderer.removeClass(document.body, 'modal-Open');
+      this.modalCloseSub.unsubscribe();
+      hostViewContainerRef.clear();
+      this.renderer.removeClass(document.body, 'modal-Open');
     });
   }
 
@@ -99,10 +113,16 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.errorMessage = '';
   }
 
+  private initFacebookService(): void {
+    const initParams: InitParams = { xfbml: true, version: 'v3.2'};
+    this.facebookService.init(initParams);
+  }
+
   ngOnDestroy() {
     this.errorSub.unsubscribe();
     this.authHeaderSub.unsubscribe();
-    if (this.modalCloseSub)
+    if (this.modalCloseSub) {
       this.modalCloseSub.unsubscribe();
+    }
   }
 }
