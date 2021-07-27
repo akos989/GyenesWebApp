@@ -23,7 +23,7 @@
         "name": "Kicsi",
         "fromNumberLimit": 15,
         "toNumberLimit": 20,
-        "bulletPrice": 14,
+        "bulletPrice": 15,
         "basePrice": 3000
       },
       {
@@ -35,7 +35,7 @@
         "name": "Kicsit nagy",
         "fromNumberLimit": 21,
         "toNumberLimit": 27,
-        "bulletPrice": 12,
+        "bulletPrice": 15,
         "basePrice": 3000
       },
       {
@@ -47,7 +47,7 @@
         "name": "Nagy",
         "fromNumberLimit": 28,
         "toNumberLimit": 35,
-        "bulletPrice": 10,
+        "bulletPrice": 15,
         "basePrice": 3000
       }
     ],

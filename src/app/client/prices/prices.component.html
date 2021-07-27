@@ -9,13 +9,11 @@
         <div class="middle-text">
             <div><strong>Alapár:</strong> 3000 Ft/fő (tartalmazza a teljes felszerelés, pálya bérleti díját 2 órára)</div>
             <div class="pb-3">Az első tár megvétele kötelező(200db)!</div>
-            <div class="font-weight-bold">Golyó árak:</div>
-            <ul>
-                <li>8-14 fős csapatok esetén: 15Ft/db</li>
-                <li>15-20 fős csapatok esetén: 14 Ft/db</li>
-                <li>21-27 fős csapatok esetén: 12 Ft/db</li>
-                <li>28-35 fős csapatok esetén: 10 Ft/db</li>
-            </ul>
+            <div>
+              <span class="font-weight-bold">Golyó árak: </span>
+              <span>15 Ft/db</span>
+            </div>
+          <div class="pt-3 ">20 fős létszám felett egyedi árajánlat igényelhető.</div>
         </div>
         <div class="middle-top-text padding-top-8" #equipmentsElement>Felszerelés</div>
         <hr class="orange">
@@ -23,7 +21,7 @@
             Minden csomaghoz biztosítjuk a játékhoz szükséges alapfelszereléseket.</div>
         <div class="container-flex">
             <div class="row">
-                <div 
+                <div
                     class="col-xl-3 col-sm-6 col-12 pb-5 reveal"
                     *ngFor="let equipment of equipments">
                     <app-description-card [equipment]="equipment"></app-description-card>
