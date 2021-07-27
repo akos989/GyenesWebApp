@@ -60,7 +60,7 @@ export class OperatorResService {
       .subscribe(
         () => {
           this.reservations = this.reservations.filter((reservation) => {
-            return !reservationIds.some(id => id === reservation._id);
+            return !reservationIds.some(id => id.toString() === reservation._id.toString());
           });
           this.reservationsChanged.next();
         },
@@ -80,7 +80,7 @@ export class OperatorResService {
     ).subscribe(
       () => {
         this.reservations
-          .filter((res) => reservationIds.some(id => id === res._id))
+          .filter((res) => reservationIds.some(id => id.toString() === res._id.toString()))
           .map((res) => res.archived = toBeArchived);
         this.reservationsChanged.next();
       },
@@ -92,13 +92,13 @@ export class OperatorResService {
 
   findById(id: string): Reservation {
     return this.reservations.filter((reservation) => {
-      return (reservation._id === id);
+      return (reservation._id.toString() === id.toString());
     })[0];
   }
 
   updateReservation(res: Reservation) {
     this.reservations = this.reservations.map(reservation => {
-      if (res._id === reservation._id) {
+      if (res._id.toString() === reservation._id.toString()) {
         reservation = res;
         reservation.date = this.dateFromString(reservation.date.toString(), 0);
       }
@@ -148,7 +148,7 @@ export class OperatorResService {
 
   getNumberForPackage(pId: string): Reservation[] {
     return this.reservations.filter(res => {
-      return res.packageId === pId;
+      return res.packageId.toString() === pId.toString();
     });
   }
 }

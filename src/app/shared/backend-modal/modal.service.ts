@@ -99,7 +99,7 @@ export class ModalService {
       .subscribe(
         resData => {
           this.modals = this.modals.filter(modal => {
-            return !ids.some(id => id === modal._id);
+            return !ids.some(id => id.toString() === modal._id.toString());
           });
           this.newModalsSub.next(this.modals);
         },
@@ -133,7 +133,7 @@ export class ModalService {
       .pipe(
         tap(resData => {
           this.modals = this.modals.map(modal => {
-            if (modal._id === modalId) {
+            if (modal._id.toString() === modalId.toString()) {
               modal = resData;
               modal.modalImgUrl = this.makeImagePath(resData.modalImgUrl);
               modal.fromDate = this.dateFromString(modal.fromDate.toString(), 0);

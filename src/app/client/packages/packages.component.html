@@ -1,21 +1,21 @@
 <div class="padding-top-4">
-    <mat-accordion #packages>
-        <mat-expansion-panel
-            *ngFor="let packageType of getPackgeTypes()"
-            [expanded]="isExtended(packageType)">
-            <mat-expansion-panel-header (click)="scrollListTop()">
-                <mat-panel-title>
-                    <div class="middle-text font-weight-bold">
-                        {{ packageType.name }}
-                    </div>
-                </mat-panel-title>
-            </mat-expansion-panel-header>    
-            <div class="row justify-content-center">
-                <div *ngFor="let package of packageType.packages"
-                    class="col-xl-3 col-md-4 col-sm-6 col-12 pb-5">
-                    <app-package-detail [package]="package"></app-package-detail>
-                </div>
-            </div>
-        </mat-expansion-panel>
-    </mat-accordion>
+  <mat-accordion #packages>
+    <mat-expansion-panel
+      *ngFor="let packageType of getPackgeTypes()"
+      [expanded]="isExtended(packageType)">
+      <mat-expansion-panel-header (click)="scrollListTop()">
+        <mat-panel-title>
+          <div class="middle-text font-weight-bold">
+            {{ packageType.name }}
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="row justify-content-center">
+        <div *ngFor="let package of packageType.packages"
+             class="col-xl-3 col-md-4 col-sm-6 col-12 pb-5">
+          <app-package-detail [package]="package"></app-package-detail>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
