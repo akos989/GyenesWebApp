@@ -83,6 +83,8 @@ export class ReservationListComponent implements OnInit, OnDestroy, AfterViewIni
 
   ngOnDestroy() {
     this.reservationsChangedSub.unsubscribe();
-    this.formChangeSub.unsubscribe();
+    if (this.formChangeSub) {
+      this.formChangeSub.unsubscribe();
+    }
   }
 }
