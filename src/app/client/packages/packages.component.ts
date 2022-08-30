@@ -24,22 +24,21 @@ export class PackagesComponent implements OnInit {
         this.reservationService.currentReservation.packageId !== null) {
           const type: PackageType = this.packageService.findType(
             this.reservationService.currentReservation.packageId);
-          if (type)
+          if (type) {
             this.selectedTypeId = type.id;
-          else {
+          } else {
             const reservation = this.reservationService.currentReservation;
             reservation.packageId = null;
             this.reservationService.currentReservation = reservation;
-          }            
+          }
         }
   }
 
   isExtended(packageType: PackageType): boolean {
-    if (this.selectedTypeId && this.selectedTypeId === packageType.id)
+    if (this.selectedTypeId && this.selectedTypeId === packageType.id) {
       return true;
-    if (!this.selectedTypeId && packageType.name === 'Normál')
-      return true;
-    return false;
+    }
+    return !this.selectedTypeId && packageType.name === 'Normál';
   }
 
   getPackgeTypes(): PackageType[] {
@@ -49,8 +48,8 @@ export class PackagesComponent implements OnInit {
   scrollListTop() {
     const positon: number = this.packageContainer.nativeElement.offsetTop;
 
-    let scrollToTop = window.setInterval(() => {
-      let pos = window.pageYOffset;
+    const scrollToTop = window.setInterval(() => {
+      const pos = window.pageYOffset;
       if (pos > positon) {
           window.scrollTo(0, pos - 20); // how far to scroll on each step
       } else {

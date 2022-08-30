@@ -11,12 +11,14 @@
     </mat-card-header>
     <img mat-card-image src="../../../../assets/pictures/package.jpg" alt="package">
     <mat-card-content>
-            <div class="small-text text-center font-weight-bold"> Alapár: </div>
-            <div class="small-text  text-center">
-                {{ package.basePrice }} Ft
-            </div>
-            <div class="small-text text-center">+ golyó</div>
-        <div 
+      <div class="small-text d-flex justify-content-around">
+        <span class="font-weight-bold">Alapár:</span>
+        <span>{{ package.basePrice }} Ft</span>
+      </div>
+      <div class="text text-center font-italic very-small-text" [style.visibility]="package.fromNumberLimit > 20 ? 'visible' : 'hidden'">
+        Kedvezményes árak személyesen egyeztethetők
+      </div>
+        <div
             *ngIf="package.includedBullets > 0">
             <div class="small-text text-center font-weight-bold"> Lövedékek az árban: </div>
             <div class="small-text text-center">

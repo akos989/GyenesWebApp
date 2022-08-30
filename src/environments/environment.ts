@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://api.gyenespaintball.hu/'
+  serverUrl: 'http://localhost:3000'
 };
 
 /*

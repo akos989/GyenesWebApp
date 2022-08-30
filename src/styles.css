@@ -5,7 +5,7 @@
     -webkit-backface-visibility: hidden;
 }
 #field-exp.mat-expansion-panel {
-     -webkit-transform: translate3d(0,0,0);   
+     -webkit-transform: translate3d(0,0,0);
 }
 .mat-expansion-panel.small-padding {
     padding-bottom: 2vh;
@@ -144,8 +144,8 @@
     border-top-color: rgb(255, 235, 204);
 }
 body {
-    font-family: roboto;
-    margin: 0px;
+    font-family: roboto, serif;
+    margin: 0;
     -webkit-backface-visibility: hidden;
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
@@ -178,7 +178,7 @@ hr.orange.small {
 }
 hr.center {
     left: 50%;
-    width: 0%;
+    width: 0;
     -webkit-transition: .5s ease-in-out;
     -moz-transition: .5s ease-in-out;
     -o-transition: .5s ease-in-out;
@@ -186,13 +186,13 @@ hr.center {
 }
 
 hr.center.open {
-    left: 0%;
+    left: 0;
     width: 100%;
 }
 
 hr.left {
     left: -50%;
-    width: 0%;
+    width: 0;
     position: relative;
     -webkit-transition: .5s ease-in-out;
     -moz-transition: .5s ease-in-out;
@@ -202,7 +202,7 @@ hr.left {
 
 hr.left.open {
     width: 100%;
-    left: 0%;
+    left: 0;
 }
 
 .light-background {
@@ -231,7 +231,7 @@ hr.left.open {
     padding-bottom: 10vh;
 }
 
-.cbtn {  
+.cbtn {
     text-align: center;
     cursor: pointer;
     display: inline-block;
@@ -249,13 +249,12 @@ hr.left.open {
 }
 @media (hover: hover) {
     .cbtn.enabled:hover {
-        border: 0px solid green;
+        border: 0 solid green;
         border-radius: 25px;
     }
 }
 
 .cbtn.big {
-    line-height: auto;
     height: 8vh;
     width: auto;
     font-size: 4.5vh;
@@ -265,7 +264,6 @@ hr.left.open {
 }
 
 .cbtn.small {
-    line-height: auto;
     height: 6vh;
     width: auto;
     font-size: 3.5vh;
@@ -304,11 +302,11 @@ hr.left.open {
         letter-spacing: 3px;
     }
     .cbtn-one:hover::before {
-        opacity: 1; 
-        transform: scale(1, 1); 
+        opacity: 1;
+        transform: scale(1, 1);
     }
     .cbtn-one:hover::after {
-        opacity: 0; 
+        opacity: 0;
         transform: scale(0.1, 1);
     }
 }
@@ -427,6 +425,10 @@ hr.left.open {
     font-size: 2.5vh;
 }
 
+.very-small-text{
+    font-size: 2vh;
+}
+
 .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
     right: 5px;
     left: auto;
@@ -452,7 +454,7 @@ hr.left.open {
 .swiper-pagination-bullet-active {
     opacity: 1;
     background: rgb(209, 81, 26) !important;
-    size: 3;
+    size: 3px;
     padding: 5px;
     pointer-events: none;
 }
@@ -474,14 +476,14 @@ hr.left.open {
     src: url(./assets/fonts/Roboto-Light.ttf);
 }
 .lulo {
-    font-family: luloFont;
+  font-family: luloFont, serif;
 }
 
 .lulo-full {
-    font-family: luloFontFull;
+    font-family: luloFontFull, serif;
 }
 .archivo-black {
-    font-family: archivoBlack;
+    font-family: archivoBlack, serif;
 }
 .card {
     background-color: #333534;
@@ -498,7 +500,7 @@ hr.left.open {
     .container-custom {
         position: relative;
         width: 100%;
-        left: 0%;
+        left: 0;
     }
 }
 .help-block {
